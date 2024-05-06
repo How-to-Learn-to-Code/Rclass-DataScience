@@ -1,0 +1,46 @@
+---
+title: "4-project-day-2"
+format: html
+---
+
+# Final Class!
+
+Now that you've been through the entire course, we want to reinforce some of the skills that you've learned by applying your knowledge to several existing datasets. In the previous class, you have completed the following steps:
+
+1. Created a GitHub account.
+
+2. Linked your GitHub account with your Longleaf account.
+
+3. Created and pushed your first repository to GitHub.
+
+
+## Datasets:
+
+* Heat exposure in Phoenix, Arizona dataset
+
+//TODO: Description
+
+* Western Africa Ebola dataset
+
+//TODO: Description
+
+* AVIDA dataset
+
+//TODO: Description
+
+* Obesity dataset
+
+//TODO: Description
+
+
+For each of these datasets (as many as time allows), we'd like you to do some basic analysis, including the following steps:
+
+1. Creating a directory for the analysis of this dataset, using best practices discussed in the previous class.
+2. Loading in the data
+3. Performing some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)
+4. Identifying at least 1 research question that you could try to answer with this dataset.
+5. Formatting the data in a way that allows for this analysis
+6. Visualize the data in helpful ways to answer your question
+7. Make your code reproducible by using Github.
+
+To help with your analyses, we have included a template document that you are welcome to use.
