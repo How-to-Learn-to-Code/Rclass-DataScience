@@ -1,0 +1,371 @@
+---
+title: "git, snakemake, and longleaf - oh my!"
+author: "Brian Gural"
+format: 
+  revealjs:
+    theme: [default, custom.scss]
+    transition: slide
+    center: true
+    incremental: true
+    auto-stretch: false
+editor: visual
+---
+
+## Reproducible science... in-silco??
+
+-   Bioinformaticians are people too
+-   We need to make sure our research is well documented and reproducible just like bench scientists
+-   Projects can get complex, messy, and very computationally demanding
+
+## That's amoré
+
+::: {.fragment .fade-up}
+Imagine you've graduated and an entrepreneur, recognizing the soft skills gained by a career in research, wants to hire you to run their cutting edge pizza shop.
+:::
+
+::: {.fragment .fade-up}
+They decided they want [automated machinery to do the work]{.yellow} for you.
+:::
+
+::: {.fragment .fade-up}
+They're also planning on eventually building an empire of automatic pizza shops, so you need to [make sure everyone can tell exactly how this first shop works]{.yellow}.
+:::
+
+::: {.fragment .fade-up}
+Your job is to figure out what equipment you need and how to make it work together!
+:::
+
+## How do you approach this?
+
+::: columns
+::: {.fragment .column width="60%"}
+-   Document everything
+
+-   Connecting steps automatically
+
+-   Requesting the resources
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.fragment .column width="30%"}
+`git`/GitHub
+
+`snakemake`
+
+Longleaf
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+:::
+
+## Suffering from manual version control? `git` can help.
+
+::: {.fragment.fade-up}
+
+### Before [GitHub]{.blue}
+```markdown
+paper_draft1.doc
+paper_draft2.doc
+paper_reviewed_by_john.doc
+paper_draft3_comments_incorporated.doc
+paper_final_draft.doc
+paper_final_reviewed.doc
+paper_final_submission.doc
+paper_final_submission_revised.doc
+paper_final_submission_revised_v2.doc
+paper_published_version.doc
+```
+:::
+
+::: {.fragment.fade-up}
+### After [GitHub]{.blue}
+```markdown
+* 9a2b3c4 - Add published version of the paper (2024-04-29)
+* 8f7e6d5 - Revise submission after additional feedback, version 2 (2024-04-25)
+* 7d6c5b4 - Update submission based on post-submission feedback (2024-04-20)
+* 6c5b4a3 - Prepare final version for submission (2024-04-15)
+* 5b4a392 - Finalize draft after thorough review (2024-04-10)
+* 4a39881 - Incorporate feedback from final review (2024-04-05)
+* 3928717 - Update draft, incorporate feedback from John (2024-04-01)
+* 2871606 - Add second draft of the paper (2024-03-28)
+* 1760505 - Initial draft of the paper (2024-03-25)
+```
+:::
+
+
+## Go on, `git`!
+
+::: {.fragment .fade-up}
+`git` is version control system used to record changes to files  
+:::
+
+::: {.fragment .fade-up}
+[GitHub]{.blue} uses `git` to help users host/review code and manage projects
+:::
+
+::: {.fragment .fade-up}
+`git`/[GitHub]{.blue} matter because they:
+:::
+
+::: {.fragment .fade-up}
+- Track every version of every script
+- Publicly document your work
+- Allow for new versions of projects to `branch`
+- Make it easy to collaborate
+:::
+
+## Help, my `snake` doesn't `make`
+
+::: {.fragment .fade-up}
+`Snakemake` is a workflow management tool used to automate data analysis pipelines.
+:::
+
+::: {.fragment .fade-up}
+You give `Snakemake` a list of [thing you want]{.yellow}, plus a list of [rules that take inputs and outputs]{.yellow}. `Snakemake` figures which scripts need to be run and in what order
+:::
+
+::: {.fragment .fade-up}
+Reasons to use `Snakemake`:
+:::
+
+::: {.fragment .fade-up}
+- Gives a rule book for how your project should be run so it can be **reproduced**
+- **Integrates** scripts from many languages, like `bash`, `R`, and `Python`
+- Makes it easy to **scale** your project, since it can ask for many things to be run in parallel
+:::
+
+## [Longleaf]{.blue}: The darling of UNC bioinformaticians
+
+::: {.fragment .fade-up}
+[Longleaf]{.blue} is UNC's high-performance computing cluster (HPC). It's basically a ton of computers/storage.
+:::
+
+::: {.fragment .fade-up}
+Accessible from anywhere with internet 
+:::
+
+::: {.fragment .fade-up}
+Labs typically start with 40 TB of storage, users get 10 TB
+:::
+
+## Why use [longleaf]{.blue}?
+
+::: {.fragment .fade-up}
+Many scripts can be run at once, with your computer off
+:::
+
+::: {.fragment .fade-up}
+A LOT more resources than a typical computer (including [Gremlin]{.yellow} and [Sphinx]{.yellow})
+:::
+
+::: {.fragment .fade-up}
+Easy to share files!
+:::
+
+::: {.fragment .fade-up}
+`cp -r data/i/want data/where/i/want/to/put/it`
+:::
+
+## Getting the band together
+
+::: {.fragment .fade-up}
+Your computer [could explode]{.yellow} and it'd have no impact on the project
+:::
+
+::: {.fragment .fade-up}
+If you've done everything right, you could: 
+:::
+::: {.fragment .fade-up}
+* log into [Longleaf]{.blue}
+* clone the [GitHub]{.blue} repo for your project
+* copy in your data
+* run `bash snake.sh`
+:::
+
+::: {.fragment .fade-up}
+And the whole project would be reproduced!
+:::
+
+
+## Setting it all up
+
+## Setting it all up: Longleaf
+
+::: {.fragment .fade-up}
+Linux/MacOS use the terminal, Windows needs 3rd party remote computing software, like [VScode]{.blue} or [MobaXterm]{.blue}
+:::
+
+::: {.fragment .fade-up}
+This tutorial will assume that you're on Windows 11 and using [VS Code]{.blue}
+:::
+
+::: {.fragment .fade-up}
+[VS Code]{.blue} supports SSH (Secure Shell), which is a secure way to connect two remote computers
+:::
+
+:::{.fragment .fade-up}
+Lets go ahead and open up [VS Code]{.blue}
+:::
+
+## VS Code to Longleaf
+::: {layout="[40, 60]" layout-valign="bottom"}
+
+![Use the extensions tab on the left to find pre-built tools to connect via SSH remotely](vscodeExtentions.png){.fragment .fade-up}
+
+![In the new Remote Explorer tab, find the settings for SSH](vscodeConfig.png){.fragment .fade-up}
+:::
+
+## VS Code to Longleaf
+::: {layout="[[1], [1]]"}
+
+![Open up the config file (not the one that says ssh_config!)](vscodeConfig2.png){.fragment .fade-up}
+
+![Add these lines to specify where you want to connect and who you want to log in as. Feel free to change "unc" in the Host line to whatever name you want for this connection](vscodeConfigFile.png){.fragment .fade-up}
+:::
+
+## VS Code to Longleaf
+::: {layout="[40, 60]" layout-valign="bottom"}
+
+![Find your new SSH connection in the Remotes tab, then click this arrow to connect your current window](vscodeSSH.png){.fragment .fade-up}
+
+![You'll need to enter your ONYEN password, then you're on!](vscodeLongleaf.png){.fragment .fade-up}
+:::
+
+# Add oart to refresh ssh options and choose linux host
+
+# Make anything you want the user to change a different color!
+## GitHub and Longleaf
+
+::: {.fragment .fade-up}
+Lets pivot to the GitHub side of things
+:::
+
+::: {.fragment .fade-up}
+We're going to do two main things:
+:::
+
+::: {.fragment .fade-up}
+* Introduce our GitHub and Longleaf accounts to eachother
+* Set up our first repository (project) on GitHub 
+:::
+
+## GitHub and Longleaf
+
+::: {.fragment .fade-up}
+To start, we need to get our `ssh` key from Longleaf. Run the following lines in the terminal that we just opened on VS Code
+:::
+
+::: {.fragment .fade-up}
+`ls -al ~/.ssh` This looks for an existing keys associatated with your LL account
+:::
+
+::: {.fragment .fade-up}
+You should see a file called `id_rsa.pub`, copy it with `cat ~/.ssh/id_rsa.pub`
+:::
+
+::: {.fragment .fade-up}
+Now go back to GitHub
+:::
+
+## GitHub SSH Keys
+::: {layout="[40, 60]" layout-valign="bottom"}
+
+![Open the settings of your GitHub account](gitSettings.png){.fragment .fade-up}
+
+![Find the settings for SSH Keys](gitSSH.png){.fragment .fade-up}
+:::
+
+## GitHub SSH Keys
+
+
+![Go ahead and add a new key](gitSSH2.png){.fragment .fade-up}
+
+## GitHub SSH Keys
+![Name that sucker and paste the key you copied from Longleaf a minute ago](gitSSH3.png)
+
+
+## Back to Longleaf
+
+::: {.fragment .fade-up}
+In the Longleaf terminal, log into your GitHub account:
+:::
+
+::: {.fragment .fade-up}
+`git config --global user.name "your-github-username"`
+:::
+
+::: {.fragment .fade-up}
+`git config --global user.email your.email.linkedwith.github`
+:::
+
+## Baby's first repo
+
+::: {.fragment .fade-up}
+A repository, or repo, is a self-contained project on GitHub
+:::
+
+::: {.fragment .fade-up}
+They can be private or public and managed by one person or many.
+:::
+
+::: {.fragment .fade-up}
+GitHub is [not for file storage!]{.yellow}
+:::
+
+## Baby's first repo
+
+::: {layout="[50, 50]" layout-valign="bottom"}
+
+![Go to your Repositories and make a new one](gitRepo1.png){.fragment .fade-up}
+
+![You'll want these settings, which we'll go over in a moment](gitRepo2.png){.fragment .fade-up}
+:::
+
+## Baby's first repo
+::: {layout="[50, 50]"}
+
+![Copy the link to your new repo](gitRepo3.png){.fragment .fade-up}
+
+::: {.fragment .fade-up}
+* What did we just do?
+* Asked for a `README` file, which we can make into the intro to the project for anyone visiting our repo
+* `.gitignore` is a way to tell `git` that you don't want it to look at certain files. It's a good way to keep data from accidentally getting uploaded
+:::
+
+:::
+
+## `git`ing the repo onto LL
+::: {.fragment .fade-up}
+All you need to do is run one line to clone the repo
+:::
+
+::: {.fragment .fade-up}
+Navigate to wherever you want the directory to exist, then run:
+:::
+
+::: {.fragment .fade-up}
+`git clone URL-THAT-YOU-COPIED`
+:::
+
+## Using RStudio on LongLeaf
+::: {.fragment .fade-up}
+UNC lets you run interactive RStudio sessions, go here: https://ondemand.rc.unc.edu
+:::
+
+::: {.fragment .fade-up}
+Open a RStudio Session and request this in the Additional Job Submission Arguments to get 16 GB of RAM: `--mem 16gb`
+:::
+
+::: {.fragment .fade-up}
+It'll take a moment to create the session, connect when it's ready
+:::
+
+## Rprojects
+::: {.fragment .fade-up}
+Rprojects are great way to keep your projects seperate and tidy
+:::
