@@ -1,0 +1,110 @@
+---
+title: "Running a reproducible analysis"
+author: "Brian Gural"
+format: html
+output:
+  html_document:
+    css: custom.scss
+editor: visual
+---
+
+## Reproducible science... in-silco??
+
+-   Bioinformaticians are people too
+-   We need to make sure our research is well documented and reproducible just like bench scientists
+-   Projects can get complex, messy, and very computationally demanding
+
+## SECTION THAT EXPLAINS WHY YOU'D USE THESE TOOLS
+
+## Good computational practices 101
+
+::: columns
+::: {.column width="60%"}
+-   Documenting everything
+
+-   Storing data & getting resources
+
+-   Keeping your R project organized
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="30%"}
+`git`/GitHub
+
+Longleaf
+
+RStudio Projects
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+:::
+
+## Suffering from manual version control? `git` can help.
+
+What is **version control** exactly? At its core, it's a way of keeping track of the changes made to files. If you've ever worked on a publication with a picky professor, you've probably tried to keep some kind of home-brewed version control system yourself by changing up the file names between drafts, something like this:
+
+### Before [GitHub]{.blue}
+
+``` markdown
+paper_draft1.doc
+paper_draft2.doc
+paper_reviewed_by_john.doc
+paper_draft3_comments_incorporated.doc
+paper_final_draft.doc
+paper_final_reviewed.doc
+paper_final_submission.doc
+paper_final_submission_revised.doc
+paper_final_submission_revised_v2.doc
+paper_published_version.doc
+```
+
+Essentially, the authors are trying to use the file name to keep track of the changes. But with a dedicated version control system, like `git`, **you can update a file while keeping a detailed log of the changes**. Here's how the messy naming system from above would look in `git`:
+
+### After [GitHub]{.blue}
+
+``` markdown
+* 9a2b3c4 - Add published version of the paper (2024-04-29)
+* 8f7e6d5 - Revise submission after additional feedback, version 2 (2024-04-25)
+* 7d6c5b4 - Update submission based on post-submission feedback (2024-04-20)
+* 6c5b4a3 - Prepare final version for submission (2024-04-15)
+* 5b4a392 - Finalize draft after thorough review (2024-04-10)
+* 4a39881 - Incorporate feedback from final review (2024-04-05)
+* 3928717 - Update draft, incorporate feedback from John (2024-04-01)
+* 2871606 - Add second draft of the paper (2024-03-28)
+* 1760505 - Initial draft of the paper (2024-03-25)
+```
+
+### Go on, `git`!
+
+`git` is version control system used to record changes to files. [GitHub]{.blue} uses `git` to help users host/review code and manage projects
+
+[`git`/[GitHub]{.blue} matter because they:]{.underline}
+
+-   Track every version of every script
+
+-   Publicly document your work
+
+-   Allow for new versions of projects to `branch`
+
+-   Make it easy to collaborate
+
+## [Longleaf]{.blue}: The darling of UNC bioinformaticians
+
+[Longleaf]{.blue} is UNC's high-performance computing cluster (HPC). It's basically a ton of computers/storage.
+
+Accessible from anywhere with internet Labs typically start with 40 TB of storage, users get 10 TB
+
+### Why use [Longleaf]{.blue}?
+
+Many scripts can be run at once, with your computer off
+
+A LOT more resources than a typical computer
+
+Easy to share files!
+
+## RProjects:
