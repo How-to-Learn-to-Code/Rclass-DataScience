@@ -64,11 +64,6 @@ This works for two-dimensional structures too, like data frames and matrices. We
 
 ```{r}
 # Make a data frame
-df <- data.frame(name = c("rosalind", "marie", "barbara"),
-                 nobel_prize = c("dna", "radium", "medical chemistry"),
-                 school = c("cambridge", "columbia", "cornell"))
-
-
 df <- data.frame(
   name = c("Rosalind Franklin", "Marie Curie", "Barbara McClintock", "Ada Lovelace", "Dorothy Hodgkin", 
            "Lise Meitner", "Grace Hopper", "Chien-Shiung Wu", "Gerty Cori"),
@@ -79,7 +74,6 @@ df <- data.frame(
   date_of_birth = c("1920-07-25", "1867-11-07", "1902-06-16", "1815-12-10", "1910-05-12", 
                     "1878-11-07", "1906-12-09", "1912-05-31", "1896-08-15")
 )
-head(df)
 
 # To get the first row:
 df[1,]
@@ -272,7 +266,7 @@ arranged_data <- arrange(filter(data, as.Date(date_of_birth) > as.Date("1900-01-
 ```
 
 ## Using pipes to clean up the code
-The pipe operator (`%>%`) from the `magrittr` package, which is incorporated into `dplyr`, allows us to pass the result of one function directly into the next. This makes the code easier to read and maintain.
+The pipe operator (`%>%`) from the `magrittr` package, which is incorporated into `dplyr`, allows us to pass the result of one function directly into the next. Think of it as saying, "and then.."
 
 ```{r}
 library(dplyr)
@@ -283,7 +277,8 @@ arranged_data <- data %>%
   arrange(date_of_birth)
 ```
 
-The pipe version simplifies how we look at transformations. We can see each step as a part of a continuous workflow, modifying the dataset in a logical sequence without needing to store intermediate results. This helps keep our code both clean and readable.
+Once you're comfortable with this style, you should be able to read it as:
+Take `data` *and then* `filter` by DoB *and then* `arrange` by DoB. This helps keep our code both clean and readable.
 ::: 
 
 ## Case study
@@ -311,8 +306,6 @@ cell_props <- read.csv("wrangling-files/cellProportions.csv",
 
 head(cell_props)
 ```
-
-It looks like our data, `cell_props`, is formatted with the samples as rows and the different cell types measured as columns. This follows the *tidy data* style (https://r4ds.had.co.nz/tidy-data.html). Being *tidy* is an approach to handling data in R that aims to be clear and readable. The universe of associated packages are called the `tidyverse`, and it's a hot-topic in the R world. Later, we'll get into specifics of how it differs from what we've been doing so far.
 
 When assessing data, it's good to consider what features you'd expect from a given data set. This helps you know if something has gone wrong before you've gotten your hands on it. For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
 
