@@ -12,7 +12,7 @@ format:
 
 -   There's rarely a single way to approach any given data-wrangling problem! Expanding your "toolkit" allows you to tackle problems from different angles.
 
-::: {.callout-tip}
+::: callout-tip
 Before you begin wrangling data, you should be able to:
 
 -   Define how you want the data to look and why
@@ -24,7 +24,13 @@ Before you begin wrangling data, you should be able to:
 
 ## Working with vectors
 
-Pulling out specific parts of a data set is important when analyzing with R. **Indexing**, or accessing elements, subsets data based on numeric positions in a vector by using brackets. i.e. the 5th element in a vector will be returned if you run `vector[5]`. It's also helpful for getting several elements at once, or reordering data. Here are some examples:
+Pulling out specific parts of a data set is important when analyzing with R. **Indexing**, or accessing elements, subsets data based on numeric positions in a vector. Some things to be aware of when indexing:
+
+-   Indexing uses brackets. i.e. the 5th element in a vector will be returned if you run `vector[5]`.
+
+-   It's helpful for getting several elements at once, or reordering data.
+
+Here are some examples:
 
 ```{r}
 # First, we'll make a vector to play with
@@ -38,7 +44,6 @@ names
 
 ```{r}
 # If we want to access the first name, we can use brackets and the position of the name in the vector:
-
 names[1]
 ```
 
@@ -60,10 +65,21 @@ This works for two-dimensional structures too, like data frames and matrices. We
 ```{r}
 # Make a data frame
 df <- data.frame(name = c("rosalind", "marie", "barbara"),
-                 nobel_prize = c("dna", "radium", "transposons"),
+                 nobel_prize = c("dna", "radium", "medical chemistry"),
                  school = c("cambridge", "columbia", "cornell"))
 
-df
+
+df <- data.frame(
+  name = c("Rosalind Franklin", "Marie Curie", "Barbara McClintock", "Ada Lovelace", "Dorothy Hodgkin", 
+           "Lise Meitner", "Grace Hopper", "Chien-Shiung Wu", "Gerty Cori"),
+  field = c("DNA X-ray crystallography", "Radioactivity", "Genetics", "Computer Programming", "X-ray Crystallography", 
+            "Nuclear Physics", "Computer Programming", "Experimental Physics", "Biochemistry"),
+  school = c("Cambridge", "Sorbonne", "Cornell", "University of London", "Oxford", 
+             "University of Berlin", "Yale", "Princeton", "Washington University"),
+  date_of_birth = c("1920-07-25", "1867-11-07", "1902-06-16", "1815-12-10", "1910-05-12", 
+                    "1878-11-07", "1906-12-09", "1912-05-31", "1896-08-15")
+)
+head(df)
 
 # To get the first row:
 df[1,]
@@ -82,12 +98,32 @@ df$name
 
 # We can also give a list of columns
 # which return in the order provided
-df[,c("nobel_prize","name")]
+df[,c("school","name")]
 ```
+
+## Standard data formats and Tidy
+
+That data, and most two-dimensional data sets (data frames, matrices, etc.) is often organized the similarly:
+
+-   Each variable is its own column
+
+-   Each observation is its own row
+
+-   Each value is a single cell.
+
+```{r tidy_style,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Hadley Wickham’s R for Data Science, 1st Edition"}
+knitr::include_graphics("wrangling-files/tidy-style.png")
+```
+
+This follows the *tidy data* style, an approach to handling data in R that aims to be clear and readable.
+
+::: callout-tip
+The universe of associated packages are called the `tidyverse`, and it's a hot-topic in the R world. We'll get into specifics of how it differs from what we've been doing so far.
+:::
 
 ## `dplyr` verbs
 
-The `dplyr` package is a powerful tool for data manipulation. It's part of the `tidyverse` package, which is a collection of packages that work together to make data manipulation easier. Before manipulating data, we can take a peek with the follow functions:
+One of the most popular `tidyverse` packages, `dplyr`, offers a suite of helpful and readable functions for data manipulation. Lets get started with how it can help you see your data:
 
 ```{r}
 #| echo: false
@@ -100,27 +136,30 @@ library(tidyr)
 ```{r}
 dplyr::glimpse(df)
 ```
+
 With the `glimpse` function we see that this is a data frame with 3 observations and 3 variables. We can also see the type of each variable and the first few values.
 
-::: {.callout-tip}
+::: callout-tip
 `dplyr` functions have a lot in common:
 
-- The first argument is always a data frame
+-   The first argument is always a data frame
 
-- The subsequent arguments typicall describe which columns to operate on, using the variable names (without quotes)
+-   The following arguments typically specify which columns to operate on, using the variable names (without quotes)
 
-- The output is always a new data frame
-
+-   The output is always a new data frame
 :::
 
 The `dplyr` package has a set of functions called "verbs" that are used to manipulate data frames. These verbs can perform manipulations on rows of data frames (ex. `filter`, `arrange`, and `distinct`) and columns of data frames (ex. `mutate`, `select`, `rename`, and `relocate`). This package also has functions for working with groups (ex. `group_by`, `summarize`, and the `slice` family of functions.)
 
-### Row Verbs
+
+::: panel-tabset
+## Rows
+
 `filter` allows you to...
 
 ```{r}
 df |> 
-  filter(nobel_prize == "dna")
+  filter(school == "Cambridge")
 ```
 
 `arrange` allows you to...
@@ -135,7 +174,10 @@ df |>
 
 ```
 
+## Columns
+
 ### Column Verbs
+
 `mutate` allows you to...
 
 ```{r}
@@ -143,28 +185,30 @@ df |>
 ```
 
 `select` allows you to...
+
 ```{r}
 df |> 
   select(name)
 ```
 
 `rename` allows you to...
+
 ```{r}
 
 ```
 
 `relocate` allows you to...
+
 ```{r}
 
 ```
 
+## groups
 
-### Group Verbs
 `group_by` allows you to...
 
 ```{r}
-df |> 
-  filter(nobel_prize == "dna")
+
 ```
 
 `summarize` allows you to...
@@ -179,20 +223,68 @@ The `slice` family of functions allows you to...
 
 ```
 
-### Ungrouping with `ungroup`
+`ungroup`
+
 ```{r}
 
 ```
 
-### the `.by` argument
+ `.by` argument
+
 ```{r}
 
 ```
-
-
-### Conclusion
+:::
 
 Hopefully now, you feel a little more confident about working with vectors, data frames, and using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
+
+
+
+## Functions on functions
+### An introduction to pipes
+
+Data scientists often want to make many changes to their data at one time. Typically, this means using more than one function at once. However, the way we've been writing our scripts so far would make for some very confusing looking code. For example, let's use `dplyr` functions to perform two operations on our dataset of scientists: filter for those born after 1900 and then arrange them by date of birth.
+
+::: panel-tabset
+
+## Writing it as separate steps
+
+Here we first filter and then arrange. Note that we are creating an intermediate variable in between the steps.
+
+```{r}
+library(dplyr)
+
+# Load the data frame
+data <- df
+
+# Filtering for scientists born after 1900
+filtered_data <- filter(data, as.Date(date_of_birth) > as.Date("1900-01-01"))
+
+# Arranging the filtered data by date of birth
+arranged_data <- arrange(filtered_data, date_of_birth)
+```
+
+## Combining functions in one line
+This approach does the same thing but without creating an intermediate variable. It's more compact but can start to get confusing if we add more functions.
+
+```{r}
+arranged_data <- arrange(filter(data, as.Date(date_of_birth) > as.Date("1900-01-01")), date_of_birth)
+```
+
+## Using pipes to clean up the code
+The pipe operator (`%>%`) from the `magrittr` package, which is incorporated into `dplyr`, allows us to pass the result of one function directly into the next. This makes the code easier to read and maintain.
+
+```{r}
+library(dplyr)
+
+# Using pipes
+arranged_data <- data %>%
+  filter(as.Date(date_of_birth) > as.Date("1900-01-01")) %>%
+  arrange(date_of_birth)
+```
+
+The pipe version simplifies how we look at transformations. We can see each step as a part of a continuous workflow, modifying the dataset in a logical sequence without needing to store intermediate results. This helps keep our code both clean and readable.
+::: 
 
 ## Case study
 
@@ -224,5 +316,4 @@ It looks like our data, `cell_props`, is formatted with the samples as rows and 
 
 When assessing data, it's good to consider what features you'd expect from a given data set. This helps you know if something has gone wrong before you've gotten your hands on it. For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
 
-In our case, we're looking at the proportion of cell types in each sample. *Whole refers to ___ and fraction refers to ___*.  Proportions, by nature, sum up to 1. In this case, checking that the values in each row sum to 1 is one way to confirm that we have what we're expecting. Lets go ahead and check that:
-
+In our case, we're looking at the proportion of cell types in each sample. \*Whole refers to \_\_\_ and fraction refers to \_\_\_\*. Proportions, by nature, sum up to 1. In this case, checking that the values in each row sum to 1 is one way to confirm that we have what we're expecting. Lets go ahead and check that:

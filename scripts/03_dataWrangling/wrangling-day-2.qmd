@@ -15,7 +15,7 @@ cell_props <- read.csv("wrangling-files/cellProportions.csv",
 head(cell_props)
 ```
 
-It looks like our data, `cell_props`, is formatted with the samples as rows and the different cell types measured as columns. This follows the *tidy data* style (https://r4ds.had.co.nz/tidy-data.html). Being *tidy* is an approach to handling data in R that aims to be clear and readable. The universe of associated packages are called the `tidyverse`, and it's a hot-topic in the R world. Later, we'll get into specifics of how it differs from what we've been doing so far.
+It looks like our data, `cell_props`, is formatted with the samples as rows and the different cell types measured as columns. 
 
 When assessing data, it's good to consider what features you'd expect from a given data set. This helps you know if something has gone wrong before you've gotten your hands on it. For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
 
