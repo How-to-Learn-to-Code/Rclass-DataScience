@@ -1,0 +1,483 @@
+---
+title: "Data Wrangling Basics"
+author: "Brian Gural, Lorrie He, JP Flores"
+format: 
+  html: 
+    toc: true
+---
+
+## What is data wrangling?
+
+-   Data wrangling, manipulation, or cleaning is the process of transforming data into a format that is more suitable for analysis. This can include removing missing values, changing the format of data, or combining multiple datasets.
+
+-   There's rarely a single way to approach any given data-wrangling problem! Expanding your "toolkit" allows you to tackle problems from different angles.
+
+::: {.callout-tip}
+Before you begin wrangling data, you should be able to:
+
+-   Define how you want the data to look and why
+
+-   Document it well so that others (and future you!) know what you did
+
+-   Know what tools you have and how to use them
+:::
+
+## Working with vectors
+
+Pulling out specific parts of a data set is important when analyzing with R. **Indexing**, or accessing elements, subsets data based on numeric positions in a vector by using brackets. i.e. the 5th element in a vector will be returned if you run `vector[5]`. It's also helpful for getting several elements at once, or reordering data. Here are some examples:
+
+```{r}
+# First, we'll make a vector to play with
+names <- c("rosalind", "marie", "barbara")
+```
+
+```{r}
+# if we print the output, we'd get:
+names
+```
+
+```{r}
+# If we want to access the first name, we can use brackets and the position of the name in the vector:
+
+names[1]
+```
+
+```{r}
+# This works with any position, for example the third name:
+names[3]
+
+# You can index more than one position at a time too:
+names[c(1,2)]
+
+# Changing the order of numbers you supply changes the order of names returned
+names[c(2,1)]
+```
+
+## Working with data frames
+
+This works for two-dimensional structures too, like data frames and matrices. We'd just format it as: `dataframe[row,column]`. Let's try it out:
+
+```{r}
+# Make a data frame
+df <- data.frame(name = c("rosalind", "marie", "barbara"),
+                 nobel_prize = c("dna", "radium", "transposons"),
+                 school = c("cambridge", "columbia", "cornell"))
+
+df
+
+# To get the first row:
+df[1,]
+
+# or the first column: 
+df[,1]
+
+# for specific cells: 
+df[2,3]
+
+# We can use the column name instead of numbers:
+df[,"name"]
+
+# We can do the same thing by using a dollar sign:
+df$name
+
+# We can also give a list of columns
+# which return in the order provided
+df[,c("nobel_prize","name")]
+```
+
+## `dplyr` verbs
+
+The `dplyr` package is a powerful tool for data manipulation. It's part of the `tidyverse` package, which is a collection of packages that work together to make data manipulation easier. Before manipulating data, we can take a peek with the follow functions:
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+```
+
+```{r}
+dplyr::glimpse(df)
+```
+With the `glimpse` function we see that this is a data frame with 3 observations and 3 variables. We can also see the type of each variable and the first few values.
+
+::: {.callout-tip}
+`dplyr` functions have a lot in common:
+
+- The first argument is always a data frame
+
+- The subsequent arguments typicall describe which columns to operate on, using the variable names (without quotes)
+
+- The output is always a new data frame
+
+:::
+
+The `dplyr` package has a set of functions called "verbs" that are used to manipulate data frames. These verbs can perform manipulations on rows of data frames (ex. `filter`, `arrange`, and `distinct`) and columns of data frames (ex. `mutate`, `select`, `rename`, and `relocate`). This package also has functions for working with groups (ex. `group_by`, `summarize`, and the `slice` family of functions.)
+
+### Row Verbs
+`filter` allows you to...
+
+```{r}
+df |> 
+  filter(nobel_prize == "dna")
+```
+
+`arrange` allows you to...
+
+```{r}
+
+```
+
+`distinct` allows you to...
+
+```{r}
+
+```
+
+### Column Verbs
+`mutate` allows you to...
+
+```{r}
+
+```
+
+`select` allows you to...
+```{r}
+df |> 
+  select(name)
+```
+
+`rename` allows you to...
+```{r}
+
+```
+
+`relocate` allows you to...
+```{r}
+
+```
+
+
+### Group Verbs
+`group_by` allows you to...
+
+```{r}
+df |> 
+  filter(nobel_prize == "dna")
+```
+
+`summarize` allows you to...
+
+```{r}
+
+```
+
+The `slice` family of functions allows you to...
+
+```{r}
+
+```
+
+### Ungrouping with `ungroup`
+```{r}
+
+```
+
+### the `.by` argument
+```{r}
+
+```
+
+
+### Conclusion
+
+Hopefully now, you feel a little more confident about working with vectors, data frames, and using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
+
+## Case study
+
+A lot of people struggle to learn how to code without having an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set. We have some data from an experiment that measured the cellular composition of samples from different treatments and genotypes.
+
+What are some things that we, as researchers, would want to know about our data?
+
+-   Did the experiment work?
+
+::: {.callout-note title="Things to consider:"}
+Your controls or expected features!
+:::
+
+-   Do we see differences between our experimental groups?
+
+To get at these questions, we need to be able to manipulate our data into the formats needed to check those features and for plotting. To start, lets take a look at how the results are structured before we start planning how to do the processing.
+
+### Getting familiar with the data
+
+```{r}
+# Load the data. The sample IDs were stored as the first row, so lets make those the row.names
+cell_props <- read.csv("03-dataWrangling_files/cellProportions.csv",
+                       row.names = 1)
+
+head(cell_props)
+```
+
+It looks like our data, `cell_props`, is formatted with the samples as rows and the different cell types measured as columns. This follows the *tidy data* style (https://r4ds.had.co.nz/tidy-data.html). Being *tidy* is an approach to handling data in R that aims to be clear and readable. The universe of associated packages are called the `tidyverse`, and it's a hot-topic in the R world. Later, we'll get into specifics of how it differs from what we've been doing so far.
+
+When assessing data, it's good to consider what features you'd expect from a given data set. This helps you know if something has gone wrong before you've gotten your hands on it. For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
+
+In our case, we're looking at the proportion of cell types in each sample. *Whole refers to ___ and fraction refers to ___*.  Proportions, by nature, sum up to 1. In this case, checking that the values in each row sum to 1 is one way to confirm that we have what we're expecting. Lets go ahead and check that:
+
+```{r}
+rowSums(cell_props)
+```
+
+This looks good! There are endless factors you could check about your data. It's a good practice to consider what they could be and check them every so often throughout an analysis.
+
+We also have the phenotypes for the samples in a separate csv file:
+
+```{r}
+cell_phenos <- read.csv("03-dataWrangling_files/cellPhenotypes.csv",
+                        row.names = 1)
+
+str(cell_phenos)
+```
+
+This tells us that `cell_phenos` is a data frame with 3 variable (columns) and 36 observations (rows). It has info about the type of sample, genotypes, and treatment status.
+
+### Planning the analysis
+
+Let's recount what we want to know and then what we already know about the data:
+
+-   We know that the phenotype information and cell proportion measures are each their own data frames, and they seem to have corresponding row names.
+
+We want to know:
+
+  1)   If the controls look as we'd expect
+
+  2)  What group differences we have
+
+To get at the question about controls, we'd need to check `cell_phenos` to see which samples are from the control or experimental groups. After, we'll plot the proportions.
+
+```{mermaid}
+flowchart LR
+A[Dataframe of cell proportions] --> C{Merged proportions\n and phenotypes}
+B[Dataframe of sample phenotypes]  --> C
+C --> D(Steps to get data\nformatted for plotting)
+D --> E[Plot of control samples]
+D --> F[Plot of experiment samples]
+```
+
+### Manipulating data frames
+
+#### Summarizing and subsetting
+
+The row names in our data aren't very informative. Luckily, our collaborator gave us a phenotype table too. Lets load that in and get a sense of how it looks:
+
+Let's get more context on what's in the data. `table` is a convenient way to summarize columns and lists:
+
+```{r}
+# What unique values and how many of each are in the "genotype" field
+table(cell_phenos$genotype)
+```
+
+...wait, why didn't we see any of the NAs we saw when we ran `str(cell_phenos)`? Turns out that `table()` wants you to specify that you're interested in NAs with `useNA = "ifany"`. Remember that `?table` returns the manual for `table()` and works for any function!
+
+```{r}
+# What unique values and how many of each are in the "type" field
+table(cell_phenos$genotype, useNA = "ifany")
+```
+
+Of the samples, 8 are knock-outs, 8 are wild type, and 20 haven't been labeled with either. So, like any good bioinformatician, you email your collaborator and ask what's up with that. **Apparently, they included some control samples.** These are experimentally pure cell type fractions, so they'd expect them to mostly just include a single cell type. Because of that, the genotype and treatment factors don't apply to them.
+
+With that in mind, lets subset the data into the whole and fraction samples. While you could go and manually index the data, the aptly named `subset()` function is great for this. We can also use `is.na()` to pinpoint the fraction samples, since they won't have genotype information.
+
+```{r}
+# Pull out the rows with missing genotypes
+fraction_phenos <- subset(cell_phenos, is.na(genotype))
+head(fraction_phenos)
+
+# Using an exclamation point inverses true/false values in R. 
+# Think of it as saying,"is NOT NA"
+whole_phenos <- subset(cell_phenos, !is.na(genotype))
+head(whole_phenos)
+```
+
+#### Combining and reordering
+
+It's common to join two data sets together while exploring data. In our case, we're going to combine the phenotype and composition data sets, which helps later when we want to make some more complex plots.
+
+Data frames can be merged in a bunch of ways, but no matter the method [it's essential that the order of samples match]{.underline}. R has two built-in methods, binds (`cbind` and `rbind`) and `merge`.
+
+Binds slap two data frames together. `cbind` adds the second data frame new columns, `rbind` adds rows. Binds don't consider the order of the data sets, so there's a risk of things being out of order.
+
+`merge` is similar to `cbind`, but matches the data sets based on a common column. In our data, we would merge proportions with the phenotypes by the sample id.
+
+Lets outline how we would go about each of these. For `cbind` we'll check the order of the data by indexing first. With `merge`, we'll tell the function what we want to merge by:
+
+##### cbind
+
+```{r}
+# Check if the sample names match 
+rownames(cell_phenos) == rownames(cell_props)
+
+# They don't, so lets reorder one to match the other
+# This uses the cell_phenos rownames as a list to specify the order of indices 
+cell_props <- cell_props[rownames(cell_phenos),]
+
+# They should all be TRUE now
+rownames(cell_phenos) == rownames(cell_props)
+
+# Now we can merge them 
+data_bind <- cbind(cell_phenos, cell_props)
+
+head(data_bind)
+```
+
+##### merge
+
+```{r}
+# Specify row.names as the feature to merge by
+data_merge <- merge(cell_phenos, cell_props, by = "row.names")
+
+head(data_merge)
+```
+
+And we're done. While this won't always be the case with `merge` vs. `bind`, it might be better to use `merge` in this scenario. It's a good practice to make sure your scripts are *interpretable* and `merge` requires minimal preprocessing. If you continue with programming, there will be points when you need to share your code with some or return to code you wrote months to years ago. When that happens, you'll appreciate leaving easy-to-understand scripts!
+
+### Preparing for different visualizations
+
+Our data is all in one place, now we just need to think of how we want to visualize it. You should already have a bit of background with `ggplot2`, so lets go ahead and generate some basic plots.
+
+```{r}
+#| warning: false
+
+library(tidyverse)
+
+ggplot(data = data_merge, aes(x = Cardiomyocytes, y = Fibroblast, color = type))+
+  geom_point()
+
+ggplot(data = data_merge, aes(x = Cardiomyocytes, fill = type))+
+  geom_density(alpha = 0.5) +
+  theme_minimal()
+```
+
+This is a nice, simple plot, but it's missing a lot of information we'd want to know about our data. We're probably more interested in looking at all of the cell types at once. At this point, we should ask ourselves a few questions:
+
+**What am I trying to see about the data?**
+
+Our samples have data on the proportions of many cell types. I'd want to easily compare all of these cell types at once, with samples/groups side-by-side.
+
+**What kind of plot do we want?**
+
+Pie charts are often used to visualize percents/proportions, but its difficult to see differences between two pie charts. A stacked bar plot would be a better fit, since we're trying to compare different sample groups.
+
+**What format does my data need to be to make said plot?**
+
+This stacked bar plot would have:
+
+-   Samples on the X-axis
+
+-   Cell-type proportions on the Y-axis
+
+-   Colors for each cell type in each bar
+
+For `ggplot` to make this, our data needs to have a column specifically for each of those terms. The problem is, the data is spread accross many columns. To understand how to solve this, we first need to understand the concepts of wide and long data.
+
+#### Pivoting wide and long
+
+Data with many observations and samples is often formatted in one of two way: wide or long. Our current data is in a wide format. Wide format data is defined by having a single row for each sample and a column for each observation.
+
+When wide data is pivoted into a long format data it condenses several columns together without losing any information. For most people, it's easiest to understand how pivoting works by seeing it done.
+
+```{r pivot_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs modified by Mara Averick (@dataandme)"}
+knitr::include_graphics("03-dataWrangling_files/tidyr-longer-wider.gif")
+```
+
+Back to the task at hand. We want to make a single column with values of cell type proportions and another with names of cell types. When we pivot longer, we need to indicate which columns we want to consolidate. In our case, this will be all the cell types.
+
+```{r}
+data_long <- pivot_longer(data_merge, cols = c(Cardiomyocytes, Fibroblast, Endothelial.Cells, Macrophage, Pericytes.SMC), names_to = "cell.type", values_to = "proportion")
+
+str(data_long)
+```
+
+We have a couple of changes:
+
+-   There are two new columns, `cell.type` and `proportion`
+
+-   We have A LOT more rows than we did originally
+
+-   Our data has been coerced from a data frame to a `tibble`
+
+-   The sample IDs were coerced to a column "Row.names" that is an 'AsIs' character
+
+The first two are expected, but why do we have a `tibble` and what even is that? A tibble is the `tidy` alternative to a data frame. `pivot_longer` is from the `tidyr` package, which is part of the `tidyverse`. ADD STUFF ABOUT TIBBLES?
+
+#### Pipes
+
+Regarding the new column, lets replace the new column with a `sample.id` column with character type data in it. I'll use multiple functions in succession to make these changes. Instead of making several lines of code, I could simplify the process by **piping** the functions into each other. To illustrate, I'll show you how we would do this first without then with piping:
+
+```{r}
+# mutate is a tidy function from dplyr that helps make new columns based on formulas you give it
+data_example <- mutate(.data = data_long, sample.id = as.character(Row.names))
+
+# Select is another tidy function that subsets your data by column name 
+data_example <- select(.data = data_example, -Row.names)
+
+str(data_example)
+```
+
+```{r}
+# The default pipe looks like this |> 
+# Think of it as saying, "Then, do this.."
+data_long <- data_long |>
+  mutate(sample.id = as.character(Row.names)) |> 
+  select(-Row.names)
+str(data_long)
+```
+
+In the piping example, someone reading your code can easily see what you've done. Take `data_long` *and then* mutate `Row.names` into a character column called `sample.id` *and then* select the columns that aren't `Row.names`. As we make more complex manipulations later, you'll see how much this helps keep things readable and functional.
+
+Behind the scenes, pipes assume that you want to take the thing being piped (the object before it) and make it the first argument of the function you're piping into. Because of that, piping data in base R only works if the target function's first argument is the input data.
+
+#### Wrangling for plotting
+
+With our data in this format, we can make a lot of cool plots. Lets start with the bar plot we had planned.
+
+```{r}
+data_long |> 
+  ggplot(aes(x = sample.id, y = proportion, fill = cell.type))+
+  geom_bar(position="fill", stat="identity")
+```
+
+It worked, but it looks... less than pleasing. Lets remind ourselves of what we wanted to see in the plot: groups side-by-side. What groups do we have? Well, there's some controls (three types) and actual samples from the experiment. Within the actual samples, we have two genotypes and two treatments. That's a bit too much for one plot. I'd like to start by making a plot just for the controls for now. `filter` from the `dplyr` package will help separate the groups.
+
+```{r}
+data_long |> 
+  filter(type != "whole_tissue") |> 
+  ggplot(aes(x = sample.id, y = proportion, fill = cell.type))+
+  geom_bar(position="fill", stat="identity")
+```
+
+Looks good, but lets pick up the pace. For this next iteration, we'll make several changes at once, with the goal of making it easier to compare groups, more readable, and all-around nicer to look at.
+
+```{r}
+data_long |> 
+  filter(type != "whole_tissue") |> 
+  ggplot(aes(x = sample.id, y = proportion, fill = cell.type))+
+  geom_bar(position="fill", stat="identity", color = "black", width = 1) +
+  facet_grid(cols=vars(type), scales = "free") +
+  scale_fill_manual(values = c("#66C2A5","#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854")) +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_blank(), 
+    legend.title = element_blank(),
+    legend.position = "bottom"
+  ) +
+  guides(x = guide_axis(angle = 45)) +
+  labs(title = "Cell type proportions in purified control samples",
+       y = "Cell Type Proportion")
+
+
+```
+
+For the treatment and genotype samples, it would be easier to compare shifts in individual cell types if we break up the stacked bar chart so that the cell types are spread across the x-axis. Then, we could have an individual bar for each genotype-treament at each cell type position side-by-side.

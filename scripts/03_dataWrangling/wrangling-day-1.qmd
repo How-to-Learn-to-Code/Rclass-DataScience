@@ -1,0 +1,228 @@
+---
+title: "Data Wrangling Basics"
+author: "Brian Gural, Lorrie He, JP Flores"
+format: 
+  html: 
+    toc: true
+---
+
+## What is data wrangling?
+
+-   Data wrangling, manipulation, or cleaning is the process of transforming data into a format that is more suitable for analysis. This can include removing missing values, changing the format of data, or combining multiple datasets.
+
+-   There's rarely a single way to approach any given data-wrangling problem! Expanding your "toolkit" allows you to tackle problems from different angles.
+
+::: {.callout-tip}
+Before you begin wrangling data, you should be able to:
+
+-   Define how you want the data to look and why
+
+-   Document it well so that others (and future you!) know what you did
+
+-   Know what tools you have and how to use them
+:::
+
+## Working with vectors
+
+Pulling out specific parts of a data set is important when analyzing with R. **Indexing**, or accessing elements, subsets data based on numeric positions in a vector by using brackets. i.e. the 5th element in a vector will be returned if you run `vector[5]`. It's also helpful for getting several elements at once, or reordering data. Here are some examples:
+
+```{r}
+# First, we'll make a vector to play with
+names <- c("rosalind", "marie", "barbara")
+```
+
+```{r}
+# if we print the output, we'd get:
+names
+```
+
+```{r}
+# If we want to access the first name, we can use brackets and the position of the name in the vector:
+
+names[1]
+```
+
+```{r}
+# This works with any position, for example the third name:
+names[3]
+
+# You can index more than one position at a time too:
+names[c(1,2)]
+
+# Changing the order of numbers you supply changes the order of names returned
+names[c(2,1)]
+```
+
+## Working with data frames
+
+This works for two-dimensional structures too, like data frames and matrices. We'd just format it as: `dataframe[row,column]`. Let's try it out:
+
+```{r}
+# Make a data frame
+df <- data.frame(name = c("rosalind", "marie", "barbara"),
+                 nobel_prize = c("dna", "radium", "transposons"),
+                 school = c("cambridge", "columbia", "cornell"))
+
+df
+
+# To get the first row:
+df[1,]
+
+# or the first column: 
+df[,1]
+
+# for specific cells: 
+df[2,3]
+
+# We can use the column name instead of numbers:
+df[,"name"]
+
+# We can do the same thing by using a dollar sign:
+df$name
+
+# We can also give a list of columns
+# which return in the order provided
+df[,c("nobel_prize","name")]
+```
+
+## `dplyr` verbs
+
+The `dplyr` package is a powerful tool for data manipulation. It's part of the `tidyverse` package, which is a collection of packages that work together to make data manipulation easier. Before manipulating data, we can take a peek with the follow functions:
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(dplyr)
+library(tidyr)
+```
+
+```{r}
+dplyr::glimpse(df)
+```
+With the `glimpse` function we see that this is a data frame with 3 observations and 3 variables. We can also see the type of each variable and the first few values.
+
+::: {.callout-tip}
+`dplyr` functions have a lot in common:
+
+- The first argument is always a data frame
+
+- The subsequent arguments typicall describe which columns to operate on, using the variable names (without quotes)
+
+- The output is always a new data frame
+
+:::
+
+The `dplyr` package has a set of functions called "verbs" that are used to manipulate data frames. These verbs can perform manipulations on rows of data frames (ex. `filter`, `arrange`, and `distinct`) and columns of data frames (ex. `mutate`, `select`, `rename`, and `relocate`). This package also has functions for working with groups (ex. `group_by`, `summarize`, and the `slice` family of functions.)
+
+### Row Verbs
+`filter` allows you to...
+
+```{r}
+df |> 
+  filter(nobel_prize == "dna")
+```
+
+`arrange` allows you to...
+
+```{r}
+
+```
+
+`distinct` allows you to...
+
+```{r}
+
+```
+
+### Column Verbs
+`mutate` allows you to...
+
+```{r}
+
+```
+
+`select` allows you to...
+```{r}
+df |> 
+  select(name)
+```
+
+`rename` allows you to...
+```{r}
+
+```
+
+`relocate` allows you to...
+```{r}
+
+```
+
+
+### Group Verbs
+`group_by` allows you to...
+
+```{r}
+df |> 
+  filter(nobel_prize == "dna")
+```
+
+`summarize` allows you to...
+
+```{r}
+
+```
+
+The `slice` family of functions allows you to...
+
+```{r}
+
+```
+
+### Ungrouping with `ungroup`
+```{r}
+
+```
+
+### the `.by` argument
+```{r}
+
+```
+
+
+### Conclusion
+
+Hopefully now, you feel a little more confident about working with vectors, data frames, and using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
+
+## Case study
+
+A lot of people struggle to learn how to code without having an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set. We have some data from an experiment that measured the cellular composition of samples from different treatments and genotypes.
+
+What are some things that we, as researchers, would want to know about our data?
+
+-   Did the experiment work?
+
+::: {.callout-note title="Things to consider:"}
+Your controls or expected features!
+:::
+
+-   Do we see differences between our experimental groups?
+
+To get at these questions, we need to be able to manipulate our data into the formats needed to check those features and for plotting. To start, lets take a look at how the results are structured before we start planning how to do the processing.
+
+### Getting familiar with the data
+
+```{r}
+# Load the data. The sample IDs were stored as the first row, so lets make those the row.names
+cell_props <- read.csv("wrangling-files/cellProportions.csv",
+                       row.names = 1)
+
+head(cell_props)
+```
+
+It looks like our data, `cell_props`, is formatted with the samples as rows and the different cell types measured as columns. This follows the *tidy data* style (https://r4ds.had.co.nz/tidy-data.html). Being *tidy* is an approach to handling data in R that aims to be clear and readable. The universe of associated packages are called the `tidyverse`, and it's a hot-topic in the R world. Later, we'll get into specifics of how it differs from what we've been doing so far.
+
+When assessing data, it's good to consider what features you'd expect from a given data set. This helps you know if something has gone wrong before you've gotten your hands on it. For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
+
+In our case, we're looking at the proportion of cell types in each sample. *Whole refers to ___ and fraction refers to ___*.  Proportions, by nature, sum up to 1. In this case, checking that the values in each row sum to 1 is one way to confirm that we have what we're expecting. Lets go ahead and check that:
+
