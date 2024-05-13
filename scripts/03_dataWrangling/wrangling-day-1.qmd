@@ -12,7 +12,7 @@ format:
 
 -   There's rarely a single way to approach any given data-wrangling problem! Expanding your "toolkit" allows you to tackle problems from different angles.
 
-::: callout-note  title="Measure twice, cut once"
+::: {.callout-note title="Measure twice, cut once"}
 Before you begin wrangling data, you should be able to:
 
 -   Define how you want the data to look and why
@@ -22,7 +22,9 @@ Before you begin wrangling data, you should be able to:
 -   Know what tools you have and how to use them
 :::
 
-## Working with vectors
+## Building a toolkit
+
+### Working with vectors
 
 Pulling out specific parts of a data set is important when analyzing with R. **Indexing**, or accessing elements, subsets data based on numeric positions in a vector. Some things to be aware of when indexing:
 
@@ -58,7 +60,7 @@ names[c(1,2)]
 names[c(2,1)]
 ```
 
-## Working with data frames
+### Working with data frames
 
 This works for two-dimensional structures too, like data frames and matrices. We'd just format it as: `dataframe[row,column]`. Let's try it out:
 
@@ -96,7 +98,7 @@ df$name
 df[,c("school","name")]
 ```
 
-## Standard data formats and Tidy
+### Standard data formats and Tidy
 
 That data, and most two-dimensional data sets (data frames, matrices, etc.) is often organized the similarly:
 
@@ -116,7 +118,7 @@ This follows the *tidy data* style, an approach to handling data in R that aims 
 The bundle of tidy-associated packages is called the `tidyverse`, and it's a hot-topic in the R world. Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners! 
 :::
 
-## `dplyr` verbs
+### `dplyr` verbs
 
 One of the most popular `tidyverse` packages, `dplyr`, offers a suite of helpful and readable functions for data manipulation. Lets get started with how it can help you see your data:
 
@@ -237,8 +239,8 @@ The `slice` family of functions allows you to...
 
 Hopefully now, you feel a little more confident about working with vectors, data frames, and using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
 
-## Functions on functions
-### An introduction to pipes
+### Functions on functions
+#### An introduction to pipes
 
 Data scientists often want to make many changes to their data at one time. Typically, this means using more than one function at once. However, the way we've been writing our scripts so far would make for some very confusing looking code. 
 
@@ -296,7 +298,7 @@ There are two pipe operators: `|>` and `%>%`. They work almost the exact same wa
 With `%>%` you can choose the argument with a period, `.`: `data %>% function(argument_A, argument_B = .)`
 :::
 
-## Case study Introduction
+## Case Study Introduction
 
 A lot of people struggle to learn how to code without having an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set. 
 
@@ -317,6 +319,7 @@ To get at these questions, we need to be able to manipulate our data into the fo
 ### Getting familiar with the data
 
 ```{r}
+options(digits = 3)
 # Load the data. The sample IDs were stored as the first row, so lets make those the row.names
 cell_props <- read.csv("wrangling-files/cellProportions.csv",
                        row.names = 1)

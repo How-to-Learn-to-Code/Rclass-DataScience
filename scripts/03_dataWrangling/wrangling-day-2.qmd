@@ -5,26 +5,61 @@ format:
   html: 
     toc: true
 ---
+```{r, echo=FALSE}
+options(digits = 3)
+```
+## Case Study
+
+Last class, we had introduced a dataset/experiment that we would work through. Let's remind ourselves of some of the details:
+
+-   Our data is measures of proportions of cell types across samples
+-   There control samples made of mostly pure cell types (`fractions`) and experimental samples, composed of a range of cell types
+-   The experimental samples are from wild-type/knock-out and treatment/control
+-   There are `.csv` files for both the cell type proportion data (`cellProportions.csv`) and the sample phenotypes (`cellPhenotypes.csv`)
+
+
+And in general, there are a few things to think about when wrangling/exploring data:
+
+-   What do you want to know about this data?
+-   What kind of visuals would you want to make?
+-   How does the data need to be formatted to get those visuals?
+-   What are some expected features of our data?
+
+Take a moment to talk among yourselves about this/any ideas you had since last class!
+
+
 ### Getting familiar with the data
+
+#### Proportions Data
 
 ```{r}
 # Load the data. The sample IDs were stored as the first row, so lets make those the row.names
+#cell_props <- read.csv("scripts/03_dataWrangling/wrangling-files/cellProportions.csv",
+#                       row.names = 1)
 cell_props <- read.csv("wrangling-files/cellProportions.csv",
                        row.names = 1)
 
 head(cell_props)
 ```
 
-When assessing data, it's good to *consider what features you'd expect from a given data set*. This helps you know if something has gone wrong before you've gotten your hands on it. For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
+Our data fits the `tidy` style we introduced last class, since each row is a sample (observation) and each column is a different cell type (variable).
+
+When assessing data, it's good to *consider what features you'd expect from a given data set*. This helps you know if something has gone wrong before you've gotten your hands on it. 
 
 In our case, we're looking at the proportion of cell types in each sample. Proportions, by nature, sum up to 1. In this case, checking that the values in each row sum to 1 is one way to confirm that we have what we're expecting. Lets go ahead and check that:
 
 
 ```{r}
-rowSums(cell_props)
+all(rowSums(cell_props) == 1)
 ```
 
 This looks good! There are endless factors you could check about your data. It's a good practice to consider what they could be and check them every so often throughout an analysis.
+
+:::{.callout-tip}
+For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
+:::
+
+#### Phenotype data
 
 We also have the phenotypes for the samples in a separate csv file:
 
@@ -64,8 +99,6 @@ D --> F[Plot of experiment samples]
 
 #### Summarizing and subsetting
 
-The row names in our data aren't very informative. Luckily, our collaborator gave us a phenotype table too. Lets load that in and get a sense of how it looks:
-
 Let's get more context on what's in the data. `table` is a convenient way to summarize columns and lists:
 
 ```{r}
@@ -80,9 +113,9 @@ table(cell_phenos$genotype)
 table(cell_phenos$genotype, useNA = "ifany")
 ```
 
-Of the samples, 8 are knock-outs, 8 are wild type, and 20 haven't been labeled with either. So, like any good bioinformatician, you email your collaborator and ask what's up with that. **Apparently, they included some control samples.** These are experimentally pure cell type fractions, so they'd expect them to mostly just include a single cell type. Because of that, the genotype and treatment factors don't apply to them.
+Of the samples, 8 are knock-outs, 8 are wild type, and 20 haven't been labeled with either. So, like any good bioinformatician, you email your collaborator and ask what's up with that. **Apparently, the controls samples don't have genotype/treatment information**
 
-With that in mind, lets subset the data into the whole and fraction samples. While you could go and manually index the data, the aptly named `subset()` function is great for this. We can also use `is.na()` to pinpoint the fraction samples, since they won't have genotype information.
+Lets subset the data into the whole and fraction samples. The`subset()` function is great for this. `is.na()` to pinpoint the fraction samples, since they won't have genotype information.
 
 ```{r}
 # Pull out the rows with missing genotypes
@@ -97,7 +130,7 @@ head(whole_phenos)
 
 #### Combining and reordering
 
-It's common to join two data sets together while exploring data. In our case, we're going to combine the phenotype and composition data sets, which helps later when we want to make some more complex plots.
+We're going to combine the phenotype and composition data sets, which helps when making some more complex plots.
 
 Data frames can be merged in a bunch of ways, but no matter the method [it's essential that the order of samples match]{.underline}. R has two built-in methods, binds (`cbind` and `rbind`) and `merge`.
 
@@ -111,14 +144,14 @@ Lets outline how we would go about each of these. For `cbind` we'll check the or
 
 ```{r}
 # Check if the sample names match 
-rownames(cell_phenos) == rownames(cell_props)
+all(rownames(cell_phenos) == rownames(cell_props))
 
 # They don't, so lets reorder one to match the other
 # This uses the cell_phenos rownames as a list to specify the order of indices 
 cell_props <- cell_props[rownames(cell_phenos),]
 
 # They should all be TRUE now
-rownames(cell_phenos) == rownames(cell_props)
+all(rownames(cell_phenos) == rownames(cell_props))
 
 # Now we can merge them 
 data_bind <- cbind(cell_phenos, cell_props)
@@ -135,7 +168,11 @@ data_merge <- merge(cell_phenos, cell_props, by = "row.names")
 head(data_merge)
 ```
 
-And we're done. While this won't always be the case with `merge` vs. `bind`, it might be better to use `merge` in this scenario. It's a good practice to make sure your scripts are *interpretable* and `merge` requires minimal preprocessing. If you continue with programming, there will be points when you need to share your code with some or return to code you wrote months to years ago. When that happens, you'll appreciate leaving easy-to-understand scripts!
+While this won't always be the case with `merge` vs. `bind`, its better to use `merge` in this scenario, since it helps keep your script *interpretable* 
+
+::: {.callout-note title="Reproducible code"}
+If you continue with programming, there will be points when you need to share your code with some or return to code you wrote months to years ago. When that happens, you'll appreciate leaving easy-to-understand scripts!
+:::
 
 ### Preparing for different visualizations
 
@@ -156,6 +193,12 @@ ggplot(data = data_merge, aes(x = Cardiomyocytes, fill = type))+
 
 This is a nice, simple plot, but it's missing a lot of information we'd want to know about our data. We're probably more interested in looking at all of the cell types at once. At this point, we should ask ourselves a few questions:
 
+-   What am I trying to see about the data?
+-   What kind of plot do we want?
+
+Take a minute to talk as a group about how you would visualize the data!
+
+
 **What am I trying to see about the data?**
 
 Our samples have data on the proportions of many cell types. I'd want to easily compare all of these cell types at once, with samples/groups side-by-side.
@@ -174,19 +217,19 @@ This stacked bar plot would have:
 
 -   Colors for each cell type in each bar
 
-For `ggplot` to make this, our data needs to have a column specifically for each of those terms. The problem is, the data is spread accross many columns. To understand how to solve this, we first need to understand the concepts of wide and long data.
+For `ggplot` to make this, our data needs to have a column specifically for each of those terms. The problem is, the data is spread across many columns. To solve this, we first need to understand the concepts of wide and long data.
 
 #### Pivoting wide and long
 
-Data with many observations and samples is often formatted in one of two way: wide or long. Our current data is in a wide format. Wide format data is defined by having a single row for each sample and a column for each observation.
+Data with many observations and samples is often formatted as wide or long. Our current data is in a wide format, which has a single row for each sample and a column for each variable.
 
-When wide data is pivoted into a long format data it condenses several columns together without losing any information. For most people, it's easiest to understand how pivoting works by seeing it done.
+When wide data is pivoted into a long format columns are condensed together. It's easiest to understand how pivoting works by seeing it done:
 
-```{r pivot_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs modified by Mara Averick (@dataandme)"}
-knitr::include_graphics("wrangling-files/tidyr-longer-wider.gif")
+```{r pivot_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
+knitr::include_graphics("wrangling-files/tidyr-pivoting.gif")
 ```
 
-Back to the task at hand. We want to make a single column with values of cell type proportions and another with names of cell types. When we pivot longer, we need to indicate which columns we want to consolidate. In our case, this will be all the cell types.
+We want to make a column of proportions values and columns specifying cell types.
 
 ```{r}
 data_long <- pivot_longer(data_merge, cols = c(Cardiomyocytes, Fibroblast, Endothelial.Cells, Macrophage, Pericytes.SMC), names_to = "cell.type", values_to = "proportion")
@@ -200,38 +243,12 @@ We have a couple of changes:
 
 -   We have A LOT more rows than we did originally
 
--   Our data has been coerced from a data frame to a `tibble`
+-   The sample IDs were coerced to a column "Row.names" that is an 'AsIs' character. We'll need to correct that before we plot the data
 
--   The sample IDs were coerced to a column "Row.names" that is an 'AsIs' character
+::: callout-tip
+Our data is now a `tibble`, which is a sub type of data frame. Tidy functions often output tibble by default when working with data frames
+:::
 
-The first two are expected, but why do we have a `tibble` and what even is that? A tibble is the `tidy` alternative to a data frame. `pivot_longer` is from the `tidyr` package, which is part of the `tidyverse`. ADD STUFF ABOUT TIBBLES?
-
-#### Pipes
-
-Regarding the new column, lets replace the new column with a `sample.id` column with character type data in it. I'll use multiple functions in succession to make these changes. Instead of making several lines of code, I could simplify the process by **piping** the functions into each other. To illustrate, I'll show you how we would do this first without then with piping:
-
-```{r}
-# mutate is a tidy function from dplyr that helps make new columns based on formulas you give it
-data_example <- mutate(.data = data_long, sample.id = as.character(Row.names))
-
-# Select is another tidy function that subsets your data by column name 
-data_example <- select(.data = data_example, -Row.names)
-
-str(data_example)
-```
-
-```{r}
-# The default pipe looks like this |> 
-# Think of it as saying, "Then, do this.."
-data_long <- data_long |>
-  mutate(sample.id = as.character(Row.names)) |> 
-  select(-Row.names)
-str(data_long)
-```
-
-In the piping example, someone reading your code can easily see what you've done. Take `data_long` *and then* mutate `Row.names` into a character column called `sample.id` *and then* select the columns that aren't `Row.names`. As we make more complex manipulations later, you'll see how much this helps keep things readable and functional.
-
-Behind the scenes, pipes assume that you want to take the thing being piped (the object before it) and make it the first argument of the function you're piping into. Because of that, piping data in base R only works if the target function's first argument is the input data.
 
 #### Wrangling for plotting
 
@@ -239,7 +256,8 @@ With our data in this format, we can make a lot of cool plots. Lets start with t
 
 ```{r}
 data_long |> 
-  ggplot(aes(x = sample.id, y = proportion, fill = cell.type))+
+  mutate(id = as.character(Row.names)) |> # fix the AsIs type
+  ggplot(aes(x = id, y = proportion, fill = cell.type))+
   geom_bar(position="fill", stat="identity")
 ```
 
@@ -248,7 +266,8 @@ It worked, but it looks... less than pleasing. Lets remind ourselves of what we 
 ```{r}
 data_long |> 
   filter(type != "whole_tissue") |> 
-  ggplot(aes(x = sample.id, y = proportion, fill = cell.type))+
+  mutate(id = as.character(Row.names)) |> 
+  ggplot(aes(x = id, y = proportion, fill = cell.type))+
   geom_bar(position="fill", stat="identity")
 ```
 
@@ -257,7 +276,8 @@ Looks good, but lets pick up the pace. For this next iteration, we'll make sever
 ```{r}
 data_long |> 
   filter(type != "whole_tissue") |> 
-  ggplot(aes(x = sample.id, y = proportion, fill = cell.type))+
+  mutate(id = as.character(Row.names)) |> 
+  ggplot(aes(x = id, y = proportion, fill = cell.type))+
   geom_bar(position="fill", stat="identity", color = "black", width = 1) +
   facet_grid(cols=vars(type), scales = "free") +
   scale_fill_manual(values = c("#66C2A5","#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854")) +
