@@ -81,15 +81,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#what-is-data-wrangling" id="toc-what-is-data-wrangling" class="nav-link active" data-scroll-target="#what-is-data-wrangling">What is data wrangling?</a></li>
+  <li><a href="#building-a-toolkit" id="toc-building-a-toolkit" class="nav-link" data-scroll-target="#building-a-toolkit">Building a toolkit</a>
+  <ul class="collapse">
   <li><a href="#working-with-vectors" id="toc-working-with-vectors" class="nav-link" data-scroll-target="#working-with-vectors">Working with vectors</a></li>
   <li><a href="#working-with-data-frames" id="toc-working-with-data-frames" class="nav-link" data-scroll-target="#working-with-data-frames">Working with data frames</a></li>
   <li><a href="#standard-data-formats-and-tidy" id="toc-standard-data-formats-and-tidy" class="nav-link" data-scroll-target="#standard-data-formats-and-tidy">Standard data formats and Tidy</a></li>
   <li><a href="#dplyr-verbs" id="toc-dplyr-verbs" class="nav-link" data-scroll-target="#dplyr-verbs"><code>dplyr</code> verbs</a></li>
-  <li><a href="#functions-on-functions" id="toc-functions-on-functions" class="nav-link" data-scroll-target="#functions-on-functions">Functions on functions</a>
-  <ul class="collapse">
-  <li><a href="#an-introduction-to-pipes" id="toc-an-introduction-to-pipes" class="nav-link" data-scroll-target="#an-introduction-to-pipes">An introduction to pipes</a></li>
+  <li><a href="#functions-on-functions" id="toc-functions-on-functions" class="nav-link" data-scroll-target="#functions-on-functions">Functions on functions</a></li>
   </ul></li>
-  <li><a href="#case-study-introduction" id="toc-case-study-introduction" class="nav-link" data-scroll-target="#case-study-introduction">Case study Introduction</a>
+  <li><a href="#case-study-introduction" id="toc-case-study-introduction" class="nav-link" data-scroll-target="#case-study-introduction">Case Study Introduction</a>
   <ul class="collapse">
   <li><a href="#getting-familiar-with-the-data" id="toc-getting-familiar-with-the-data" class="nav-link" data-scroll-target="#getting-familiar-with-the-data">Getting familiar with the data</a></li>
   <li><a href="#analysis-goals" id="toc-analysis-goals" class="nav-link" data-scroll-target="#analysis-goals">Analysis Goals</a></li>
@@ -128,15 +128,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Data wrangling, manipulation, or cleaning is the process of transforming data into a format that is more suitable for analysis. This can include removing missing values, changing the format of data, or combining multiple datasets.</p></li>
 <li><p>There’s rarely a single way to approach any given data-wrangling problem! Expanding your “toolkit” allows you to tackle problems from different angles.</p></li>
 </ul>
-<p>::: callout-note title=“Measure twice, cut once” Before you begin wrangling data, you should be able to:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Measure twice, cut once">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Measure twice, cut once
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you begin wrangling data, you should be able to:</p>
 <ul>
 <li><p>Define how you want the data to look and why</p></li>
 <li><p>Document it well so that others (and future you!) know what you did</p></li>
-<li><p>Know what tools you have and how to use them :::</p></li>
+<li><p>Know what tools you have and how to use them</p></li>
 </ul>
+</div>
+</div>
 </section>
-<section id="working-with-vectors" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-vectors">Working with vectors</h2>
+<section id="building-a-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="building-a-toolkit">Building a toolkit</h2>
+<section id="working-with-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-vectors">Working with vectors</h3>
 <p>Pulling out specific parts of a data set is important when analyzing with R. <strong>Indexing</strong>, or accessing elements, subsets data based on numeric positions in a vector. Some things to be aware of when indexing:</p>
 <ul>
 <li><p>Indexing uses brackets. i.e.&nbsp;the 5th element in a vector will be returned if you run <code>vector[5]</code>.</p></li>
@@ -179,8 +193,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="working-with-data-frames" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-data-frames">Working with data frames</h2>
+<section id="working-with-data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-data-frames">Working with data frames</h3>
 <p>This works for two-dimensional structures too, like data frames and matrices. We’d just format it as: <code>dataframe[row,column]</code>. Let’s try it out:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a data frame</span></span>
@@ -248,8 +262,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="standard-data-formats-and-tidy" class="level2">
-<h2 class="anchored" data-anchor-id="standard-data-formats-and-tidy">Standard data formats and Tidy</h2>
+<section id="standard-data-formats-and-tidy" class="level3">
+<h3 class="anchored" data-anchor-id="standard-data-formats-and-tidy">Standard data formats and Tidy</h3>
 <p>That data, and most two-dimensional data sets (data frames, matrices, etc.) is often organized the similarly:</p>
 <ul>
 <li><p>Each variable is its own column</p></li>
@@ -269,8 +283,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This follows the <em>tidy data</em> style, an approach to handling data in R that aims to be clear and readable.</p>
 <p>::: callout-note title=“Tidiest Universe” The bundle of tidy-associated packages is called the <code>tidyverse</code>, and it’s a hot-topic in the R world. Most data wrangling problems can be solved with <code>tidy</code> or base (default) R functions. This can lead to some headaches for beginners! :::</p>
 </section>
-<section id="dplyr-verbs" class="level2">
-<h2 class="anchored" data-anchor-id="dplyr-verbs"><code>dplyr</code> verbs</h2>
+<section id="dplyr-verbs" class="level3">
+<h3 class="anchored" data-anchor-id="dplyr-verbs"><code>dplyr</code> verbs</h3>
 <p>One of the most popular <code>tidyverse</code> packages, <code>dplyr</code>, offers a suite of helpful and readable functions for data manipulation. Lets get started with how it can help you see your data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -369,10 +383,10 @@ Tip
 </div>
 <p>Hopefully now, you feel a little more confident about working with vectors, data frames, and using <code>dplyr</code> verbs to clean and manipulate data. Happy Wrangling!</p>
 </section>
-<section id="functions-on-functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions-on-functions">Functions on functions</h2>
-<section id="an-introduction-to-pipes" class="level3">
-<h3 class="anchored" data-anchor-id="an-introduction-to-pipes">An introduction to pipes</h3>
+<section id="functions-on-functions" class="level3">
+<h3 class="anchored" data-anchor-id="functions-on-functions">Functions on functions</h3>
+<section id="an-introduction-to-pipes" class="level4">
+<h4 class="anchored" data-anchor-id="an-introduction-to-pipes">An introduction to pipes</h4>
 <p>Data scientists often want to make many changes to their data at one time. Typically, this means using more than one function at once. However, the way we’ve been writing our scripts so far would make for some very confusing looking code.</p>
 <p>For example, let’s use <code>dplyr</code> functions to perform two operations on our data set of scientists: filter for those born after 1900 and then arrange them by date of birth.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -427,8 +441,9 @@ Tip
 </div>
 </section>
 </section>
+</section>
 <section id="case-study-introduction" class="level2">
-<h2 class="anchored" data-anchor-id="case-study-introduction">Case study Introduction</h2>
+<h2 class="anchored" data-anchor-id="case-study-introduction">Case Study Introduction</h2>
 <p>A lot of people struggle to learn how to code without having an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set.</p>
 <p>For this example, we have some data from an experiment that measured the proportions of different cell times within mouse cardiac tissue. These samples are from treatment vs.&nbsp;control and WT vs.&nbsp;mutant.</p>
 <p>What are some things that we, as researchers, would want to know about our data?</p>
@@ -455,26 +470,27 @@ Things to consider:
 <section id="getting-familiar-with-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="getting-familiar-with-the-data">Getting familiar with the data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"wrangling-files/cellProportions.csv"</span>,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"wrangling-files/cellProportions.csv"</span>,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Cardiomyocytes Fibroblast Endothelial.Cells Macrophage
-whole_2          0.6516497 0.08856450       0.067004520 0.17605980
-fraction_13      0.8243539 0.03702213       0.063869994 0.06917268
-fraction_12      0.8954119 0.02126763       0.044361580 0.03895884
-fraction_19      0.0000000 0.99832710       0.001672903 0.00000000
-fraction_18      0.0000000 1.00000000       0.000000000 0.00000000
-whole_16         0.8196176 0.02082482       0.088890150 0.05008898
+whole_2              0.652     0.0886           0.06700     0.1761
+fraction_13          0.824     0.0370           0.06387     0.0692
+fraction_12          0.895     0.0213           0.04436     0.0390
+fraction_19          0.000     0.9983           0.00167     0.0000
+fraction_18          0.000     1.0000           0.00000     0.0000
+whole_16             0.820     0.0208           0.08889     0.0501
             Pericytes.SMC
-whole_2       0.016721500
-fraction_13   0.005581313
-fraction_12   0.000000000
-fraction_19   0.000000000
-fraction_18   0.000000000
-whole_16      0.020578470</code></pre>
+whole_2           0.01672
+fraction_13       0.00558
+fraction_12       0.00000
+fraction_19       0.00000
+fraction_18       0.00000
+whole_16          0.02058</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Whole vs. Fractions">
