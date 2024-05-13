@@ -15,11 +15,10 @@ cell_props <- read.csv("wrangling-files/cellProportions.csv",
 head(cell_props)
 ```
 
-It looks like our data, `cell_props`, is formatted with the samples as rows and the different cell types measured as columns. 
+When assessing data, it's good to *consider what features you'd expect from a given data set*. This helps you know if something has gone wrong before you've gotten your hands on it. For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
 
-When assessing data, it's good to consider what features you'd expect from a given data set. This helps you know if something has gone wrong before you've gotten your hands on it. For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
+In our case, we're looking at the proportion of cell types in each sample. Proportions, by nature, sum up to 1. In this case, checking that the values in each row sum to 1 is one way to confirm that we have what we're expecting. Lets go ahead and check that:
 
-In our case, we're looking at the proportion of cell types in each sample. *Whole refers to ___ and fraction refers to ___*.  Proportions, by nature, sum up to 1. In this case, checking that the values in each row sum to 1 is one way to confirm that we have what we're expecting. Lets go ahead and check that:
 
 ```{r}
 rowSums(cell_props)

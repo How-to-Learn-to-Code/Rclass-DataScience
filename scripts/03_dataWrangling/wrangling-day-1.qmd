@@ -12,7 +12,7 @@ format:
 
 -   There's rarely a single way to approach any given data-wrangling problem! Expanding your "toolkit" allows you to tackle problems from different angles.
 
-::: callout-tip
+::: callout-note  title="Measure twice, cut once"
 Before you begin wrangling data, you should be able to:
 
 -   Define how you want the data to look and why
@@ -86,7 +86,7 @@ df[,1]
 df[2,3]
 
 # We can use the column name instead of numbers:
-df[,"name"]
+df[2,"school"]
 
 # We can do the same thing by using a dollar sign:
 df$name
@@ -112,7 +112,7 @@ knitr::include_graphics("wrangling-files/tidy-style.png")
 
 This follows the *tidy data* style, an approach to handling data in R that aims to be clear and readable.
 
-::: callout-tip
+::: callout-note title="Tidiest Universe"
 The bundle of tidy-associated packages is called the `tidyverse`, and it's a hot-topic in the R world. Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners! 
 :::
 
@@ -237,8 +237,6 @@ The `slice` family of functions allows you to...
 
 Hopefully now, you feel a little more confident about working with vectors, data frames, and using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
 
-
-
 ## Functions on functions
 ### An introduction to pipes
 
@@ -279,7 +277,6 @@ Let's dissect our goal: *filter for those born after 1900* **and then** *arrange
 and the pipe, `|>`, is going to do the **and then...** part
 
 ```{r}
-
 # Using pipes
 arranged_data <- df |>
   filter(as.Date(date_of_birth) > as.Date("1900-01-01")) |>
