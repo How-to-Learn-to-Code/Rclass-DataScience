@@ -48,13 +48,11 @@ When assessing data, it's good to *consider what features you'd expect from a gi
 We're looking at the proportion of cell types in each sample, which should sum up to 1. Checking that the values in each row add to 1 would help confirm that we have what we're expecting:
 
 ```{r}
-all(rowSums(cell_props) == 1)
+rowSums(cell_props)
 ```
 
-This looks good! There are endless factors you could check about your data. It's a good practice to consider what they could be and check them every so often throughout an analysis.
-
 :::{.callout-tip}
-For example, raw RNA-seq matrices should have values that go up to 100,000s. So if you only see small numbers in the data provided by a collaborator, it's likely been manipulated in some way.
+Raw RNA-seq matrices should go up to 100,000s. So if you only see small numbers in the data, it's likely been manipulated in some way.
 :::
 
 #### Phenotype data
@@ -68,14 +66,8 @@ cell_phenos <- read.csv("wrangling-files/cellPhenotypes.csv",
 str(cell_phenos)
 ```
 
-This tells us that `cell_phenos` is a data frame with 3 variable (columns) and 36 observations (rows). It has info about the type of sample, genotypes, and treatment status.
 
 ### Planning the analysis
-
-Let's recount what we want to know and then what we already know about the data:
-
--   Phenotypes and cell proportion measures each in their own data frames
-
 We want to know:
 
 -   If the controls look as we'd expect
@@ -101,57 +93,36 @@ Let's get more context on what's in the data. `table` is a convenient way to sum
 ```{r}
 # What unique values and how many of each are in the "genotype" field
 table(cell_phenos$genotype)
+# Table can also compare two variables. useNA need to be added to include cells with NAs
+table(cell_phenos$type, cell_phenos$genotype,  useNA = "ifany")
 ```
 
-...wait, why didn't we see any of the NAs we saw when we ran `str(cell_phenos)`? Turns out that `table()` wants you to specify that you're interested in NAs with `useNA = "ifany"`. Remember that `?table` returns the manual for `table()` and works for any function!
-
-```{r}
-# What unique values and how many of each are in the "type" field
-table(cell_phenos$genotype, useNA = "ifany")
-```
-
-Of the samples, 8 are knock-outs, 8 are wild type, and 20 haven't been labeled with either. So, like any good bioinformatician, you email your collaborator and ask what's up with that. **Apparently, the controls samples don't have genotype/treatment information**
-
-Lets subset the data into the whole and fraction samples. The`subset()` function is great for this. `is.na()` to pinpoint the fraction samples, since they won't have genotype information.
-
-```{r}
-# Pull out the rows with missing genotypes
-fraction_phenos <- cell_phenos |> subset(is.na(genotype))
-head(fraction_phenos)
-
-# Using an exclamation point inverses true/false values in R. 
-# Think of it as saying,"is NOT NA"
-whole_phenos <- cell_phenos |> subset(!is.na(genotype))
-head(whole_phenos)
-```
+Seems that the purified cell types list NA for their genotype and that there are three types. Also, we have 8 knock-outs and 8 are wild type.
 
 #### Combining and reordering
 
-We're going to combine the phenotype and composition data sets, which helps when making some more complex plots.
-
 Data frames can be combined in a bunch of ways, but no matter the method [it's essential that the order of samples match]{.underline}. R has two built-in methods, binds (`cbind` and `rbind`) and `merge`.
 
-Binds slap two data frames together. `cbind` adds the second data frame new columns, `rbind` adds rows. Binds don't consider the order of the data sets, so there's a risk of things being out of order.
+```{r captain_planet_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Captain Planet and the Planeteers likely combined using merge functions"}
+knitr::include_graphics("wrangling-files/captain-planet.gif")
+```
 
-`merge` is similar to `cbind`, but matches the data sets based on a common column. In our data, we would merge proportions with the phenotypes by the sample id.
+Binds slap two data frames together. `cbind` adds columns, `rbind` adds rows. Binds don't consider the order of the data sets, so there's a risk of things being out of order.
 
-Lets try each of these out:
+`merge` is similar to `cbind`, but matches the data sets based on a common column.
 
 ##### `cbind`
 
 ```{r}
-# Check if the sample names match 
-all(rownames(cell_phenos) == rownames(cell_props))
-
-# They don't, lets take a closer look
+# bind the rownames to see if they match
 cbind(rownames(cell_phenos), rownames(cell_props)) |> head()
 
 ```
 
-Above, you can see that `cbind` would mismatch the samples. The first row would have the phenotype info for `fraction_1` but the proportion data for `whole_2`. **Always be careful when using `cbind`! It has no guardrails!**
+Above, you can see that `cbind` would mismatch the samples. **Always be careful when using `cbind`! It has no guardrailsd for ordering!**
 
 ```{r}
-#Reorder one to match the other
+# Reorder one to match the other
 # This uses the cell_phenos rownames as a list to specify the order of indices 
 cell_props <- cell_props[rownames(cell_phenos),]
 
@@ -181,16 +152,7 @@ If you continue with programming, you'll need to share your code or return to co
 
 ### Preparing for different visualizations
 
-Our data is all in one place, now we just need to think of how we want to visualize it. You should already have a bit of background with `ggplot2`, so lets go ahead and generate a basic plot.
-
-```{r}
-library(tidyverse)
-
-ggplot(data = data_merge, aes(x = Cardiomyocytes, y = Fibroblast, color = type))+
-  geom_point()
-```
-
-This is missing a lot of information we'd want to know about our data. At this point, we should ask ourselves a few questions:
+At this point, we should ask ourselves a few questions:
 
 -   What am I trying to see about the data?
 -   What kind of plot helps us see that?
@@ -216,38 +178,40 @@ This stacked bar plot would have:
 
 -   Colors for each cell type in each bar
 
-For `ggplot` to make this, our data needs to have a column specifically for each of those terms. The problem is, the data is spread across many columns. To solve this, we first need to understand the concepts of wide and long data.
+For `ggplot` to make this our data needs to have a column for each term, but the data is spread across many columns. To solve this, we first need to understand the concepts of wide and long data.
 
 #### Pivoting wide and long
 
-Data with many observations and samples is often formatted as *wide* or *long*. Our data is in a wide format, which has a single row for each sample and a column for each variable.
+Data is often formatted as *wide* or *long*. Our data is in a wide format, which has a single row for each sample and a column for each variable. When wide data is pivoted into a long format columns are condensed together. 
 
-When wide data is pivoted into a long format columns are condensed together. It's easiest to understand how pivoting works in visuals:
+```{r ross_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Ross understands the importance of converting wide and long data"}
+knitr::include_graphics("wrangling-files/pivot.gif")
+```
+
+It's easiest to understand how pivoting works in visuals:
 
 ::: panel-tabset
 
 ## Still images
 
-```{r pivot_still,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
+```{r pivot_still,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
 knitr::include_graphics("wrangling-files/tidyr_pivot.png")
 ```
 
 ## Animated transition
 
-```{r pivot_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
+```{r pivot_gif,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
 knitr::include_graphics("wrangling-files/tidyr-pivoting.gif")
 ```
 
 :::
 
-
 As a reminder, we want to make a **column of proportions values** (val) and a **column specifying cell types** (key).
 
-For the function, the cell types are specified with `cols =` and name the new column with `names_to`. 
-
-The values originally in those columns are going to move to a new `values` column, which we can name with `values_to =`.
-
 ```{r}
+library(tidyverse)
+# cell types are specified with cols = and name the new column with names_to
+# values originally in those columns are going to move to a new values column, which we can name with values_to =
 data_long <- pivot_longer(data_merge, 
                           cols = c(Cardiomyocytes, Fibroblast, Endothelial.Cells, Macrophage, Pericytes.SMC), 
                           names_to = "cell.type", values_to = "proportion")
@@ -263,10 +227,6 @@ We have a couple of changes:
 
 -   The sample IDs were coerced to a column "Row.names" that is an 'AsIs' character. We'll need to correct that before we plot the data
 
-::: callout-tip
-Our data is now a `tibble`, which is a sub type of data frame. Tidy functions often output tibble by default when working with data frames
-:::
-
 
 #### Wrangling for plotting
 
@@ -279,10 +239,11 @@ data_long |>
   ggplot(aes(x = id, y = proportion, fill = cell.type))+
   geom_bar(position="fill", stat="identity")
 ```
+:::{.callout-tip}
+`mutate` is a great way to modify specific parts of your data or make new columns!
+:::
 
 It worked, but it looks... less than pleasing. Lets remind ourselves of what we wanted to see in the plot: groups side-by-side. 
-
-What groups do we have? Well, there's some controls (three types) and actual samples from the experiment. Within the actual samples, we have two genotypes and two treatments. That's a bit too much for one plot. 
 
 I'd like to start by making a plot just for the controls for now. `filter` from the `dplyr` package will help separate the groups. Also, I'll make aesthetic changes to make it easier to compare groups and nicer to look at.
 
@@ -315,8 +276,6 @@ There are two things we should consider before we visualize differences between 
 -   It would be easier to compare shifts in specific cell types if we break up the stacked bar chart so that the cell types are spread across the x-axis. 
 -   In our last plot, we compared samples across a single phenotypic factor: `type`. This time, it's more complicated because we want to we want to compare both `genotype` and `treatment`. 
 
-
-
 ```{r}
 data_long   |> 
   filter(type == "whole_tissue") |> 
@@ -335,6 +294,7 @@ data_long   |>
 ```
 
 We just made three major changes:
+
 -   `cell.type` is on the x-axis, not sample `id`s
 -   We're plotting the **mean** of each cell type across many samples in each group. `geom_bar` can do this automatically with `stat = "summary", fun = mean,`
 -   We're showing four plots at once by having `facet_grid` contrast them with `genotype ~ treatment`
