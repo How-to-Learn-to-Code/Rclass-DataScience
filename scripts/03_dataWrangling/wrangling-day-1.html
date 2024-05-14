@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,15 +81,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#what-is-data-wrangling" id="toc-what-is-data-wrangling" class="nav-link active" data-scroll-target="#what-is-data-wrangling">What is data wrangling?</a></li>
+  <li><a href="#building-a-toolkit" id="toc-building-a-toolkit" class="nav-link" data-scroll-target="#building-a-toolkit">Building a toolkit</a>
+  <ul class="collapse">
   <li><a href="#working-with-vectors" id="toc-working-with-vectors" class="nav-link" data-scroll-target="#working-with-vectors">Working with vectors</a></li>
   <li><a href="#working-with-data-frames" id="toc-working-with-data-frames" class="nav-link" data-scroll-target="#working-with-data-frames">Working with data frames</a></li>
   <li><a href="#standard-data-formats-and-tidy" id="toc-standard-data-formats-and-tidy" class="nav-link" data-scroll-target="#standard-data-formats-and-tidy">Standard data formats and Tidy</a></li>
   <li><a href="#dplyr-verbs" id="toc-dplyr-verbs" class="nav-link" data-scroll-target="#dplyr-verbs"><code>dplyr</code> verbs</a></li>
-  <li><a href="#functions-on-functions" id="toc-functions-on-functions" class="nav-link" data-scroll-target="#functions-on-functions">Functions on functions</a>
-  <ul class="collapse">
-  <li><a href="#an-introduction-to-pipes" id="toc-an-introduction-to-pipes" class="nav-link" data-scroll-target="#an-introduction-to-pipes">An introduction to pipes</a></li>
+  <li><a href="#functions-on-functions" id="toc-functions-on-functions" class="nav-link" data-scroll-target="#functions-on-functions">Functions on functions</a></li>
   </ul></li>
-  <li><a href="#case-study-introduction" id="toc-case-study-introduction" class="nav-link" data-scroll-target="#case-study-introduction">Case study Introduction</a>
+  <li><a href="#case-study-introduction" id="toc-case-study-introduction" class="nav-link" data-scroll-target="#case-study-introduction">Case Study Introduction</a>
   <ul class="collapse">
   <li><a href="#getting-familiar-with-the-data" id="toc-getting-familiar-with-the-data" class="nav-link" data-scroll-target="#getting-familiar-with-the-data">Getting familiar with the data</a></li>
   <li><a href="#analysis-goals" id="toc-analysis-goals" class="nav-link" data-scroll-target="#analysis-goals">Analysis Goals</a></li>
@@ -120,7 +120,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="what-is-data-wrangling" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-data-wrangling">What is data wrangling?</h2>
@@ -128,15 +130,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Data wrangling, manipulation, or cleaning is the process of transforming data into a format that is more suitable for analysis. This can include removing missing values, changing the format of data, or combining multiple datasets.</p></li>
 <li><p>There’s rarely a single way to approach any given data-wrangling problem! Expanding your “toolkit” allows you to tackle problems from different angles.</p></li>
 </ul>
-<p>::: callout-note title=“Measure twice, cut once” Before you begin wrangling data, you should be able to:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Measure twice, cut once">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Measure twice, cut once
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you begin wrangling data, you should be able to:</p>
 <ul>
 <li><p>Define how you want the data to look and why</p></li>
 <li><p>Document it well so that others (and future you!) know what you did</p></li>
-<li><p>Know what tools you have and how to use them :::</p></li>
+<li><p>Know what tools you have and how to use them</p></li>
 </ul>
+</div>
+</div>
 </section>
-<section id="working-with-vectors" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-vectors">Working with vectors</h2>
+<section id="building-a-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="building-a-toolkit">Building a toolkit</h2>
+<section id="working-with-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-vectors">Working with vectors</h3>
 <p>Pulling out specific parts of a data set is important when analyzing with R. <strong>Indexing</strong>, or accessing elements, subsets data based on numeric positions in a vector. Some things to be aware of when indexing:</p>
 <ul>
 <li><p>Indexing uses brackets. i.e.&nbsp;the 5th element in a vector will be returned if you run <code>vector[5]</code>.</p></li>
@@ -179,8 +195,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="working-with-data-frames" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-data-frames">Working with data frames</h2>
+<section id="working-with-data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-data-frames">Working with data frames</h3>
 <p>This works for two-dimensional structures too, like data frames and matrices. We’d just format it as: <code>dataframe[row,column]</code>. Let’s try it out:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a data frame</span></span>
@@ -248,8 +264,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="standard-data-formats-and-tidy" class="level2">
-<h2 class="anchored" data-anchor-id="standard-data-formats-and-tidy">Standard data formats and Tidy</h2>
+<section id="standard-data-formats-and-tidy" class="level3">
+<h3 class="anchored" data-anchor-id="standard-data-formats-and-tidy">Standard data formats and Tidy</h3>
 <p>That data, and most two-dimensional data sets (data frames, matrices, etc.) is often organized the similarly:</p>
 <ul>
 <li><p>Each variable is its own column</p></li>
@@ -261,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="wrangling-files/tidy-style.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Source: Hadley Wickham’s R for Data Science, 1st Edition</figcaption>
+<figcaption>Source: Hadley Wickham’s R for Data Science, 1st Edition</figcaption>
 </figure>
 </div>
 </div>
@@ -269,8 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This follows the <em>tidy data</em> style, an approach to handling data in R that aims to be clear and readable.</p>
 <p>::: callout-note title=“Tidiest Universe” The bundle of tidy-associated packages is called the <code>tidyverse</code>, and it’s a hot-topic in the R world. Most data wrangling problems can be solved with <code>tidy</code> or base (default) R functions. This can lead to some headaches for beginners! :::</p>
 </section>
-<section id="dplyr-verbs" class="level2">
-<h2 class="anchored" data-anchor-id="dplyr-verbs"><code>dplyr</code> verbs</h2>
+<section id="dplyr-verbs" class="level3">
+<h3 class="anchored" data-anchor-id="dplyr-verbs"><code>dplyr</code> verbs</h3>
 <p>One of the most popular <code>tidyverse</code> packages, <code>dplyr</code>, offers a suite of helpful and readable functions for data manipulation. Lets get started with how it can help you see your data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -308,7 +324,7 @@ Tip
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="wrangling-files/dplyr_syntax.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Source: Joshua Ebner’s A Quick Introduction to Dplyr</figcaption>
+<figcaption>Source: Joshua Ebner’s A Quick Introduction to Dplyr</figcaption>
 </figure>
 </div>
 </div>
@@ -369,10 +385,10 @@ Tip
 </div>
 <p>Hopefully now, you feel a little more confident about working with vectors, data frames, and using <code>dplyr</code> verbs to clean and manipulate data. Happy Wrangling!</p>
 </section>
-<section id="functions-on-functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions-on-functions">Functions on functions</h2>
-<section id="an-introduction-to-pipes" class="level3">
-<h3 class="anchored" data-anchor-id="an-introduction-to-pipes">An introduction to pipes</h3>
+<section id="functions-on-functions" class="level3">
+<h3 class="anchored" data-anchor-id="functions-on-functions">Functions on functions</h3>
+<section id="an-introduction-to-pipes" class="level4">
+<h4 class="anchored" data-anchor-id="an-introduction-to-pipes">An introduction to pipes</h4>
 <p>Data scientists often want to make many changes to their data at one time. Typically, this means using more than one function at once. However, the way we’ve been writing our scripts so far would make for some very confusing looking code.</p>
 <p>For example, let’s use <code>dplyr</code> functions to perform two operations on our data set of scientists: filter for those born after 1900 and then arrange them by date of birth.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -427,8 +443,9 @@ Tip
 </div>
 </section>
 </section>
+</section>
 <section id="case-study-introduction" class="level2">
-<h2 class="anchored" data-anchor-id="case-study-introduction">Case study Introduction</h2>
+<h2 class="anchored" data-anchor-id="case-study-introduction">Case Study Introduction</h2>
 <p>A lot of people struggle to learn how to code without having an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set.</p>
 <p>For this example, we have some data from an experiment that measured the proportions of different cell times within mouse cardiac tissue. These samples are from treatment vs.&nbsp;control and WT vs.&nbsp;mutant.</p>
 <p>What are some things that we, as researchers, would want to know about our data?</p>
@@ -455,26 +472,27 @@ Things to consider:
 <section id="getting-familiar-with-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="getting-familiar-with-the-data">Getting familiar with the data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"wrangling-files/cellProportions.csv"</span>,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"wrangling-files/cellProportions.csv"</span>,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Cardiomyocytes Fibroblast Endothelial.Cells Macrophage
-whole_2          0.6516497 0.08856450       0.067004520 0.17605980
-fraction_13      0.8243539 0.03702213       0.063869994 0.06917268
-fraction_12      0.8954119 0.02126763       0.044361580 0.03895884
-fraction_19      0.0000000 0.99832710       0.001672903 0.00000000
-fraction_18      0.0000000 1.00000000       0.000000000 0.00000000
-whole_16         0.8196176 0.02082482       0.088890150 0.05008898
+whole_2              0.652     0.0886           0.06700     0.1761
+fraction_13          0.824     0.0370           0.06387     0.0692
+fraction_12          0.895     0.0213           0.04436     0.0390
+fraction_19          0.000     0.9983           0.00167     0.0000
+fraction_18          0.000     1.0000           0.00000     0.0000
+whole_16             0.820     0.0208           0.08889     0.0501
             Pericytes.SMC
-whole_2       0.016721500
-fraction_13   0.005581313
-fraction_12   0.000000000
-fraction_19   0.000000000
-fraction_18   0.000000000
-whole_16      0.020578470</code></pre>
+whole_2           0.01672
+fraction_13       0.00558
+fraction_12       0.00000
+fraction_19       0.00000
+fraction_18       0.00000
+whole_16          0.02058</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Whole vs. Fractions">
@@ -588,10 +606,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -601,8 +636,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -614,7 +658,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -658,6 +825,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -683,6 +851,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -743,6 +937,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
