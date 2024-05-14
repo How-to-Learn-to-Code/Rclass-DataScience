@@ -12,13 +12,12 @@ options(digits = 3)
 
 Last class, we had introduced a dataset/experiment that we would work through. Let's remind ourselves of some of the details:
 
--   Our data is measures of proportions of cell types across samples
--   There control samples made of mostly pure cell types (`fractions`) and experimental samples, composed of a range of cell types
--   The experimental samples are from wild-type/knock-out and treatment/control
--   There are `.csv` files for both the cell type proportion data (`cellProportions.csv`) and the sample phenotypes (`cellPhenotypes.csv`)
+-   We have proportions of cell types across samples
+-   There controls made of mostly pure cell types (`fractions`) and experimental samples (`whole`)
+-   There are `.csv` files for both the cell type proportion data and the sample phenotypes
 
 
-And in general, there are a few things to think about when wrangling/exploring data:
+There are a few things to think about when wrangling/exploring data:
 
 -   What do you want to know about this data?
 -   What kind of visuals would you want to make?
@@ -34,20 +33,19 @@ Take a moment to talk among yourselves about this/any ideas you had since last c
 
 ```{r}
 # Load the data. The sample IDs were stored as the first row, so lets make those the row.names
-#cell_props <- read.csv("scripts/03_dataWrangling/wrangling-files/cellProportions.csv",
-#                       row.names = 1)
 cell_props <- read.csv("wrangling-files/cellProportions.csv",
                        row.names = 1)
 
 head(cell_props)
 ```
 
-Our data fits the `tidy` style we introduced last class, since each row is a sample (observation) and each column is a different cell type (variable).
+:::{.callout-tip}
+Our data fits the `tidy` style, since each row is a sample (observation) and each column is a different cell type (variable).
+:::
 
 When assessing data, it's good to *consider what features you'd expect from a given data set*. This helps you know if something has gone wrong before you've gotten your hands on it. 
 
-In our case, we're looking at the proportion of cell types in each sample. Proportions, by nature, sum up to 1. In this case, checking that the values in each row sum to 1 is one way to confirm that we have what we're expecting. Lets go ahead and check that:
-
+We're looking at the proportion of cell types in each sample, which should sum up to 1. Checking that the values in each row add to 1 would help confirm that we have what we're expecting:
 
 ```{r}
 all(rowSums(cell_props) == 1)
@@ -61,7 +59,7 @@ For example, raw RNA-seq matrices should have values that go up to 100,000s. So 
 
 #### Phenotype data
 
-We also have the phenotypes for the samples in a separate csv file:
+We also have the phenotypes for the samples in a separate file:
 
 ```{r}
 cell_phenos <- read.csv("wrangling-files/cellPhenotypes.csv",
@@ -76,21 +74,20 @@ This tells us that `cell_phenos` is a data frame with 3 variable (columns) and 3
 
 Let's recount what we want to know and then what we already know about the data:
 
--   We know that the phenotype information and cell proportion measures are each their own data frames, and they seem to have corresponding row names.
+-   Phenotypes and cell proportion measures each in their own data frames
 
 We want to know:
 
-  1)   If the controls look as we'd expect
-
-  2)  What group differences we have
+-   If the controls look as we'd expect
+-   What group differences there are
 
 To get at the question about controls, we'd need to check `cell_phenos` to see which samples are from the control or experimental groups. After, we'll plot the proportions.
 
 ```{mermaid}
 flowchart LR
-A[Dataframe of cell proportions] --> C{Merged proportions\n and phenotypes}
-B[Dataframe of sample phenotypes]  --> C
-C --> D(Steps to get data\nformatted for plotting)
+A[Data frame of\n cell proportions] --> C(Merged proportions\n and phenotypes)
+B[Data frame of\n sample phenotypes]  --> C
+C --> D{Steps to get data\nformatted for plotting}
 D --> E[Plot of control samples]
 D --> F[Plot of experiment samples]
 ```
@@ -119,12 +116,12 @@ Lets subset the data into the whole and fraction samples. The`subset()` function
 
 ```{r}
 # Pull out the rows with missing genotypes
-fraction_phenos <- subset(cell_phenos, is.na(genotype))
+fraction_phenos <- cell_phenos |> subset(is.na(genotype))
 head(fraction_phenos)
 
 # Using an exclamation point inverses true/false values in R. 
 # Think of it as saying,"is NOT NA"
-whole_phenos <- subset(cell_phenos, !is.na(genotype))
+whole_phenos <- cell_phenos |> subset(!is.na(genotype))
 head(whole_phenos)
 ```
 
@@ -132,21 +129,29 @@ head(whole_phenos)
 
 We're going to combine the phenotype and composition data sets, which helps when making some more complex plots.
 
-Data frames can be merged in a bunch of ways, but no matter the method [it's essential that the order of samples match]{.underline}. R has two built-in methods, binds (`cbind` and `rbind`) and `merge`.
+Data frames can be combined in a bunch of ways, but no matter the method [it's essential that the order of samples match]{.underline}. R has two built-in methods, binds (`cbind` and `rbind`) and `merge`.
 
 Binds slap two data frames together. `cbind` adds the second data frame new columns, `rbind` adds rows. Binds don't consider the order of the data sets, so there's a risk of things being out of order.
 
 `merge` is similar to `cbind`, but matches the data sets based on a common column. In our data, we would merge proportions with the phenotypes by the sample id.
 
-Lets outline how we would go about each of these. For `cbind` we'll check the order of the data by indexing first. With `merge`, we'll tell the function what we want to merge by:
+Lets try each of these out:
 
-##### cbind
+##### `cbind`
 
 ```{r}
 # Check if the sample names match 
 all(rownames(cell_phenos) == rownames(cell_props))
 
-# They don't, so lets reorder one to match the other
+# They don't, lets take a closer look
+cbind(rownames(cell_phenos), rownames(cell_props)) |> head()
+
+```
+
+Above, you can see that `cbind` would mismatch the samples. The first row would have the phenotype info for `fraction_1` but the proportion data for `whole_2`. **Always be careful when using `cbind`! It has no guardrails!**
+
+```{r}
+#Reorder one to match the other
 # This uses the cell_phenos rownames as a list to specify the order of indices 
 cell_props <- cell_props[rownames(cell_phenos),]
 
@@ -159,7 +164,7 @@ data_bind <- cbind(cell_phenos, cell_props)
 head(data_bind)
 ```
 
-##### merge
+##### `merge`
 
 ```{r}
 # Specify row.names as the feature to merge by
@@ -171,30 +176,24 @@ head(data_merge)
 While this won't always be the case with `merge` vs. `bind`, its better to use `merge` in this scenario, since it helps keep your script *interpretable* 
 
 ::: {.callout-note title="Reproducible code"}
-If you continue with programming, there will be points when you need to share your code with some or return to code you wrote months to years ago. When that happens, you'll appreciate leaving easy-to-understand scripts!
+If you continue with programming, you'll need to share your code or return to code you wrote months ago. Writing easy-to-understand scripts gives you less headache later!
 :::
 
 ### Preparing for different visualizations
 
-Our data is all in one place, now we just need to think of how we want to visualize it. You should already have a bit of background with `ggplot2`, so lets go ahead and generate some basic plots.
+Our data is all in one place, now we just need to think of how we want to visualize it. You should already have a bit of background with `ggplot2`, so lets go ahead and generate a basic plot.
 
 ```{r}
-#| warning: false
-
 library(tidyverse)
 
 ggplot(data = data_merge, aes(x = Cardiomyocytes, y = Fibroblast, color = type))+
   geom_point()
-
-ggplot(data = data_merge, aes(x = Cardiomyocytes, fill = type))+
-  geom_density(alpha = 0.5) +
-  theme_minimal()
 ```
 
-This is a nice, simple plot, but it's missing a lot of information we'd want to know about our data. We're probably more interested in looking at all of the cell types at once. At this point, we should ask ourselves a few questions:
+This is missing a lot of information we'd want to know about our data. At this point, we should ask ourselves a few questions:
 
 -   What am I trying to see about the data?
--   What kind of plot do we want?
+-   What kind of plot helps us see that?
 
 Take a minute to talk as a group about how you would visualize the data!
 
@@ -221,18 +220,37 @@ For `ggplot` to make this, our data needs to have a column specifically for each
 
 #### Pivoting wide and long
 
-Data with many observations and samples is often formatted as wide or long. Our current data is in a wide format, which has a single row for each sample and a column for each variable.
+Data with many observations and samples is often formatted as *wide* or *long*. Our data is in a wide format, which has a single row for each sample and a column for each variable.
 
-When wide data is pivoted into a long format columns are condensed together. It's easiest to understand how pivoting works by seeing it done:
+When wide data is pivoted into a long format columns are condensed together. It's easiest to understand how pivoting works in visuals:
+
+::: panel-tabset
+
+## Still images
+
+```{r pivot_still,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
+knitr::include_graphics("wrangling-files/tidyr_pivot.png")
+```
+
+## Animated transition
 
 ```{r pivot_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
 knitr::include_graphics("wrangling-files/tidyr-pivoting.gif")
 ```
 
-We want to make a column of proportions values and columns specifying cell types.
+:::
+
+
+As a reminder, we want to make a **column of proportions values** (val) and a **column specifying cell types** (key).
+
+For the function, the cell types are specified with `cols =` and name the new column with `names_to`. 
+
+The values originally in those columns are going to move to a new `values` column, which we can name with `values_to =`.
 
 ```{r}
-data_long <- pivot_longer(data_merge, cols = c(Cardiomyocytes, Fibroblast, Endothelial.Cells, Macrophage, Pericytes.SMC), names_to = "cell.type", values_to = "proportion")
+data_long <- pivot_longer(data_merge, 
+                          cols = c(Cardiomyocytes, Fibroblast, Endothelial.Cells, Macrophage, Pericytes.SMC), 
+                          names_to = "cell.type", values_to = "proportion")
 
 str(data_long)
 ```
@@ -252,6 +270,7 @@ Our data is now a `tibble`, which is a sub type of data frame. Tidy functions of
 
 #### Wrangling for plotting
 
+##### Pure cell-type fraction controls
 With our data in this format, we can make a lot of cool plots. Lets start with the bar plot we had planned.
 
 ```{r}
@@ -261,17 +280,11 @@ data_long |>
   geom_bar(position="fill", stat="identity")
 ```
 
-It worked, but it looks... less than pleasing. Lets remind ourselves of what we wanted to see in the plot: groups side-by-side. What groups do we have? Well, there's some controls (three types) and actual samples from the experiment. Within the actual samples, we have two genotypes and two treatments. That's a bit too much for one plot. I'd like to start by making a plot just for the controls for now. `filter` from the `dplyr` package will help separate the groups.
+It worked, but it looks... less than pleasing. Lets remind ourselves of what we wanted to see in the plot: groups side-by-side. 
 
-```{r}
-data_long |> 
-  filter(type != "whole_tissue") |> 
-  mutate(id = as.character(Row.names)) |> 
-  ggplot(aes(x = id, y = proportion, fill = cell.type))+
-  geom_bar(position="fill", stat="identity")
-```
+What groups do we have? Well, there's some controls (three types) and actual samples from the experiment. Within the actual samples, we have two genotypes and two treatments. That's a bit too much for one plot. 
 
-Looks good, but lets pick up the pace. For this next iteration, we'll make several changes at once, with the goal of making it easier to compare groups, more readable, and all-around nicer to look at.
+I'd like to start by making a plot just for the controls for now. `filter` from the `dplyr` package will help separate the groups. Also, I'll make aesthetic changes to make it easier to compare groups and nicer to look at.
 
 ```{r}
 data_long |> 
@@ -294,4 +307,93 @@ data_long |>
 
 ```
 
-For the treatment and genotype samples, it would be easier to compare shifts in individual cell types if we break up the stacked bar chart so that the cell types are spread across the x-axis. Then, we could have an individual bar for each genotype-treament at each cell type position side-by-side.
+This looks good! We can see what we expected of our control samples. Each of the fractions are made up of a single cell type. Let's move onto the experimental samples.
+
+##### Experimental Samples
+There are two things we should consider before we visualize differences between our experimental groups:
+
+-   It would be easier to compare shifts in specific cell types if we break up the stacked bar chart so that the cell types are spread across the x-axis. 
+-   In our last plot, we compared samples across a single phenotypic factor: `type`. This time, it's more complicated because we want to we want to compare both `genotype` and `treatment`. 
+
+
+
+```{r}
+data_long   |> 
+  filter(type == "whole_tissue") |> 
+  ggplot(aes(x = cell.type, y = proportion)) +
+  geom_bar(stat = "summary", fun = mean, width = 0.9,  color = "black") +
+  facet_grid(genotype ~ treatment, scales = "free") + 
+  theme_minimal() +
+  theme(
+    axis.title.x = element_blank(), 
+    legend.title = element_blank(),
+    legend.position = "bottom"
+  ) +
+  labs(y = "Estimated Proportion") +
+  scale_fill_manual(values = c("#66C2A5","#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854")) +
+  guides(x = guide_axis(angle = 45))
+```
+
+We just made three major changes:
+-   `cell.type` is on the x-axis, not sample `id`s
+-   We're plotting the **mean** of each cell type across many samples in each group. `geom_bar` can do this automatically with `stat = "summary", fun = mean,`
+-   We're showing four plots at once by having `facet_grid` contrast them with `genotype ~ treatment`
+
+
+However, I think it's still tough to compare across the groups. Also, only showing the mean masks any variation within groups. Lets make two more major changes to fix that:
+
+-   Put all of the groups into a single plot
+-   Add dots for each sample onto each bar
+
+And to make it easier to read, lets reorder the X-axis by most to least abundant cell types.
+
+###### Reorder cell types
+
+We can take advantage of `factors` to reorder, since `ggplot` references the order of factors when plotting.
+
+```{r}
+# Find the most-to-least abundant cell types
+cell.type.order <- data_long |> 
+  filter(type == "whole_tissue") |> 
+  group_by(cell.type) |> # Manipulate the data within cell-type groups
+  mutate(mean = mean(proportion)) |> # make a new column that is the mean of the proportions 
+  arrange(desc(mean)) |> # arrange by mean proportion
+  pull(cell.type) |> # pull out the cell type column as a list
+  unique() # remove duplicated values
+cell.type.order
+```
+
+###### Put all groups on a single plot
+
+If we combine `genotype` and `treatment` into a single variable, we can condense down to a single plot. While we're at it, we can apply `cell.type.order` to make the `data_long$cell.type` into a factor-level column:
+
+```{r}
+data_long <- data_long |> 
+  mutate(cell.type = factor(cell.type, levels = cell.type.order),
+         Genotype_Treatment = factor(paste(genotype, "-", treatment), levels = c("WT - Sham", "WT - MI", "cmAKO - Sham", "cmAKO - MI")))
+```
+
+
+###### Plot
+
+```{r}
+# Generate boxplot
+data_long  |> 
+  filter(type == "whole_tissue") |> 
+  ggplot(aes(x = cell.type, y = proportion, fill = Genotype_Treatment)) +
+  geom_bar(stat = "summary", fun = mean, width = 0.9,  color = "black",
+           position = position_dodge(0.9)) +
+  geom_jitter(inherit.aes = T, 
+              position = position_dodge(0.9),
+              size = 2, alpha = 0.3) +
+  labs(y = "Estimated Proportion", 
+       fill = "Treatment") +
+  theme(
+    axis.title.x = element_blank(), 
+    legend.title = element_blank(),
+    legend.position = "bottom"
+  ) +
+  scale_fill_manual(values = c("#A6CEE3", "#1F78B4", "#FDBF6F", "#FF7F00")) +
+  guides(x = guide_axis(angle = 45))
+
+```
