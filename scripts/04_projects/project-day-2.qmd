@@ -13,6 +13,12 @@ Now that you've been through the entire course, we want to reinforce some of the
 
 3.  Created and pushed your first repository to GitHub.
 
+//TODO more linky to working on project in longleaf/their project repo
+
+//TODO more pointers for what to do for analyses, 1-2 example figs/analyses, cut obesity, more decripts of the data structure, so the teacher doesnt have to be super familiar with the data. crunchy fig. prob this is mostly going to be a "here's a figure - recreate it". def need to include some code to copy/paste for certain operations
+
+//TODO frontmatter
+
 # Datasets
 
 The following datasets represent some real-world data for you to practice your data wrangling and visualisation skills with. For each of these datasets (as many as time allows), we'd like you to do some basic analysis, including the following steps:
@@ -25,9 +31,11 @@ The following datasets represent some real-world data for you to practice your d
 6.  Visualize the data in helpful ways to answer your question.
 7.  Make your code reproducible by using Github.
 
-//TODO To help with your analyses, we have included a template document that you are welcome to use.
+To help with your analyses, we have included a template document that you are welcome to use.
 
-These datasets are listed roughly in order of increasing experimental/wrangling complexity — choose whichever you are most interested in! You may need to access the original data source to learn more about the metadata.
+These datasets are listed roughly in order of increasing experimental/wrangling complexity — choose whichever you are most interested in!
+
+//TODO add metadata + data previews
 
 ## Western Africa Ebola public health dataset
 
@@ -55,8 +63,6 @@ These datasets are listed roughly in order of increasing experimental/wrangling 
 
 ## AVIDA experimental evolution dataset
 
-// TODO: can trim some of this down bc i think its a little confusing lol esp for ppl who might not understand this as intuitively
-
 **Background:** [Avida-ED](https://avida-ed.msu.edu/avida-ed-application/) is an online educational application that allows one to study the dynamics of evolutionary processes. [Digital](https://avida-ed.msu.edu/digital-evolution/), asexually-reproducing organisms known as "Avidians" can be placed into something akin to a virtual Petri dish to evolve in, and one can manipulate parameters such as mutation rate, resource availability, and dish size to study how those factors affect the evolution of the population.
 
 Your friend needs your help to analyze their AVIDA-Ed data. They have designed a series of experiments around a mutant Avidian that gets an energy bonus when the sugar "nanose" is present and a wildtype Avidian that does not. They wanted to see how competition and resource availability affect the population dynamics of these Avidians.
@@ -69,8 +75,10 @@ Your friend needs your help to analyze their AVIDA-Ed data. They have designed a
 
 -   Rich (nanose and additional sugars present)
 
-```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "AVIDA experiment setup"}
-knitr::include_graphics("avida-expt.png")
+//TODO crunchy fig
+
+```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "75%", fig.cap = "AVIDA experiment setup"}
+knitr::include_graphics("project-day-2_files/avida-expt.png")
 ```
 
 They collected data on the following population metrics: (reword: got a lot of data?)
