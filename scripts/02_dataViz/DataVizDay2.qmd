@@ -1,0 +1,349 @@
+---
+title: Visualization Lesson with Palmer Penguins
+output: html
+---
+```{r echo=FALSE}
+#standardize figure sizes
+knitr::opts_chunk$set(fig.width = 8.5, fig.height = 8.5)
+options(tibble.width = Inf)  # Set to Inf to attempt to print all columns of tibbles
+```
+
+# Introduction
+
+Welcome to Day 2 of our data visualization journey! Today, we'll dive deeper into the world of visualizing data using the **Palmer Penguins dataset**. This dataset provides insights into penguins in the Palmer Archipelago, and it's a perfect opportunity for us to practice and hone our visualization skills.
+
+- This session is an opportunity to:
+  - Independently code visualizations.
+  - Learn how to troubleshoot issues that arise.
+  - Explore data in a hands-on manner.
+
+- We will also teach several new data visualization tricks:
+  - Changing shapes of points.
+  - Customizing figure legends. 
+  - Using `facet_grid` for comparing many aspects of data simultaneously.
+  - Other advanced plotting tricks.
+
+- Approach this session with curiosity and an adventurous spirit:
+  - Experiment with different plot types.
+  - Play with colors and styles.
+  - Let creativity guide your visual storytelling.
+
+- Questions are welcome:
+  - Learning together is key.
+  - Your inquiries are a vital part of the process.
+
+
+- Let’s embark on this journey and enjoy the exploration of data visualization!
+
+![Penguins!](DataVizDay2_files/lter_penguins.png)
+The Palmer Archipelago penguins. Artwork by @allison_horst.
+
+
+# Dataset Overview
+
+First we load necessary packages. If the palmerpenguins package is not installed, we can install it by uncommenting "install.packages" below. 
+```{r load_data}
+suppressPackageStartupMessages(library(tidyverse))
+#install.packages('palmerpenguins')
+library(palmerpenguins)
+```
+
+
+The dataset includes measurements of penguin species: Adélie, Chinstrap, and Gentoo. The palmerpenguins pacakge automatically loads the data into an object called penguins. 
+
+First we check the data class of penguins with class(), and take a look at the first few rows using the head() command. 
+
+```{r explore_data}
+#what class is our data
+class(penguins)
+
+head(penguins)
+```
+
+As we can see, the dataset contains many numerical (lengths, dephs, and masses), and categorical (species, island, and sex) variables. It also contains a variable that could be categorical or numerical (year).
+
+## Exploratory Questions
+
+- Take a moment to think of questions related to the dataset.
+
+## Some example questions
+The purpose of this class is to give the students space to make plots from scratch with teacher assistance. These sample questions have been divided into bins based on the three main types of plots we are teaching: numerical by numerical plots, categorical by numerical plots, and histograms. 
+
+There will also be a mini-lesson about facet_grid, which could be useful for comparing multiple categorical and numerical variables simultaneously. 
+
+### Numerical by Numerical Plot
+- How does flipper length vary with body mass among different penguin species? This question prompts students to think about correlation and possible factors influencing these traits.
+- Is there a relationship between the bill depth and flipper length, and does this relationship vary by species? This encourages students to explore multiple numerical variables and consider biological implications.
+
+### Categorical by Numerical Plot
+- How does the average body mass differ across penguin species? This question guides students to examine differences between groups.
+- Does the distribution of flipper lengths differ by the island on which the penguins were observed? Here, students consider geographical variation and its potential impact on physical traits.
+
+### Histogram 
+- What is the distribution of bill lengths in the Palmer Penguins dataset, and what might this tell us about their feeding habits? Encourages students to link physical traits with ecological roles.
+- How are body mass values distributed within each species, and what does this suggest about the health or environment of these populations? Students consider the health implications or ecological conditions of the populations.
+
+### facet_grid
+- How do the relationships between body mass and flipper length change over different years of data collection? This question leads into the use of facet_grid to explore temporal changes.
+- Can we observe any noticeable trends in bill dimensions over time, and how do these trends compare across species? This prompts a deeper look into evolutionary or environmental trends impacting the species.
+
+## Premade Plots
+
+### Example Plot: Flipper Length vs. Body Mass
+To compare two numerical variables, a scatterplot is often the simplest and most effective plotting method. Here, we will compare the flipper length and body mass of our penguins. Remember, the inputs to a scatterplot are the columns of our tibble, which should be numeric, integer, or double vectors. Lets take a look at our data with head() and confirm the datatype with class().
+
+```{r numvsnum}
+head(penguins$flipper_length_mm)
+class(penguins$flipper_length_mm)
+```
+
+First we create a simple scatterplot with x and y labels in base r and ggplot. 
+
+```{r numvsnum2}
+head(penguins$flipper_length_mm)
+class(penguins$flipper_length_mm)
+#simple base r plot with x and y axis labeled
+plot(penguins$flipper_length_mm, penguins$body_mass_g,
+     xlab = "Flipper Length (mm)", ylab = "Body Mass (g)")
+
+# same plot in tidyverse
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,)) +
+  geom_point() +
+  labs(x = "Flipper Length (cm)", y = "Body Mass (kg)",
+       title = "Body Mass vs. Flipper Length")
+```
+
+Can we compare different species in these plots? Let's color our points based on the species. 
+
+``` {r num_vs_num_species}
+# color dots by species
+plot(penguins$flipper_length_mm, penguins$body_mass_g,
+     xlab = "Flipper Length (mm)", ylab = "Body Mass (g)",
+     col = penguins$species) 
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  labs(x = "Flipper Length (cm)", y = "Body Mass (kg)",
+       title = "Body Mass vs. Flipper Length",
+       color = "Species")
+```
+
+Challenge plot: Let's customize these plots some more! Here we show you could change the units of the variables using the mutate() function, change the shapes of the points for each species, add a customized legend in the position of the plot we want, and change the size of the points.  
+
+``` {r num_vs_num_species2}
+
+#do we remember how to create new columns in our tibble? 
+penguins <- penguins %>%
+  mutate(body_mass_kg = 0.001 * body_mass_g,
+         flipper_length_cm = 0.1 * flipper_length_mm)
+
+# Even more complex example with custom labels, colors, and fig legend position
+ggplot(data = penguins, aes(x = flipper_length_cm, y = body_mass_kg)) +
+  geom_point(aes(color = species, shape = species), size = 3) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin size, Palmer Station LTER",
+       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
+       x = "Flipper length (cm)",
+       y = "Body mass (kg)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme(legend.position = c(0.9, 0.1))
+
+#Similar figure using base R
+species_colors <- c("darkorange", "purple", "cyan4")
+
+plot(penguins$flipper_length_mm, penguins$body_mass_g,
+     xlab = "Flipper Length (mm)", ylab = "Body Mass (g)",
+     main = "Penguin size, Palmer Station LTER",
+     sub = "Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins",
+     pch = as.numeric(penguins$species), # Assign shapes based on species
+     col = species_colors[penguins$species]) # Assign colors based on species
+
+# Add legend
+legend("bottomright", legend = levels(penguins$species),
+       col = species_colors, pch = 1:3, #assign correct color and shape codes to legend
+       title = "Penguin species")
+```
+
+
+### Example plot: numerical vs categorical 
+
+If we want to look at the distribution of a numerical variable for different categories, one option is to use a box plot.
+
+``` {r boxplot}
+# Base R boxplot of body mass values in each species
+boxplot(body_mass_g ~ species, data = penguins,
+        col = c("darkorange", "purple", "cyan4"),
+        main = "Body Mass by Penguin Species",
+        xlab = "Species",
+        ylab = "Body Mass (g)")
+
+ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot(aes(color = species), width = 0.3, show.legend = FALSE) +
+  labs(x = "Species",
+       y = "Body mass (g)")
+```
+
+What if we also want to see individual points in this distribution? We can add points with "jitter"--a small amount of random variation on the x-axis, to see where the points fall on the x-axis. Here we demonstrate how to do this in ggplot and base R. 
+
+``` {r jitter}
+# overlay the raw data points using geom_jitter
+ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot(aes(color = species), width = 0.3, show.legend = FALSE) +
+  geom_jitter(aes(color = species), alpha = 0.5, show.legend = FALSE, 
+     position = position_jitter(width = 0.2)) +
+  labs(x = "Species",
+       y = "Body mass (g)")
+
+# Create the boxplot
+boxplot(body_mass_g ~ species, data = penguins,
+        col = c("darkorange", "purple", "cyan4"),
+        main = "Body Mass by Penguin Species",
+        xlab = "Species",
+        ylab = "Body mass (g)")
+
+# Add overlaid points (jittered). Factor controls the width of the points\
+#cex controls their size, and pch controls the symbol
+points(jitter(as.numeric(penguins$species), factor = 1.5),
+       penguins$body_mass_g,
+       pch = 16, cex = 0.8)
+
+# Add custom legend (optional)
+legend("bottomright", legend = levels(penguins$species),
+       fill = c("darkorange", "purple", "cyan4"),
+       title = "Penguin species")
+```
+
+### Example plot: distribution of a numerical variable
+
+If we want to loot at the distribution of one numerical variable in detail, we could use a histogram. 
+
+``` {r histogram}
+# simple histogram of flipper length
+hist(penguins$bill_depth_mm, main = "Histogram of Penguin Bill Depth", xlab = "Bill Depth (mm)")
+# a simple histogram of flipper length in ggplot
+ggplot(data = penguins, aes(x = bill_depth_mm)) +
+  geom_histogram() 
+
+#change the number of bins to your liking 
+hist(penguins$bill_depth_mm, breaks = 30, main = "Histogram of Penguin Bill Depth", xlab = "Bill Depth (mm)")
+
+# for ggplot we specify the width of the bins
+ggplot(data = penguins, aes(x = bill_depth_mm)) +
+  geom_histogram(binwidth=0.5) 
+```
+
+What if we want to see the distribution of different species in the histogram? Can we make the bars see-through to see the overlaps of their distributions (hint: try the alpha parameter of geom_histogram() and position = "identity")
+
+``` {r histogram2}
+
+ggplot(data = penguins, aes(x = bill_depth_mm)) +
+  geom_histogram(aes(fill = species)) 
+
+# Making the colors more transparent to see overlaps with alpha 
+ggplot(data = penguins, aes(x = bill_depth_mm)) +
+  geom_histogram(aes(fill = species), alpha = 0.6, position = "identity")
+
+#fancier, with new colors and labels
+ggplot(data = penguins, aes(x = bill_depth_mm)) +
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Penguin flipper lengths")
+```
+
+Challenge: Can we find the means of these distributions, and plot the means on our histograms? Can we add text so the plot viewer can see what the mean is? 
+
+``` {r mean_depth}
+# Calculate the mean bill depth for each species
+mean_depth <- penguins %>%
+  group_by(species) %>%
+  summarize(mean_bill_depth = mean(bill_depth_mm, na.rm = TRUE))
+
+# add a line representing the mean to the histogram
+ggplot(penguins, aes(x = bill_depth_mm, fill = species)) +
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+     y = "Frequency",
+     title = "Penguin flipper lengths")+
+  geom_vline(data = mean_depth, aes(xintercept = mean_bill_depth),
+     color = "red", linetype = "dashed", size = 1) +
+  geom_text(data = mean_depth, aes(x = mean_bill_depth, y = 10,
+     label = paste(species, "mean:", round(mean_bill_depth, 2))),
+     color = "black", vjust = -0.5, 
+     hjust = 0.5, size = 4, 
+     position = position_jitter(height = 2, width = 0)) 
+```
+
+## Mini-Lesson: Introduction to facet_grid in ggplot2
+
+
+### Background:
+In data visualization, particularly when dealing with complex datasets, it's beneficial to compare subsets of data across different categories simultaneously. ggplot2 provides various functions for creating faceted plots, with **facet_grid** being a prominent choice for creating grids that can help in exploring interactions between variables.
+
+### Faceting:
+Faceting refers to the strategy of splitting one plot into multiple plots based on a factor (or factors) included in the dataset. Each plot represents a level of the factor(s) and shares the same axis scaling and grids, which makes them easy to compare.
+
+The facet_grid function creates a matrix of panels defined by row and column faceting variables. The general syntax is:
+
+```{r eval=FALSE}
+facet_grid(rows ~ cols)
+```
+
+If we just want to facet by rows or just by columns, replace that spot with a ".".
+
+```{r eval=FALSE}
+#facet by rows
+facet_grid(rows ~ .)
+#facet by cols
+facet_grid(. ~ cols)
+```
+
+Lets take some of the plots we made earlier and facet them by the categorical variable year! Note that in some situations it makes more sense to facet by columns, and others by rows.
+
+```{r facet_grid}
+# Scatter plots with facet_grid
+ggplot(data = penguins, aes(x = flipper_length_cm, y = body_mass_kg)) +
+  geom_point(aes(color = species, shape = species), size = 3) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin size, Palmer Station LTER",
+       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
+       x = "Flipper length (cm)",
+       y = "Body mass (kg)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme(legend.position = c(0.9, 0.1), # x and y on a relative scale (0-1)
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot") +
+  facet_grid(. ~ year) 
+
+#Boxplots with facet_grid
+ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot(aes(color = species), width = 0.3, show.legend = FALSE) +
+  geom_jitter(aes(color = species), alpha = 0.5, show.legend = FALSE, position = position_jitter(width = 0.2)) +
+  labs(x = "Species",
+       y = "Body mass (g)") +
+  facet_grid(. ~ year) 
+
+# Histograms with facet_grid for year
+ggplot(penguins, aes(x = bill_depth_mm, fill = species)) +
+  geom_histogram(aes(fill = species), 
+     alpha = 0.5, 
+     position = "identity",
+     binwidth=0.5) +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+     y = "Frequency",
+     title = "Penguin flipper lengths")+
+  geom_vline(data = mean_depth, aes(xintercept = mean_bill_depth),
+     color = "red", linetype = "dashed", size = 1) +
+  geom_text(data = mean_depth, aes(x = mean_bill_depth, y = 10,
+     label = paste(species, "mean:", round(mean_bill_depth, 2))),
+     color = "black", vjust = -0.3, hjust = 0.5, size = 4, 
+     position = position_jitter(height = 2, width = 0)) +
+  facet_grid(year ~ .) 
+```
+
