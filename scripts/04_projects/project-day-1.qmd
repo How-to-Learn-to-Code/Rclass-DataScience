@@ -2,9 +2,9 @@
 title: "Running a reproducible analysis"
 subtitle: "H2L2C, Project Management Day 1"
 author: "Brian Gural"
-format: html
-output:
-  html_document:
+format: 
+  html:
+    number-sections: true
 editor: visual
 ---
 
