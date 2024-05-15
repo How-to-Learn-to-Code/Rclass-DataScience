@@ -5,6 +5,7 @@ author: "Brian Gural"
 format: 
   html:
     number-sections: true
+    toc: true
 editor: visual
 ---
 
@@ -256,9 +257,7 @@ We'll explain the signifance of the README and .gitignore steps a bit later. For
 
 ## RProjects
 
-In this section, we will be discussing recommendations for organization.
-
-From @sec-repo, we can see that our project is fairly empty
+In this section, we will be discussing recommendations for organization. From @sec-repo, we can see that our project is fairly empty
 
 ```         
 .
