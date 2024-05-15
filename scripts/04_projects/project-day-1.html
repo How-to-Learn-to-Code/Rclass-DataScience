@@ -72,10 +72,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#reproducible-science-in-silico" id="toc-reproducible-science-in-silico" class="nav-link active" data-scroll-target="#reproducible-science-in-silico"><span class="header-section-number">1</span> Reproducible science… <em>in-silico</em>??</a></li>
+  <li><a href="#how-can-computational-projects-get-derailed" id="toc-how-can-computational-projects-get-derailed" class="nav-link" data-scroll-target="#how-can-computational-projects-get-derailed"><span class="header-section-number">2</span> How can computational projects get derailed?</a></li>
+  <li><a href="#good-computational-practices-101" id="toc-good-computational-practices-101" class="nav-link" data-scroll-target="#good-computational-practices-101"><span class="header-section-number">3</span> Good computational practices 101</a></li>
+  <li><a href="#suffering-from-manual-version-control-git-can-help." id="toc-suffering-from-manual-version-control-git-can-help." class="nav-link" data-scroll-target="#suffering-from-manual-version-control-git-can-help."><span class="header-section-number">4</span> Suffering from manual version control? <code>git</code> can help.</a>
+  <ul class="collapse">
+  <li><a href="#go-on-git" id="toc-go-on-git" class="nav-link" data-scroll-target="#go-on-git"><span class="header-section-number">4.1</span> Go on, <code>git</code>!</a></li>
+  </ul></li>
+  <li><a href="#longleaf-the-darling-of-unc-bioinformaticians" id="toc-longleaf-the-darling-of-unc-bioinformaticians" class="nav-link" data-scroll-target="#longleaf-the-darling-of-unc-bioinformaticians"><span class="header-section-number">5</span> Longleaf: The darling of UNC bioinformaticians</a></li>
+  <li><a href="#connecting-longleaf-and-github" id="toc-connecting-longleaf-and-github" class="nav-link" data-scroll-target="#connecting-longleaf-and-github"><span class="header-section-number">6</span> Connecting Longleaf and Github</a></li>
+  <li><a href="#linking-via-ssh" id="toc-linking-via-ssh" class="nav-link" data-scroll-target="#linking-via-ssh"><span class="header-section-number">7</span> Linking via <code>SSH</code></a></li>
+  <li><a href="#sec-repo" id="toc-sec-repo" class="nav-link" data-scroll-target="#sec-repo"><span class="header-section-number">8</span> Making a repository</a></li>
+  <li><a href="#rprojects" id="toc-rprojects" class="nav-link" data-scroll-target="#rprojects"><span class="header-section-number">9</span> RProjects</a>
+  <ul class="collapse">
+  <li><a href="#readme-please" id="toc-readme-please" class="nav-link" data-scroll-target="#readme-please"><span class="header-section-number">9.1</span> README! … Please? 😢</a></li>
+  </ul></li>
+  <li><a href="#sec-git" id="toc-sec-git" class="nav-link" data-scroll-target="#sec-git"><span class="header-section-number">10</span> Using git</a></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -104,16 +127,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="reproducible-science-in-silico" class="level2">
-<h2 class="anchored" data-anchor-id="reproducible-science-in-silico">Reproducible science… <em>in-silico</em>??</h2>
+<section id="reproducible-science-in-silico" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="reproducible-science-in-silico"><span class="header-section-number">1</span> Reproducible science… <em>in-silico</em>??</h2>
 <ul>
 <li>Bioinformaticians are people too</li>
 <li>We need to make sure our research is well documented and reproducible just like bench scientists</li>
 <li>Projects can get complex, messy, and very computationally demanding</li>
 </ul>
 </section>
-<section id="how-can-computational-projects-get-derailed" class="level2">
-<h2 class="anchored" data-anchor-id="how-can-computational-projects-get-derailed">How can computational projects get derailed?</h2>
+<section id="how-can-computational-projects-get-derailed" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="how-can-computational-projects-get-derailed"><span class="header-section-number">2</span> How can computational projects get derailed?</h2>
 <p>It turns out that computational biologists need to be careful with how they manage their code and data. <u>Leaving everything on your personal/lab computer comes with a lot of risk.</u></p>
 <p>You can reduce the risk of a mishap by housing data on UNC’s cloud computing service, <strong>Longleaf</strong>, and putting your code on <strong>Github</strong>. Both of these provide you with backups that can be accessed from anywhere with the internet.</p>
 <div class="cell" data-layout-align="center">
@@ -144,8 +167,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="good-computational-practices-101" class="level2">
-<h2 class="anchored" data-anchor-id="good-computational-practices-101">Good computational practices 101</h2>
+<section id="good-computational-practices-101" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="good-computational-practices-101"><span class="header-section-number">3</span> Good computational practices 101</h2>
 <p>Computational projects ought to be approached with the same expectations of rigor and reproducibility expected of a bench project. This means that the work needs to be <u>well documented</u>, things need to be <u>properly stored</u>, and everything should be <u>organized clearly enough for someone to reproduce it</u>.</p>
 <p>Thankfully, we’re not the first researchers to run into these problems. A whole suite of tools and services exist to manage these issues:</p>
 <div class="columns">
@@ -166,8 +189,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="suffering-from-manual-version-control-git-can-help." class="level2">
-<h2 class="anchored" data-anchor-id="suffering-from-manual-version-control-git-can-help.">Suffering from manual version control? <code>git</code> can help.</h2>
+<section id="suffering-from-manual-version-control-git-can-help." class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="suffering-from-manual-version-control-git-can-help."><span class="header-section-number">4</span> Suffering from manual version control? <code>git</code> can help.</h2>
 <p>What is <strong>version control</strong> exactly? At its core, it’s a way of keeping track of the changes made to files. Before now, you’ve probably used a system like this:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Before GitHub</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">After GitHub</a></li></ul>
@@ -218,8 +241,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="go-on-git" class="level3">
-<h3 class="anchored" data-anchor-id="go-on-git">Go on, <code>git</code>!</h3>
+<section id="go-on-git" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="go-on-git"><span class="header-section-number">4.1</span> Go on, <code>git</code>!</h3>
 <p><code>git</code> is version control system used to record changes to files. <span class="blue">GitHub</span> uses <code>git</code> to help users host/review code and manage projects</p>
 <p><u><code>git</code>/GitHub matter because they:</u></p>
 <ul>
@@ -230,8 +253,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="longleaf-the-darling-of-unc-bioinformaticians" class="level2">
-<h2 class="anchored" data-anchor-id="longleaf-the-darling-of-unc-bioinformaticians">Longleaf: The darling of UNC bioinformaticians</h2>
+<section id="longleaf-the-darling-of-unc-bioinformaticians" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="longleaf-the-darling-of-unc-bioinformaticians"><span class="header-section-number">5</span> Longleaf: The darling of UNC bioinformaticians</h2>
 <p>Longleaf is UNC’s high-performance computing cluster (HPC). It’s basically a ton of computers/storage. Its accessible from anywhere with internet and offers a lot of storage. Labs typically start with 40 TB, users get 10 TB. Also you’ve been using it this whole time! RStudio OnDemand is hosted by Longleaf.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -253,8 +276,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="connecting-longleaf-and-github" class="level2">
-<h2 class="anchored" data-anchor-id="connecting-longleaf-and-github">Connecting Longleaf and Github</h2>
+<section id="connecting-longleaf-and-github" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="connecting-longleaf-and-github"><span class="header-section-number">6</span> Connecting Longleaf and Github</h2>
 <p>Github and Longleaf each can be daunting to novice programmers, so lets walk through how to set them up together.</p>
 <p>The setup is going to amount to three general steps:</p>
 <ol type="1">
@@ -282,11 +305,24 @@ Tip
 </div>
 </div>
 </section>
-<section id="linking-via-ssh" class="level2">
-<h2 class="anchored" data-anchor-id="linking-via-ssh">Linking via <code>SSH</code></h2>
+<section id="linking-via-ssh" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="linking-via-ssh"><span class="header-section-number">7</span> Linking via <code>SSH</code></h2>
 <p>Let’s start by getting the terminal open. In the top left, click View -&gt; Move Focus To Terminal. It should’ve opened in the panel that also contains tabs for “Console” and “Background Jobs”.</p>
 <p>Next, let’s find the SSH key associated with your Longleaf account. We’ll run the following bash command in the terminal that we just opened (be aware that terminals are notoriously finicky with copy and paste): <code>cat ~/.ssh/id_rsa.pub</code></p>
-<p>This (hopefully) has copied your SSH key to your clipboard!</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do <u><strong>NOT</strong></u> forget to add the <code>.pub</code> of the above extension. RSA keys come in pairs, a private and a public version. The private key (i.e.&nbsp;the file that does not have the <code>.pub</code> extension) should <u><strong>NEVER</strong></u> be shared. Sharing your private key will allow malicious actors to interact with services that cache your public key <u>as if they were you</u>!</p>
+</div>
+</div>
+<p>This (hopefully) has copied your public SSH key to your clipboard!</p>
 <p>Now, let’s go over to Github and set up the key.</p>
 <ol type="1">
 <li><p>Go to profile settings on github and select the “ssh key” section</p></li>
@@ -308,8 +344,8 @@ Tip
 </ul></li>
 </ol>
 </section>
-<section id="making-a-repository" class="level2">
-<h2 class="anchored" data-anchor-id="making-a-repository">Making a repository</h2>
+<section id="sec-repo" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-repo"><span class="header-section-number">8</span> Making a repository</h2>
 <p>Great, we’ve connected Longleaf and Github (a herculean task for a beginner programmer!). What we’ll want to do next is make a repository (repo), which you could think of as a self-contained project folder. Let’s go back to Github:</p>
 <ol type="1">
 <li><p>In the “Repositories” tab of your profile, click “New”</p></li>
@@ -323,19 +359,124 @@ Tip
 <li><p>Click on the green “Code” box</p></li>
 <li><p>Click on “SSH”</p></li>
 <li><p>Copy the SSH right below that! It should end in `.git`</p></li>
-<li><p>Go back to the terminal in RStudio and run <code>git clone</code> followed by the whole link you just copied.</p></li>
-<li><p>!!!!!!!!!!!!! DECIDE WHERE WE WANT THEM TO MAKE THE REPO</p>
-<ul>
-<li>It should look like this: <code>git clone URL-THAT-YOU-COPIED</code></li>
-</ul></li>
+<li><p>Lets create a new directory to house our experimental projects. In the terminal window of RStudio, do the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~                 <span class="co">#set working directory to home directory</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> learning-R     <span class="co">#create a new directory "learning-R"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> learning-R        <span class="co">#set "learning-R" as our working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Git Project Organization">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Git Project Organization
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Git repositories may be cloned anywhere to your file system that makes sense to you. The above is a simple example of project organization in which we may create more repositories under the <code>learning-R</code> directory. Ultimately the choice is yours on how you wish to organize your git projects.</p>
+</div>
+</div>
+</div></li>
+<li><p>Now we can clone our new github repository locally!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add what you copied in step 3 behind "clone".</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Your command may look something like this</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>username<span class="op">&gt;</span>/<span class="op">&lt;</span>reponame<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
 </ol>
 </section>
-<section id="rprojects" class="level2">
-<h2 class="anchored" data-anchor-id="rprojects">RProjects:</h2>
-</section>
-<section id="using-git" class="level2">
-<h2 class="anchored" data-anchor-id="using-git">Using git</h2>
+<section id="rprojects" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="rprojects"><span class="header-section-number">9</span> RProjects</h2>
+<p>In this section, we will be discussing recommendations for organization. From <a href="#sec-repo" class="quarto-xref">Section&nbsp;8</a>, we can see that our project is fairly empty</p>
+<pre><code>.
+├── .git/
+├── .gitignore
+└── README.md</code></pre>
+<p>It is up to use to bring some organization to our project!</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The hidden directory <code>.git/</code> and file <code>.gitignore</code> will be covered in the next <a href="#sec-git" class="quarto-xref">Section&nbsp;10</a>.</p>
+</div>
+</div>
+<p>Organization can greatly improve the experience of coding. It is a way for us to show our future selves some kindness as well as anyone who may maintain our work in the future.</p>
+<p>Below is an example of how we may setup directories for our project:</p>
+<pre><code>.
+├── .git/
+├── .gitignore
+├── data/
+├── outputs/
+├── R/
+├── scripts/
+└── README.md</code></pre>
+<p>Here, we have created 4 new directories: <code>data/</code>, <code>outputs/</code>, <code>R/</code> and <code>scripts/</code>. These directory names imply something to the viewer about their contents and provide quick navigation.</p>
+<p><code>data/</code> and <code>outputs/</code> are perhaps the most self explanatory. We will reserve <code>data</code> for files we may read in for our analysis, and <code>outputs</code> as a place for us to store our results.</p>
+<p><code>R/</code> and <code>scripts/</code> may be a bit nuanced. Perhaps the project author will keep helpful reusable R code in the <code>R/</code> directory, while the <code>scripts/</code> directory may be analysis workflows that are called from the command line.</p>
+<p>A project may, or may not, require this level of granularity. You may choose different directory names as well. However we want to maintain some level of interpretation and do not want to contradict expectations with the files within. Critically thinking about your project structure will ultimately save you time when you return to the project.</p>
+<p>Here are some general guidelines to follow:</p>
+<p><strong>Organization Do’s</strong></p>
 <ul>
+<li>Place files in some sort of relative structure</li>
+<li>Use descriptive file and directory names</li>
+<li>Format dates with <code>YYYY-MM-DD</code> <!-- files will be ordered by date by your file system --></li>
+</ul>
+<p><strong>Organization Do Not’s</strong></p>
+<ul>
+<li>Place all files at the top level of the repository</li>
+<li>Stratifying files between too many directories <!-- can make this just as hard to find --></li>
+<li>Using spaces in file names! <!-- escaping spaces on the command line with git is annoying --></li>
+</ul>
+<section id="readme-please" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="readme-please"><span class="header-section-number">9.1</span> README! … Please? 😢</h3>
+<p>As the name implies, this file is intended to be read by anyone who happens upon your repository.Think of this as extra documentation that you, as the project owner, may use to communicate aspects of the repository. Include helpful information about your project such as:</p>
+<ul>
+<li>A brief description of the project</li>
+<li>What is the scope of the project
+<ul>
+<li>What problem does it solve?</li>
+<li>Intended use cases!</li>
+<li>Examples of what it should not be used for!</li>
+</ul></li>
+<li>How to get started or use the project</li>
+<li>How to contribute or report a bug</li>
+<li>Project Status: active development, stable, or abandoned</li>
+</ul>
+<p>If your repository is being viewed on <a href="github.com">github.com</a> then top level <code>README.md</code> is displayed like the landing page.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may also place <code>README.md</code> within sub directories as well, allowing you to communicate more specific information within.</p>
+<p>Here are examples of what you may include in a <code>data/README.md</code> file</p>
+<ul>
+<li><p>explanation of what data was collected and how it was processed.</p></li>
+<li><p>documentation of the columns of a <code>.csv</code> file. What the acronyms and data labels mean and how they should be interpreted.</p></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-git" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-git"><span class="header-section-number">10</span> Using git</h2>
+<ul>
+<li><p><code>.git/</code> is a hidden directory whose main function is to track your <code>git ...</code> commands. It is generally wise to ignore this directory.</p></li>
 <li><p><code>.gitignore</code> uses rules to exclude files by name pattern or location</p>
 <ul>
 <li>Don’t upload data or large files!</li>
@@ -348,38 +489,22 @@ Tip
 <li><p>Commit staged changes with a note to your future self</p>
 <ul>
 <li><p><code>git commit -m "Hi future me, this is what I changed"</code></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled" title="note: Using `vim`">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+note: Using <code>vim</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If you were to write<br>
 <code>git commit</code><br>
 and omit the <code>-m "your message here"</code> portion, <code>git</code> will force you to write a message by placing you into an interactive prompt. The default text editor is usually <code>vim</code> which may be tricky to navigate.</p>
 <p>To enter edit mode, press <code>i</code> on your keyboard, and then you may begin writing your message. When you have finished, press <code>ESC</code> to exit your current command mode. To exit vim, press <code>:wq</code> which informs vim to write your changes and quit.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-
 </div>
 </div>
 </div></li>
