@@ -171,7 +171,7 @@ Before we can start that, we're going to need to know just a tad about **termina
 **Bash** is a type of computer language that understands and carries out the instructions you type in the terminal, usually called "shell scripting". It's very common on Linux and Mac computers. Longleaf uses Linux and working on Longleaf means using a bit of Bash.
 
 ::: callout-tip
-This course isn't meant to teach you shell scripting, and you aren't expected to fully understand some of the Bash command we'll run. If you'd like to learn more XYZ are great resources!
+This course isn't meant to teach you shell scripting, and you aren't expected to fully understand some of the Bash command we'll run. If you'd like to learn more, please refer to the following cheat sheets on [common bash commands](https://github.com/RehanSaeed/Bash-Cheat-Sheet) and [scripting in bash](https://devhints.io/bash) as helpful resources!
 :::
 
 ## Linking via `SSH`
