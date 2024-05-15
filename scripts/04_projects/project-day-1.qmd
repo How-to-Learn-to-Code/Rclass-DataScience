@@ -273,7 +273,7 @@ We'll explain the signifance of the README and .gitignore steps a bit later. For
 
     -   `git commit -m "Hi future me, this is what I changed"`
 
-        ::: {.callout-note collapse="true"}
+        ::: {.callout-note collapse="true" title="note: Using `vim`"}
         If you were to write\
         `git commit`\
         and omit the `-m "your message here"` portion, `git` will force you to write a message by placing you into an interactive prompt. The default text editor is usually `vim` which may be tricky to navigate.
