@@ -232,11 +232,28 @@ We'll explain the signifance of the README and .gitignore steps a bit later. For
 
 3.  Copy the SSH right below that! It should end in \`.git\`
 
-4.  Go back to the terminal in RStudio and run `git clone` followed by the whole link you just copied.
+4.  Lets create a new directory to house our experimental projects. In the terminal window of RStudio, do the following:
 
-5.  !!!!!!!!!!!!! DECIDE WHERE WE WANT THEM TO MAKE THE REPO
+    ```{bash}
+    #| eval: false
+    cd ~                 #set working directory to home directory
+    mkdir learning-R     #create a new directory "learning-R"
+    cd learning-R        #set "learning-R" as our working directory
+    ```
+    
+    ::: {.callout-note collapse="true" title="Git Project Organization"}
+    Git repositories may be cloned anywhere to your file system that makes sense to you. The above is a simple example of project organization in which we may create more repositories under the `learning-R` directory. Ultimately the choice is yours on how you wish to organize your git projects.
+    :::
 
-    -   It should look like this: `git clone URL-THAT-YOU-COPIED`
+5.  Now we can clone our new github repository locally!
+
+    ```{bash}
+    #| eval: false
+    # add what you copied in step 3 behind "clone".
+    # Your command may look something like this
+    git clone git@github.com:<username>/<reponame>
+    ```
+
 
 ## RProjects:
 
