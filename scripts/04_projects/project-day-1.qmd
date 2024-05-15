@@ -338,6 +338,8 @@ Here are examples of what you may include in a `data/README.md` file
 
 ## Using git {#sec-git}
 
+-   `.git/` is a hidden directory whose main function is to track your `git ...` commands. It is generally wise to ignore this directory.
+
 -   `.gitignore` uses rules to exclude files by name pattern or location
 
     -   Don't upload data or large files!
