@@ -6,6 +6,13 @@ format:
     toc: true
 ---
 
+```{css, echo = FALSE}
+.output {
+max-height: 500px;
+overflow-y: scroll;
+}
+```
+
 # Introduction
 
 > Many biologists starting out in bioinformatics tend to equate "learning bioinformatics" with "learning how to run bioinformatics software"... This is analogous to thinking "learning molecular biology" is just "learning pipetting."
@@ -236,6 +243,7 @@ iris$BigPetals <- iris$Petal.Length > 5
 And now it is added to our dataset.
 
 ```{r}
+#| class: output
 iris
 ```
 
