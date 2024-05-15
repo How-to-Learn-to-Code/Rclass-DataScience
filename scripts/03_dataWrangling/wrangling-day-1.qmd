@@ -13,6 +13,7 @@ format:
 -   There's rarely a single way to approach any given data-wrangling problem! Expanding your "toolkit" allows you to tackle problems from different angles.
 
 ::: {.callout-note title="Measure twice, cut once"}
+
 Before you begin wrangling data, you should be able to:
 
 -   Define how you want the data to look and why
@@ -20,6 +21,7 @@ Before you begin wrangling data, you should be able to:
 -   Document it well so that others (and future you!) know what you did
 
 -   Know what tools you have and how to use them
+
 :::
 
 ## Building a toolkit
@@ -115,7 +117,9 @@ knitr::include_graphics("wrangling-files/tidy-style.png")
 This follows the *tidy data* style, an approach to handling data in R that aims to be clear and readable.
 
 ::: callout-note title="Tidiest Universe"
+
 The bundle of tidy-associated packages is called the `tidyverse`, and it's a hot-topic in the R world. Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners! 
+
 :::
 
 ### `dplyr` verbs
@@ -136,6 +140,7 @@ dplyr::glimpse(df)
 With the `glimpse` function we see that this is a data frame with 3 observations and 3 variables. We can also see the type of each variable and the first few values.
 
 ::: callout-tip
+
 `dplyr` functions have a lot in common:
 
 -   The first argument is always a data frame
@@ -143,6 +148,7 @@ With the `glimpse` function we see that this is a data frame with 3 observations
 -   The following arguments typically specify which columns to operate on, using the variable names (without quotes)
 
 -   The output is always a new data frame
+
 :::
 
 
@@ -290,7 +296,7 @@ Take `data` *and then* `filter` by DoB *and then* `arrange` by DoB. This helps k
 ::: 
 
 
-::: callout-tip
+::: callout-tip 
 There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. The only major difference is that `%>%` can specify which argument of the next function you want to pipe into. 
 
 `data |> function(argument_A, argument_B)` can only do `function(argument_A = data, argument_B)`
@@ -328,9 +334,11 @@ head(cell_props)
 ```
 
 ::: {.callout-note title="Whole vs. Fractions"}
+
 `Fraction` samples are our controls. They are supposed to be almost completely one single cell type. They're just here to make sure we accurately measured cell type proportions.
 
 `Whole` samples are our test samples. They're from the treatment/control mice, which you'd expect to have a range of cell types. 
+
 :::
 
 
