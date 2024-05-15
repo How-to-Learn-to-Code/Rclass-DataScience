@@ -1,0 +1,159 @@
+---
+title: "Class 0"
+format: 
+  html: 
+    toc: true
+---
+
+## Welcome to How to Learn to Code!
+
+This page will walk you through setting up access to UNC's computing cluster and introduce you a bit to R and R Studio so we can hit the ground running in the first class. To ensure you have access to the UNC cluster (and thus able to participate in class), please review this document in full at least 24 hours in advance of the first class--Research IT will need time to approve your account request.
+
+## Class 0 Goals
+
+-   Request a Longleaf account
+
+-   Launch an R Studio session on OnDemand
+
+-   Know what each of the four panels in R Studio show
+
+## R vs. R Studio
+
+In this class, you'll hear these two terms a lot. They sound similar, but they are actually very different! **R** is the programming language we will be learning in this class. **R Studio** is a user-friendly interface (or **IDE,** integrated development environment) we will be using to write scripts in R and interact with R software.
+
+## Longleaf
+
+"Longleaf" is the name for UNC's computing system. Researchers in all departments across UNC use it to run analyses, store data, and use programs that require GPUs. Whenever someone says they are "on Longleaf" or "running code on Longleaf" it means their personal computer is connected to the cluster and they are either actively interacting with a program running on the cluster (we will be doing this with R Studio!) or writing code that tells the cluster to perform certain tasks whenever it has the memory availability.
+
+**Before the first class, you will need to request access to Longleaf.** Follow the instructions on the [Research IT website](https://help.rc.unc.edu/request-a-cluster-account). In addition to your onyen and email address, you'll need the following information:
+
+-   Preferred shell: bash
+
+-   Faculty sponsor name and onyen: You can put your PI here, or if you do not have a PI, leave blank.
+
+-   Type of subscription: Longleaf
+
+-   Description of work you will do on the cluster: How to Learn to Code R class
+
+It may take \~24 hours before your account is approved.
+
+## OnDemand
+
+OnDemand is a web portal that allows you to access **Longleaf**. We will be using **OnDemand** to launch **R Studio** and run **R** code. You will need to have your Longleaf account approved before accessing OnDemand.
+
+To launch OnDemand, navigate to this site in a browser of your choice: [https://ondemand.rc.unc.edu](https://ondemand.rc.unc.edu/) (you may want to bookmark this site, you'll be accessing it for each class).
+
+Once you've logged in, you'll see a page like this. Click on the **RStudio Server** tile.
+
+![](class0_images/Picture1.png){fig-alt="screenshot of the OnDemand home page with a red box around the RStudio Server icon." fig-align="center"}
+
+This will take you to a page where you can fill out some parameters for your R Studio Server session. The only one you'll need to adjust is "Number of hours" where you should put "2".
+
+![](class0_images/Picture2.png){fig-alt="Screenshot of the R Studio Server request page where a user inputs the R version, number of hours, and number of CPUs requested before launching the session." fig-align="center"}
+
+::: callout-note
+You can request up to 10 hours, but it's good practice to only request the amount of time you'll need (Longleaf is a shared resource!). Since each class is 90 minutes, you'll likely only need to request 2 hours for each class. Under "Additional job submission arguments" you adjust the amount of memory requested. This won't be needed for How to Learn to Code classes, but may be needed when you are running your own analyses on large datasets in the future.
+:::
+
+After you've filled out the appropriate information, click Launch. This will take you to the "My Interactive Sessions" page. Your session request may be queued for a minute while space on the cluster is being allocated for your session. Once it's ready, click "Connect to R Studio Server". This will launch R Studio in a new tab.
+
+![](class0_images/Picture3.png){fig-align="center"}
+
+## Navigating R Studio
+
+Your R Studio window is divided into four panes. You can adjust the sizes of each pane (horizontally and vertically) by dragging the outer edges.
+
+::: callout-note
+You may only see three panes when you first launch R Studio. If that's the case, go to File \> New File \> R Script.
+:::
+
+![image: https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html](https://docs.posit.co/ide/user/ide/guide/ui/images/rstudio-panes-labeled.jpeg){fig-align="center"}
+
+The top left pane is called the **Source** and this is where you will be writing and editing code. Writing code here does not automatically **execute** or **run** it. To do that, you will need to use the **Console** pane in the bottom left. There are a few ways to get code written in the Source pane to the Console pane, in order from least efficient to most efficient:
+
+-   Copying the line of code you want to run and pasting it into the console and then hitting the "return" or "enter" key.
+
+-   Putting your cursor anywhere in the line of code you want to run and clicking "Run" in the upper right section of the Source pane
+
+-   Highlighting the line of code (or section of code) you want to run and clicking "Run" in the upper right section of the Source pane
+
+-   Putting your cursor anywhere in the line of code you want to run, highlighting the line of code, or highlighting the section of code you want to run and pressing Alt + Enter (for PC) or cmd + return (for Mac)
+
+Any code written in the console is **not** saved anywhere. Generally, people write their code in the Source pane, and then run it as needed in the Console. This is important to remember when writing reproducible code--all code needed to run your analyses, generate plots, etc. should be written in the source (which is then saved as an R script). Throughout this course, you will likely want to ensure that the code you write during each class is saved in a separate R script.
+
+The **Environments** pane shows current saved **objects**, but also has tabs to show history (all commands executed in your current session) and connections (if you connect to any local or remote databases). You will almost exclusively be using the Environment tab. The **Output** pane is in the bottom right and shows outputs of code such as plots. It also has tabs for files (an interactive file explorer), packages (which shows currently installed R packages), and help (which shows package documentation). You will likely be using the Plots and Help tabs the most.
+
+## Running code
+
+Try running the below line of code using one of the four ways described above. First, copy the below line of code and paste it into the Source pane.
+
+`print("hello world!")`
+
+Before executing the code, your Source and Console panes will look like this:
+
+![](class0_images/Picture4.png){fig-align="center"}
+
+After executing the line of code, your source pane will look like this:
+
+![](class0_images/Picture5.png){fig-align="center"}
+
+Congrats! You just ran your first line of code. If you want to save your script (what's written in the source pane) go to File \> Save as and save your script with a helpful name in a location that makes sense (e.g., maybe in a folder called "H2L2C_class" and name the script "hello_world.R").
+
+Review the rest of the information on this page before Class 1, but don't worry if it doesn't make sense right away. We will be going over some of it in the first class and touching on it throughout the course.
+
+## Talking like an R user
+
+Below is some jargon that you may hear during class. Don't worry about memorizing it all before Class 1! Just know that it's here so if you are ever wondering what a term means you will know where to look.
+
+**Running code/run this line/execute:** Telling R to perform the command given in a console. If someone says "run this line of code" that means to send it to the console (either by copying/pasting or using one of the shortcuts mentioned previously).
+
+**Data types:** Data types in R include numeric, logical, and character. There are a few more, but those are the main three. We will touch on these more in Classes 1 and 2.
+
+**Vector:** A series of values of any data type. A vector is created using the `c()` function (c for combine/concatenate).
+
+**Factors:** This is the R term for categorical data. Sometimes R will automatically treat data as categorical (especially if it is a character type), but not always. You can coerce other data types (like numeric) to factors using using the `factor()` function and specifying the order using the `levels` argument. For more information on factors, see [this page](https://r4ds.hadley.nz/factors.html) in the R for Data Science book.
+
+**Data frame:** The best way to think of data frames is a spreadsheet. Technically, they are composed of vectors. Typically the rows in a data frame will correspond to observations and the columns will correspond to variables describing those observations. Data in a data frame can be of different types--i.e. you can have one column be character (maybe describing hair color for each observation) and another be numeric (maybe describing height for each observation).
+
+**Matrix:** A matrix in R is very similar to a data frame. Unlike a data frame, all elements must be of the same data type.
+
+**Functions:** A function performs a given task. This task can be very simple (add two numbers) or more complex (create a large data frame, run a linear regression, save the output to a csv file). R has many built-in functions you will use. Many packages also have functions you can use.
+
+**Packages:**
+
+**Conditionals:** A conditional is a line of code that will run only if a particular condition is met. You can recognize these by the use of "if" "else" or "while". The best way to understand these is by actually reading the code out loud. If you were to read the below example out loud, you might say "if x equals 3, print 'condition is met', else print 'condition is not met'". What do you think will happen if `x == 3`? What if `x == 4`?
+
+```{r}
+#| eval: false
+if(x == 3) {
+  print("condition is met")
+} else {
+  print("condition is not met")
+}
+```
+
+## Understanding errors and warnings
+
+You will get lots of errors during your How to Learn to Code Journey. "Warnings" indicate your code ran, but some non-fatal issue arose. Sometimes these are OK to ignore, sometimes they indicate an issue you need to look into further. Either way, they should always be investigated! "Errors" are fatal issues and may be the result of things like syntax errors, typos, and incorrect data types. A good starting point for investigating any error or warning is Google (chances are quite high someone has run into the same issue, especially when you're just learning how to code). You can copy and paste the entire error/warning into Google and usually return a helpful result. 
+
+## Use of AI tools
+
+Using AI tools such as ChatGPT and Microsoft Copilot can be really helpful! Check out the Project Module for instructions on using Github Copilot (AI integration with R Studio). But before turning to these tools for assistance, try figuring out the solution yourself. Part of learning how to code is learning how to *think* like a coder, and that requires doing things the hard way for a bit. Additionally, depending on the type of work you are doing, you many need to use additional caution when copying and pasting code/data (any questions/concerns on this should be directed to your PI/department).
+
+## I'm stuck! Additional resources
+
+Research IT page on how to use OnDemand: <https://help.rc.unc.edu/ondemand>
+
+Getting started on Longleaf: <https://help.rc.unc.edu/getting-started-on-longleaf>
+
+More stats please! <https://odum.unc.edu/education/short-courses/#course1>
+
+Still haven't found what you're looking for? Post a message in the How to Learn to Code Teams!
+
+## Bonus: Installing R Studio on your personal computer
+
+A lot of you may want to use R on your personal computer (i.e., not on Longleaf). There may be reasons why you want to stick with Longleaf though (e.g., data should not be downloaded on personal devices, data/analysis requires a lot of memory). If you are interested in installing R and R Studio on your personal computer, you can use the below resources for help. All classes will be taught assuming you are using Longleaf though, so class time won't be dedicated to troubleshooting R install issues on personal computers.
+
+If you just want to click 2 buttons and figure it out: <https://posit.co/download/rstudio-desktop/>
+
+If you want a more detailed install walkthrough: <https://rstudio-education.github.io/hopr/starting.html>

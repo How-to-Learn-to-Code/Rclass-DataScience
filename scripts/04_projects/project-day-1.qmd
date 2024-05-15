@@ -8,7 +8,7 @@ output:
 editor: visual
 ---
 
-## Reproducible science... in-silco??
+## Reproducible science... *in-silico*??
 
 -   Bioinformaticians are people too
 -   We need to make sure our research is well documented and reproducible just like bench scientists
@@ -19,6 +19,10 @@ editor: visual
 It turns out that computational biologists need to be careful with how they manage their code and data. [Leaving everything on your personal/lab computer comes with a lot of risk.]{.underline}
 
 You can reduce the risk of a mishap by housing data on UNC's cloud computing service, **Longleaf**, and putting your code on **Github**. Both of these provide you with backups that can be accessed from anywhere with the internet.
+
+```{r dog_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "The impending destruction of their laptop doesn't bother this dog since they use remote computing and GitHub"}
+knitr::include_graphics("project-day-1_files/thisisfine.gif")
+```
 
 Don't think it's worth it? Here are some moments that made UNC researchers wished they had used these tools:
 
@@ -76,7 +80,7 @@ RStudio Projects
 
 ## Suffering from manual version control? `git` can help.
 
-What is **version control** exactly? At its core, it's a way of keeping track of the changes made to files. If you've ever worked on a publication with a picky professor, you've probably tried to keep some kind of home-brewed version control system yourself by changing up the file names between drafts, something like this:
+What is **version control** exactly? At its core, it's a way of keeping track of the changes made to files. Before now, you've probably used a system like this:
 
 ::: panel-tabset
 ## Before GitHub
@@ -94,11 +98,13 @@ paper_final_submission_revised_v2.doc
 paper_published_version.doc
 ```
 
-Essentially, the authors are trying to use the file name to keep track of the changes. But with a dedicated version control system, like `git`, **you can update a file while keeping a detailed log of the changes**.
+```{r charlie_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Charlie explains how his file naming system makes perfect sense"}
+knitr::include_graphics("project-day-1_files/charlie-day.gif")
+```
 
 ## After GitHub
 
-Here's how the messy naming system would look in `git`:
+With `git`, **you can update a file while keeping a detailed log of the changes**.
 
 ``` markdown
 * 9a2b3c4 - Add published version of the paper (2024-04-29)
@@ -110,6 +116,10 @@ Here's how the messy naming system would look in `git`:
 * 3928717 - Update draft, incorporate feedback from John (2024-04-01)
 * 2871606 - Add second draft of the paper (2024-03-28)
 * 1760505 - Initial draft of the paper (2024-03-25)
+```
+
+```{r thumbs_up_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Kevin, age 6, finds GitHub to be totally radical"}
+knitr::include_graphics("project-day-1_files/thumbs_up.gif")
 ```
 :::
 
