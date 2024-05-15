@@ -180,7 +180,11 @@ Let's start by getting the terminal open. In the top left, click View -\> Move F
 
 Next, let's find the SSH key associated with your Longleaf account. We'll run the following bash command in the terminal that we just opened (be aware that terminals are notoriously finicky with copy and paste): `cat ~/.ssh/id_rsa.pub`
 
-This (hopefully) has copied your SSH key to your clipboard!
+::: callout-caution
+Do [**NOT**]{.underline} forget to add the `.pub` of the above extension. RSA keys come in pairs, a private and a public version. The private key (i.e. the file that does not have the `.pub` extension) should [**NEVER**]{.underline} be shared. Sharing your private key will allow malicious actors to interact with services that cache your public key [as if they were you]{.underline}!
+:::
+
+This (hopefully) has copied your public SSH key to your clipboard!
 
 Now, let's go over to Github and set up the key.
 
