@@ -87,6 +87,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#working-with-data-frames" id="toc-working-with-data-frames" class="nav-link" data-scroll-target="#working-with-data-frames">Working with data frames</a></li>
   <li><a href="#standard-data-formats-and-tidy" id="toc-standard-data-formats-and-tidy" class="nav-link" data-scroll-target="#standard-data-formats-and-tidy">Standard data formats and Tidy</a></li>
   <li><a href="#dplyr-verbs" id="toc-dplyr-verbs" class="nav-link" data-scroll-target="#dplyr-verbs"><code>dplyr</code> verbs</a></li>
+  </ul></li>
+  <li><a href="#dplyr-verbs-work-great-as-a-team" id="toc-dplyr-verbs-work-great-as-a-team" class="nav-link" data-scroll-target="#dplyr-verbs-work-great-as-a-team"><code>dplyr</code> verbs work great as a team!</a>
+  <ul class="collapse">
   <li><a href="#functions-on-functions" id="toc-functions-on-functions" class="nav-link" data-scroll-target="#functions-on-functions">Functions on functions</a></li>
   </ul></li>
   <li><a href="#case-study-introduction" id="toc-case-study-introduction" class="nav-link" data-scroll-target="#case-study-introduction">Case Study Introduction</a>
@@ -283,11 +286,23 @@ Measure twice, cut once
 </div>
 </div>
 <p>This follows the <em>tidy data</em> style, an approach to handling data in R that aims to be clear and readable.</p>
-<p>::: callout-note title=“Tidiest Universe” The bundle of tidy-associated packages is called the <code>tidyverse</code>, and it’s a hot-topic in the R world. Most data wrangling problems can be solved with <code>tidy</code> or base (default) R functions. This can lead to some headaches for beginners! :::</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Tidiest Universe">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tidiest Universe
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The bundle of tidy-associated packages is called the <code>tidyverse</code>, and it’s a hot-topic in the R world. Most data wrangling problems can be solved with <code>tidy</code> or base (default) R functions. This can lead to some headaches for beginners!</p>
+</div>
+</div>
 </section>
 <section id="dplyr-verbs" class="level3">
 <h3 class="anchored" data-anchor-id="dplyr-verbs"><code>dplyr</code> verbs</h3>
-<p>One of the most popular <code>tidyverse</code> packages, <code>dplyr</code>, offers a suite of helpful and readable functions for data manipulation. Lets get started with how it can help you see your data:</p>
+<p>One of the most popular <code>tidyverse</code> packages, <code>dplyr</code>, offers a suite of helpful and readable functions for data manipulation. Let’s get started with how it can help you see your data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -329,12 +344,13 @@ Tip
 </div>
 </div>
 </div>
-<p>The <code>dplyr</code> package has a set of functions called “verbs” that are used to manipulate data frames. These verbs can either act on rows (i.e.&nbsp;<code>filter</code> out specific row’s by some condition) or columns (i.e.&nbsp;<code>select</code> columns XYZ). There are also has functions for working with groups (i.e.&nbsp;group rows by what values they have in a column with <code>group_by</code>)</p>
+<p>The <code>dplyr</code> package has a set of functions called “verbs” that are used to manipulate data frames. These verbs can either act on rows (i.e.&nbsp;<code>filter</code> out specific row’s by some condition) or columns (i.e.&nbsp;<code>select</code> columns XYZ). There are also functions for working with groups (i.e.&nbsp;group rows by what values they have in a column with <code>group_by</code>)</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Rows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Columns</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">groups</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">rows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">columns</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">groups</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p><code>filter</code> allows you to…</p>
+<p>The most important verbs that operate on rows of a dataset are <code>filter()</code>, which changes which rows are present without changing their order, and <code>arrange()</code>, which changes the order of the rows without changing which are present. Both functions only affect the rows, and the columns are left unchanged. We’ll also discuss <code>distinct()</code> which finds rows with unique values but unlike <code>arrange()</code> and <code>filter()</code> it can also optionally modify the columns.</p>
+<p><code>filter</code> allows you to keep rows based on the values of the columns. For example, to filter our data frame, <code>df</code>, by scientists who went to “Cambridge”, we would run:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(school <span class="sc">==</span> <span class="st">"Cambridge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -345,46 +361,539 @@ Tip
 1 Western Europe</code></pre>
 </div>
 </div>
-<p><code>arrange</code> allows you to…</p>
-<p><code>distinct</code> allows you to…</p>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<section id="column-verbs" class="level3">
-<h3 class="anchored" data-anchor-id="column-verbs">Column Verbs</h3>
-<p><code>mutate</code> allows you to…</p>
-<p><code>select</code> allows you to…</p>
+<p>We can also use <code>filter</code> to keep rows based on multiple conditions. For example, to filter our data frame, <code>df</code>, by scientists who went to “Cambridge” and were born after 1900, we would run:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(school <span class="sc">==</span> <span class="st">"Cambridge"</span> <span class="sc">&amp;</span> date_of_birth <span class="sc">&gt;</span> <span class="st">"1900-01-01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                 name
-1   Rosalind Franklin
-2         Marie Curie
-3  Barbara McClintock
-4        Ada Lovelace
-5     Dorothy Hodgkin
-6        Lise Meitner
-7        Grace Hopper
-8     Chien-Shiung Wu
-9          Gerty Cori
-10  Katherine Johnson</code></pre>
+<pre><code>               name                     field    school date_of_birth
+1 Rosalind Franklin DNA X-ray crystallography Cambridge    1920-07-25
+  working_region
+1 Western Europe</code></pre>
 </div>
 </div>
-<p><code>rename</code> allows you to…</p>
-<p><code>relocate</code> allows you to…</p>
-</section>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It’s important to note that the <code>&amp;</code> operator is used to combine conditions. If you want to use the <code>or</code> operator, you would use <code>|</code>.</p>
+<p>The syntax <code>==</code> is used rather than <code>=</code> because <code>==</code> is used to compare values, while <code>=</code> is used to assign values. You can also use <code>&gt;=</code>, <code>&lt;=</code>, or <code>!=</code> which mean greater than or equal to, less than or equal to, and not equal to, respectively.</p>
+<p>The <code>|&gt;</code> is a pipe operator that allows you to pass the output of one function to the next function. We will cover this soon!</p>
+</div>
+</div>
+<p><code>arrange</code> allows you to change the order of the rows based on the value of the columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name                     field                   school
+1        Ada Lovelace      Computer Programming     University of London
+2         Marie Curie             Radioactivity                 Sorbonne
+3        Lise Meitner           Nuclear Physics     University of Berlin
+4          Gerty Cori              Biochemistry    Washington University
+5  Barbara McClintock                  Genetics                  Cornell
+6        Grace Hopper      Computer Programming                     Yale
+7     Dorothy Hodgkin     X-ray Crystallography                   Oxford
+8     Chien-Shiung Wu      Experimental Physics                Princeton
+9   Katherine Johnson         Orbital Mechanics West Virginia University
+10  Rosalind Franklin DNA X-ray crystallography                Cambridge
+   date_of_birth working_region
+1     1815-12-10 Western Europe
+2     1867-11-07 Western Europe
+3     1878-11-07 Western Europe
+4     1896-08-15  North America
+5     1902-06-16  North America
+6     1906-12-09  North America
+7     1910-05-12 Western Europe
+8     1912-05-31  North America
+9     1918-08-26  North America
+10    1920-07-25 Western Europe</code></pre>
+</div>
+</div>
+<p>You can use <code>desc()</code> on a column inside of <code>arrange()</code> to re-order the data frame based on that column in descending (big-to-small) order. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(date_of_birth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name                     field                   school
+1   Rosalind Franklin DNA X-ray crystallography                Cambridge
+2   Katherine Johnson         Orbital Mechanics West Virginia University
+3     Chien-Shiung Wu      Experimental Physics                Princeton
+4     Dorothy Hodgkin     X-ray Crystallography                   Oxford
+5        Grace Hopper      Computer Programming                     Yale
+6  Barbara McClintock                  Genetics                  Cornell
+7          Gerty Cori              Biochemistry    Washington University
+8        Lise Meitner           Nuclear Physics     University of Berlin
+9         Marie Curie             Radioactivity                 Sorbonne
+10       Ada Lovelace      Computer Programming     University of London
+   date_of_birth working_region
+1     1920-07-25 Western Europe
+2     1918-08-26  North America
+3     1912-05-31  North America
+4     1910-05-12 Western Europe
+5     1906-12-09  North America
+6     1902-06-16  North America
+7     1896-08-15  North America
+8     1878-11-07 Western Europe
+9     1867-11-07 Western Europe
+10    1815-12-10 Western Europe</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The number of rows has not changed – we’re only arranging the data, we’re not filtering it.</p>
+</div>
+</div>
+<p><code>distinct</code> allows you to find all the unique rows in a data set, so in a technical sense, it primarily operates on the rows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(school)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     school
+1                 Cambridge
+2                  Sorbonne
+3                   Cornell
+4      University of London
+5                    Oxford
+6      University of Berlin
+7                      Yale
+8                 Princeton
+9     Washington University
+10 West Virginia University</code></pre>
+</div>
+</div>
+<p>Alternatively, if you want to the keep other columns when filtering for unique rows, you can use the <code>.keep_all = TRUE option</code>. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(school, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name                     field                   school
+1   Rosalind Franklin DNA X-ray crystallography                Cambridge
+2         Marie Curie             Radioactivity                 Sorbonne
+3  Barbara McClintock                  Genetics                  Cornell
+4        Ada Lovelace      Computer Programming     University of London
+5     Dorothy Hodgkin     X-ray Crystallography                   Oxford
+6        Lise Meitner           Nuclear Physics     University of Berlin
+7        Grace Hopper      Computer Programming                     Yale
+8     Chien-Shiung Wu      Experimental Physics                Princeton
+9          Gerty Cori              Biochemistry    Washington University
+10  Katherine Johnson         Orbital Mechanics West Virginia University
+   date_of_birth working_region
+1     1920-07-25 Western Europe
+2     1867-11-07 Western Europe
+3     1902-06-16  North America
+4     1815-12-10 Western Europe
+5     1910-05-12 Western Europe
+6     1878-11-07 Western Europe
+7     1906-12-09  North America
+8     1912-05-31  North America
+9     1896-08-15  North America
+10    1918-08-26  North America</code></pre>
+</div>
+</div>
+<p>If you want to find the number of occurrences instead, you’re better off swapping <code>distinct()</code> for <code>count()</code>, and with the <code>sort = TRUE</code> argument you can arrange them in descending order of number of occurrences.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(school, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     school n
+1                 Cambridge 1
+2                   Cornell 1
+3                    Oxford 1
+4                 Princeton 1
+5                  Sorbonne 1
+6      University of Berlin 1
+7      University of London 1
+8     Washington University 1
+9  West Virginia University 1
+10                     Yale 1</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>There are four important verbs that affect the columns without changing the rows: <code>mutate()</code> creates new columns that are derived from the existing columns, <code>select()</code> changes which columns are present, <code>rename()</code> changes the names of the columns, and <code>relocate()</code> changes the positions of the columns.</p>
+<p><code>mutate</code> allows you to to add new columns that are calculated from the existing columns. For example, let’s add a new column to our <code>df</code> to showcase this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>rate_out_of_10 <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate_out_of_10 =</span> rate_out_of_10 <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name                     field                   school
+1   Rosalind Franklin DNA X-ray crystallography                Cambridge
+2         Marie Curie             Radioactivity                 Sorbonne
+3  Barbara McClintock                  Genetics                  Cornell
+4        Ada Lovelace      Computer Programming     University of London
+5     Dorothy Hodgkin     X-ray Crystallography                   Oxford
+6        Lise Meitner           Nuclear Physics     University of Berlin
+7        Grace Hopper      Computer Programming                     Yale
+8     Chien-Shiung Wu      Experimental Physics                Princeton
+9          Gerty Cori              Biochemistry    Washington University
+10  Katherine Johnson         Orbital Mechanics West Virginia University
+   date_of_birth working_region rate_out_of_10
+1     1920-07-25 Western Europe             11
+2     1867-11-07 Western Europe             11
+3     1902-06-16  North America             11
+4     1815-12-10 Western Europe             11
+5     1910-05-12 Western Europe             11
+6     1878-11-07 Western Europe             11
+7     1906-12-09  North America             11
+8     1912-05-31  North America             11
+9     1896-08-15  North America             11
+10    1918-08-26  North America             11</code></pre>
+</div>
+</div>
+<p><code>select</code> allows you to focus on the variables you’re interested in and rapidly zoom in on a useful subset using operations based on the names of the variables:</p>
+<p>You can select columns by name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, date_of_birth, school)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name date_of_birth                   school
+1   Rosalind Franklin    1920-07-25                Cambridge
+2         Marie Curie    1867-11-07                 Sorbonne
+3  Barbara McClintock    1902-06-16                  Cornell
+4        Ada Lovelace    1815-12-10     University of London
+5     Dorothy Hodgkin    1910-05-12                   Oxford
+6        Lise Meitner    1878-11-07     University of Berlin
+7        Grace Hopper    1906-12-09                     Yale
+8     Chien-Shiung Wu    1912-05-31                Princeton
+9          Gerty Cori    1896-08-15    Washington University
+10  Katherine Johnson    1918-08-26 West Virginia University</code></pre>
+</div>
+</div>
+<p>You can select columns between <code>name</code> and <code>date_of_birth</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name<span class="sc">:</span>date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name                     field                   school
+1   Rosalind Franklin DNA X-ray crystallography                Cambridge
+2         Marie Curie             Radioactivity                 Sorbonne
+3  Barbara McClintock                  Genetics                  Cornell
+4        Ada Lovelace      Computer Programming     University of London
+5     Dorothy Hodgkin     X-ray Crystallography                   Oxford
+6        Lise Meitner           Nuclear Physics     University of Berlin
+7        Grace Hopper      Computer Programming                     Yale
+8     Chien-Shiung Wu      Experimental Physics                Princeton
+9          Gerty Cori              Biochemistry    Washington University
+10  Katherine Johnson         Orbital Mechanics West Virginia University
+   date_of_birth
+1     1920-07-25
+2     1867-11-07
+3     1902-06-16
+4     1815-12-10
+5     1910-05-12
+6     1878-11-07
+7     1906-12-09
+8     1912-05-31
+9     1896-08-15
+10    1918-08-26</code></pre>
+</div>
+</div>
+<p>Finally, you can even select all columns that are characters:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.character))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name                     field                   school
+1   Rosalind Franklin DNA X-ray crystallography                Cambridge
+2         Marie Curie             Radioactivity                 Sorbonne
+3  Barbara McClintock                  Genetics                  Cornell
+4        Ada Lovelace      Computer Programming     University of London
+5     Dorothy Hodgkin     X-ray Crystallography                   Oxford
+6        Lise Meitner           Nuclear Physics     University of Berlin
+7        Grace Hopper      Computer Programming                     Yale
+8     Chien-Shiung Wu      Experimental Physics                Princeton
+9          Gerty Cori              Biochemistry    Washington University
+10  Katherine Johnson         Orbital Mechanics West Virginia University
+   date_of_birth working_region
+1     1920-07-25 Western Europe
+2     1867-11-07 Western Europe
+3     1902-06-16  North America
+4     1815-12-10 Western Europe
+5     1910-05-12 Western Europe
+6     1878-11-07 Western Europe
+7     1906-12-09  North America
+8     1912-05-31  North America
+9     1896-08-15  North America
+10    1918-08-26  North America</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are a number of helper functions you can use within <code>select()</code>:</p>
+<p><code>starts_with("abc")</code>: matches names that begin with “abc”.</p>
+<p><code>ends_with("xyz")</code>: matches names that end with “xyz”.</p>
+<p><code>contains("ijk")</code>: matches names that contain “ijk”.</p>
+<p><code>num_range("x", 1:3)</code>: matches x1, x2 and x3.</p>
+</div>
+</div>
+<p>You can rename variables as you <code>select()</code> them by using <code>=</code>. The new name appears on the left hand side of the <code>=</code>, and the old variable appears on the right hand side:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">full_name =</span> name, <span class="at">dob =</span> date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            full_name        dob
+1   Rosalind Franklin 1920-07-25
+2         Marie Curie 1867-11-07
+3  Barbara McClintock 1902-06-16
+4        Ada Lovelace 1815-12-10
+5     Dorothy Hodgkin 1910-05-12
+6        Lise Meitner 1878-11-07
+7        Grace Hopper 1906-12-09
+8     Chien-Shiung Wu 1912-05-31
+9          Gerty Cori 1896-08-15
+10  Katherine Johnson 1918-08-26</code></pre>
+</div>
+</div>
+<p>You can select all columns except those from <code>name</code> to <code>date_of_birth</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(name<span class="sc">:</span>date_of_birth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   working_region rate_out_of_10
+1  Western Europe             10
+2  Western Europe             10
+3   North America             10
+4  Western Europe             10
+5  Western Europe             10
+6  Western Europe             10
+7   North America             10
+8   North America             10
+9   North America             10
+10  North America             10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>name<span class="sc">:</span>date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   working_region rate_out_of_10
+1  Western Europe             10
+2  Western Europe             10
+3   North America             10
+4  Western Europe             10
+5  Western Europe             10
+6  Western Europe             10
+7   North America             10
+8   North America             10
+9   North America             10
+10  North America             10</code></pre>
+</div>
+</div>
+<p>If you want to keep all the existing variables and just want to rename a few, you can use <code>rename()</code> instead of <code>select()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">full_name =</span> name, <span class="at">dob =</span> date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            full_name                     field                   school
+1   Rosalind Franklin DNA X-ray crystallography                Cambridge
+2         Marie Curie             Radioactivity                 Sorbonne
+3  Barbara McClintock                  Genetics                  Cornell
+4        Ada Lovelace      Computer Programming     University of London
+5     Dorothy Hodgkin     X-ray Crystallography                   Oxford
+6        Lise Meitner           Nuclear Physics     University of Berlin
+7        Grace Hopper      Computer Programming                     Yale
+8     Chien-Shiung Wu      Experimental Physics                Princeton
+9          Gerty Cori              Biochemistry    Washington University
+10  Katherine Johnson         Orbital Mechanics West Virginia University
+          dob working_region rate_out_of_10
+1  1920-07-25 Western Europe             10
+2  1867-11-07 Western Europe             10
+3  1902-06-16  North America             10
+4  1815-12-10 Western Europe             10
+5  1910-05-12 Western Europe             10
+6  1878-11-07 Western Europe             10
+7  1906-12-09  North America             10
+8  1912-05-31  North America             10
+9  1896-08-15  North America             10
+10 1918-08-26  North America             10</code></pre>
+</div>
+</div>
+<p><code>relocate</code> allows you to move variables around. You might want to collect related variables together or move important variables to the front. By default <code>relocate()</code> moves variables to the front:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   date_of_birth               name                     field
+1     1920-07-25  Rosalind Franklin DNA X-ray crystallography
+2     1867-11-07        Marie Curie             Radioactivity
+3     1902-06-16 Barbara McClintock                  Genetics
+4     1815-12-10       Ada Lovelace      Computer Programming
+5     1910-05-12    Dorothy Hodgkin     X-ray Crystallography
+6     1878-11-07       Lise Meitner           Nuclear Physics
+7     1906-12-09       Grace Hopper      Computer Programming
+8     1912-05-31    Chien-Shiung Wu      Experimental Physics
+9     1896-08-15         Gerty Cori              Biochemistry
+10    1918-08-26  Katherine Johnson         Orbital Mechanics
+                     school working_region rate_out_of_10
+1                 Cambridge Western Europe             10
+2                  Sorbonne Western Europe             10
+3                   Cornell  North America             10
+4      University of London Western Europe             10
+5                    Oxford Western Europe             10
+6      University of Berlin Western Europe             10
+7                      Yale  North America             10
+8                 Princeton  North America             10
+9     Washington University  North America             10
+10 West Virginia University  North America             10</code></pre>
+</div>
+</div>
+<p>You can also specify where to put them using the <code>.before</code> and <code>.after</code> arguments, just like in <code>mutate()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(date_of_birth, <span class="at">.after =</span> name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name date_of_birth                     field
+1   Rosalind Franklin    1920-07-25 DNA X-ray crystallography
+2         Marie Curie    1867-11-07             Radioactivity
+3  Barbara McClintock    1902-06-16                  Genetics
+4        Ada Lovelace    1815-12-10      Computer Programming
+5     Dorothy Hodgkin    1910-05-12     X-ray Crystallography
+6        Lise Meitner    1878-11-07           Nuclear Physics
+7        Grace Hopper    1906-12-09      Computer Programming
+8     Chien-Shiung Wu    1912-05-31      Experimental Physics
+9          Gerty Cori    1896-08-15              Biochemistry
+10  Katherine Johnson    1918-08-26         Orbital Mechanics
+                     school working_region rate_out_of_10
+1                 Cambridge Western Europe             10
+2                  Sorbonne Western Europe             10
+3                   Cornell  North America             10
+4      University of London Western Europe             10
+5                    Oxford Western Europe             10
+6      University of Berlin Western Europe             10
+7                      Yale  North America             10
+8                 Princeton  North America             10
+9     Washington University  North America             10
+10 West Virginia University  North America             10</code></pre>
+</div>
+</div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p><code>group_by</code> allows you to…</p>
+<p><code>group_by</code> allows you to create groups using more than one variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(school, working_region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+# Groups:   school, working_region [10]
+   name               field   school date_of_birth working_region rate_out_of_10
+   &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt;                   &lt;dbl&gt;
+ 1 Rosalind Franklin  DNA X-… Cambr… 1920-07-25    Western Europe             10
+ 2 Marie Curie        Radioa… Sorbo… 1867-11-07    Western Europe             10
+ 3 Barbara McClintock Geneti… Corne… 1902-06-16    North America              10
+ 4 Ada Lovelace       Comput… Unive… 1815-12-10    Western Europe             10
+ 5 Dorothy Hodgkin    X-ray … Oxford 1910-05-12    Western Europe             10
+ 6 Lise Meitner       Nuclea… Unive… 1878-11-07    Western Europe             10
+ 7 Grace Hopper       Comput… Yale   1906-12-09    North America              10
+ 8 Chien-Shiung Wu    Experi… Princ… 1912-05-31    North America              10
+ 9 Gerty Cori         Bioche… Washi… 1896-08-15    North America              10
+10 Katherine Johnson  Orbita… West … 1918-08-26    North America              10</code></pre>
+</div>
+</div>
 <p><code>summarize</code> allows you to…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_rate =</span> <span class="fu">mean</span>(rate_out_of_10))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_rate
+1        10</code></pre>
+</div>
+</div>
 <p>The <code>slice</code> family of functions allows you to…</p>
-<p><code>ungroup</code></p>
-<p><code>.by</code> argument</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                name                     field               school
+1  Rosalind Franklin DNA X-ray crystallography            Cambridge
+2        Marie Curie             Radioactivity             Sorbonne
+3 Barbara McClintock                  Genetics              Cornell
+4       Ada Lovelace      Computer Programming University of London
+5    Dorothy Hodgkin     X-ray Crystallography               Oxford
+  date_of_birth working_region rate_out_of_10
+1    1920-07-25 Western Europe             10
+2    1867-11-07 Western Europe             10
+3    1902-06-16  North America             10
+4    1815-12-10 Western Europe             10
+5    1910-05-12 Western Europe             10</code></pre>
+</div>
+</div>
+<p><code>ungroup</code> allows you to remove grouping from a data frame without using <code>summarize()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name                     field                   school
+1   Rosalind Franklin DNA X-ray crystallography                Cambridge
+2         Marie Curie             Radioactivity                 Sorbonne
+3  Barbara McClintock                  Genetics                  Cornell
+4        Ada Lovelace      Computer Programming     University of London
+5     Dorothy Hodgkin     X-ray Crystallography                   Oxford
+6        Lise Meitner           Nuclear Physics     University of Berlin
+7        Grace Hopper      Computer Programming                     Yale
+8     Chien-Shiung Wu      Experimental Physics                Princeton
+9          Gerty Cori              Biochemistry    Washington University
+10  Katherine Johnson         Orbital Mechanics West Virginia University
+   date_of_birth working_region rate_out_of_10
+1     1920-07-25 Western Europe             10
+2     1867-11-07 Western Europe             10
+3     1902-06-16  North America             10
+4     1815-12-10 Western Europe             10
+5     1910-05-12 Western Europe             10
+6     1878-11-07 Western Europe             10
+7     1906-12-09  North America             10
+8     1912-05-31  North America             10
+9     1896-08-15  North America             10
+10    1918-08-26  North America             10</code></pre>
 </div>
 </div>
 </div>
-<p>Hopefully now, you feel a little more confident about working with vectors, data frames, and using <code>dplyr</code> verbs to clean and manipulate data. Happy Wrangling!</p>
+</div>
+</div>
 </section>
+</section>
+<section id="dplyr-verbs-work-great-as-a-team" class="level2">
+<h2 class="anchored" data-anchor-id="dplyr-verbs-work-great-as-a-team"><code>dplyr</code> verbs work great as a team!</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date_of_birth <span class="sc">&gt;</span> <span class="st">"1900-01-01"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_of_birth) <span class="sc">|&gt;</span> </span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                name date_of_birth
+1 Barbara McClintock    1902-06-16
+2       Grace Hopper    1906-12-09
+3    Dorothy Hodgkin    1910-05-12
+4    Chien-Shiung Wu    1912-05-31
+5  Katherine Johnson    1918-08-26
+6  Rosalind Franklin    1920-07-25</code></pre>
+</div>
+</div>
+<p>Although these were basic examples, hopefully you feel a little more confident about working with vectors, and data frames using <code>dplyr</code> verbs to clean and manipulate data. Happy Wrangling!</p>
 <section id="functions-on-functions" class="level3">
 <h3 class="anchored" data-anchor-id="functions-on-functions">Functions on functions</h3>
 <section id="an-introduction-to-pipes" class="level4">
@@ -397,17 +906,17 @@ Tip
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Here we first filter and then arrange. Note that we are creating an intermediate variable in between the steps.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering for scientists born after 1900</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, <span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Arranging the filtered data by date of birth</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(filtered_data, date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering for scientists born after 1900</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, <span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>))</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Arranging the filtered data by date of birth</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(filtered_data, date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>We can do the same thing without creating an intermediate variable. It’s more compact but can start to get confusing if we add more functions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(df, <span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>)), date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(df, <span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>)), date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
@@ -417,10 +926,10 @@ Tip
 <p><code>arrange</code> is doing the <em>arrange them…</em> part</p>
 <p>and the pipe, <code>|&gt;</code>, is going to do the <strong>and then…</strong> part</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pipes</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pipes</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once you’re comfortable with this style, you should be able to read it as: Take <code>data</code> <em>and then</em> <code>filter</code> by DoB <em>and then</em> <code>arrange</code> by DoB. This helps keep our code both clean and readable.</p>
 </div>
@@ -472,12 +981,12 @@ Things to consider:
 <section id="getting-familiar-with-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="getting-familiar-with-the-data">Getting familiar with the data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"wrangling-files/cellProportions.csv"</span>,</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"wrangling-files/cellProportions.csv"</span>,</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Cardiomyocytes Fibroblast Endothelial.Cells Macrophage
 whole_2              0.652     0.0886           0.06700     0.1761
