@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -111,9 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-
 </header>
-
 
 <section id="welcome-to-how-to-learn-to-code" class="level2">
 <h2 class="anchored" data-anchor-id="welcome-to-how-to-learn-to-code">Welcome to How to Learn to Code!</h2>
@@ -150,13 +148,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Once you’ve logged in, you’ll see a page like this. Click on the <strong>RStudio Server</strong> tile.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="class0_images/Picture1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="screenshot of the OnDemand home page with a red box around the RStudio Server icon."></p>
+<p><img src="class0_images/Picture1.png" class="img-fluid figure-img" alt="screenshot of the OnDemand home page with a red box around the RStudio Server icon."></p>
 </figure>
 </div>
 <p>This will take you to a page where you can fill out some parameters for your R Studio Server session. The only one you’ll need to adjust is “Number of hours” where you should put “2”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="class0_images/Picture2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Screenshot of the R Studio Server request page where a user inputs the R version, number of hours, and number of CPUs requested before launching the session."></p>
+<p><img src="class0_images/Picture2.png" class="img-fluid figure-img" alt="Screenshot of the R Studio Server request page where a user inputs the R version, number of hours, and number of CPUs requested before launching the session."></p>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -175,7 +173,7 @@ Note
 <p>After you’ve filled out the appropriate information, click Launch. This will take you to the “My Interactive Sessions” page. Your session request may be queued for a minute while space on the cluster is being allocated for your session. Once it’s ready, click “Connect to R Studio Server”. This will launch R Studio in a new tab.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="class0_images/Picture3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="class0_images/Picture3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </section>
@@ -198,7 +196,7 @@ Note
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://docs.posit.co/ide/user/ide/guide/ui/images/rstudio-panes-labeled.jpeg" class="img-fluid figure-img"></p>
-<figcaption>image: https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html</figcaption>
+<figcaption class="figure-caption">image: https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html</figcaption>
 </figure>
 </div>
 <p>The top left pane is called the <strong>Source</strong> and this is where you will be writing and editing code. Writing code here does not automatically <strong>execute</strong> or <strong>run</strong> it. To do that, you will need to use the <strong>Console</strong> pane in the bottom left. There are a few ways to get code written in the Source pane to the Console pane, in order from least efficient to most efficient:</p>
@@ -218,13 +216,13 @@ Note
 <p>Before executing the code, your Source and Console panes will look like this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="class0_images/Picture4.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="class0_images/Picture4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>After executing the line of code, your source pane will look like this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="class0_images/Picture5.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="class0_images/Picture5.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>Congrats! You just ran your first line of code. If you want to save your script (what’s written in the source pane) go to File &gt; Save as and save your script with a helpful name in a location that makes sense (e.g., maybe in a folder called “H2L2C_class” and name the script “hello_world.R”).</p>
@@ -240,7 +238,8 @@ Note
 <p><strong>Data frame:</strong> The best way to think of data frames is a spreadsheet. Technically, they are composed of vectors. Typically the rows in a data frame will correspond to observations and the columns will correspond to variables describing those observations. Data in a data frame can be of different types–i.e.&nbsp;you can have one column be character (maybe describing hair color for each observation) and another be numeric (maybe describing height for each observation).</p>
 <p><strong>Matrix:</strong> A matrix in R is very similar to a data frame. Unlike a data frame, all elements must be of the same data type.</p>
 <p><strong>Functions:</strong> A function performs a given task. This task can be very simple (add two numbers) or more complex (create a large data frame, run a linear regression, save the output to a csv file). R has many built-in functions you will use. Many packages also have functions you can use.</p>
-<p><strong>Packages:</strong></p>
+<p><strong>Packages:</strong> Packages in R are extensions of what is called “base R.” Base R refers to using R without any add-ons (i.e., no packages). Packages can have data, functions, and/or compiled code. It is the responsibility of package developers to maintain their package–which means some undergo frequent updates and some haven’t been touched in years (and thus might not work anymore for whatever reason). It also means that some packages can have bugs or might not be appropriate for your data/analysis. To use a package, you will first need to install it using the function <code>install.package("&lt;package_name&gt;")</code>. You will only need to install the package once. Each time you want to use the package, you’ll need to load it into your environment: <code>library(&lt;package_name')</code>. Once it is loaded into your environment, you will be able to use any functions or data in the package.</p>
+<p><strong>syntax/style:</strong> The visual appearance (spaces, indentations, capitalization) of your code greatly improves readability and makes it easier for someone else to quickly understand what it’s doing (or you six months later). In this class, we will follow the Tidyverse Style Guide and encourage you to reference it during class to ensure you are consistently naming variables and using appropriate syntax. The sections most relevant for now are <a href="https://style.tidyverse.org/files.html">Files</a>, <a href="https://style.tidyverse.org/files.html">Syntax</a>, and the “Comments” section of the <a href="https://style.tidyverse.org/functions.html#comments-1">Functions</a> page. Later classes will touch on <a href="https://style.tidyverse.org/pipes.html">pipes</a> and <a href="https://style.tidyverse.org/ggplot2.html">ggplot2</a>.</p>
 <p><strong>Conditionals:</strong> A conditional is a line of code that will run only if a particular condition is met. You can recognize these by the use of “if” “else” or “while”. The best way to understand these is by actually reading the code out loud. If you were to read the below example out loud, you might say “if x equals 3, print ‘condition is met’, else print ‘condition is not met’”. What do you think will happen if <code>x == 3</code>? What if <code>x == 4</code>?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">==</span> <span class="dv">3</span>) {</span>
@@ -353,27 +352,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -383,17 +365,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -405,130 +378,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -572,7 +422,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -598,32 +447,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -684,7 +507,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 

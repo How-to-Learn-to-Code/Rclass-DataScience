@@ -1,11 +1,24 @@
 ---
-title: "Class 2: Coding Basics"
+title: "Instructor Guide for Class 2: Coding Basics"
 author: "Matthew Sutcliffe, Madeline Gillman, JP Flores"
 format: 
   html: 
     toc: true
 ---
 
+::: {.callout-note appearance="default"}
+
+## Instructor Note
+
+Today's class will be mainly students working independently or in groups. Teachers should not spend a ton of time presenting information or live-coding. The goal is give students practice consulting other code (mainly from class 1) and applying it to a new problem/dataset. 
+
+Start off today's class introducing the objectives and the datasets that will be used. Remind students of the help page and using the question mark to access help pages for functions/built-in datasets, then set them loose!
+
+When students come to you with an issue, encourage them to try to look it up on their own first. If it's something really minor (e.g., wrong order for variable assignment like `4 -> my_favorite_number`) it's ok to give them the correction plus explanation. Either way, don't just correct the student's code without providing some sort of explanation. 
+
+The solutions to these questions are all very straightforward, so we don't have an answer key. There will be one for future classes though as the questions become more complex! 
+
+:::
 
 ## Objectives
 

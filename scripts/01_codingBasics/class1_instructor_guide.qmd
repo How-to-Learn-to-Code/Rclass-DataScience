@@ -1,5 +1,5 @@
 ---
-title: "Class 1: Coding Basics"
+title: "Instructor Guide for Class 1: Coding Basics"
 author: "Matthew Sutcliffe, Madeline Gillman, JP Flores"
 format: 
   html: 
@@ -13,6 +13,20 @@ overflow-y: scroll;
 }
 ```
 
+::: {.callout-note appearance="default"}
+
+## Instructor Note
+
+Today's class will be very basic. The primary goals are to 1) get students excited about coding and 2) get them familiar making coding mistakes. You can present this material in any way that you think works well--in the past we have had teachers simply scroll through the html, some have created powerpoints, some have just shared their screen showing R Studio and live-coded the class. 
+
+At minimum, please scroll through this document to get a sense of how the lesson should flow. Throughout, there are instructor notes. If you have any suggestions/notes/whatever, please add to these instructor notes and create a PR on our course Github! 
+
+To kick off the class, have all instructors introduce themselves, their coding background, and a fun fact (examples: what function/process do you always have to google because you cannot remember? what made you realize "coding is super cool"? do you have a pet?)
+
+Then, have the students introduce themselves (suggested: have them also say their department/research field, and/or what they hope to learn in class, and/or what inspired them to sign up for how to learn to code). 
+
+:::
+
 # Introduction
 
 > Many biologists starting out in bioinformatics tend to equate "learning bioinformatics" with "learning how to run bioinformatics software"... This is analogous to thinking "learning molecular biology" is just "learning pipetting."
@@ -22,6 +36,18 @@ overflow-y: scroll;
 In Vince's quote above, replace "bioinformatics" with "coding."
 
 Our goal for this class is to familiarize students with the R programming language and RStudio environment, equip students with the skills and knowledge to wrangle, visualize, and analyze data, and to provide a foundation for more advanced coding skills.
+
+::: {.callout-note appearance="default"}
+
+## Instructor Suggestion
+
+Pause here and review Class 0. Specifically, ask if anyone had issues getting access to Longleaf, starting an R Studio Session, and/or running their first line of code `print("hello world")`. 
+
+Remind students of the existence of the vocab section (and maybe also solicit feedback about other terms that should be included!).
+
+If students had issues installing R Studio on their personal computer, you are not obligated to (and we actually recommend you do not) troubleshoot during class time, as this will not be applicable to all students. If you want, you can help out after class or tell them we will touch on this more during the last 2 classes, but all material is designed to work on Longleaf. 
+
+:::
 
 In Module 1: Coding Basics, we will cover:
 
@@ -96,6 +122,14 @@ age <- 51
 ```
 
 The value something is assigned to is often referred to as the variable name. For example, the variable name of `"Hello"` is `greeting` . We used really basic variable names--just letters, that are real words, all lowercase. Of course, there are other ways to name variables too! Play around with variable names. Try using uppercase letters, symbols, and numbers. What works, and what doesn't? Come up with some rules for variable naming. Here's some variable naming ideas to get you started:
+
+::: {.callout-note appearance="default"}
+
+## Instructor Suggestion
+
+Spend ~5 minutes here having students play around with variable naming on their own. After that time, re-group and have students suggest variable naming rules. After students have shared rules, consult the style guide together and modify the rules as a class. 
+
+:::
 
 ```{r}
 #| eval: false
@@ -174,6 +208,14 @@ my_numbers <- sort(my_numbers, decreasing = TRUE)
 my_numbers
 ```
 
+::: {.callout-note appearance="default"}
+
+## Instructor Suggestion
+
+Pause here and have students try the above with a new vector of their choice. Have them create a vector similar to `my_numbers <- c("4", "2", "7", "10")` and convert to numeric, etc. 
+
+:::
+
 ## Accessing parts of a list
 
 One thing we'll be doing a lot of is looking at parts of our data. For example, we might want to look at individual items in a vector. These items could be numbers or characters.
@@ -247,6 +289,14 @@ And now it is added to our dataset.
 iris
 ```
 
+::: {.callout-note appearance="default"}
+
+## Instructor Suggestion
+
+Pause here and have students try the above on their own: try changing which column is indexed, try grabbing a whole row instead, try changing the criteria for creating a new column (maybe use petal width, or a different cutoff number).
+
+:::
+
 ## Functions
 
 A function is a block of code that does a task. It only executes that task when it is called/executed. Using a function in R always follows the same basic format:
@@ -270,6 +320,14 @@ substr(x = "Hello world!", start = 2, stop = 4)
 We have already been using functions throughout this class--some examples include `sort()`, `min()`, and `max()`.
 
 We will be using functions all the time in How to Learn to Code, but for today just know what a function is and what an argument is. Whenever you use a function, it's important to ensure you understand what it's doing: are you getting the expected result? Are you using the input arguments correctly? That is not only crucial for learning how to code, but how to think like a coder.
+
+::: {.callout-note appearance="default"}
+
+## Instructor Suggestion
+
+For the functions students have already used (sort, min, and max) have them list out the arguments for those functions. Use the help pages for those functions to have them check their work. 
+
+:::
 
 ## I already need help!
 
