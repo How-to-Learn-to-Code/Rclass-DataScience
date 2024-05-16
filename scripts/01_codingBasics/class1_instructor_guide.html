@@ -8,7 +8,7 @@
 
 <meta name="author" content="Matthew Sutcliffe, Madeline Gillman, JP Flores">
 
-<title>Class 1: Coding Basics</title>
+<title>Instructor Guide for Class 1: Coding Basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,16 +58,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="class1_files/libs/clipboard/clipboard.min.js"></script>
-<script src="class1_files/libs/quarto-html/quarto.js"></script>
-<script src="class1_files/libs/quarto-html/popper.min.js"></script>
-<script src="class1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="class1_files/libs/quarto-html/anchor.min.js"></script>
-<link href="class1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="class1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="class1_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="class1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="class1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="class1_instructor_guide_files/libs/clipboard/clipboard.min.js"></script>
+<script src="class1_instructor_guide_files/libs/quarto-html/quarto.js"></script>
+<script src="class1_instructor_guide_files/libs/quarto-html/popper.min.js"></script>
+<script src="class1_instructor_guide_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="class1_instructor_guide_files/libs/quarto-html/anchor.min.js"></script>
+<link href="class1_instructor_guide_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="class1_instructor_guide_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="class1_instructor_guide_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="class1_instructor_guide_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="class1_instructor_guide_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Class 1: Coding Basics</h1>
+<h1 class="title">Instructor Guide for Class 1: Coding Basics</h1>
 </div>
 
 
@@ -127,6 +127,22 @@ overflow-y: scroll;
 }
 </style>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructor Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Today’s class will be very basic. The primary goals are to 1) get students excited about coding and 2) get them familiar making coding mistakes. You can present this material in any way that you think works well–in the past we have had teachers simply scroll through the html, some have created powerpoints, some have just shared their screen showing R Studio and live-coded the class.</p>
+<p>At minimum, please scroll through this document to get a sense of how the lesson should flow. Throughout, there are instructor notes. If you have any suggestions/notes/whatever, please add to these instructor notes and create a PR on our course Github!</p>
+<p>To kick off the class, have all instructors introduce themselves, their coding background, and a fun fact (examples: what function/process do you always have to google because you cannot remember? what made you realize “coding is super cool”? do you have a pet?)</p>
+<p>Then, have the students introduce themselves (suggested: have them also say their department/research field, and/or what they hope to learn in class, and/or what inspired them to sign up for how to learn to code).</p>
+</div>
+</div>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <blockquote class="blockquote">
@@ -135,6 +151,21 @@ overflow-y: scroll;
 </blockquote>
 <p>In Vince’s quote above, replace “bioinformatics” with “coding.”</p>
 <p>Our goal for this class is to familiarize students with the R programming language and RStudio environment, equip students with the skills and knowledge to wrangle, visualize, and analyze data, and to provide a foundation for more advanced coding skills.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructor Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pause here and review Class 0. Specifically, ask if anyone had issues getting access to Longleaf, starting an R Studio Session, and/or running their first line of code <code>print("hello world")</code>.</p>
+<p>Remind students of the existence of the vocab section (and maybe also solicit feedback about other terms that should be included!).</p>
+<p>If students had issues installing R Studio on their personal computer, you are not obligated to (and we actually recommend you do not) troubleshoot during class time, as this will not be applicable to all students. If you want, you can help out after class or tell them we will touch on this more during the last 2 classes, but all material is designed to work on Longleaf.</p>
+</div>
+</div>
 <p>In Module 1: Coding Basics, we will cover:</p>
 <ul>
 <li>Variables</li>
@@ -206,6 +237,19 @@ overflow-y: scroll;
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">51</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The value something is assigned to is often referred to as the variable name. For example, the variable name of <code>"Hello"</code> is <code>greeting</code> . We used really basic variable names–just letters, that are real words, all lowercase. Of course, there are other ways to name variables too! Play around with variable names. Try using uppercase letters, symbols, and numbers. What works, and what doesn’t? Come up with some rules for variable naming. Here’s some variable naming ideas to get you started:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructor Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Spend ~5 minutes here having students play around with variable naming on their own. After that time, re-group and have students suggest variable naming rules. After students have shared rules, consult the style guide together and modify the rules as a class.</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>GrEeTiNg <span class="ot">&lt;-</span> <span class="st">"Hello"</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>5greeting <span class="ot">&lt;-</span> <span class="st">"Hello"</span></span>
@@ -281,6 +325,19 @@ overflow-y: scroll;
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>my_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10  7  4  2</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructor Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pause here and have students try the above with a new vector of their choice. Have them create a vector similar to <code>my_numbers &lt;- c("4", "2", "7", "10")</code> and convert to numeric, etc.</p>
 </div>
 </div>
 </section>
@@ -542,6 +599,19 @@ overflow-y: scroll;
 150          5.9         3.0          5.1         1.8  virginica      TRUE</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructor Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pause here and have students try the above on their own: try changing which column is indexed, try grabbing a whole row instead, try changing the criteria for creating a new column (maybe use petal width, or a different cutoff number).</p>
+</div>
+</div>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
@@ -564,6 +634,19 @@ overflow-y: scroll;
 </div>
 <p>We have already been using functions throughout this class–some examples include <code>sort()</code>, <code>min()</code>, and <code>max()</code>.</p>
 <p>We will be using functions all the time in How to Learn to Code, but for today just know what a function is and what an argument is. Whenever you use a function, it’s important to ensure you understand what it’s doing: are you getting the expected result? Are you using the input arguments correctly? That is not only crucial for learning how to code, but how to think like a coder.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructor Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the functions students have already used (sort, min, and max) have them list out the arguments for those functions. Use the help pages for those functions to have them check their work.</p>
+</div>
+</div>
 </section>
 <section id="i-already-need-help" class="level2">
 <h2 class="anchored" data-anchor-id="i-already-need-help">I already need help!</h2>
