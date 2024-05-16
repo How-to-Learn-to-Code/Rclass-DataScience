@@ -45,6 +45,9 @@ data(package = "palmerpenguins")
 4.  How many rows are in the dataset? How many columns? You may need to look up how to do this! Try searching "how to get number of rows in data frame in R" in Google.
 5.  Run `str(mtcars)` . What is this output telling you? How does it compare to what you found in #3 and #4?
 6.  For each column, find the mean, range, and median values. Are you able to do this for all columns? Why or why not?
+7. What value is in the 6th row and 10th column?
+8. Print every row of the 4th column. 
+9. Print every column of only rows 28 to 31.  
 
 ### Penguins dataset
 

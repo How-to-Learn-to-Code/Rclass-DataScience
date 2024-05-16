@@ -119,6 +119,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<div class="cell">
+<style type="text/css">
+.output {
+max-height: 500px;
+overflow-y: scroll;
+}
+</style>
+</div>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <blockquote class="blockquote">
@@ -191,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption class="figure-caption">https://mclark45.medium.com/variables-8d0ba47d9694</figcaption>
 </figure>
 </div>
-<p>Variables in R are created (assigned) using an arrow: <code>&lt;-</code> For example:</p>
+<p>Variables in R are created (assigned) using an arrow: <code>&lt;-</code> The variable name always goes on the left, and the thing being assigned to that variable on the right. For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>greeting <span class="ot">&lt;-</span> <span class="st">"Hello"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="st">"panda"</span></span>
@@ -378,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span>BigPetals <span class="ot">&lt;-</span> iris<span class="sc">$</span>Petal.Length <span class="sc">&gt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And now it is added to our dataset.</p>
-<div class="cell">
+<div class="cell output">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>iris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species BigPetals
@@ -547,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "Hello world!"</code></pre>
 </div>
 </div>
-<p>Or more complex tasks:</p>
+<p>Or more complex tasks, where multiple arguments are required, each separated by a comma:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(<span class="at">x =</span> <span class="st">"Hello world!"</span>, <span class="at">start =</span> <span class="dv">2</span>, <span class="at">stop =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

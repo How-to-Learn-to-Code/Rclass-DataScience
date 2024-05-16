@@ -70,7 +70,7 @@ Your friend needs your help to analyze their AVIDA-Ed data. They have designed a
 -   Rich (nanose and additional sugars present)
 
 ```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "AVIDA experiment setup"}
-knitr::include_graphics("avida-expt.png")
+knitr::include_graphics("scripts/04_projects/project-day-2_files/avida-expt.png")
 ```
 
 They collected data on the following population metrics: (reword: got a lot of data?)
