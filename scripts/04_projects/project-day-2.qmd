@@ -1,41 +1,56 @@
 ---
-title: "4-project-day-2"
+title: "Working with real-world data"
+subtitle: "H2L2C Project Management Day 2"
+author: "Lorrie He, Matthew Sutcliffe"
 format: html
+output:
+  html_document:
+editor: visual
 ---
 
 # Final Class!
 
-Now that you've been through the entire course, we want to reinforce some of the skills that you've learned by applying your knowledge to several existing datasets. In the previous class, you have completed the following steps:
+Now that you've been through the entire course, we want to reinforce some of the skills that you've learned by applying your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have ... //TODO \[some code that shows...\]
 
-1.  Created a GitHub account.
+For each of these datasets (as many as time allows), we'd like you to do some basic analysis, including the following steps:
 
-2.  Linked your GitHub account with your Longleaf account.
-
-3.  Created and pushed your first repository to GitHub.
-
-//TODO more linky to working on project in longleaf/their project repo
-
-//TODO more pointers for what to do for analyses, 1-2 example figs/analyses, cut obesity, more decripts of the data structure, so the teacher doesnt have to be super familiar with the data. crunchy fig. prob this is mostly going to be a "here's a figure - recreate it". def need to include some code to copy/paste for certain operations
-
-//TODO frontmatter
-
-# Datasets
-
-The following datasets represent some real-world data for you to practice your data wrangling and visualisation skills with. For each of these datasets (as many as time allows), we'd like you to do some basic analysis, including the following steps:
-
-1.  Creating a directory for the analysis of this dataset, using best practices discussed in the previous class.
-2.  Loading in the data.
-3.  Performing some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)
-4.  Identifying at least 1 research question that you could try to answer with this dataset.
-5.  Formatting the data in a way that allows for this analysis.
+1.  Create a directory for the analysis of this dataset, using best practices discussed in the previous class.
+2.  Load in the data.
+3.  Perform some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)
+4.  Identify at least 1 research question that you could try to answer with this dataset.
+5.  Format the data in a way that allows for this analysis.
 6.  Visualize the data in helpful ways to answer your question.
 7.  Make your code reproducible by using Github.
 
-To help with your analyses, we have included a template document that you are welcome to use.
+To help with your analyses, we have included a **template document** outlining these steps that you are welcome to use.
 
-These datasets are listed roughly in order of increasing experimental/wrangling complexity — choose whichever you are most interested in!
+//TODO more pointers for what to do for analyses, 1-2 example figs/analyses, more decripts of the data structure, so the teacher doesnt have to be super familiar with the data. crunchy fig. prob this is mostly going to be a "here's a figure - recreate it". def need to include some code to copy/paste for certain operations
 
-//TODO add metadata + data previews
+# Datasets
+
+The csvs are available under the `data` folder (or wherever it'll be moved to). We have provided links to data that is publically available for download, as well as some related publications that may give you more information about the data.
+
+These datasets were chosen because we thought they represented a good variety in the different kinds of wrangling and visualization challenges you might encounter with your own data in the future, and are presented roughly in order of increasing experimental/wrangling complexity. We have highlighted a few specific R skills that some of these datasets were meant to challenge you on.
+
+For each dataset, we have provided a description of the research question/data collection methods, metadata, and the first few lines of each dataset. Read through these descriptions and work on the dataset you find most interesting.
+
+::: callout-tip
+## But I thought this was HTLTCode, not HTLTScience!
+
+Although we heavily encourage you to develop your own research questions and ideas for analyses to really practice your data analysis skills, we acknowledge that not everyone may have enough background to ask "appropriate" research questions for all of these datasets: so, to allow you to focus on the coding, for each dataset, we have come up with a few research questions of varying difficulty (i.e. step 4 from the list above) and created some example figures to accompany them.
+
+Depending on your familiarity with the topic, you can either create your own figure to answer the research question, or use your skills to figure out how we went from raw data to our final figure!
+:::
+
+::: callout-note
+## Up for a challenge?
+
+Some of these datasets come with additional files or have even less pre-processed versions. If you're up for a challenge (or are revisiting this material and feeling more confident in your skills), we have included those csvs for your perusal.
+
+idk if will keep this
+:::
+
+//TODO add metadata + data previews (metadata via callouts)
 
 ## Western Africa Ebola public health dataset
 
@@ -53,17 +68,13 @@ These datasets are listed roughly in order of increasing experimental/wrangling 
 
 **Data overview:** The Central Arizona-Pheonix Long-Term Ecological Research Program [(CAP-LTER)](https://sustainability-innovation.asu.edu/caplter/) recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities – consider how you might represent the relationships between individual activity and neighborhood.
 
-## Obesity public health dataset
+## AVIDA digital evolution dataset
 
-[Data source](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition) \| [Related publication](https://doi.org/10.3844/jcssp.2019.67.77)
+[Related publications](https://avida-ed.msu.edu/digital-evolution/)[^1]
 
-**Background:** Rates of obesity have dramatically increased as more sedentary lifestyles and poorer diets become more widespread. Though the adverse health effects of obesity are well-documented, the factors that contribute to obesity are less understood, and many tools used to estimate obesity today only consider a limited few in their calculations.
+[^1]: In particular, see [Lenski et al. (2003)](https://www.nature.com/articles/nature01568) and [Smith et al. (2016)](https://link.springer.com/article/10.1186/s12052-016-0060-0).
 
-**Data overview:** Individuals from Mexico, Peru, and Colombia were surveyed about their eating and lifestyle behaviors to produce this dataset which was used to develop tools to better identify factors influencing the emergence of obesity – consider which of the many data types may have interesting relationships to explore.
-
-## AVIDA experimental evolution dataset
-
-**Background:** [Avida-ED](https://avida-ed.msu.edu/avida-ed-application/) is an online educational application that allows one to study the dynamics of evolutionary processes. [Digital](https://avida-ed.msu.edu/digital-evolution/), asexually-reproducing organisms known as "Avidians" can be placed into something akin to a virtual Petri dish to evolve in, and one can manipulate parameters such as mutation rate, resource availability, and dish size to study how those factors affect the evolution of the population.
+**Background:** The following data was generated using [Avida-ED](https://avida-ed.msu.edu/avida-ed-application/), an online educational application that allows one to study the dynamics of evolutionary processes. Digital, asexually-reproducing organisms known as "Avidians" can be placed into something akin to a virtual Petri dish to evolve in, and one can manipulate parameters such as mutation rate, resource availability, and dish size to study how those factors affect the evolution of the population.
 
 Your friend needs your help to analyze their AVIDA-Ed data. They have designed a series of experiments around a mutant Avidian that gets an energy bonus when the sugar "nanose" is present and a wildtype Avidian that does not. They wanted to see how competition and resource availability affect the population dynamics of these Avidians.
 
@@ -77,7 +88,7 @@ Your friend needs your help to analyze their AVIDA-Ed data. They have designed a
 
 //TODO crunchy fig
 
-```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "75%", fig.cap = "AVIDA experiment setup"}
+```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "AVIDA experiment setup"}
 knitr::include_graphics("project-day-2_files/avida-expt.png")
 ```
 
@@ -96,3 +107,15 @@ They collected data on the following population metrics: (reword: got a lot of d
 Help your friend get started with some of the exploratory data analysis. You can explore how combinations of genotype, competition, resource availability affect the population metrics – while you do not need to use all of the data files, you may need to mix-and-match different components of the data depending on your research question.
 
 *For teachers:* may need to help students with joining dataframes, parsing out column names, pivoting, and hopefully not the biology parts... once the columns are pivoted they can just slap different metrics on there. can plot time series data.
+
+===
+
+extra stuff
+
+In the previous class, you completed the following steps:
+
+1.  Created a GitHub account.
+
+2.  Linked your GitHub account with your Longleaf account.
+
+3.  Created and pushed your first repository to GitHub.
