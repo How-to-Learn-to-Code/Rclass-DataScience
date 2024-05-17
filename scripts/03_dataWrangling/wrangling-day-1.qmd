@@ -115,9 +115,7 @@ knitr::include_graphics("wrangling-files/tidy-style.png")
 This follows the *tidy data* style, an approach to handling data in R that aims to be clear and readable.
 
 ::: {.callout-note title="Tidiest Universe"}
-
-The bundle of tidy-associated packages is called the `tidyverse`, and it's a hot-topic in the R world. Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners! 
-
+The bundle of tidy-associated packages is called the `tidyverse`, and it's a hot-topic in the R world. Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners!
 :::
 
 ### `dplyr` verbs
@@ -147,7 +145,6 @@ With the `glimpse` function we see that this is a data frame with 3 observations
 -   The output is always a new data frame
 :::
 
-
 ```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Joshua Ebner’s A Quick Introduction to Dplyr"}
 knitr::include_graphics("wrangling-files/dplyr_syntax.png")
 ```
@@ -155,7 +152,6 @@ knitr::include_graphics("wrangling-files/dplyr_syntax.png")
 The `dplyr` package has a set of functions called "verbs" that are used to manipulate data frames. These verbs can either act on rows (i.e. `filter` out specific row's by some condition) or columns (i.e. `select` columns XYZ). There are also functions for working with groups (i.e. group rows by what values they have in a column with `group_by`)
 
 ::: panel-tabset
-
 ## rows
 
 The most important verbs that operate on rows of a dataset are `filter()`, which changes which rows are present without changing their order, and `arrange()`, which changes the order of the rows without changing which are present. Both functions only affect the rows, and the columns are left unchanged. We’ll also discuss `distinct()` which finds rows with unique values but unlike `arrange()` and `filter()` it can also optionally modify the columns.
@@ -177,25 +173,23 @@ More information about functions like this can be found [here](https://r4ds.hadl
 The `slice` family of functions allows you to extract specific rows within each group
 
 More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#groups)
-
 :::
 
-::: {.callout-tip}
+::: callout-tip
 `dplyr` verbs work great as a team!
 :::
-
 
 Although these were basic examples, hopefully you feel a little more confident about working with vectors, and data frames using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
 
 ### Functions on functions
+
 #### An introduction to pipes
 
-Data scientists often want to make many changes to their data at one time. Typically, this means using more than one function at once. However, the way we've been writing our scripts so far would make for some very confusing looking code. 
+Data scientists often want to make many changes to their data at one time. Typically, this means using more than one function at once. However, the way we've been writing our scripts so far would make for some very confusing looking code.
 
 For example, let's use `dplyr` functions to perform two operations on our data set of scientists: filter for those born after 1900 and then arrange them by date of birth.
 
 ::: panel-tabset
-
 ## Writing it as separate steps
 
 Here we first filter and then arrange. Note that we are creating an intermediate variable in between the steps.
@@ -209,6 +203,7 @@ arranged_data <- arrange(filtered_data, date_of_birth)
 ```
 
 ## Combining functions in one line
+
 We can do the same thing without creating an intermediate variable. It's more compact but can start to get confusing if we add more functions.
 
 ```{r}
@@ -216,6 +211,7 @@ arranged_data <- arrange(filter(df, as.Date(date_of_birth) > as.Date("1900-01-01
 ```
 
 ## Using pipes to clean up the code
+
 The **pipe operator**, `|>`, is a tool that can help make the script more readable. It allows us to pass the result of one function directly into the next. Think of it as saying, "and then.."
 
 Let's dissect our goal: *filter for those born after 1900* **and then** *arrange them by date of birth*.
@@ -233,22 +229,171 @@ arranged_data <- df |>
   arrange(date_of_birth)
 ```
 
-Once you're comfortable with this style, you should be able to read it as:
-Take `data` *and then* `filter` by DoB *and then* `arrange` by DoB. This helps keep our code both clean and readable.
-::: 
-
+Once you're comfortable with this style, you should be able to read it as: Take `data` *and then* `filter` by DoB *and then* `arrange` by DoB. This helps keep our code both clean and readable.
+:::
 
 ::: callout-tip
-There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. The only major difference is that `%>%` can specify which argument of the next function you want to pipe into. 
+There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. `%>%` is more lenient in its capabilities.
+
+::: panel-tabset
+
+### Placeholder
+
+:::: columns
+
+::: {.column width="45%"}
+
+#### `%>%`
+
+`%>%` uses `.` to represent the the `LHS` in the `RHS`. In addition to this, you may use `.` multiple times on the `RHS`
+
+```{r}
+3 %>% head(x = letters, n = .)
+3 %>% sum(2, ., .)
+```
+:::
+
+::: {.column width="10%"}
+<!-- empty space -->
+:::
+
+::: {.column width="45%"}
+
+#### `|>`
+
+`|>` uses `_` to represent the `LHS` in the `RHS`. However, the `_` placeholder must only be used once and the argument must be named
+
+```{r}
+3 |> head(x = letters, n = _)
+```
+```{r}
+#| eval: false
+3 |> sum(2, _)
+```
+
+```{r}
+#| echo: false
+cat("Error in sum(2, \"_\") : \n  pipe placeholder can only be used as\n   a named argument")
+```
+
+```{r}
+#| eval: false
+add3 <- function(x, y, z) x + y + z
+3 |> add3(2, y = _, z = _)
+```
+
+```{r}
+#| echo: false
+cat("Error in add3(2, y = \"_\", z = \"_\") : 
+  pipe placeholder may only appear once")
+```
+
+:::
+
+::::
+
+### Right Hand Side
+
+:::: columns
+
+::: {.column width="45%"}
+
+#### `%>%`
+
+`%>%` can take a function name on the `RHS`
+
+```{r}
+letters %>% head
+```
+
+:::
+
+::: {.column width="10%"}
+<!-- empty space -->
+:::
+
+::: {.column width="45%"}
+
+#### `|>`
+
+The `RHS` for `|>` must be a function with `()`
+
+
+```{r}
+#| eval: false
+letters |> head
+```
+
+```{r}
+#| echo: false
+cat("Error in head : 
+  The pipe operator requires a function \n  call as RHS")
+```
+
+```{r}
+letters |> head()
+```
+
+:::
+
+::::
+
+### Anonymous functions
+
+:::: columns
+
+::: {.column width="45%"}
+#### `%>%`
+
+`%>%` can take expressions in curly braces `{}`
+
+```{r}
+x <- 10
+5 %>% {x + .}
+```
+:::
+
+::: {.column width="10%"}
+<!-- empty space -->
+:::
+
+::: {.column width="45%"}
+
+#### `|>`
+
+`|>` must have a function call on `RHS`
+```{r}
+#| eval: false
+x <- 10
+5 |> {x + _}
+```
+
+```{r}
+#| echo: false
+cat("Error in { : 
+  function '{' not supported in RHS call \n  of a pipe")
+```
+
+```{r}
+5 |> {function(y) x + y}()
+```
+
+:::
+
+::::
+
+:::
+
+
+:::
 
 `data |> function(argument_A, argument_B)` can only do `function(argument_A = data, argument_B)`
 
-With `%>%` you can choose the argument with a period, `.`: `data %>% function(argument_A, argument_B = .)`
-:::
+With `%>%` you can choose the argument with a period, `.`: `data %>% function(argument_A, argument_B = .)` :::
 
 ## Case Study Introduction
 
-A lot of people struggle to learn how to code without having an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set. 
+A lot of people struggle to learn how to code without having an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set.
 
 For this example, we have some data from an experiment that measured the proportions of different cell times within mouse cardiac tissue. These samples are from treatment vs. control and WT vs. mutant.
 
@@ -278,9 +423,8 @@ head(cell_props)
 ::: {.callout-note title="Whole vs. Fractions"}
 `Fraction` samples are our controls. They are supposed to be almost completely one single cell type. They're just here to make sure we accurately measured cell type proportions.
 
-`Whole` samples are our test samples. They're from the treatment/control mice, which you'd expect to have a range of cell types. 
+`Whole` samples are our test samples. They're from the treatment/control mice, which you'd expect to have a range of cell types.
 :::
-
 
 ### Analysis Goals
 
