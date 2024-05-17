@@ -1,5 +1,5 @@
 ---
-title: "Working with real-world data"
+title: "Practicing on real-world data"
 subtitle: "H2L2C Project Management Day 2"
 author: "Lorrie He, Matthew Sutcliffe"
 format: html
@@ -8,7 +8,18 @@ output:
 editor: visual
 ---
 
+```{r setup, echo=FALSE}
+# read in data for later
+ebola <- read.csv("project-day-2_files/datasets/ebola.csv", header = TRUE, sep = ",")
+temps <- read.csv("project-day-2_files/datasets/temperatures.csv", header = TRUE, sep = ",")
+avida <- read.csv("project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
+
+knitr::opts_chunk$set(echo=FALSE, digits = 3)
+```
+
 # Final Class!
+
+// TODO add hyphens to avida col names
 
 Now that you've been through the entire course, we want to reinforce some of the skills that you've learned by applying your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have ... //TODO \[some code that shows...\]
 
@@ -34,17 +45,13 @@ These datasets were chosen because we thought they represented a good variety in
 
 For each dataset, we have provided a description of the research question/data collection methods, metadata, and the first few lines of each dataset. Read through these descriptions and work on the dataset you find most interesting.
 
-::: callout-tip
-## But I thought this was HTLTCode, not HTLTScience!
-
+::: {.callout-tip title="But I thought this was HTLTCode, not HTLTScience!"}
 Although we heavily encourage you to develop your own research questions and ideas for analyses to really practice your data analysis skills, we acknowledge that not everyone may have enough background to ask "appropriate" research questions for all of these datasets: so, to allow you to focus on the coding, for each dataset, we have come up with a few research questions of varying difficulty (i.e. step 4 from the list above) and created some example figures to accompany them.
 
 Depending on your familiarity with the topic, you can either create your own figure to answer the research question, or use your skills to figure out how we went from raw data to our final figure!
 :::
 
-::: callout-note
-## Up for a challenge?
-
+::: {.callout-note title="Up for a challenge?"}
 Some of these datasets come with additional files or have even less pre-processed versions. If you're up for a challenge (or are revisiting this material and feeling more confident in your skills), we have included those csvs for your perusal.
 
 idk if will keep this
@@ -60,6 +67,23 @@ idk if will keep this
 
 **Data overview:** The following data contains the dates for when each region updated their confirmed cases and deaths – consider how you might illustrate the dynamics of the outbreak.
 
+::: panel-tabset
+## Data preview
+
+```{r}
+knitr::kable(head(ebola))
+```
+
+## Column metadata
+
+| Column                                                       | Type      | Description                     | Values     |
+|----------------------|-----------------|-----------------|-----------------|
+| `Country`                                                    | character | Country of report               |            |
+| `Date`                                                       | character | Date of report                  | YYYY-MM-DD |
+| `Cumulative.no..of.confirmed..probable.and.suspected.cases`  | numeric   | Cumulative number till this day |            |
+| `Cumulative.no..of.confirmed..probable.and.suspected.deaths` | numeric   | Cumulative number till this day |            |
+:::
+
 ## Heat exposure in Phoenix, Arizona ecological dataset
 
 [Data source](https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2) \| [Related publication](https://doi.org/10.1016/j.envint.2020.106271)
@@ -67,6 +91,22 @@ idk if will keep this
 **Background:** Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.
 
 **Data overview:** The Central Arizona-Pheonix Long-Term Ecological Research Program [(CAP-LTER)](https://sustainability-innovation.asu.edu/caplter/) recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities – consider how you might represent the relationships between individual activity and neighborhood.
+
+::: panel-tabset
+## Data preview
+
+```{r}
+knitr::kable(head(temps))
+```
+
+## Column metadata
+
+| Column        | Type      | Description                                                       | Values                                                                   |
+|------------------|------------------|------------------|--------------------|
+| `Subject.ID`  | character | Subject identifier where number (1-5) corresponds to neighborhood | 1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch |
+| `period`      | character | 4 hour measurement period                                         | weekday, period                                                          |
+| `temperature` | num       | 4 hour average of IET during specified period                     | Celcius                                                                  |
+:::
 
 ## AVIDA digital evolution dataset
 
@@ -78,6 +118,29 @@ idk if will keep this
 
 Your friend needs your help to analyze their AVIDA-Ed data. They have designed a series of experiments around a mutant Avidian that gets an energy bonus when the sugar "nanose" is present and a wildtype Avidian that does not. They wanted to see how competition and resource availability affect the population dynamics of these Avidians.
 
+::: panel-tabset
+## Data preview
+
+Data for `avida_wildtype.csv` shown only:
+
+```{r}
+knitr::kable(head(avida))
+```
+
+## Column metadata
+
+| Column                      | Type      | Description                                                                       | Values                                                       |
+|----------------|----------------|-------------------|----------------------|
+| `update`                    | integer   | Time elapsed                                                                      | Ranges 0-300                                                 |
+| `condition`                 | character | Testing conditions (single population or competition)                             | Based off csv: `wildtype-only`, `mutant-only`, `competition` |
+| `media_avg-fitness`         | numeric   | Average individual reproductive success in specified media                        | Ranges 0-1                                                   |
+| `media_avg-offspring.cost`  | numeric   | Average individual reproductive cost in specified media                           |                                                              |
+| `media_avg-energy-acq-rate` | numeric   | Average individual rate of energy acquisition from environment in specified media |                                                              |
+| `media_pop-size`            | integer   | Population size in specified media                                                | Ranges 0-900                                                 |
+
+All population measurements were determined for `minimal`, `selective`, and `rich` media.
+:::
+
 **Data overview:** Time was measured in "updates". Your friend grew either the wildtype only, mutant only, or both populations together (competition) in the following 3 environments:
 
 -   Minimal (no additional sugars present)
@@ -88,7 +151,7 @@ Your friend needs your help to analyze their AVIDA-Ed data. They have designed a
 
 //TODO crunchy fig
 
-```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "AVIDA experiment setup"}
+```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "75%", fig.cap = "Avida experiment setup"}
 knitr::include_graphics("project-day-2_files/avida-expt.png")
 ```
 

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lorrie He, Matthew Sutcliffe">
 
-<title>4-project-day-2</title>
+<title>Working with real-world data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -45,13 +46,20 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">4-project-day-2</h1>
+<h1 class="title">Working with real-world data</h1>
+<p class="subtitle lead">H2L2C Project Management Day 2</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lorrie He, Matthew Sutcliffe </p>
+          </div>
+  </div>
     
   
     
@@ -64,54 +72,474 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="final-class" class="level1">
 <h1>Final Class!</h1>
-<p>Now that you’ve been through the entire course, we want to reinforce some of the skills that you’ve learned by applying your knowledge to several existing datasets. In the previous class, you have completed the following steps:</p>
+<p>// TODO add hyphens to avida col names</p>
+<p>Now that you’ve been through the entire course, we want to reinforce some of the skills that you’ve learned by applying your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have … //TODO [some code that shows…]</p>
+<p>For each of these datasets (as many as time allows), we’d like you to do some basic analysis, including the following steps:</p>
 <ol type="1">
-<li><p>Created a GitHub account.</p></li>
-<li><p>Linked your GitHub account with your Longleaf account.</p></li>
-<li><p>Created and pushed your first repository to GitHub.</p></li>
-</ol>
-<p>//TODO more linky to working on project in longleaf/their project repo</p>
-<p>//TODO more pointers for what to do for analyses, 1-2 example figs/analyses, cut obesity, more decripts of the data structure, so the teacher doesnt have to be super familiar with the data. crunchy fig.&nbsp;prob this is mostly going to be a “here’s a figure - recreate it”. def need to include some code to copy/paste for certain operations</p>
-<p>//TODO frontmatter</p>
-</section>
-<section id="datasets" class="level1">
-<h1>Datasets</h1>
-<p>The following datasets represent some real-world data for you to practice your data wrangling and visualisation skills with. For each of these datasets (as many as time allows), we’d like you to do some basic analysis, including the following steps:</p>
-<ol type="1">
-<li>Creating a directory for the analysis of this dataset, using best practices discussed in the previous class.</li>
-<li>Loading in the data.</li>
-<li>Performing some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)</li>
-<li>Identifying at least 1 research question that you could try to answer with this dataset.</li>
-<li>Formatting the data in a way that allows for this analysis.</li>
+<li>Create a directory for the analysis of this dataset, using best practices discussed in the previous class.</li>
+<li>Load in the data.</li>
+<li>Perform some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)</li>
+<li>Identify at least 1 research question that you could try to answer with this dataset.</li>
+<li>Format the data in a way that allows for this analysis.</li>
 <li>Visualize the data in helpful ways to answer your question.</li>
 <li>Make your code reproducible by using Github.</li>
 </ol>
-<p>To help with your analyses, we have included a template document that you are welcome to use.</p>
-<p>These datasets are listed roughly in order of increasing experimental/wrangling complexity — choose whichever you are most interested in!</p>
+<p>To help with your analyses, we have included a <strong>template document</strong> outlining these steps that you are welcome to use.</p>
+<p>//TODO more pointers for what to do for analyses, 1-2 example figs/analyses, more decripts of the data structure, so the teacher doesnt have to be super familiar with the data. crunchy fig.&nbsp;prob this is mostly going to be a “here’s a figure - recreate it”. def need to include some code to copy/paste for certain operations</p>
+</section>
+<section id="datasets" class="level1">
+<h1>Datasets</h1>
+<p>The csvs are available under the <code>data</code> folder (or wherever it’ll be moved to). We have provided links to data that is publically available for download, as well as some related publications that may give you more information about the data.</p>
+<p>These datasets were chosen because we thought they represented a good variety in the different kinds of wrangling and visualization challenges you might encounter with your own data in the future, and are presented roughly in order of increasing experimental/wrangling complexity. We have highlighted a few specific R skills that some of these datasets were meant to challenge you on.</p>
+<p>For each dataset, we have provided a description of the research question/data collection methods, metadata, and the first few lines of each dataset. Read through these descriptions and work on the dataset you find most interesting.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="But I thought this was HTLTCode, not HTLTScience!">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+But I thought this was HTLTCode, not HTLTScience!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although we heavily encourage you to develop your own research questions and ideas for analyses to really practice your data analysis skills, we acknowledge that not everyone may have enough background to ask “appropriate” research questions for all of these datasets: so, to allow you to focus on the coding, for each dataset, we have come up with a few research questions of varying difficulty (i.e.&nbsp;step 4 from the list above) and created some example figures to accompany them.</p>
+<p>Depending on your familiarity with the topic, you can either create your own figure to answer the research question, or use your skills to figure out how we went from raw data to our final figure!</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Up for a challenge?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Up for a challenge?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some of these datasets come with additional files or have even less pre-processed versions. If you’re up for a challenge (or are revisiting this material and feeling more confident in your skills), we have included those csvs for your perusal.</p>
+<p>idk if will keep this</p>
+</div>
+</div>
 <p>//TODO add metadata + data previews (metadata via callouts)</p>
 <section id="western-africa-ebola-public-health-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="western-africa-ebola-public-health-dataset">Western Africa Ebola public health dataset</h2>
 <p><a href="https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset">Data source</a></p>
 <p><strong>Background:</strong> The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.</p>
 <p><strong>Data overview:</strong> The following data contains the dates for when each region updated their confirmed cases and deaths – consider how you might illustrate the dynamics of the outbreak.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Column metadata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Country</th>
+<th style="text-align: left;">Date</th>
+<th style="text-align: right;">Cumulative.no..of.confirmed..probable.and.suspected.cases</th>
+<th style="text-align: right;">Cumulative.no..of.confirmed..probable.and.suspected.deaths</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Guinea</td>
+<td style="text-align: left;">2014-08-29</td>
+<td style="text-align: right;">648</td>
+<td style="text-align: right;">430</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nigeria</td>
+<td style="text-align: left;">2014-08-29</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sierra Leone</td>
+<td style="text-align: left;">2014-08-29</td>
+<td style="text-align: right;">1026</td>
+<td style="text-align: right;">422</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Liberia</td>
+<td style="text-align: left;">2014-08-29</td>
+<td style="text-align: right;">1378</td>
+<td style="text-align: right;">694</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sierra Leone</td>
+<td style="text-align: left;">2014-09-05</td>
+<td style="text-align: right;">1261</td>
+<td style="text-align: right;">491</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nigeria</td>
+<td style="text-align: left;">2014-09-05</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<table class="table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Country</code></td>
+<td>character</td>
+<td>Country of report</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Date</code></td>
+<td>character</td>
+<td>Date of report</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr class="odd">
+<td><code>Cumulative.no..of.confirmed..probable.and.suspected.cases</code></td>
+<td>numeric</td>
+<td>Cumulative number till this day</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Cumulative.no..of.confirmed..probable.and.suspected.deaths</code></td>
+<td>numeric</td>
+<td>Cumulative number till this day</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="heat-exposure-in-phoenix-arizona-ecological-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="heat-exposure-in-phoenix-arizona-ecological-dataset">Heat exposure in Phoenix, Arizona ecological dataset</h2>
 <p><a href="https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2">Data source</a> | <a href="https://doi.org/10.1016/j.envint.2020.106271">Related publication</a></p>
 <p><strong>Background:</strong> Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.</p>
 <p><strong>Data overview:</strong> The Central Arizona-Pheonix Long-Term Ecological Research Program <a href="https://sustainability-innovation.asu.edu/caplter/">(CAP-LTER)</a> recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities – consider how you might represent the relationships between individual activity and neighborhood.</p>
-</section>
-<section id="obesity-public-health-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="obesity-public-health-dataset">Obesity public health dataset</h2>
-<p><a href="https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition">Data source</a> | <a href="https://doi.org/10.3844/jcssp.2019.67.77">Related publication</a></p>
-<p><strong>Background:</strong> Rates of obesity have dramatically increased as more sedentary lifestyles and poorer diets become more widespread. Though the adverse health effects of obesity are well-documented, the factors that contribute to obesity are less understood, and many tools used to estimate obesity today only consider a limited few in their calculations.</p>
-<p><strong>Data overview:</strong> Individuals from Mexico, Peru, and Colombia were surveyed about their eating and lifestyle behaviors to produce this dataset which was used to develop tools to better identify factors influencing the emergence of obesity – consider which of the many data types may have interesting relationships to explore.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Column metadata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Subject.ID</th>
+<th style="text-align: left;">period</th>
+<th style="text-align: right;">temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1A</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">25.14447</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1P</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">26.77962</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1E</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">27.21875</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1B</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">26.79175</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2N</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3A</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Subject.ID</code></td>
+<td>character</td>
+<td>Subject identifier where number (1-5) corresponds to neighborhood</td>
+<td>1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch</td>
+</tr>
+<tr class="even">
+<td><code>period</code></td>
+<td>character</td>
+<td>4 hour measurement period</td>
+<td>weekday, period</td>
+</tr>
+<tr class="odd">
+<td><code>temperature</code></td>
+<td>num</td>
+<td>4 hour average of IET during specified period</td>
+<td>Celcius</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="avida-digital-evolution-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="avida-digital-evolution-dataset">AVIDA digital evolution dataset</h2>
-<p><a href="https://avida-ed.msu.edu/digital-evolution/">Related publications</a></p>
+<p><a href="https://avida-ed.msu.edu/digital-evolution/">Related publications</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p><strong>Background:</strong> The following data was generated using <a href="https://avida-ed.msu.edu/avida-ed-application/">Avida-ED</a>, an online educational application that allows one to study the dynamics of evolutionary processes. Digital, asexually-reproducing organisms known as “Avidians” can be placed into something akin to a virtual Petri dish to evolve in, and one can manipulate parameters such as mutation rate, resource availability, and dish size to study how those factors affect the evolution of the population.</p>
 <p>Your friend needs your help to analyze their AVIDA-Ed data. They have designed a series of experiments around a mutant Avidian that gets an energy bonus when the sugar “nanose” is present and a wildtype Avidian that does not. They wanted to see how competition and resource availability affect the population dynamics of these Avidians.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Column metadata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>Data for <code>avida_wildtype.csv</code> shown only:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">update</th>
+<th style="text-align: left;">condition</th>
+<th style="text-align: right;">minimal_avg.fitness</th>
+<th style="text-align: right;">minimal_avg.offspring.cost</th>
+<th style="text-align: right;">minimal_avg.energy.acq.rate</th>
+<th style="text-align: right;">minimal_pop.size</th>
+<th style="text-align: right;">selective_avg.fitness</th>
+<th style="text-align: right;">selective_avg.offspring.cost</th>
+<th style="text-align: right;">selective_avg.energy.acq.rate</th>
+<th style="text-align: right;">selective_pop.size</th>
+<th style="text-align: right;">rich_avg.fitness</th>
+<th style="text-align: right;">rich_avg.offspring.cost</th>
+<th style="text-align: right;">rich_avg.energy.acq.rate</th>
+<th style="text-align: right;">rich_pop.size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>update</code></td>
+<td>integer</td>
+<td>Time elapsed</td>
+<td>Ranges 0-300</td>
+</tr>
+<tr class="even">
+<td><code>condition</code></td>
+<td>character</td>
+<td>Testing conditions (single population or competition)</td>
+<td>Based off csv: <code>wildtype-only</code>, <code>mutant-only</code>, <code>competition</code></td>
+</tr>
+<tr class="odd">
+<td><code>media_avg-fitness</code></td>
+<td>numeric</td>
+<td>Average individual reproductive success in specified media</td>
+<td>Ranges 0-1</td>
+</tr>
+<tr class="even">
+<td><code>media_avg-offspring.cost</code></td>
+<td>numeric</td>
+<td>Average individual reproductive cost in specified media</td>
+<td>Ranges &gt;0</td>
+</tr>
+<tr class="odd">
+<td><code>media_avg-energy-acq-rate</code></td>
+<td>numeric</td>
+<td>Average individual rate of energy acquisition from environment in specified media</td>
+<td>Ranges &gt;0</td>
+</tr>
+<tr class="even">
+<td><code>media_pop-size</code></td>
+<td>integer</td>
+<td>Population size in specified media</td>
+<td>Ranges 0-900</td>
+</tr>
+</tbody>
+</table>
+<p>All population measurements were determined for <code>minimal</code>, <code>selective</code>, and <code>rich</code> media.</p>
+</div>
+</div>
+</div>
 <p><strong>Data overview:</strong> Time was measured in “updates”. Your friend grew either the wildtype only, mutant only, or both populations together (competition) in the following 3 environments:</p>
 <ul>
 <li><p>Minimal (no additional sugars present)</p></li>
@@ -123,8 +551,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="project-day-2_files/avida-expt.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>AVIDA experiment setup</figcaption>
+<p><img src="project-day-2_files/avida-expt.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Avida experiment setup</figcaption>
 </figure>
 </div>
 </div>
@@ -139,10 +567,24 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Help your friend get started with some of the exploratory data analysis. You can explore how combinations of genotype, competition, resource availability affect the population metrics – while you do not need to use all of the data files, you may need to mix-and-match different components of the data depending on your research question.</p>
 <p><em>For teachers:</em> may need to help students with joining dataframes, parsing out column names, pivoting, and hopefully not the biology parts… once the columns are pivoted they can just slap different metrics on there. can plot time series data.</p>
+<p>===</p>
+<p>extra stuff</p>
+<p>In the previous class, you completed the following steps:</p>
+<ol type="1">
+<li><p>Created a GitHub account.</p></li>
+<li><p>Linked your GitHub account with your Longleaf account.</p></li>
+<li><p>Created and pushed your first repository to GitHub.</p></li>
+</ol>
 </section>
 </section>
 
-</main>
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>In particular, see <a href="https://www.nature.com/articles/nature01568">Lenski et al.&nbsp;(2003)</a> and <a href="https://link.springer.com/article/10.1186/s12052-016-0060-0">Smith et al.&nbsp;(2016)</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
