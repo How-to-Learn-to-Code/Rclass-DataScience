@@ -233,70 +233,47 @@ Once you're comfortable with this style, you should be able to read it as: Take 
 :::
 
 ::: callout-tip
-There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. `%>%` is more lenient in its capabilities.
+There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. 
+
+::: {.callout-note title="Placeholders" collapse="true"}
+
+The **Placeholder** operator allows more control over where the `LHS` is placed into the `RHS` of the pipe operator.
 
 ::: panel-tabset
 
-### Placeholder
-
-:::: columns
-
-::: {.column width="45%"}
-
 #### `%>%`
 
-`%>%` uses `.` to represent the the `LHS` in the `RHS`. In addition to this, you may use `.` multiple times on the `RHS`
+`%>%` uses `.` as its placeholder operator. In addition to this, you may use `.` multiple times on the `RHS`
 
 ```{r}
 3 %>% head(x = letters, n = .)
 3 %>% sum(2, ., .)
 ```
-:::
-
-::: {.column width="10%"}
-<!-- empty space -->
-:::
-
-::: {.column width="45%"}
 
 #### `|>`
 
-`|>` uses `_` to represent the `LHS` in the `RHS`. However, the `_` placeholder must only be used once and the argument must be named
+`|>` uses `_` as its placeholder operator. However, the `_` placeholder must only be used once and the argument must be named
 
 ```{r}
 3 |> head(x = letters, n = _)
 ```
 ```{r}
-#| eval: false
+#| error: true
 3 |> sum(2, _)
 ```
 
 ```{r}
-#| echo: false
-cat("Error in sum(2, \"_\") : \n  pipe placeholder can only be used as\n   a named argument")
-```
-
-```{r}
-#| eval: false
+#| error: true
 add3 <- function(x, y, z) x + y + z
 3 |> add3(2, y = _, z = _)
 ```
 
-```{r}
-#| echo: false
-cat("Error in add3(2, y = \"_\", z = \"_\") : 
-  pipe placeholder may only appear once")
-```
+:::
 
 :::
 
-::::
-
-### Right Hand Side
-
-:::: columns
-
-::: {.column width="45%"}
+::: {.callout-note title="Right Hand Side (RHS)" collapse="true"}
+::: panel-tabset
 
 #### `%>%`
 
@@ -306,28 +283,14 @@ cat("Error in add3(2, y = \"_\", z = \"_\") :
 letters %>% head
 ```
 
-:::
-
-::: {.column width="10%"}
-<!-- empty space -->
-:::
-
-::: {.column width="45%"}
-
 #### `|>`
 
 The `RHS` for `|>` must be a function with `()`
 
 
 ```{r}
-#| eval: false
+#| error: true
 letters |> head
-```
-
-```{r}
-#| echo: false
-cat("Error in head : 
-  The pipe operator requires a function \n  call as RHS")
 ```
 
 ```{r}
@@ -335,14 +298,12 @@ letters |> head()
 ```
 
 :::
+:::
 
-::::
+::: {.callout-note title="Anonymous Functions" collapse="true"}
 
-### Anonymous functions
+::: panel-tabset
 
-:::: columns
-
-::: {.column width="45%"}
 #### `%>%`
 
 `%>%` can take expressions in curly braces `{}`
@@ -351,27 +312,14 @@ letters |> head()
 x <- 10
 5 %>% {x + .}
 ```
-:::
-
-::: {.column width="10%"}
-<!-- empty space -->
-:::
-
-::: {.column width="45%"}
 
 #### `|>`
 
 `|>` must have a function call on `RHS`
 ```{r}
-#| eval: false
+#| error: true
 x <- 10
 5 |> {x + _}
-```
-
-```{r}
-#| echo: false
-cat("Error in { : 
-  function '{' not supported in RHS call \n  of a pipe")
 ```
 
 ```{r}
@@ -380,16 +328,11 @@ cat("Error in { :
 
 :::
 
-::::
-
 :::
 
+To summarize, `%>%` is slightly more lenient than `|>` when it comes to the Placeholder operator, the Right Hand Side (RHS) and Anonymous functions.
 
 :::
-
-`data |> function(argument_A, argument_B)` can only do `function(argument_A = data, argument_B)`
-
-With `%>%` you can choose the argument with a period, `.`: `data %>% function(argument_A, argument_B = .)` :::
 
 ## Case Study Introduction
 
