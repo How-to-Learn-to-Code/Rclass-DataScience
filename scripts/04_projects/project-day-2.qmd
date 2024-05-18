@@ -1,8 +1,10 @@
 ---
 title: "Practicing on real-world data"
 subtitle: "H2L2C Project Management Day 2"
-author: "Lorrie He, Matthew Sutcliffe"
-format: html
+authors: "Lorrie He, Matthew Sutcliffe"
+format: 
+  html:
+    toc: true
 output:
   html_document:
 editor: visual
@@ -19,7 +21,7 @@ knitr::opts_chunk$set(echo=FALSE, digits = 3)
 
 # Final Class!
 
-// TODO add hyphens to avida col names
+//TODO mention sth about how the data is raw
 
 Now that you've been through the entire course, we want to reinforce some of the skills that you've learned by applying your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have ... //TODO \[some code that shows...\]
 
@@ -46,27 +48,34 @@ These datasets were chosen because we thought they represented a good variety in
 For each dataset, we have provided a description of the research question/data collection methods, metadata, and the first few lines of each dataset. Read through these descriptions and work on the dataset you find most interesting.
 
 ::: {.callout-tip title="But I thought this was HTLTCode, not HTLTScience!"}
-Although we heavily encourage you to develop your own research questions and ideas for analyses to really practice your data analysis skills, we acknowledge that not everyone may have enough background to ask "appropriate" research questions for all of these datasets: so, to allow you to focus on the coding, for each dataset, we have come up with a few research questions of varying difficulty (i.e. step 4 from the list above) and created some example figures to accompany them.
+To get the most out of today's activities, we highly encourage you practice going through the whole data analysis workflow as independently as you can, developing your own research questions and analysis ideas.
 
-Depending on your familiarity with the topic, you can either create your own figure to answer the research question, or use your skills to figure out how we went from raw data to our final figure!
+That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you'd rather focus more on coding or sciencing for each dataset. These questions are split into "easier" and "harder" coding challenges.
+
+Thus, based on your comfort level, you can decide how much of the data analysis workflow you want to try independently today:
+
+1.  Recreate our figures
+2.  Develop your own analysis and figures to answer our research questions
+3.  Develop your own research questions, analysis, figures
 :::
 
-::: {.callout-note title="Up for a challenge?"}
+::: {.callout-note title="Up for a challenge?" collapse="true"}
 Some of these datasets come with additional files or have even less pre-processed versions. If you're up for a challenge (or are revisiting this material and feeling more confident in your skills), we have included those csvs for your perusal.
 
 idk if will keep this
 :::
 
-//TODO add metadata + data previews (metadata via callouts)
-
 ## Western Africa Ebola public health dataset
 
 [Data source](https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset)
 
+**Skills to practice:** renaming columns, working with dates
+
 **Background:** The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.
 
-**Data overview:** The following data contains the dates for when each region updated their confirmed cases and deaths – consider how you might illustrate the dynamics of the outbreak.
+How might you represent the dynamics of this outbreak?
 
+::: {.callout-note collapse="true" title="Data overview"}
 ::: panel-tabset
 ## Data preview
 
@@ -77,21 +86,43 @@ knitr::kable(head(ebola))
 ## Column metadata
 
 | Column                                                       | Type      | Description                     | Values     |
-|----------------------|-----------------|-----------------|-----------------|
+|-------------------|------------------|------------------|------------------|
 | `Country`                                                    | character | Country of report               |            |
 | `Date`                                                       | character | Date of report                  | YYYY-MM-DD |
 | `Cumulative.no..of.confirmed..probable.and.suspected.cases`  | numeric   | Cumulative number till this day |            |
 | `Cumulative.no..of.confirmed..probable.and.suspected.deaths` | numeric   | Cumulative number till this day |            |
+:::
+:::
+
+::: {.callout-tip collapse="true" title="Analysis ideas"}
+::: panel-tabset
+## Easier
+
+-   For a specific year, how did the number of cases and deaths change over time for each country?
+-   How many cases and deaths in total were recorded by each country from 2014-2016?
+
+## Harder
+
+-   By country, how did the average number of cases and death change each year?
+-   Did there seem to be any seasonal patterns in the average cases and deaths?
+
+## Example figures
+:::
 :::
 
 ## Heat exposure in Phoenix, Arizona ecological dataset
 
 [Data source](https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2) \| [Related publication](https://doi.org/10.1016/j.envint.2020.106271)
 
+**Skills to practice:** dealing with `NA` values, parsing strings
+
 **Background:** Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.
 
-**Data overview:** The Central Arizona-Pheonix Long-Term Ecological Research Program [(CAP-LTER)](https://sustainability-innovation.asu.edu/caplter/) recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities – consider how you might represent the relationships between individual activity and neighborhood.
+To further investigate, the Central Arizona-Pheonix Long-Term Ecological Research Program [(CAP-LTER)](https://sustainability-innovation.asu.edu/caplter/) recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities.
 
+What kind of relationships can you find between individual activty and neighborhood?
+
+::: {.callout-note collapse="true" title="Data overview"}
 ::: panel-tabset
 ## Data preview
 
@@ -102,10 +133,27 @@ knitr::kable(head(temps))
 ## Column metadata
 
 | Column        | Type      | Description                                                       | Values                                                                   |
-|------------------|------------------|------------------|--------------------|
+|------------------|------------------|------------------|-------------------|
 | `Subject.ID`  | character | Subject identifier where number (1-5) corresponds to neighborhood | 1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch |
 | `period`      | character | 4 hour measurement period                                         | weekday, period                                                          |
 | `temperature` | num       | 4 hour average of IET during specified period                     | Celcius                                                                  |
+:::
+:::
+
+::: {.callout-tip collapse="true" title="Analysis ideas"}
+::: panel-tabset
+## Easier
+
+-   How many participants were there for each neighborhood in the study?
+-   On average, which 4-hour measurement period is the warmest? The coolest?
+
+## Harder
+
+-   What was the daily average temperature for each neighborhood during the study period?
+-   For a specific neighborhood on a certain day, what were all the individual temperatures experienced for each 4-hour measurement period?
+
+## Example figures
+:::
 :::
 
 ## AVIDA digital evolution dataset
@@ -114,10 +162,27 @@ knitr::kable(head(temps))
 
 [^1]: In particular, see [Lenski et al. (2003)](https://www.nature.com/articles/nature01568) and [Smith et al. (2016)](https://link.springer.com/article/10.1186/s12052-016-0060-0).
 
+**Skills to practice:** pivoting, working with multiple datasets
+
 **Background:** The following data was generated using [Avida-ED](https://avida-ed.msu.edu/avida-ed-application/), an online educational application that allows one to study the dynamics of evolutionary processes. Digital, asexually-reproducing organisms known as "Avidians" can be placed into something akin to a virtual Petri dish to evolve in, and one can manipulate parameters such as mutation rate, resource availability, and dish size to study how those factors affect the evolution of the population.
 
-Your friend needs your help to analyze their AVIDA-Ed data. They have designed a series of experiments around a mutant Avidian that gets an energy bonus when the sugar "nanose" is present and a wildtype Avidian that does not. They wanted to see how competition and resource availability affect the population dynamics of these Avidians.
+Your friend needs your help to analyze their AVIDA-Ed data. They designed a series of experiments around a mutant Avidian that gets an energy bonus when the sugar "nanose" is present and a wildtype Avidian that does not. They wanted to see how competition and resource availability affect the population dynamics of these Avidians.
 
+Your friend grew either the wildtype only, mutant only, or both populations together (competition) in the following 3 environments:
+
+-   Minimal (no additional sugars present)
+
+-   Selective (only nanose present)
+
+-   Rich (nanose and additional sugars present)
+
+```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "75%", fig.cap = "Avida experiment setup"}
+knitr::include_graphics("project-day-2_files/avida-expt.png")
+```
+
+Help your friend get started with some of the exploratory data analysis: what interesting patterns can you find between genotype, competition, and resource availability?
+
+::: {.callout-note collapse="true" title="Data overview"}
 ::: panel-tabset
 ## Data preview
 
@@ -130,7 +195,7 @@ knitr::kable(head(avida))
 ## Column metadata
 
 | Column                      | Type      | Description                                                                       | Values                                                       |
-|----------------|----------------|-------------------|----------------------|
+|------------------|------------------|------------------|-------------------|
 | `update`                    | integer   | Time elapsed                                                                      | Ranges 0-300                                                 |
 | `condition`                 | character | Testing conditions (single population or competition)                             | Based off csv: `wildtype-only`, `mutant-only`, `competition` |
 | `media_avg-fitness`         | numeric   | Average individual reproductive success in specified media                        | Ranges 0-1                                                   |
@@ -140,34 +205,23 @@ knitr::kable(head(avida))
 
 All population measurements were determined for `minimal`, `selective`, and `rich` media.
 :::
+:::
 
-**Data overview:** Time was measured in "updates". Your friend grew either the wildtype only, mutant only, or both populations together (competition) in the following 3 environments:
+::: {.callout-tip collapse="true" title="Analysis ideas"}
+::: panel-tabset
+## Easier
 
--   Minimal (no additional sugars present)
+-   How does population size change over time for the wildtype or mutant in different medias?
+-   What is the relationship between fitness and offspring cost in competition conditions in different medias?
 
--   Selective (only nanose present)
+## Harder
 
--   Rich (nanose and additional sugars present)
+-   How does the change in fitness over time compare between different treatment conditions and media types?
+-   Which media type allows for the most maximal performance of the wildtype? The mutant? Competition conditions?
 
-//TODO crunchy fig
-
-```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "75%", fig.cap = "Avida experiment setup"}
-knitr::include_graphics("project-day-2_files/avida-expt.png")
-```
-
-They collected data on the following population metrics: (reword: got a lot of data?)
-
--   Avg fitness (avg individual reproductive success; ranges 0-1)
-
--   Avg offspring cost (avg cost to reproduce, ranges \>0)
-
--   Avg energy acquisition rate (avg rate of acquiring energy from the environment; ranges \>0)
-
--   The population size (ranges from 1-900)
-
--   The viable population size (might remove this one bc confusing)
-
-Help your friend get started with some of the exploratory data analysis. You can explore how combinations of genotype, competition, resource availability affect the population metrics – while you do not need to use all of the data files, you may need to mix-and-match different components of the data depending on your research question.
+## Example figures
+:::
+:::
 
 *For teachers:* may need to help students with joining dataframes, parsing out column names, pivoting, and hopefully not the biology parts... once the columns are pivoted they can just slap different metrics on there. can plot time series data.
 
