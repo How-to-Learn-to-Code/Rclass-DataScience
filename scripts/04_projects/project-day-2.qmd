@@ -12,14 +12,40 @@ editor: visual
 
 ```{r setup, echo=FALSE}
 # read in data for later
-ebola <- read.csv("project-day-2_files/datasets/ebola.csv", header = TRUE, sep = ",")
-temps <- read.csv("project-day-2_files/datasets/temperatures.csv", header = TRUE, sep = ",")
-avida <- read.csv("project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
+ebola0 <- read.csv("project-day-2_files/datasets/ebola.csv", header = TRUE, sep = ",")
+temps0 <- read.csv("project-day-2_files/datasets/temperatures.csv", header = TRUE, sep = ",")
+avida0 <- read.csv("project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
 
 knitr::opts_chunk$set(echo=FALSE, digits = 3)
 ```
 
 # Final Class!
+
+::: {.callout-note collapse="true"}
+## Instructor notes
+
+::: panel-tabset
+### Prep & lesson goals
+
+There will be a bit of prep work on your end for this class because this is so open-ended: would strongly encourage being somewhat familiar with the background and data overview sections before class. These shouldn't be terribly tricky datasets for instructors to work with, and you don't really need to understand the science (except maybe the Avida data): just know enough that you could tell a student "that figure/analysis makes sense and is informative", have some intuition of what is making their code break, etc.
+
+Ideally, students can just read up on what each dataset contains, come up with questions, and happily work their way through it and make some beautiful figures with no issues :-) That said, the ultimate goal for this lesson is that students will leave today with a repo containing a mostly done analysis (data, cleaning script, analysis script, final figs, etc). This is structured to be a bit flexible to match different science/coding comfort levels, so students can decide if they want to do the whole workflow themselves (develop questions, analysis, figs), do only parts of it (create their own figs), or just practice the coding (recreate a figure from the raw data).
+
+### Tips & ideas for running the lesson
+
+btw, you can pretty off-script for this lesson (i.e. use different datasets, create different analyses, etc): again, the goal is just for students to really synthesize the lessons, put them into practice, and try to work independently. At base, stress this aspect, and if you choose to follow the script, probably at least read over the "skills to practice" and the "background" sections before letting everyone off on their own.
+
+To make the work easier, you could have people work in pairs (but in their own repos). You could maybe have them work in larger groups/have everyone do the same analysis, but it might feel too much like data viz day 2...
+
+There will be some pre-filled project templates in the folder that goes through the whole process for 1 easy and 1 hard question for each dataset (which will stress the specific "skills to practice" for each dataset). You can reiterate to the class that for those who want a bit more structure/support, you will be most familiar with the details for those questions (i.e. they should try to recreate those scripts on their own because you'll have the "answer").
+
+Other things:
+
+-   re: "easier" and "harder" questions, those divisions are mostly based off how much data processing is involved and don't have a single answer in mind. Obviously those aren't the only questions you can make for the datasets, so feel free to come up with more.
+
+-   some "Hints" are provided for code that might not have been covered yet (e.g. splitting strings).
+:::
+:::
 
 //TODO mention sth about how the data is raw
 
@@ -65,51 +91,6 @@ Some of these datasets come with additional files or have even less pre-processe
 idk if will keep this
 :::
 
-## Western Africa Ebola public health dataset
-
-[Data source](https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset)
-
-**Skills to practice:** renaming columns, working with dates
-
-**Background:** The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.
-
-How might you represent the dynamics of this outbreak?
-
-::: {.callout-note collapse="true" title="Data overview"}
-::: panel-tabset
-## Data preview
-
-```{r}
-knitr::kable(head(ebola))
-```
-
-## Column metadata
-
-| Column                                                       | Type      | Description                     | Values     |
-|-------------------|------------------|------------------|------------------|
-| `Country`                                                    | character | Country of report               |            |
-| `Date`                                                       | character | Date of report                  | YYYY-MM-DD |
-| `Cumulative.no..of.confirmed..probable.and.suspected.cases`  | numeric   | Cumulative number till this day |            |
-| `Cumulative.no..of.confirmed..probable.and.suspected.deaths` | numeric   | Cumulative number till this day |            |
-:::
-:::
-
-::: {.callout-tip collapse="true" title="Analysis ideas"}
-::: panel-tabset
-## Easier
-
--   For a specific year, how did the number of cases and deaths change over time for each country?
--   How many cases and deaths in total were recorded by each country from 2014-2016?
-
-## Harder
-
--   By country, how did the average number of cases and death change each year?
--   Did there seem to be any seasonal patterns in the average cases and deaths?
-
-## Example figures
-:::
-:::
-
 ## Heat exposure in Phoenix, Arizona ecological dataset
 
 [Data source](https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2) \| [Related publication](https://doi.org/10.1016/j.envint.2020.106271)
@@ -124,35 +105,98 @@ What kind of relationships can you find between individual activty and neighborh
 
 ::: {.callout-note collapse="true" title="Data overview"}
 ::: panel-tabset
-## Data preview
+### Data preview
 
 ```{r}
-knitr::kable(head(temps))
+knitr::kable(head(temps0))
 ```
 
-## Column metadata
+### Column metadata
 
 | Column        | Type      | Description                                                       | Values                                                                   |
-|------------------|------------------|------------------|-------------------|
+|---------------|-----------|-------------------------------------------------------------------|--------------------------------------------------------------------------|
 | `Subject.ID`  | character | Subject identifier where number (1-5) corresponds to neighborhood | 1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch |
 | `period`      | character | 4 hour measurement period                                         | weekday, period                                                          |
 | `temperature` | num       | 4 hour average of IET during specified period                     | Celcius                                                                  |
 :::
 :::
 
-::: {.callout-tip collapse="true" title="Analysis ideas"}
+::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+Use these questions to develop your own, or answer them as is. These is no "single" answer to these questions: refine or broaden the scope of these questions as needed. **Bolded** questions have an accompanying figure and code.
+
 ::: panel-tabset
-## Easier
+### Easier
 
 -   How many participants were there for each neighborhood in the study?
 -   On average, which 4-hour measurement period is the warmest? The coolest?
 
-## Harder
+### Harder
 
 -   What was the daily average temperature for each neighborhood during the study period?
 -   For a specific neighborhood on a certain day, what were all the individual temperatures experienced for each 4-hour measurement period?
 
-## Example figures
+### Example figures
+
+### Hints
+:::
+:::
+
+## Western Africa Ebola public health dataset
+
+[Data source](https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset)
+
+**Skills to practice:** working with dates, pivoting
+
+**Background:** The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.
+
+How might you represent the dynamics of this outbreak?
+
+::: {.callout-note collapse="true" title="Data overview"}
+::: panel-tabset
+### Data preview
+
+```{r}
+knitr::kable(head(ebola0))
+```
+
+### Column metadata
+
+| Column                                                       | Type      | Description                     | Values     |
+|--------------------------------------------------------------|-----------|---------------------------------|------------|
+| `Country`                                                    | character | Country of report               |            |
+| `Date`                                                       | character | Date of report                  | YYYY-MM-DD |
+| `Cumulative.no..of.confirmed..probable.and.suspected.cases`  | numeric   | Cumulative number till this day |            |
+| `Cumulative.no..of.confirmed..probable.and.suspected.deaths` | numeric   | Cumulative number till this day |            |
+:::
+:::
+
+::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+Use these questions to develop your own, or answer them as is. These is no "single" answer to these questions: refine or broaden the scope of these questions as needed. **Bolded** questions have an accompanying figure and code.
+
+Note: this dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.
+
+::: panel-tabset
+### Easier
+
+-   **How many cases and deaths in total were recorded by each country from 2014-2016?**
+-   For a specific year, how did the number of cases and deaths change over time for each country?
+
+### Harder
+
+-   **By country, how did the average number of cases and death change each year?**
+-   Are there any seasonal patterns in the average cases and deaths?
+
+### Example figures
+
+**Easier: How many cases and deaths in total were recorded by each country from 2014-2016?**
+
+![](project-day-2_files/figs/ebola-easy.png){width="75%"}
+
+**Harder: By country, how did the average number of cases and death change each year?**
+
+![](project-day-2_files/figs/ebola-hard.png){width="75%"}
+
+### Hints
 :::
 :::
 
@@ -177,25 +221,25 @@ Your friend grew either the wildtype only, mutant only, or both populations toge
 -   Rich (nanose and additional sugars present)
 
 ```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "75%", fig.cap = "Avida experiment setup"}
-knitr::include_graphics("project-day-2_files/avida-expt.png")
+knitr::include_graphics("project-day-2_files/figs/avida-expt.png")
 ```
 
 Help your friend get started with some of the exploratory data analysis: what interesting patterns can you find between genotype, competition, and resource availability?
 
 ::: {.callout-note collapse="true" title="Data overview"}
 ::: panel-tabset
-## Data preview
+### Data preview
 
 Data for `avida_wildtype.csv` shown only:
 
 ```{r}
-knitr::kable(head(avida))
+knitr::kable(head(avida0))
 ```
 
-## Column metadata
+### Column metadata
 
 | Column                      | Type      | Description                                                                       | Values                                                       |
-|------------------|------------------|------------------|-------------------|
+|-----------------------------|-----------|-----------------------------------------------------------------------------------|--------------------------------------------------------------|
 | `update`                    | integer   | Time elapsed                                                                      | Ranges 0-300                                                 |
 | `condition`                 | character | Testing conditions (single population or competition)                             | Based off csv: `wildtype-only`, `mutant-only`, `competition` |
 | `media_avg-fitness`         | numeric   | Average individual reproductive success in specified media                        | Ranges 0-1                                                   |
@@ -207,19 +251,23 @@ All population measurements were determined for `minimal`, `selective`, and `ric
 :::
 :::
 
-::: {.callout-tip collapse="true" title="Analysis ideas"}
+::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+Use these questions to develop your own, or answer them as is. These is no "single" answer to these questions: refine or broaden the scope of these questions as needed. **Bolded** questions have an accompanying figure and code.
+
 ::: panel-tabset
-## Easier
+### Easier
 
 -   How does population size change over time for the wildtype or mutant in different medias?
 -   What is the relationship between fitness and offspring cost in competition conditions in different medias?
 
-## Harder
+### Harder
 
 -   How does the change in fitness over time compare between different treatment conditions and media types?
 -   Which media type allows for the most maximal performance of the wildtype? The mutant? Competition conditions?
 
-## Example figures
+### Example figures
+
+### Hints
 :::
 :::
 

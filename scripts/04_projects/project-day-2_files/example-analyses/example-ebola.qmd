@@ -1,0 +1,124 @@
+---
+title: "Example Analysis: Ebola"
+date: "today"
+format: html
+---
+
+# Preamble
+
+This script will loosely follow the template document: it is more meant for you to get an idea of one way to approach the data processing and visualization! This analysis will primarily focus on using tidyverse tools (i.e. `dplyr` and `ggplot`).
+
+------------------------------------------------------------------------
+
+For this dataset, the **main skills** we wanted you to practice were:
+
+1.  Working with dates: you can get a more fine-scale understanding of the data by parsing out the `Date` column into year, month, and day.
+2.  Pivoting: notice that the counts are separated into separate columns (cases and deaths) -- it'll be easier to work with them if they were consolidated.
+
+The **research questions** we will address are:
+
+1.  Easier: How many cases and deaths in total were recorded by each country from 2014-2016?
+2.  Harder: By country, how did the average number of cases and death change each year?
+
+# 1. Load data and libraries
+
+```{r}
+library(tidyverse)
+
+ebola <- read.csv("scripts/04_projects/project-day-2_files/datasets/ebola.csv", header = TRUE, sep = ",")
+```
+
+# 2. Format the Data
+
+## Pre-processing
+
+First, let's just focus on our 3 countries of interest and use `filter()` to trim down our dataset. We'll also rename some of the columns to more manageable names, since they're pretty unwieldly in the raw dataset.
+
+```{r}
+ebola <- ebola |>
+  filter(Country %in% c("Guinea", "Liberia", "Sierra Leone")) |>
+  rename(Cases = Cumulative.no..of.confirmed..probable.and.suspected.cases,
+                Deaths = Cumulative.no..of.confirmed..probable.and.suspected.deaths)
+```
+
+## Skill: working with dates
+
+Let's parse out the `Date` into separate `Year`, `Month`, and `Day` columns using `mutate()` with the following steps:
+
+1.  Tell R that `Date` contains date objects, using `as.Date().`
+    a.  Because of the way our data is formatted, they will automatically take on the `%Y-%m-%d` format.
+2.  Create `Year`, `Month`, and `Day` columns by extracting the relevant part of the date object using `format()`.
+3.  Simultaneously, we will also convert the parsed data into numeric data using `as.numeric()`, because `format()` will extract that information as a character object.
+
+Remember that there are multiple ways to approach this![^1]
+
+[^1]: <https://stackoverflow.com/questions/4078502/split-date-data-m-d-y-into-3-separate-columns>
+
+```{r}
+ebola <- mutate(ebola,
+                Date = as.Date(Date), # format the dates
+                Year = as.numeric(format(Date, "%Y")), # extract different parts
+                Month = as.numeric(format(Date, "%m")),
+                day = as.numeric(format(Date, "%d")))
+```
+
+## Skill: pivoting
+
+This data doesn't quite follow tidy data principles: we have two types of numeric data, `Cases` and `Death`, spread across the column headers. We'll consolidate them with `pivot_longer()`, converting the column names to `Type` and numbers in the cells into `Count`.
+
+```{r}
+ebola <- pivot_longer(ebola,
+                      cols = c("Cases", "Deaths"), # select columns to be pivoted
+                      names_to = "Type",
+                      values_to = "Count")
+```
+
+# 3. Visualize the Data
+
+## Easier
+
+::: callout-note
+How many cases and deaths in total were recorded by each country from 2014-2016?
+:::
+
+We don't need to do anything further to the data: since we want to show totals, a bar graph for each region should suffice.
+
+```{r}
+ggplot(ebola, aes(x = Country, y = Count, fill = Type)) +
+  geom_col(position="dodge") +
+  labs(title = "Total Ebola Cases and Deaths from 2013-2016")
+```
+
+## Harder
+
+::: callout-note
+By country, how did the average number of cases and death change each year?
+:::
+
+We can use `summarise()` to generate some summary statistics. Since we want to look at trends over time, a line plot would be useful.
+
+```{r}
+# calculate stats by country, type, year
+ebola_stats <- ebola |>
+  group_by(Country, Type, Year) |>
+  summarise(Average = mean(Count))
+
+# plot it
+ggplot(ebola_stats, 
+       aes(y = Average, x = Year, color = Country)) +
+  geom_line() + geom_point() +
+  facet_wrap(~Type) +
+  labs(title = "Average Ebola Cases and Deaths from 2013-2016")
+```
+
+This looks a little ugly with the decimal points: we can clean it up by converting `Year` to a factor. However, this also confuses R in `geom_line()`, and it can't figure out which points to connect together: so, to clarify, we'll also specify the `group` variable in `aes()`.
+
+```{r}
+ggplot(ebola_stats, 
+       aes(y = Average, x = as.factor(Year), color = Country,
+       group = Country)) +
+  geom_line() + geom_point() +
+  facet_wrap(~Type) +
+  labs(title = "Average Ebola Cases and Deaths from 2013-2016",
+       x = "Year")
+```

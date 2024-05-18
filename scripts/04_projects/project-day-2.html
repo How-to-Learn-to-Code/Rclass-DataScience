@@ -48,8 +48,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#final-class" id="toc-final-class" class="nav-link active" data-scroll-target="#final-class">Final Class!</a></li>
   <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a>
   <ul class="collapse">
-  <li><a href="#western-africa-ebola-public-health-dataset" id="toc-western-africa-ebola-public-health-dataset" class="nav-link" data-scroll-target="#western-africa-ebola-public-health-dataset">Western Africa Ebola public health dataset</a></li>
   <li><a href="#heat-exposure-in-phoenix-arizona-ecological-dataset" id="toc-heat-exposure-in-phoenix-arizona-ecological-dataset" class="nav-link" data-scroll-target="#heat-exposure-in-phoenix-arizona-ecological-dataset">Heat exposure in Phoenix, Arizona ecological dataset</a></li>
+  <li><a href="#western-africa-ebola-public-health-dataset" id="toc-western-africa-ebola-public-health-dataset" class="nav-link" data-scroll-target="#western-africa-ebola-public-health-dataset">Western Africa Ebola public health dataset</a></li>
   <li><a href="#avida-digital-evolution-dataset" id="toc-avida-digital-evolution-dataset" class="nav-link" data-scroll-target="#avida-digital-evolution-dataset">AVIDA digital evolution dataset</a></li>
   </ul></li>
   </ul>
@@ -85,6 +85,40 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="final-class" class="level1">
 <h1>Final Class!</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructor notes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Prep &amp; lesson goals</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Tips &amp; ideas for running the lesson</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>There will be a bit of prep work on your end for this class because this is so open-ended: would strongly encourage being somewhat familiar with the background and data overview sections before class. These shouldn’t be terribly tricky datasets for instructors to work with, and you don’t really need to understand the science (except maybe the Avida data): just know enough that you could tell a student “that figure/analysis makes sense and is informative”, have some intuition of what is making their code break, etc.</p>
+<p>Ideally, students can just read up on what each dataset contains, come up with questions, and happily work their way through it and make some beautiful figures with no issues :-) That said, the ultimate goal for this lesson is that students will leave today with a repo containing a mostly done analysis (data, cleaning script, analysis script, final figs, etc). This is structured to be a bit flexible to match different science/coding comfort levels, so students can decide if they want to do the whole workflow themselves (develop questions, analysis, figs), do only parts of it (create their own figs), or just practice the coding (recreate a figure from the raw data).</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>btw, you can pretty off-script for this lesson (i.e.&nbsp;use different datasets, create different analyses, etc): again, the goal is just for students to really synthesize the lessons, put them into practice, and try to work independently. At base, stress this aspect, and if you choose to follow the script, probably at least read over the “skills to practice” and the “background” sections before letting everyone off on their own.</p>
+<p>To make the work easier, you could have people work in pairs (but in their own repos). You could maybe have them work in larger groups/have everyone do the same analysis, but it might feel too much like data viz day 2…</p>
+<p>There will be some pre-filled project templates in the folder that goes through the whole process for 1 easy and 1 hard question for each dataset (which will stress the specific “skills to practice” for each dataset). You can reiterate to the class that for those who want a bit more structure/support, you will be most familiar with the details for those questions (i.e.&nbsp;they should try to recreate those scripts on their own because you’ll have the “answer”).</p>
+<p>Other things:</p>
+<ul>
+<li><p>re: “easier” and “harder” questions, those divisions are mostly based off how much data processing is involved and don’t have a single answer in mind. Obviously those aren’t the only questions you can make for the datasets, so feel free to come up with more.</p></li>
+<li><p>some “Hints” are provided for code that might not have been covered yet (e.g.&nbsp;splitting strings).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>//TODO mention sth about how the data is raw</p>
 <p>Now that you’ve been through the entire course, we want to reinforce some of the skills that you’ve learned by applying your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have … //TODO [some code that shows…]</p>
 <p>For each of these datasets (as many as time allows), we’d like you to do some basic analysis, including the following steps:</p>
@@ -126,7 +160,7 @@ But I thought this was HTLTCode, not HTLTScience!
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Up for a challenge?">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -135,21 +169,22 @@ Up for a challenge?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Some of these datasets come with additional files or have even less pre-processed versions. If you’re up for a challenge (or are revisiting this material and feeling more confident in your skills), we have included those csvs for your perusal.</p>
 <p>idk if will keep this</p>
 </div>
 </div>
 </div>
-<section id="western-africa-ebola-public-health-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="western-africa-ebola-public-health-dataset">Western Africa Ebola public health dataset</h2>
-<p><a href="https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset">Data source</a></p>
-<p><strong>Skills to practice:</strong> renaming columns, working with dates</p>
-<p><strong>Background:</strong> The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.</p>
-<p>How might you represent the dynamics of this outbreak?</p>
+<section id="heat-exposure-in-phoenix-arizona-ecological-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="heat-exposure-in-phoenix-arizona-ecological-dataset">Heat exposure in Phoenix, Arizona ecological dataset</h2>
+<p><a href="https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2">Data source</a> | <a href="https://doi.org/10.1016/j.envint.2020.106271">Related publication</a></p>
+<p><strong>Skills to practice:</strong> dealing with <code>NA</code> values, parsing strings</p>
+<p><strong>Background:</strong> Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.</p>
+<p>To further investigate, the Central Arizona-Pheonix Long-Term Ecological Research Program <a href="https://sustainability-innovation.asu.edu/caplter/">(CAP-LTER)</a> recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities.</p>
+<p>What kind of relationships can you find between individual activty and neighborhood?</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Data overview">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -158,12 +193,163 @@ Data overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Column metadata</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Column metadata</a></li></ul>
 <div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Subject.ID</th>
+<th style="text-align: left;">period</th>
+<th style="text-align: right;">temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1A</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">25.14447</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1P</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">26.77962</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1E</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">27.21875</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1B</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">26.79175</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2N</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3A</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 27%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Subject.ID</code></td>
+<td>character</td>
+<td>Subject identifier where number (1-5) corresponds to neighborhood</td>
+<td>1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch</td>
+</tr>
+<tr class="even">
+<td><code>period</code></td>
+<td>character</td>
+<td>4 hour measurement period</td>
+<td>weekday, period</td>
+</tr>
+<tr class="odd">
+<td><code>temperature</code></td>
+<td>num</td>
+<td>4 hour average of IET during specified period</td>
+<td>Celcius</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Analysis ideas and hints
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use these questions to develop your own, or answer them as is. These is no “single” answer to these questions: refine or broaden the scope of these questions as needed. <strong>Bolded</strong> questions have an accompanying figure and code.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Example figures</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Hints</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<ul>
+<li>How many participants were there for each neighborhood in the study?</li>
+<li>On average, which 4-hour measurement period is the warmest? The coolest?</li>
+</ul>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<ul>
+<li>What was the daily average temperature for each neighborhood during the study period?</li>
+<li>For a specific neighborhood on a certain day, what were all the individual temperatures experienced for each 4-hour measurement period?</li>
+</ul>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="western-africa-ebola-public-health-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="western-africa-ebola-public-health-dataset">Western Africa Ebola public health dataset</h2>
+<p><a href="https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset">Data source</a></p>
+<p><strong>Skills to practice:</strong> working with dates, pivoting</p>
+<p><strong>Background:</strong> The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.</p>
+<p>How might you represent the dynamics of this outbreak?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Data overview">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data overview
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Column metadata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -223,13 +409,13 @@ Data overview
 </div>
 </div>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <table class="table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 24%">
+<col style="width: 38%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -272,182 +458,42 @@ Data overview
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Analysis ideas
+Analysis ideas and hints
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Use these questions to develop your own, or answer them as is. These is no “single” answer to these questions: refine or broaden the scope of these questions as needed. <strong>Bolded</strong> questions have an accompanying figure and code.</p>
+<p>Note: this dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Example figures</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Example figures</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false" href="">Hints</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <ul>
+<li><strong>How many cases and deaths in total were recorded by each country from 2014-2016?</strong></li>
 <li>For a specific year, how did the number of cases and deaths change over time for each country?</li>
-<li>How many cases and deaths in total were recorded by each country from 2014-2016?</li>
 </ul>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <ul>
-<li>By country, how did the average number of cases and death change each year?</li>
-<li>Did there seem to be any seasonal patterns in the average cases and deaths?</li>
+<li><strong>By country, how did the average number of cases and death change each year?</strong></li>
+<li>Are there any seasonal patterns in the average cases and deaths?</li>
 </ul>
 </div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<p><strong>Easier: How many cases and deaths in total were recorded by each country from 2014-2016?</strong></p>
+<p><img src="project-day-2_files/figs/ebola-easy.png" class="img-fluid" style="width:75.0%"></p>
+<p><strong>Harder: By country, how did the average number of cases and death change each year?</strong></p>
+<p><img src="project-day-2_files/figs/ebola-hard.png" class="img-fluid" style="width:75.0%"></p>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="heat-exposure-in-phoenix-arizona-ecological-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="heat-exposure-in-phoenix-arizona-ecological-dataset">Heat exposure in Phoenix, Arizona ecological dataset</h2>
-<p><a href="https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2">Data source</a> | <a href="https://doi.org/10.1016/j.envint.2020.106271">Related publication</a></p>
-<p><strong>Skills to practice:</strong> dealing with <code>NA</code> values, parsing strings</p>
-<p><strong>Background:</strong> Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.</p>
-<p>To further investigate, the Central Arizona-Pheonix Long-Term Ecological Research Program <a href="https://sustainability-innovation.asu.edu/caplter/">(CAP-LTER)</a> recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities.</p>
-<p>What kind of relationships can you find between individual activty and neighborhood?</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Data overview">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Data overview
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Column metadata</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Subject.ID</th>
-<th style="text-align: left;">period</th>
-<th style="text-align: right;">temperature</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1A</td>
-<td style="text-align: left;">Sat, 8pm-12am</td>
-<td style="text-align: right;">25.14447</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1P</td>
-<td style="text-align: left;">Sat, 8pm-12am</td>
-<td style="text-align: right;">26.77962</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1E</td>
-<td style="text-align: left;">Sat, 8pm-12am</td>
-<td style="text-align: right;">27.21875</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1B</td>
-<td style="text-align: left;">Sat, 8pm-12am</td>
-<td style="text-align: right;">26.79175</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2N</td>
-<td style="text-align: left;">Sat, 8pm-12am</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">3A</td>
-<td style="text-align: left;">Sat, 8pm-12am</td>
-<td style="text-align: right;">NA</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<table class="table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 26%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Column</th>
-<th>Type</th>
-<th>Description</th>
-<th>Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Subject.ID</code></td>
-<td>character</td>
-<td>Subject identifier where number (1-5) corresponds to neighborhood</td>
-<td>1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch</td>
-</tr>
-<tr class="even">
-<td><code>period</code></td>
-<td>character</td>
-<td>4 hour measurement period</td>
-<td>weekday, period</td>
-</tr>
-<tr class="odd">
-<td><code>temperature</code></td>
-<td>num</td>
-<td>4 hour average of IET during specified period</td>
-<td>Celcius</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Analysis ideas
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Example figures</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<ul>
-<li>How many participants were there for each neighborhood in the study?</li>
-<li>On average, which 4-hour measurement period is the warmest? The coolest?</li>
-</ul>
-</div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<ul>
-<li>What was the daily average temperature for each neighborhood during the study period?</li>
-<li>For a specific neighborhood on a certain day, what were all the individual temperatures experienced for each 4-hour measurement period?</li>
-</ul>
-</div>
-<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
 
 </div>
 </div>
@@ -472,7 +518,7 @@ Analysis ideas
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="project-day-2_files/avida-expt.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="project-day-2_files/figs/avida-expt.png" class="img-fluid figure-img" style="width:75.0%"></p>
 <figcaption>Avida experiment setup</figcaption>
 </figure>
 </div>
@@ -480,7 +526,7 @@ Analysis ideas
 </div>
 <p>Help your friend get started with some of the exploratory data analysis: what interesting patterns can you find between genotype, competition, and resource availability?</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Data overview">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -489,12 +535,12 @@ Data overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Column metadata</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Column metadata</a></li></ul>
 <div class="tab-content">
-<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <p>Data for <code>avida_wildtype.csv</code> shown only:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -635,13 +681,13 @@ Data overview
 </div>
 </div>
 </div>
-<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <table class="table">
 <colgroup>
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 26%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 32%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -697,34 +743,38 @@ Data overview
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Analysis ideas
+Analysis ideas and hints
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Use these questions to develop your own, or answer them as is. These is no “single” answer to these questions: refine or broaden the scope of these questions as needed. <strong>Bolded</strong> questions have an accompanying figure and code.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Example figures</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Example figures</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false" href="">Hints</a></li></ul>
 <div class="tab-content">
-<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <ul>
 <li>How does population size change over time for the wildtype or mutant in different medias?</li>
 <li>What is the relationship between fitness and offspring cost in competition conditions in different medias?</li>
 </ul>
 </div>
-<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <ul>
 <li>How does the change in fitness over time compare between different treatment conditions and media types?</li>
 <li>Which media type allows for the most maximal performance of the wildtype? The mutant? Competition conditions?</li>
 </ul>
 </div>
-<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+
+</div>
+<div id="tabset-7-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-4-tab">
 
 </div>
 </div>
