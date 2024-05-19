@@ -34,7 +34,9 @@ temps <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-
 
 ## Skill: Parsing strings
 
-There is useful information that is contained within the `Subject.ID` and `period` columns that would be nice to extract out. There are a few handy functions from the `stringr` package within the tidyverse that we can use (look up `??stringr::stringr` for an overview of the package). In particular, we'll use `str_sub()` to tackle splitting the `Subject.ID` and `str_split_fixed()` to tackle the `period` information.
+There is useful information that is contained within the `Subject.ID` and `period` columns that would be nice to extract out. There are a few handy functions from the `stringr` package within the tidyverse that we can use.[^1] In particular, we'll use `str_sub()` to tackle splitting the `Subject.ID` and `str_split_fixed()` to tackle the `period` information.
+
+[^1]: Look up `??stringr::stringr` for an overview of the package.
 
 `Subject.ID` has no actual delimiters aside from the positions of the data (neighborhood in the 1st, subject ID in the 2nd), so we'll use `str_sub()`. It needs to know which string we're working on and the start and end positions of where it should extract: since we only want one character, the start and end positions will be the same.
 
@@ -110,9 +112,11 @@ ggplot(participants, aes(x = neighborhood, y = count)) +
 What was the daily average temperature for each neighborhood during the study period?
 :::
 
-Since we know the figures look better with the proper neighborhood names, let's replace them in our dataset first, before doing more analysis. There is a very handy dplyr function, `case_when()`, that works of like an `if_else()` statement, where you can specify certain things to happen depending on if a certain condition is `TRUE` or `FALSE`.
+Since we know the figures look better with the proper neighborhood names, let's replace them in our dataset first, before doing more analysis. There is a very handy dplyr function, `case_when()`, that works like an `if_else()` statement, where you can specify certain things to happen depending on if a certain condition is `TRUE` or `FALSE`.
 
-The general usage is as so: `case_when(<condition> ~ <result>)`. This function is convenient since you only need to think about a specific `<condition>` you need to get a certain `<result>`, and you don't necessarily need to address the other possible outcomes. This function is especially useful if you want to `mutate()` specific variables that depend on a complex set of criteria.
+The general usage is as so: `case_when(<condition> ~ <result>)`. This function is convenient since you only need to think about the specific `<condition>` you need to get a certain `<result>`, and you don't necessarily need to address the other possible outcomes.[^2]
+
+[^2]: This function is especially useful if you want to `mutate()` specific variables that depend on a complex set of criteria. We have a relatively simple case, here.
 
 ```{r}
 # relabel neighborhoods
@@ -188,17 +192,12 @@ temps <- temps |>
          wkday = str_split_fixed(period, ", ", n = 2)[,1],
          hrs = str_split_fixed(period, ", ", n = 2)[,2])
 
-# plot
+# visualize
 ## easier: plot participant counts
 ### count participants
 participants <- temps |>
   group_by(neighborhood) |>
   summarize(count = n_distinct(id))
-
-### initial plot
-ggplot(participants, aes(x = neighborhood, y = count)) +
-  geom_col() +
-  labs(title = "Study participants per neighborhood")
 
 ### double-check neighborhoods
 levels(as.factor(temps$neighborhood))
@@ -231,6 +230,5 @@ dailyavg$wkday <- factor(dailyavg$wkday, levels = c("Mon", "Tue", "Wed", "Thu", 
 ggplot(dailyavg, aes(x = wkday, y = avgtemp, color = neighborhood, group = neighborhood)) +
   geom_line() + geom_point() +
   labs(title = "Average daily IETs of Pheonix, AZ neighborhoods", x = "Day of the week", y = "Average temperature (°C)")
-
 ```
 :::
