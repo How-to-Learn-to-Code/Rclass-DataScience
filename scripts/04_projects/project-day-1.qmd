@@ -8,7 +8,7 @@ output:
 editor: visual
 ---
 
-## Reproducible science... *in-silco*??
+## Reproducible science... *in-silico*??
 
 -   Bioinformaticians are people too
 -   We need to make sure our research is well documented and reproducible just like bench scientists
@@ -97,6 +97,7 @@ paper_final_submission_revised.doc
 paper_final_submission_revised_v2.doc
 paper_published_version.doc
 ```
+
 ```{r charlie_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Charlie explains how his file naming system makes perfect sense"}
 knitr::include_graphics("project-day-1_files/charlie-day.gif")
 ```

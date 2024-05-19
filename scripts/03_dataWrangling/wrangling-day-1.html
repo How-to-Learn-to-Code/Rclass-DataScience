@@ -283,11 +283,23 @@ Measure twice, cut once
 </div>
 </div>
 <p>This follows the <em>tidy data</em> style, an approach to handling data in R that aims to be clear and readable.</p>
-<p>::: callout-note title=“Tidiest Universe” The bundle of tidy-associated packages is called the <code>tidyverse</code>, and it’s a hot-topic in the R world. Most data wrangling problems can be solved with <code>tidy</code> or base (default) R functions. This can lead to some headaches for beginners! :::</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Tidiest Universe">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tidiest Universe
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The bundle of tidy-associated packages is called the <code>tidyverse</code>, and it’s a hot-topic in the R world. Most data wrangling problems can be solved with <code>tidy</code> or base (default) R functions. This can lead to some headaches for beginners!</p>
+</div>
+</div>
 </section>
 <section id="dplyr-verbs" class="level3">
 <h3 class="anchored" data-anchor-id="dplyr-verbs"><code>dplyr</code> verbs</h3>
-<p>One of the most popular <code>tidyverse</code> packages, <code>dplyr</code>, offers a suite of helpful and readable functions for data manipulation. Lets get started with how it can help you see your data:</p>
+<p>One of the most popular <code>tidyverse</code> packages, <code>dplyr</code>, offers a suite of helpful and readable functions for data manipulation. Let’s get started with how it can help you see your data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -329,61 +341,40 @@ Tip
 </div>
 </div>
 </div>
-<p>The <code>dplyr</code> package has a set of functions called “verbs” that are used to manipulate data frames. These verbs can either act on rows (i.e.&nbsp;<code>filter</code> out specific row’s by some condition) or columns (i.e.&nbsp;<code>select</code> columns XYZ). There are also has functions for working with groups (i.e.&nbsp;group rows by what values they have in a column with <code>group_by</code>)</p>
+<p>The <code>dplyr</code> package has a set of functions called “verbs” that are used to manipulate data frames. These verbs can either act on rows (i.e.&nbsp;<code>filter</code> out specific row’s by some condition) or columns (i.e.&nbsp;<code>select</code> columns XYZ). There are also functions for working with groups (i.e.&nbsp;group rows by what values they have in a column with <code>group_by</code>)</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Rows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Columns</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">groups</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">rows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">columns</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">groups</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p><code>filter</code> allows you to…</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(school <span class="sc">==</span> <span class="st">"Cambridge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>               name                     field    school date_of_birth
-1 Rosalind Franklin DNA X-ray crystallography Cambridge    1920-07-25
-  working_region
-1 Western Europe</code></pre>
-</div>
-</div>
-<p><code>arrange</code> allows you to…</p>
-<p><code>distinct</code> allows you to…</p>
+<p>The most important verbs that operate on rows of a dataset are <code>filter()</code>, which changes which rows are present without changing their order, and <code>arrange()</code>, which changes the order of the rows without changing which are present. Both functions only affect the rows, and the columns are left unchanged. We’ll also discuss <code>distinct()</code> which finds rows with unique values but unlike <code>arrange()</code> and <code>filter()</code> it can also optionally modify the columns.</p>
+<p>More information about functions like this can be found <a href="https://r4ds.hadley.nz/data-transform#rows">here</a></p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<section id="column-verbs" class="level3">
-<h3 class="anchored" data-anchor-id="column-verbs">Column Verbs</h3>
-<p><code>mutate</code> allows you to…</p>
-<p><code>select</code> allows you to…</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                 name
-1   Rosalind Franklin
-2         Marie Curie
-3  Barbara McClintock
-4        Ada Lovelace
-5     Dorothy Hodgkin
-6        Lise Meitner
-7        Grace Hopper
-8     Chien-Shiung Wu
-9          Gerty Cori
-10  Katherine Johnson</code></pre>
-</div>
-</div>
-<p><code>rename</code> allows you to…</p>
-<p><code>relocate</code> allows you to…</p>
-</section>
+<p>There are four important verbs that affect the columns without changing the rows: <code>mutate()</code> creates new columns that are derived from the existing columns, <code>select()</code> changes which columns are present, <code>rename()</code> changes the names of the columns, and <code>relocate()</code> changes the positions of the columns.</p>
+<p>More information about functions like this can be found <a href="https://r4ds.hadley.nz/data-transform#columns">here</a></p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p><code>group_by</code> allows you to…</p>
-<p><code>summarize</code> allows you to…</p>
-<p>The <code>slice</code> family of functions allows you to…</p>
-<p><code>ungroup</code></p>
-<p><code>.by</code> argument</p>
+<p><code>group_by</code> allows you to create groups using more than one variable.</p>
+<p><code>summarize</code> works on grouped objects and allows you to calculate a single summary statistic, reducing the data frame to have a single row for each group.</p>
+<p>The <code>slice</code> family of functions allows you to extract specific rows within each group</p>
+<p>More information about functions like this can be found <a href="https://r4ds.hadley.nz/data-transform#groups">here</a></p>
 </div>
 </div>
 </div>
-<p>Hopefully now, you feel a little more confident about working with vectors, data frames, and using <code>dplyr</code> verbs to clean and manipulate data. Happy Wrangling!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>dplyr</code> verbs work great as a team!</p>
+</div>
+</div>
+<p>Although these were basic examples, hopefully you feel a little more confident about working with vectors, and data frames using <code>dplyr</code> verbs to clean and manipulate data. Happy Wrangling!</p>
 </section>
 <section id="functions-on-functions" class="level3">
 <h3 class="anchored" data-anchor-id="functions-on-functions">Functions on functions</h3>
@@ -397,17 +388,17 @@ Tip
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Here we first filter and then arrange. Note that we are creating an intermediate variable in between the steps.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering for scientists born after 1900</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, <span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Arranging the filtered data by date of birth</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(filtered_data, date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering for scientists born after 1900</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, <span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Arranging the filtered data by date of birth</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(filtered_data, date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>We can do the same thing without creating an intermediate variable. It’s more compact but can start to get confusing if we add more functions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(df, <span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>)), date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(df, <span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>)), date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
@@ -417,10 +408,10 @@ Tip
 <p><code>arrange</code> is doing the <em>arrange them…</em> part</p>
 <p>and the pipe, <code>|&gt;</code>, is going to do the <strong>and then…</strong> part</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pipes</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pipes</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">as.Date</span>(date_of_birth) <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"1900-01-01"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_of_birth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once you’re comfortable with this style, you should be able to read it as: Take <code>data</code> <em>and then</em> <code>filter</code> by DoB <em>and then</em> <code>arrange</code> by DoB. This helps keep our code both clean and readable.</p>
 </div>
@@ -472,12 +463,12 @@ Things to consider:
 <section id="getting-familiar-with-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="getting-familiar-with-the-data">Getting familiar with the data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"wrangling-files/cellProportions.csv"</span>,</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"wrangling-files/cellProportions.csv"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Cardiomyocytes Fibroblast Endothelial.Cells Macrophage
 whole_2              0.652     0.0886           0.06700     0.1761

@@ -6,6 +6,13 @@ format:
     toc: true
 ---
 
+```{css, echo = FALSE}
+.output {
+max-height: 500px;
+overflow-y: scroll;
+}
+```
+
 # Introduction
 
 > Many biologists starting out in bioinformatics tend to equate "learning bioinformatics" with "learning how to run bioinformatics software"... This is analogous to thinking "learning molecular biology" is just "learning pipetting."
@@ -80,7 +87,7 @@ A variable is a named space in your computer's memory which can be referenced an
 
 ![https://mclark45.medium.com/variables-8d0ba47d9694](class1_files/variables.png)
 
-Variables in R are created (assigned) using an arrow: `<-` For example:
+Variables in R are created (assigned) using an arrow: `<-` The variable name always goes on the left, and the thing being assigned to that variable on the right. For example:
 
 ```{r}
 greeting <- "Hello"
@@ -236,6 +243,7 @@ iris$BigPetals <- iris$Petal.Length > 5
 And now it is added to our dataset.
 
 ```{r}
+#| class: output
 iris
 ```
 
@@ -253,7 +261,7 @@ Functions can do very basic tasks:
 print("Hello world!")
 ```
 
-Or more complex tasks:
+Or more complex tasks, where multiple arguments are required, each separated by a comma: 
 
 ```{r}
 substr(x = "Hello world!", start = 2, stop = 4)

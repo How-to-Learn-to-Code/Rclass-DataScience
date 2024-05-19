@@ -114,13 +114,15 @@ knitr::include_graphics("wrangling-files/tidy-style.png")
 
 This follows the *tidy data* style, an approach to handling data in R that aims to be clear and readable.
 
-::: callout-note title="Tidiest Universe"
+::: {.callout-note title="Tidiest Universe"}
+
 The bundle of tidy-associated packages is called the `tidyverse`, and it's a hot-topic in the R world. Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners! 
+
 :::
 
 ### `dplyr` verbs
 
-One of the most popular `tidyverse` packages, `dplyr`, offers a suite of helpful and readable functions for data manipulation. Lets get started with how it can help you see your data:
+One of the most popular `tidyverse` packages, `dplyr`, offers a suite of helpful and readable functions for data manipulation. Let's get started with how it can help you see your data:
 
 ```{r}
 #| echo: false
@@ -150,94 +152,40 @@ With the `glimpse` function we see that this is a data frame with 3 observations
 knitr::include_graphics("wrangling-files/dplyr_syntax.png")
 ```
 
-The `dplyr` package has a set of functions called "verbs" that are used to manipulate data frames. These verbs can either act on rows (i.e. `filter` out specific row's by some condition) or columns (i.e. `select` columns XYZ). There are also has functions for working with groups (i.e. group rows by what values they have in a column with `group_by`)
+The `dplyr` package has a set of functions called "verbs" that are used to manipulate data frames. These verbs can either act on rows (i.e. `filter` out specific row's by some condition) or columns (i.e. `select` columns XYZ). There are also functions for working with groups (i.e. group rows by what values they have in a column with `group_by`)
 
 ::: panel-tabset
 
-## Rows
+## rows
 
-`filter` allows you to...
+The most important verbs that operate on rows of a dataset are `filter()`, which changes which rows are present without changing their order, and `arrange()`, which changes the order of the rows without changing which are present. Both functions only affect the rows, and the columns are left unchanged. We’ll also discuss `distinct()` which finds rows with unique values but unlike `arrange()` and `filter()` it can also optionally modify the columns.
 
-```{r}
-df |> 
-  filter(school == "Cambridge")
-```
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#rows)
 
-`arrange` allows you to...
+## columns
 
-```{r}
+There are four important verbs that affect the columns without changing the rows: `mutate()` creates new columns that are derived from the existing columns, `select()` changes which columns are present, `rename()` changes the names of the columns, and `relocate()` changes the positions of the columns.
 
-```
-
-`distinct` allows you to...
-
-```{r}
-
-```
-
-## Columns
-
-### Column Verbs
-
-`mutate` allows you to...
-
-```{r}
-
-```
-
-`select` allows you to...
-
-```{r}
-df |> 
-  select(name)
-```
-
-`rename` allows you to...
-
-```{r}
-
-```
-
-`relocate` allows you to...
-
-```{r}
-
-```
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#columns)
 
 ## groups
 
-`group_by` allows you to...
+`group_by` allows you to create groups using more than one variable.
 
-```{r}
+`summarize` works on grouped objects and allows you to calculate a single summary statistic, reducing the data frame to have a single row for each group.
 
-```
+The `slice` family of functions allows you to extract specific rows within each group
 
-`summarize` allows you to...
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#groups)
 
-```{r}
-
-```
-
-The `slice` family of functions allows you to...
-
-```{r}
-
-```
-
-`ungroup`
-
-```{r}
-
-```
-
- `.by` argument
-
-```{r}
-
-```
 :::
 
-Hopefully now, you feel a little more confident about working with vectors, data frames, and using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
+::: {.callout-tip}
+`dplyr` verbs work great as a team!
+:::
+
+
+Although these were basic examples, hopefully you feel a little more confident about working with vectors, and data frames using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
 
 ### Functions on functions
 #### An introduction to pipes

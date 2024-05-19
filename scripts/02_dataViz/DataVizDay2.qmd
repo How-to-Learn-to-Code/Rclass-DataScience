@@ -10,6 +10,7 @@ options(tibble.width = Inf)  # Set to Inf to attempt to print all columns of tib
 
 # Introduction
 
+
 Welcome to Day 2 of our data visualization journey! Today, we'll dive deeper into the world of visualizing data using the **Palmer Penguins dataset**. This dataset provides insights into penguins in the Palmer Archipelago, and it's a perfect opportunity for us to practice and hone our visualization skills.
 
 - This session is an opportunity to:
