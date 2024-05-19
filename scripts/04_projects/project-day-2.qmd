@@ -37,13 +37,15 @@ btw, you can pretty off-script for this lesson (i.e. use different datasets, cre
 
 To make the work easier, you could have people work in pairs (but in their own repos). You could maybe have them work in larger groups/have everyone do the same analysis, but it might feel too much like data viz day 2...
 
-There will be some pre-filled project templates in the folder that goes through the whole process for 1 easy and 1 hard question for each dataset (which will stress the specific "skills to practice" for each dataset). You can reiterate to the class that for those who want a bit more structure/support, you will be most familiar with the details for those questions (i.e. they should try to recreate those scripts on their own because you'll have the "answer").
+There will be some pre-filled project templates in the folder that goes through the whole process for 1 easy and 1 hard question for each dataset (which will stress the specific "skills to practice" for each dataset; primarily, these are focused on tidyverse approaches). These are effectively mini-lessons on their own, but hopefully straightforward enough for a student to follow along on their own. You may want to take a glance at these before class.
+
+You can reiterate to the class that for those who want a bit more structure/support, you will be most familiar with the details for those questions (i.e. they should try to recreate those scripts on their own because you'll have the "answer").
 
 Other things:
 
--   re: "easier" and "harder" questions, those divisions are mostly based off how much data processing is involved and don't have a single answer in mind. Obviously those aren't the only questions you can make for the datasets, so feel free to come up with more.
+-   re: "easier" and "harder" questions, those divisions are mostly based off how much wrangling effort/function wizardry is involved. There any many ways to answer the questions. And obviously, those aren't the only questions you can ask for the datasets, so feel free to come up with more.
 
--   some "Hints" are provided for code that might not have been covered yet (e.g. splitting strings).
+-   Some "Hints" are provided for specific code that might not have been covered yet (e.g. splitting strings, certain counting functions) – would encourage students to take a look at them anyway even if they feel really comfortable with R.
 :::
 :::
 
@@ -85,17 +87,11 @@ Thus, based on your comfort level, you can decide how much of the data analysis 
 3.  Develop your own research questions, analysis, figures
 :::
 
-::: {.callout-note title="Up for a challenge?" collapse="true"}
-Some of these datasets come with additional files or have even less pre-processed versions. If you're up for a challenge (or are revisiting this material and feeling more confident in your skills), we have included those csvs for your perusal.
-
-idk if will keep this
-:::
-
 ## Heat exposure in Phoenix, Arizona ecological dataset
 
 [Data source](https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2) \| [Related publication](https://doi.org/10.1016/j.envint.2020.106271)
 
-**Skills to practice:** dealing with `NA` values, parsing strings
+**Skills to practice:** parsing strings, dealing with `NA` values
 
 **Background:** Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.
 
@@ -114,7 +110,7 @@ knitr::kable(head(temps0))
 ### Column metadata
 
 | Column        | Type      | Description                                                       | Values                                                                   |
-|---------------|-----------|-------------------------------------------------------------------|--------------------------------------------------------------------------|
+|------------------|------------------|------------------|--------------------|
 | `Subject.ID`  | character | Subject identifier where number (1-5) corresponds to neighborhood | 1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch |
 | `period`      | character | 4 hour measurement period                                         | weekday, period                                                          |
 | `temperature` | num       | 4 hour average of IET during specified period                     | Celcius                                                                  |
@@ -122,22 +118,38 @@ knitr::kable(head(temps0))
 :::
 
 ::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
-Use these questions to develop your own, or answer them as is. These is no "single" answer to these questions: refine or broaden the scope of these questions as needed. **Bolded** questions have an accompanying figure and code.
+Use these questions to develop your own, or answer them as-is. These is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
+
+**Bolded** questions have an accompanying figure and code: see the "Hints" tab for some specific suggestions for helpful code to use.
 
 ::: panel-tabset
 ### Easier
 
--   How many participants were there for each neighborhood in the study?
+-   **How many participants were there for each neighborhood in the study?**
 -   On average, which 4-hour measurement period is the warmest? The coolest?
 
 ### Harder
 
--   What was the daily average temperature for each neighborhood during the study period?
+-   **What was the daily average temperature for each neighborhood during the study period?**
 -   For a specific neighborhood on a certain day, what were all the individual temperatures experienced for each 4-hour measurement period?
 
 ### Example figures
 
+**Easier: How many participants were there for each neighborhood in the study?**
+
+![](project-day-2_files/figs/temps-easy.png){width="75%"}
+
+**Harder: What was the daily average temperature for each neighborhood during the study period?** ![](project-day-2_files/figs/temps-hard.png){width="75%"}
+
 ### Hints
+
+-   We recommend using functions in the `stringr` package from the tidyverse to parse the strings, particularly `str_sub()` and `str_split_fixed()`.
+
+    -   e.g. If you had a vector `x`, which contains a bunch of 2 character codes and you wanted to extract the first character: `str_sub(x, 1, 1)`
+
+    -   e.g. If you had a vector `x`, which contains information in the format `first-second-third` and you wanted to extract the 1st chunk: `str_split_fixed(x, "-", n=3)[,1]`
+
+-   R has some "counting" functions such as `length()` and `n()`: how could you get unique counts? Is there a single function that does that?
 :::
 :::
 
@@ -162,7 +174,7 @@ knitr::kable(head(ebola0))
 ### Column metadata
 
 | Column                                                       | Type      | Description                     | Values     |
-|--------------------------------------------------------------|-----------|---------------------------------|------------|
+|---------------------|-----------------|-----------------|-----------------|
 | `Country`                                                    | character | Country of report               |            |
 | `Date`                                                       | character | Date of report                  | YYYY-MM-DD |
 | `Cumulative.no..of.confirmed..probable.and.suspected.cases`  | numeric   | Cumulative number till this day |            |
@@ -171,7 +183,9 @@ knitr::kable(head(ebola0))
 :::
 
 ::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
-Use these questions to develop your own, or answer them as is. These is no "single" answer to these questions: refine or broaden the scope of these questions as needed. **Bolded** questions have an accompanying figure and code.
+Use these questions to develop your own, or answer them as-is. These is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
+
+**Bolded** questions have an accompanying figure and code: see the "Hints" tab for some specific suggestions for helpful code to use.
 
 Note: this dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.
 
@@ -197,6 +211,10 @@ Note: this dataset contains data for other countries besides the three named abo
 ![](project-day-2_files/figs/ebola-hard.png){width="75%"}
 
 ### Hints
+
+-   The current format of the data isn't "tidy"...
+
+-   You can use `format()` to extract specific parts of a date object: e.g. if `x` is a date object with the format `%Y-%m-%d`, you can get the year with `format(x, "%Y")`.
 :::
 :::
 
@@ -239,7 +257,7 @@ knitr::kable(head(avida0))
 ### Column metadata
 
 | Column                      | Type      | Description                                                                       | Values                                                       |
-|-----------------------------|-----------|-----------------------------------------------------------------------------------|--------------------------------------------------------------|
+|-----------------|-----------------|--------------------|-----------------|
 | `update`                    | integer   | Time elapsed                                                                      | Ranges 0-300                                                 |
 | `condition`                 | character | Testing conditions (single population or competition)                             | Based off csv: `wildtype-only`, `mutant-only`, `competition` |
 | `media_avg-fitness`         | numeric   | Average individual reproductive success in specified media                        | Ranges 0-1                                                   |
@@ -252,20 +270,26 @@ All population measurements were determined for `minimal`, `selective`, and `ric
 :::
 
 ::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
-Use these questions to develop your own, or answer them as is. These is no "single" answer to these questions: refine or broaden the scope of these questions as needed. **Bolded** questions have an accompanying figure and code.
+Use these questions to develop your own, or answer them as-is. These is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
+
+**Bolded** questions have an accompanying figure and code: see the "Hints" tab for some specific suggestions for helpful code to use.
 
 ::: panel-tabset
 ### Easier
 
--   How does population size change over time for the wildtype or mutant in different medias?
+-   **How does population size change over time for the wildtype (or mutant) in different medias?**
 -   What is the relationship between fitness and offspring cost in competition conditions in different medias?
 
 ### Harder
 
--   How does the change in fitness over time compare between different treatment conditions and media types?
+-   **How does the change in fitness over time compare between different treatment conditions and media types?**
 -   Which media type allows for the most maximal performance of the wildtype? The mutant? Competition conditions?
 
 ### Example figures
+
+**Easier: How does population size change over time for the wildtype (or mutant) in different medias?**
+
+**Harder: how does the change in fitness over time compare between different treatment conditions and media types?**
 
 ### Hints
 :::

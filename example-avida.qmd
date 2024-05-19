@@ -1,0 +1,77 @@
+---
+title: "Example Analysis: Avida"
+date: "today"
+format: html
+---
+
+# Preamble
+
+This script will loosely follow the template document: it is more meant for you to get an idea of one way to approach the data processing and visualization! This analysis will primarily focus on using tidyverse tools (i.e. `dplyr` and `ggplot`).
+
+------------------------------------------------------------------------
+
+For this dataset, the **main skills** we want you to practice are:
+
+1. Pivoting: this dataset is an example of where multiple variables are contained in the column names.
+2. Working with multiple datasets: to be able to work with the data in its entirety, the datasets need to be combined together.
+
+The **research questions** we will address are:
+
+1.  Easier: How does population size change over time for the wildtype (or mutant) in different medias?
+2.  Harder: How does the change in fitness over time compare between different treatment conditions and media types?
+
+# 1. Load data and libraries
+
+```{r}
+library(tidyverse)
+
+wt <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+```
+
+# 2. Format the Data
+
+## Skill: Pivoting
+
+
+## Skill: Working with multiple datasets
+
+
+
+# 3. Visualize the Data
+
+## Easier
+
+::: callout-note
+### Research question
+How does population size change over time for the wildtype (or mutant) in different medias?
+:::
+
+
+
+## Harder
+
+::: callout-note
+### Research question
+How does the change in fitness over time compare between different treatment conditions and media types?
+:::
+
+------------------------------------------------------------------------
+
+# Code only
+
+::: {.callout-note collapse="true"}
+## Code only
+
+```{r eval=FALSE}
+# read in data, load libraries
+library(tidyverse)
+
+wt <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+
+
+```
+:::
