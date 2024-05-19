@@ -1,5 +1,6 @@
 ---
 title: "Analysis Template"
+date: "today"
 format: html
 ---
 
@@ -42,7 +43,7 @@ Some things you may want to look at:
 
 ### 5. Formatting the Data
 
-Depending on your research question, what information is important? Is the data in the format you need it to be? E.g. Date formats come in many different forms, and maybe you only care about the year and not month/day!
+Depending on your research question, what information is important? What do you want your graphs to show? Is the data in the format you need it to be? E.g. Date formats come in many different forms, and maybe you only care about the year and not month/day!
 
 ```{r format-data}
 # YOUR CODE GOES HERE
