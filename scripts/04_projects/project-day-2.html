@@ -120,25 +120,46 @@ Instructor notes
 </div>
 </div>
 </div>
-<p>//TODO mention sth about how the data is raw</p>
-<p>Now that you’ve been through the entire course, we want to reinforce some of the skills that you’ve learned by applying your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have … //TODO [some code that shows…]</p>
-<p>For each of these datasets (as many as time allows), we’d like you to do some basic analysis, including the following steps:</p>
+<p>In the previous class, you completed the following steps:</p>
+<blockquote class="blockquote">
 <ol type="1">
-<li>Create a directory for the analysis of this dataset, using best practices discussed in the previous class.</li>
-<li>Load in the data.</li>
-<li>Perform some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)</li>
-<li>Identify at least 1 research question that you could try to answer with this dataset.</li>
-<li>Format the data in a way that allows for this analysis.</li>
-<li>Visualize the data in helpful ways to answer your question.</li>
-<li>Make your code reproducible by using Github.</li>
+<li><p>Created a GitHub account.</p></li>
+<li><p>Linked your GitHub account with your Longleaf account.</p></li>
+<li><p>Created and pushed your first repository to GitHub.</p></li>
 </ol>
+</blockquote>
+<p>Today, now that you’ve been through the entire course, we want to reinforce some of the skills that you’ve learned by having you apply your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have a GitHub repo containing scripts for wrangling and analysis for at least one of these datasets that you can show to others (or at least have as reference for your future self).</p>
+<p>For each of these datasets (or as many as time allows), we’d like you to do some basic analysis, including the following steps:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li><p>Create a directory for the analysis of this dataset, using best practices discussed in the previous class.</p></li>
+<li><p>Load in the data.</p></li>
+<li><p>Perform some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)</p></li>
+<li><p>Identify at least 1 research question that you could try to answer with this dataset.</p></li>
+<li><p>Format the data in a way that allows for this analysis.</p></li>
+<li><p>Visualize the data in helpful ways to answer your question.</p></li>
+<li><p>Make your code reproducible by using GitHub.</p></li>
+</ol>
+</blockquote>
 <p>To help with your analyses, we have included a <strong>template document</strong> outlining these steps that you are welcome to use.</p>
-<p>//TODO more pointers for what to do for analyses, 1-2 example figs/analyses, more decripts of the data structure, so the teacher doesnt have to be super familiar with the data. crunchy fig.&nbsp;prob this is mostly going to be a “here’s a figure - recreate it”. def need to include some code to copy/paste for certain operations</p>
 </section>
 <section id="datasets" class="level1">
 <h1>Datasets</h1>
 <p>The csvs are available under the <code>data</code> folder (or wherever it’ll be moved to). We have provided links to data that is publically available for download, as well as some related publications that may give you more information about the data.</p>
 <p>These datasets were chosen because we thought they represented a good variety in the different kinds of wrangling and visualization challenges you might encounter with your own data in the future, and are presented roughly in order of increasing experimental/wrangling complexity. We have highlighted a few specific R skills that some of these datasets were meant to challenge you on.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Though you should have most of the basic skills you need to wrangle and analyze these datasets, there are some instances where we have specifically provided the code to aid you in certain wrangling tasks: see the “Analysis ideas and hints” callout for each dataset.</p>
+</div>
+</div>
 <p>For each dataset, we have provided a description of the research question/data collection methods, metadata, and the first few lines of each dataset. Read through these descriptions and work on the dataset you find most interesting.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="But I thought this was HTLTCode, not HTLTScience!">
 <div class="callout-header d-flex align-content-center">
@@ -151,7 +172,7 @@ But I thought this was HTLTCode, not HTLTScience!
 </div>
 <div class="callout-body-container callout-body">
 <p>To get the most out of today’s activities, we highly encourage you practice going through the whole data analysis workflow as independently as you can, developing your own research questions and analysis ideas.</p>
-<p>That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you’d rather focus more on coding or sciencing for each dataset. These questions are split into “easier” and “harder” coding challenges.</p>
+<p>That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you’d rather focus more on coding or sciencing for each dataset. These questions are split into “easier” and “harder” coding challenges, with “harder” challenges generally involving slightly more wrangling.</p>
 <p>Thus, based on your comfort level, you can decide how much of the data analysis workflow you want to try independently today:</p>
 <ol type="1">
 <li>Recreate our figures</li>
@@ -166,9 +187,9 @@ But I thought this was HTLTCode, not HTLTScience!
 <p><strong>Skills to practice:</strong> parsing strings, dealing with <code>NA</code> values</p>
 <p><strong>Background:</strong> Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.</p>
 <p>To further investigate, the Central Arizona-Pheonix Long-Term Ecological Research Program <a href="https://sustainability-innovation.asu.edu/caplter/">(CAP-LTER)</a> recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities.</p>
-<p>What kind of relationships can you find between individual activty and neighborhood?</p>
+<p><em>What kind of relationships can you find between individual activity and neighborhood?</em></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Data overview">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -177,7 +198,7 @@ Data overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Column metadata</a></li></ul>
@@ -235,7 +256,7 @@ Data overview
 <col style="width: 24%">
 <col style="width: 24%">
 <col style="width: 24%">
-<col style="width: 27%">
+<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -273,7 +294,7 @@ Data overview
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -282,20 +303,30 @@ Analysis ideas and hints
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Use these questions to develop your own, or answer them as-is. These is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
-<p><strong>Bolded</strong> questions have an accompanying figure and code: see the “Hints” tab for some specific suggestions for helpful code to use.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Example figures</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Hints</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Analysis hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Example questions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Example figures</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<ul>
+<li><p>We recommend using functions in the <code>stringr</code> package from the tidyverse to parse the strings, particularly <code>str_sub()</code> and <code>str_split_fixed()</code>.</p>
+<ul>
+<li><p>e.g.&nbsp;If you had a vector <code>x</code>, which contains a bunch of 2 character codes and you wanted to extract the first character: <code>str_sub(x, 1, 1)</code></p></li>
+<li><p>e.g.&nbsp;If you had a vector <code>x</code>, which contains information in the format <code>first-second-third</code> and you wanted to extract the 1st chunk: <code>str_split_fixed(x, "-", n=3)[,1]</code></p></li>
+</ul></li>
+<li><p>R has some “counting” functions such as <code>length()</code> and <code>n()</code>: how could you get unique counts? Is there a single function that does that?</p></li>
+</ul>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Use these questions to develop your own, or answer them as-is. These is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
+<hr>
+<p>Easier</p>
 <ul>
 <li><strong>How many participants were there for each neighborhood in the study?</strong></li>
 <li>On average, which 4-hour measurement period is the warmest? The coolest?</li>
 </ul>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Harder</p>
 <ul>
 <li><strong>What was the daily average temperature for each neighborhood during the study period?</strong></li>
 <li>For a specific neighborhood on a certain day, what were all the individual temperatures experienced for each 4-hour measurement period?</li>
@@ -305,16 +336,6 @@ Analysis ideas and hints
 <p><strong>Easier: How many participants were there for each neighborhood in the study?</strong></p>
 <p><img src="project-day-2_files/figs/temps-easy.png" class="img-fluid" style="width:75.0%"></p>
 <p><strong>Harder: What was the daily average temperature for each neighborhood during the study period?</strong> <img src="project-day-2_files/figs/temps-hard.png" class="img-fluid" style="width:75.0%"></p>
-</div>
-<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
-<ul>
-<li><p>We recommend using functions in the <code>stringr</code> package from the tidyverse to parse the strings, particularly <code>str_sub()</code> and <code>str_split_fixed()</code>.</p>
-<ul>
-<li><p>e.g.&nbsp;If you had a vector <code>x</code>, which contains a bunch of 2 character codes and you wanted to extract the first character: <code>str_sub(x, 1, 1)</code></p></li>
-<li><p>e.g.&nbsp;If you had a vector <code>x</code>, which contains information in the format <code>first-second-third</code> and you wanted to extract the 1st chunk: <code>str_split_fixed(x, "-", n=3)[,1]</code></p></li>
-</ul></li>
-<li><p>R has “counting” functions such as <code>length()</code> and <code>n()</code>: how could you get unique counts? Is there a way to use just 1 function to do so?</p></li>
-</ul>
 </div>
 </div>
 </div>
@@ -327,9 +348,9 @@ Analysis ideas and hints
 <p><a href="https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset">Data source</a></p>
 <p><strong>Skills to practice:</strong> working with dates, pivoting</p>
 <p><strong>Background:</strong> The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.</p>
-<p>How might you represent the dynamics of this outbreak?</p>
+<p><em>How might you represent the dynamics of this outbreak?</em></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Data overview">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -338,7 +359,7 @@ Data overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Column metadata</a></li></ul>
@@ -406,10 +427,10 @@ Data overview
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <table class="table">
 <colgroup>
-<col style="width: 29%">
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 23%">
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -453,7 +474,7 @@ Data overview
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -462,21 +483,27 @@ Analysis ideas and hints
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Use these questions to develop your own, or answer them as-is. These is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
-<p><strong>Bolded</strong> questions have an accompanying figure and code: see the “Hints” tab for some specific suggestions for helpful code to use.</p>
-<p>Note: this dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Example figures</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false" href="">Hints</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Analysis hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Example questions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Example figures</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<ul>
+<li><p>This dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.</p></li>
+<li><p>The current format of the data isn’t “tidy”…</p></li>
+<li><p>You can use <code>format()</code> to extract specific parts of a date object: e.g.&nbsp;if <code>x</code> is a date object with the format <code>%Y-%m-%d</code>, you can get the year with <code>format(x, "%Y")</code>.</p></li>
+</ul>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>Use these questions to develop your own, or answer them as-is. These is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
+<hr>
+<p>Easier</p>
 <ul>
 <li><strong>How many cases and deaths in total were recorded by each country from 2014-2016?</strong></li>
 <li>For a specific year, how did the number of cases and deaths change over time for each country?</li>
 </ul>
-</div>
-<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>Harder</p>
 <ul>
 <li><strong>By country, how did the average number of cases and death change each year?</strong></li>
 <li>Are there any seasonal patterns in the average cases and deaths?</li>
@@ -487,12 +514,6 @@ Analysis ideas and hints
 <p><img src="project-day-2_files/figs/ebola-easy.png" class="img-fluid" style="width:75.0%"></p>
 <p><strong>Harder: By country, how did the average number of cases and death change each year?</strong></p>
 <p><img src="project-day-2_files/figs/ebola-hard.png" class="img-fluid" style="width:75.0%"></p>
-</div>
-<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
-<ul>
-<li><p>The current format of the data isn’t “tidy”…</p></li>
-<li><p>You can use <code>format()</code> to extract specific parts of a date object: e.g.&nbsp;if <code>x</code> is a date object with the format <code>%Y-%m-%d</code>, you can get the year with <code>format(x, "%Y")</code>.</p></li>
-</ul>
 </div>
 </div>
 </div>
@@ -522,9 +543,9 @@ Analysis ideas and hints
 </div>
 </div>
 </div>
-<p>Help your friend get started with some of the exploratory data analysis: what interesting patterns can you find between genotype, competition, and resource availability?</p>
+<p>Help your friend get started with some of the exploratory data analysis. <em>What interesting patterns can you find between genotype, competition, and resource availability?</em></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Data overview">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -533,7 +554,7 @@ Data overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Column metadata</a></li></ul>
@@ -682,10 +703,10 @@ Data overview
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <table class="table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 28%">
-<col style="width: 23%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -742,7 +763,7 @@ Data overview
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -751,20 +772,23 @@ Analysis ideas and hints
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Use these questions to develop your own, or answer them as-is. These is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
-<p><strong>Bolded</strong> questions have an accompanying figure and code: see the “Hints” tab for some specific suggestions for helpful code to use.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Easier</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Harder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Example figures</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false" href="">Hints</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Analysis hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Example questions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Example figures</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>Use these questions to develop your own, or answer them as-is. These is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
+<hr>
+<p>Easier</p>
 <ul>
 <li><strong>How does population size change over time for the wildtype (or mutant) in different medias?</strong></li>
 <li>What is the relationship between fitness and offspring cost in competition conditions in different medias?</li>
 </ul>
-</div>
-<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>Harder</p>
 <ul>
 <li><strong>How does the change in fitness over time compare between different treatment conditions and media types?</strong></li>
 <li>Which media type allows for the most maximal performance of the wildtype? The mutant? Competition conditions?</li>
@@ -774,23 +798,12 @@ Analysis ideas and hints
 <p><strong>Easier: How does population size change over time for the wildtype (or mutant) in different medias?</strong></p>
 <p><strong>Harder: how does the change in fitness over time compare between different treatment conditions and media types?</strong></p>
 </div>
-<div id="tabset-7-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-4-tab">
-
-</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 <p><em>For teachers:</em> may need to help students with joining dataframes, parsing out column names, pivoting, and hopefully not the biology parts… once the columns are pivoted they can just slap different metrics on there. can plot time series data.</p>
-<p>===</p>
-<p>extra stuff</p>
-<p>In the previous class, you completed the following steps:</p>
-<ol type="1">
-<li><p>Created a GitHub account.</p></li>
-<li><p>Linked your GitHub account with your Longleaf account.</p></li>
-<li><p>Created and pushed your first repository to GitHub.</p></li>
-</ol>
 </section>
 </section>
 

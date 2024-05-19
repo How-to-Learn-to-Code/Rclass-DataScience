@@ -49,23 +49,33 @@ Other things:
 :::
 :::
 
-//TODO mention sth about how the data is raw
+In the previous class, you completed the following steps:
 
-Now that you've been through the entire course, we want to reinforce some of the skills that you've learned by applying your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have ... //TODO \[some code that shows...\]
+> 1.  Created a GitHub account.
+>
+> 2.  Linked your GitHub account with your Longleaf account.
+>
+> 3.  Created and pushed your first repository to GitHub.
 
-For each of these datasets (as many as time allows), we'd like you to do some basic analysis, including the following steps:
+Today, now that you've been through the entire course, we want to reinforce some of the skills that you've learned by having you apply your knowledge to several existing datasets and have you go through the wrangling, analysis, and visualization process as much as you can on your own. By the end of this lesson, you should have a GitHub repo containing scripts for wrangling and analysis for at least one of these datasets that you can show to others (or at least have as reference for your future self).
 
-1.  Create a directory for the analysis of this dataset, using best practices discussed in the previous class.
-2.  Load in the data.
-3.  Perform some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)
-4.  Identify at least 1 research question that you could try to answer with this dataset.
-5.  Format the data in a way that allows for this analysis.
-6.  Visualize the data in helpful ways to answer your question.
-7.  Make your code reproducible by using Github.
+For each of these datasets (or as many as time allows), we'd like you to do some basic analysis, including the following steps:
+
+> 1.  Create a directory for the analysis of this dataset, using best practices discussed in the previous class.
+>
+> 2.  Load in the data.
+>
+> 3.  Perform some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)
+>
+> 4.  Identify at least 1 research question that you could try to answer with this dataset.
+>
+> 5.  Format the data in a way that allows for this analysis.
+>
+> 6.  Visualize the data in helpful ways to answer your question.
+>
+> 7.  Make your code reproducible by using GitHub.
 
 To help with your analyses, we have included a **template document** outlining these steps that you are welcome to use.
-
-//TODO more pointers for what to do for analyses, 1-2 example figs/analyses, more decripts of the data structure, so the teacher doesnt have to be super familiar with the data. crunchy fig. prob this is mostly going to be a "here's a figure - recreate it". def need to include some code to copy/paste for certain operations
 
 # Datasets
 
@@ -73,12 +83,16 @@ The csvs are available under the `data` folder (or wherever it'll be moved to). 
 
 These datasets were chosen because we thought they represented a good variety in the different kinds of wrangling and visualization challenges you might encounter with your own data in the future, and are presented roughly in order of increasing experimental/wrangling complexity. We have highlighted a few specific R skills that some of these datasets were meant to challenge you on.
 
+::: callout-note
+Though you should have most of the basic skills you need to wrangle and analyze these datasets, there are some instances where we have specifically provided the code to aid you in certain wrangling tasks: see the "Analysis ideas and hints" callout for each dataset.
+:::
+
 For each dataset, we have provided a description of the research question/data collection methods, metadata, and the first few lines of each dataset. Read through these descriptions and work on the dataset you find most interesting.
 
 ::: {.callout-tip title="But I thought this was HTLTCode, not HTLTScience!"}
 To get the most out of today's activities, we highly encourage you practice going through the whole data analysis workflow as independently as you can, developing your own research questions and analysis ideas.
 
-That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you'd rather focus more on coding or sciencing for each dataset. These questions are split into "easier" and "harder" coding challenges.
+That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you'd rather focus more on coding or sciencing for each dataset. These questions are split into "easier" and "harder" coding challenges, with "harder" challenges generally involving slightly more wrangling.
 
 Thus, based on your comfort level, you can decide how much of the data analysis workflow you want to try independently today:
 
@@ -97,7 +111,7 @@ Thus, based on your comfort level, you can decide how much of the data analysis 
 
 To further investigate, the Central Arizona-Pheonix Long-Term Ecological Research Program [(CAP-LTER)](https://sustainability-innovation.asu.edu/caplter/) recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities.
 
-What kind of relationships can you find between individual activty and neighborhood?
+*What kind of relationships can you find between individual activity and neighborhood?*
 
 ::: {.callout-note collapse="true" title="Data overview"}
 ::: panel-tabset
@@ -110,7 +124,7 @@ knitr::kable(head(temps0))
 ### Column metadata
 
 | Column        | Type      | Description                                                       | Values                                                                   |
-|------------------|------------------|------------------|--------------------|
+|------------------|------------------|------------------|-------------------|
 | `Subject.ID`  | character | Subject identifier where number (1-5) corresponds to neighborhood | 1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch |
 | `period`      | character | 4 hour measurement period                                         | weekday, period                                                          |
 | `temperature` | num       | 4 hour average of IET during specified period                     | Celcius                                                                  |
@@ -118,17 +132,28 @@ knitr::kable(head(temps0))
 :::
 
 ::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+::: panel-tabset
+### Analysis hints
+
+-   We recommend using functions in the `stringr` package from the tidyverse to parse the strings, particularly `str_sub()` and `str_split_fixed()`.
+
+    -   e.g. If you had a vector `x`, which contains a bunch of 2 character codes and you wanted to extract the first character: `str_sub(x, 1, 1)`
+
+    -   e.g. If you had a vector `x`, which contains information in the format `first-second-third` and you wanted to extract the 1st chunk: `str_split_fixed(x, "-", n=3)[,1]`
+
+-   R has some "counting" functions such as `length()` and `n()`: how could you get unique counts? Is there a single function that does that?
+
+### Example questions
 Use these questions to develop your own, or answer them as-is. These is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
 
-**Bolded** questions have an accompanying figure and code: see the "Hints" tab for some specific suggestions for helpful code to use.
+---
 
-::: panel-tabset
-### Easier
+Easier
 
 -   **How many participants were there for each neighborhood in the study?**
 -   On average, which 4-hour measurement period is the warmest? The coolest?
 
-### Harder
+Harder
 
 -   **What was the daily average temperature for each neighborhood during the study period?**
 -   For a specific neighborhood on a certain day, what were all the individual temperatures experienced for each 4-hour measurement period?
@@ -140,16 +165,6 @@ Use these questions to develop your own, or answer them as-is. These is no "sing
 ![](project-day-2_files/figs/temps-easy.png){width="75%"}
 
 **Harder: What was the daily average temperature for each neighborhood during the study period?** ![](project-day-2_files/figs/temps-hard.png){width="75%"}
-
-### Hints
-
--   We recommend using functions in the `stringr` package from the tidyverse to parse the strings, particularly `str_sub()` and `str_split_fixed()`.
-
-    -   e.g. If you had a vector `x`, which contains a bunch of 2 character codes and you wanted to extract the first character: `str_sub(x, 1, 1)`
-
-    -   e.g. If you had a vector `x`, which contains information in the format `first-second-third` and you wanted to extract the 1st chunk: `str_split_fixed(x, "-", n=3)[,1]`
-
--   R has some "counting" functions such as `length()` and `n()`: how could you get unique counts? Is there a single function that does that?
 :::
 :::
 
@@ -161,7 +176,7 @@ Use these questions to develop your own, or answer them as-is. These is no "sing
 
 **Background:** The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.
 
-How might you represent the dynamics of this outbreak?
+*How might you represent the dynamics of this outbreak?*
 
 ::: {.callout-note collapse="true" title="Data overview"}
 ::: panel-tabset
@@ -174,7 +189,7 @@ knitr::kable(head(ebola0))
 ### Column metadata
 
 | Column                                                       | Type      | Description                     | Values     |
-|---------------------|-----------------|-----------------|-----------------|
+|-------------------|------------------|------------------|------------------|
 | `Country`                                                    | character | Country of report               |            |
 | `Date`                                                       | character | Date of report                  | YYYY-MM-DD |
 | `Cumulative.no..of.confirmed..probable.and.suspected.cases`  | numeric   | Cumulative number till this day |            |
@@ -183,19 +198,26 @@ knitr::kable(head(ebola0))
 :::
 
 ::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+::: panel-tabset
+### Analysis hints
+
+- This dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.
+
+-   The current format of the data isn't "tidy"...
+
+-   You can use `format()` to extract specific parts of a date object: e.g. if `x` is a date object with the format `%Y-%m-%d`, you can get the year with `format(x, "%Y")`.
+
+### Example questions
 Use these questions to develop your own, or answer them as-is. These is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
 
-**Bolded** questions have an accompanying figure and code: see the "Hints" tab for some specific suggestions for helpful code to use.
+---
 
-Note: this dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.
-
-::: panel-tabset
-### Easier
+Easier
 
 -   **How many cases and deaths in total were recorded by each country from 2014-2016?**
 -   For a specific year, how did the number of cases and deaths change over time for each country?
 
-### Harder
+Harder
 
 -   **By country, how did the average number of cases and death change each year?**
 -   Are there any seasonal patterns in the average cases and deaths?
@@ -209,12 +231,6 @@ Note: this dataset contains data for other countries besides the three named abo
 **Harder: By country, how did the average number of cases and death change each year?**
 
 ![](project-day-2_files/figs/ebola-hard.png){width="75%"}
-
-### Hints
-
--   The current format of the data isn't "tidy"...
-
--   You can use `format()` to extract specific parts of a date object: e.g. if `x` is a date object with the format `%Y-%m-%d`, you can get the year with `format(x, "%Y")`.
 :::
 :::
 
@@ -224,7 +240,7 @@ Note: this dataset contains data for other countries besides the three named abo
 
 [^1]: In particular, see [Lenski et al. (2003)](https://www.nature.com/articles/nature01568) and [Smith et al. (2016)](https://link.springer.com/article/10.1186/s12052-016-0060-0).
 
-**Skills to practice:** pivoting, working with multiple datasets
+**Skills to practice:** working with multiple datasets, pivoting
 
 **Background:** The following data was generated using [Avida-ED](https://avida-ed.msu.edu/avida-ed-application/), an online educational application that allows one to study the dynamics of evolutionary processes. Digital, asexually-reproducing organisms known as "Avidians" can be placed into something akin to a virtual Petri dish to evolve in, and one can manipulate parameters such as mutation rate, resource availability, and dish size to study how those factors affect the evolution of the population.
 
@@ -242,7 +258,7 @@ Your friend grew either the wildtype only, mutant only, or both populations toge
 knitr::include_graphics("project-day-2_files/figs/avida-expt.png")
 ```
 
-Help your friend get started with some of the exploratory data analysis: what interesting patterns can you find between genotype, competition, and resource availability?
+Help your friend get started with some of the exploratory data analysis. *What interesting patterns can you find between genotype, competition, and resource availability?*
 
 ::: {.callout-note collapse="true" title="Data overview"}
 ::: panel-tabset
@@ -257,7 +273,7 @@ knitr::kable(head(avida0))
 ### Column metadata
 
 | Column                      | Type      | Description                                                                       | Values                                                       |
-|-----------------|-----------------|--------------------|-----------------|
+|------------------|------------------|-------------------|------------------|
 | `update`                    | integer   | Time elapsed                                                                      | Ranges 0-300                                                 |
 | `condition`                 | character | Testing conditions (single population or competition)                             | Based off csv: `wildtype-only`, `mutant-only`, `competition` |
 | `media_avg-fitness`         | numeric   | Average individual reproductive success in specified media                        | Ranges 0-1                                                   |
@@ -270,17 +286,20 @@ All population measurements were determined for `minimal`, `selective`, and `ric
 :::
 
 ::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+::: panel-tabset
+### Analysis hints
+
+### Example questions
 Use these questions to develop your own, or answer them as-is. These is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
 
-**Bolded** questions have an accompanying figure and code: see the "Hints" tab for some specific suggestions for helpful code to use.
+---
 
-::: panel-tabset
-### Easier
+Easier
 
 -   **How does population size change over time for the wildtype (or mutant) in different medias?**
 -   What is the relationship between fitness and offspring cost in competition conditions in different medias?
 
-### Harder
+Harder
 
 -   **How does the change in fitness over time compare between different treatment conditions and media types?**
 -   Which media type allows for the most maximal performance of the wildtype? The mutant? Competition conditions?
@@ -290,21 +309,7 @@ Use these questions to develop your own, or answer them as-is. These is no "sing
 **Easier: How does population size change over time for the wildtype (or mutant) in different medias?**
 
 **Harder: how does the change in fitness over time compare between different treatment conditions and media types?**
-
-### Hints
 :::
 :::
 
 *For teachers:* may need to help students with joining dataframes, parsing out column names, pivoting, and hopefully not the biology parts... once the columns are pivoted they can just slap different metrics on there. can plot time series data.
-
-===
-
-extra stuff
-
-In the previous class, you completed the following steps:
-
-1.  Created a GitHub account.
-
-2.  Linked your GitHub account with your Longleaf account.
-
-3.  Created and pushed your first repository to GitHub.
