@@ -1,0 +1,85 @@
+project:
+  type: book
+  output-dir: docs
+
+
+book:
+  sidebar:
+      tools:
+        - icon: github
+          href: https://github.com/How-to-Learn-to-Code
+  navbar:
+    foreground: "black"
+    background: "lightblue"
+    title: "How to Learn to Code"
+    collapse: true
+    search: true
+    pinned: true
+    right:
+      - icon: github
+        href: https://github.com/How-to-Learn-to-Code
+        aria-label: GitHub
+    sidebar:
+      search: true
+      border: true
+      style: "floating"
+      
+  title: "test"
+
+  author:
+    - name: "Austin Daigle"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "AD"
+    - name: "John Patrick Flores"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "JPF"
+      role: "Authoring Data Vizualization, Data Wrangling"
+    - name: "Madeline Gillman"
+      affiliation: "UNC Chapel Hill,  Bioinformatics and Computational Biology Curriculum Curriculum"
+      id: "MG"
+      role: "Authoring Coding Basics and Projects"  
+    - name: "Brian Gural"
+      affiliation: "UNC Chapel Hill, Genetics Curriculum"
+      id: "BG"
+      role: "Authoring Data Wrangling and Projects"
+    - name: "Lorrie He"
+      affiliation: "UNC Chapel Hill, Evolution, Ecology, and Organismal Biology Curriculum"
+      id: "LH"
+      role: "Authoring Coding Basics and Projects"
+    - name: "Justin Landis"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "JL"
+      role: "Authoring Data Wrangling"
+    - name: "Teresa McGee"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "TM"
+    - name: "Sarah Mae Parker"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "SMP"
+      role: "Authoring Data Visualization, "
+
+    - name: "Matthew Sutcliffe"
+      affiliation: "UNC Chapel Hill,  Bioinformatics and Computational Biology Curriculum Curriculum"
+      id: "MS"
+      role: "Authoring Coding Basics and Projects"
+  
+  date: "5/20/2024"
+  chapters:
+    - index.qmd
+    - "scripts/00_intro/class0.qmd"
+    - "scripts/01_codingBasics/class1.qmd"
+    - "scripts/01_codingBasics/class2.qmd"
+    - "scripts/03_dataWrangling/wrangling-day-1.qmd"
+    - "scripts/03_dataWrangling/wrangling-day-2.qmd"
+    - "scripts/04_projects/project-day-1.qmd"
+    - "scripts/04_projects/project-day-2.qmd"
+    - "scripts/05_references/references.qmd"
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
