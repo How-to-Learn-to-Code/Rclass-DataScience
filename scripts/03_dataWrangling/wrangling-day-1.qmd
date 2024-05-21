@@ -1,6 +1,7 @@
 ---
 title: "Data Wrangling Basics"
-author: "Brian Gural, Lorrie He, JP Flores"
+subtitle: "Data Wrangling Day 1"
+author: "Brian Gural, Lorrie He, Justin Landis, JP Flores"
 format: 
   html: 
     toc: true
@@ -12,8 +13,15 @@ format:
 
 -   There's rarely a single way to approach any given data-wrangling problem! Expanding your "toolkit" allows you to tackle problems from different angles.
 
-::: {.callout-note title="Measure twice, cut once"}
+## Objectives of Data Wrangling: Class 1
 
+- Be comfortable subsetting vectors and dataframes using both base R and tidyverse functions
+
+- Understand what tidy data is and what it looks like
+
+- Understand piping basics
+
+::: {.callout-note title="Measure twice, cut once"}
 Before you begin wrangling data, you should be able to:
 
 -   Define how you want the data to look and why
@@ -21,14 +29,13 @@ Before you begin wrangling data, you should be able to:
 -   Document it well so that others (and future you!) know what you did
 
 -   Know what tools you have and how to use them
-
 :::
 
 ## Building a toolkit
 
 ### Working with vectors
 
-Pulling out specific parts of a data set is important when analyzing with R. **Indexing**, or accessing elements, subsets data based on numeric positions in a vector. Some things to be aware of when indexing:
+Pulling out specific parts of a data set is important when analyzing with R. **Indexing**, or accessing elements, subsets data based on numeric positions in a vector. You may remember this from the first class. Some things to be aware of when indexing:
 
 -   Indexing uses brackets. i.e. the 5th element in a vector will be returned if you run `vector[5]`.
 
@@ -116,9 +123,8 @@ knitr::include_graphics("wrangling-files/tidy-style.png")
 
 This follows the *tidy data* style, an approach to handling data in R that aims to be clear and readable.
 
-
 ::: {.callout-note title="Tidiest Universe"}
-The bundle of tidy-associated packages is called the `tidyverse`, and it's a hot-topic in the R world. Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners!
+The bundle of tidy-associated packages is called the `tidyverse`, and it's a 🔥 hot-topic 🔥 in the R world. In fact, `ggplot` is a package that you have already used that is part of the `tidyverse`! Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners, as there are multiple ways to accomplish the same thing!
 :::
 
 ### `dplyr` verbs
@@ -139,7 +145,6 @@ dplyr::glimpse(df)
 With the `glimpse` function we see that this is a data frame with 3 observations and 3 variables. We can also see the type of each variable and the first few values.
 
 ::: callout-tip
-
 `dplyr` functions have a lot in common:
 
 -   The first argument is always a data frame
@@ -147,27 +152,26 @@ With the `glimpse` function we see that this is a data frame with 3 observations
 -   The following arguments typically specify which columns to operate on, using the variable names (without quotes)
 
 -   The output is always a new data frame
-
 :::
 
 ```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Joshua Ebner’s A Quick Introduction to Dplyr"}
 knitr::include_graphics("wrangling-files/dplyr_syntax.png")
 ```
 
-The `dplyr` package has a set of functions called "verbs" that are used to manipulate data frames. These verbs can either act on rows (i.e. `filter` out specific row's by some condition) or columns (i.e. `select` columns XYZ). There are also functions for working with groups (i.e. group rows by what values they have in a column with `group_by`)
+The `dplyr` package has a set of functions that are used to manipulate data frames (you may see these referred to as "verbs", and it may also be helpful to think of them as verbs performing an action on your dataframe). These functions can either act on rows (e.g. `filter` out specific rows by some condition) or columns (e.g. `select` columns XYZ). There are also functions for working with groups (e.g. group rows by what values they have in a column with `group_by`).
 
 ::: panel-tabset
 ## rows
 
-The most important verbs that operate on rows of a dataset are `filter()`, which changes which rows are present without changing their order, and `arrange()`, which changes the order of the rows without changing which are present. Both functions only affect the rows, and the columns are left unchanged. We’ll also discuss `distinct()` which finds rows with unique values but unlike `arrange()` and `filter()` it can also optionally modify the columns.
+The most important verbs that operate on rows of a dataset are `filter()`, which changes which rows are present without changing their order, and `arrange()`, which changes the order of the rows without changing which are present. Both functions only affect the rows, and the columns are left unchanged. We'll also discuss `distinct()` which finds rows with unique values but unlike `arrange()` and `filter()` it can also optionally modify the columns.
 
-More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#rows)
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#rows).
 
 ## columns
 
 There are four important verbs that affect the columns without changing the rows: `mutate()` creates new columns that are derived from the existing columns, `select()` changes which columns are present, `rename()` changes the names of the columns, and `relocate()` changes the positions of the columns.
 
-More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#columns)
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#columns).
 
 ## groups
 
@@ -177,7 +181,7 @@ More information about functions like this can be found [here](https://r4ds.hadl
 
 The `slice` family of functions allows you to extract specific rows within each group
 
-More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#groups)
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#groups).
 :::
 
 ::: callout-tip
@@ -225,7 +229,7 @@ Let's dissect our goal: *filter for those born after 1900* **and then** *arrange
 
 `arrange` is doing the *arrange them...* part
 
-and the pipe, `|>`, is going to do the **and then...** part
+and the pipe, `|>`, is going to do the **and then...** part.
 
 ```{r}
 # Using pipes
@@ -238,18 +242,15 @@ Once you're comfortable with this style, you should be able to read it as: Take 
 :::
 
 ::: callout-tip
-There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. 
+There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. You may see `%>%`more frequently in code from previous lab members.
 
 ::: {.callout-note title="Placeholders" collapse="true"}
-
-The **Placeholder** operator allows more control over where the `LHS` is placed into the `RHS` of the pipe operator.
+The **Placeholder** operator allows more control over where the `LHS` (left hand side) is placed into the `RHS` (right hand side) of the pipe operator.
 
 ::: panel-tabset
-
 #### `%>%`
 
 `%>%` uses `.` as its placeholder operator. In addition to this, you may use `.` multiple times on the `RHS`
-
 
 ```{r}
 3 %>% head(x = letters, n = .)
@@ -263,6 +264,7 @@ The **Placeholder** operator allows more control over where the `LHS` is placed 
 ```{r}
 3 |> head(x = letters, n = _)
 ```
+
 ```{r}
 #| error: true
 3 |> sum(2, _)
@@ -273,14 +275,11 @@ The **Placeholder** operator allows more control over where the `LHS` is placed 
 add3 <- function(x, y, z) x + y + z
 3 |> add3(2, y = _, z = _)
 ```
-
 :::
-
 :::
 
 ::: {.callout-note title="Right Hand Side (RHS)" collapse="true"}
 ::: panel-tabset
-
 #### `%>%`
 
 `%>%` can take a function name on the `RHS`
@@ -293,7 +292,6 @@ letters %>% head
 
 The `RHS` for `|>` must be a function with `()`
 
-
 ```{r}
 #| error: true
 letters |> head
@@ -302,14 +300,11 @@ letters |> head
 ```{r}
 letters |> head()
 ```
-
 :::
 :::
 
 ::: {.callout-note title="Anonymous Functions" collapse="true"}
-
 ::: panel-tabset
-
 #### `%>%`
 
 `%>%` can take expressions in curly braces `{}`
@@ -322,6 +317,7 @@ x <- 10
 #### `|>`
 
 `|>` must have a function call on `RHS`
+
 ```{r}
 #| error: true
 x <- 10
@@ -331,20 +327,17 @@ x <- 10
 ```{r}
 5 |> {function(y) x + y}()
 ```
-
 :::
-
 :::
 
 To summarize, `%>%` is slightly more lenient than `|>` when it comes to the Placeholder operator, the Right Hand Side (RHS) and Anonymous functions.
-
 :::
 
 ## Case Study Introduction
 
-A lot of people struggle to learn how to code without having an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set.
+Just reading about ways to manipulate data can be hard to understand without an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set.
 
-For this example, we have some data from an experiment that measured the proportions of different cell times within mouse cardiac tissue. These samples are from treatment vs. control and WT vs. mutant.
+For this example, we have some data from an experiment that measured the proportions of different cell times within mouse cardiac tissue. These samples are from treatment vs. control and WT (wild type) vs. mutant.
 
 What are some things that we, as researchers, would want to know about our data?
 
@@ -370,11 +363,9 @@ head(cell_props)
 ```
 
 ::: {.callout-note title="Whole vs. Fractions"}
-
 `Fraction` samples are our controls. They are supposed to be almost completely one single cell type. They're just here to make sure we accurately measured cell type proportions.
 
 `Whole` samples are our test samples. They're from the treatment/control mice, which you'd expect to have a range of cell types.
-
 :::
 
 ### Analysis Goals
@@ -385,7 +376,7 @@ For next class, you should brainstorm some ideas for how to approach the analysi
 -   What kind of visuals would we want to make to check that?
 -   What would the data need to look like to get those visuals?
 -   How does the data look now?
--   Which functions might we use to get the data from it's current state to what we need for plotting?
+-   Which functions might we use to get the data from its current state to what we need for plotting?
 
 In the beginning of next class, we'll chat about what ideas you had!
 

@@ -13,7 +13,7 @@ overflow-y: scroll;
 }
 ```
 
-# Introduction
+## Introduction
 
 > Many biologists starting out in bioinformatics tend to equate "learning bioinformatics" with "learning how to run bioinformatics software"... This is analogous to thinking "learning molecular biology" is just "learning pipetting."
 >
@@ -21,7 +21,7 @@ overflow-y: scroll;
 
 In Vince's quote above, replace "bioinformatics" with "coding."
 
-Our goal for this class is to familiarize students with the R programming language and RStudio environment, equip students with the skills and knowledge to wrangle, visualize, and analyze data, and to provide a foundation for more advanced coding skills.
+Our goal for How to Learn to Code is to familiarize students with the R programming language and RStudio environment, equip students with the skills and knowledge to wrangle, visualize, and analyze data, and to provide a foundation for more advanced coding skills.
 
 In Module 1: Coding Basics, we will cover:
 
@@ -44,7 +44,7 @@ Curious about what the rest of the classes will look like?
 
 -   Module 3: Data Wrangling
 
--   Module 4: Projects!
+-   Module 4: Project Management (and applying everything you've learned to a real-world dataset!)
 
 ## Objectives of Coding Basics: Class 1
 
@@ -261,7 +261,7 @@ Functions can do very basic tasks:
 print("Hello world!")
 ```
 
-Or more complex tasks, where multiple arguments are required, each separated by a comma: 
+Or more complex tasks, where multiple arguments are required, each separated by a comma:
 
 ```{r}
 substr(x = "Hello world!", start = 2, stop = 4)

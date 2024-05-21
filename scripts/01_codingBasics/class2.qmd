@@ -1,5 +1,6 @@
 ---
-title: "Class 2: Coding Basics"
+title: "Applying Coding Basics"
+subtitle: "Coding Basics, Day 2"
 author: "Matthew Sutcliffe, Madeline Gillman, JP Flores"
 format: 
   html: 
@@ -7,9 +8,9 @@ format:
 ---
 
 
-## Objectives
+## Objectives of Coding Basics: Class 2
 
--   Be able to apply the objectives covered in Class 1 to a new dataset
+-   Be able to apply the objectives covered in Coding Basics: Class 1 to a new dataset
 
 -   Identify and fix a bug in a code example
 

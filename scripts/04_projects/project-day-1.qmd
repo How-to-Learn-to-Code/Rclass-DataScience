@@ -1,10 +1,9 @@
 ---
 title: "Running a reproducible analysis"
-subtitle: "H2L2C, Project Management Day 1"
+subtitle: "Project Management Day 1"
 author: "Brian Gural"
 format: 
   html:
-    number-sections: true
     toc: true
 editor: visual
 ---
@@ -14,6 +13,14 @@ editor: visual
 -   Bioinformaticians are people too
 -   We need to make sure our research is well documented and reproducible just like bench scientists
 -   Projects can get complex, messy, and very computationally demanding
+
+## Objectives of Project Management Day 1
+
+-   Understand the importance of reproducible code
+
+-   Be able to describe methods used to follow good computational practices
+
+-   Create a GitHub account and create your first repository
 
 ## How can computational projects get derailed?
 
@@ -38,13 +45,11 @@ Don't think it's worth it? Here are some moments that made UNC researchers wishe
 
 ## "How did you make this figure from 2018?"
 
-"An undergrad left their code in `/pine`\* when they went home over the summer and it got deleted, so they had to re-write their code from scratch (which delayed the project as a whole)"
+"An undergrad left their code in `/pine` \[UNC's *temporary* data storage space\] when they went home over the summer and it got deleted, so they had to re-write their code from scratch (which delayed the project as a whole)"
 
 "Only having GitHub as a memory of projects I did in grad school, being able to search and find bits of code so I don't have to rewrite them."
 
 "People emailing 2 years after a paper is published asking about obscure details of simulation etc."
-
-\*`pine` was UNC's *temporary* data storage space
 :::
 
 ## Good computational practices 101
@@ -126,7 +131,7 @@ knitr::include_graphics("project-day-1_files/thumbs_up.gif")
 
 ### Go on, `git`!
 
-`git` is version control system used to record changes to files. [GitHub]{.blue} uses `git` to help users host/review code and manage projects
+`git` is version control **software** used to record changes to files. [GitHub]{.blue} is a repository hosting **service** that uses `git` to help users host/review code and manage projects. You can use git locally (on your own computer) without ever using GitHub. One of the many benefits of also using GitHub is that it stores your repositories (folders with code) in the cloud. On GitHub, it is free to have public repositories, but a paid account is required if you want several private repositories. As a student (or with a .edu email address) you can get GitHub Pro for free.
 
 [`git`/GitHub matter because they:]{.underline}
 
@@ -137,6 +142,12 @@ knitr::include_graphics("project-day-1_files/thumbs_up.gif")
 -   Allow for new versions of projects to `branch`
 
 -   Make it easy to collaborate
+
+[Git and GitHub are not:]{.underline}
+
+-   These tools are not Google Drive. If you try to add large files, you'll run into issues.
+
+-   Similar to the first point, these tools are also not a secure place to store data. If you work with sensitive data of any kind, be careful with what is being publicly shared on GitHub. You can always set repositories to private and share with specific collaborators. You should be able to recreate all intermediate data files, plots, results, etc. using your scripts anyways!
 
 ## Longleaf: The darling of UNC bioinformaticians
 
@@ -177,17 +188,17 @@ This course isn't meant to teach you shell scripting, and you aren't expected to
 
 ## Linking via `SSH`
 
-Let's start by getting the terminal open. In the top left, click View -\> Move Focus To Terminal. It should've opened in the panel that also contains tabs for "Console" and "Background Jobs".
+Let's start by getting the terminal open. In the top left, click View -\> Move Focus To Terminal. It should have opened in the panel that also contains tabs for "Console" and "Background Jobs".
 
 Next, let's find the SSH key associated with your Longleaf account. We'll run the following bash command in the terminal that we just opened (be aware that terminals are notoriously finicky with copy and paste): `cat ~/.ssh/id_rsa.pub`
+
+Running this command should print your public SSH key to your screen. Copy this to your clipboard, ensuring the entire key is highlighted (it's pretty long!).
 
 ::: callout-caution
 Do [**NOT**]{.underline} forget to add the `.pub` of the above extension. RSA keys come in pairs, a private and a public version. The private key (i.e. the file that does not have the `.pub` extension) should [**NEVER**]{.underline} be shared. Sharing your private key will allow malicious actors to interact with services that cache your public key [as if they were you]{.underline}!
 :::
 
-This (hopefully) has copied your public SSH key to your clipboard!
-
-Now, let's go over to Github and set up the key.
+Now, let's go over to Github and set up the link.
 
 1.  Go to profile settings on github and select the "ssh key" section
 
@@ -203,13 +214,13 @@ With that done, we need to log into Github on Longleaf:
 
 1.  Go back to the RStudio terminal
 
-2.  `git config --global user.name "your-github-username"`
+2.  `git config --global user.name "<your-github-username>"`
 
-    -   Keep the quotes around your username!
+    -   Keep the quotes around your username, e.g. `git config --global user.name "ramses"`
 
-3.  `git config --global user.email your.email.linkedwithgithub`
+3.  `git config --global user.email <your-email>`
 
-    -   No quotes this time!
+    -   No quotes this time, e.g. `git config --global user.email ramses@unc.edu`
 
 ## Making a repository {#sec-repo}
 
@@ -217,15 +228,15 @@ Great, we've connected Longleaf and Github (a herculean task for a beginner prog
 
 1.  In the "Repositories" tab of your profile, click "New"
 
-2.  Give it a name, maybe "example_repo"
+2.  Give it a name, maybe "HTLTC_project"
 
-3.  Click the "Add a README file box"
+3.  Click the "Add a README file" box
 
 4.  Add a \`.gitignore\` with an R template
 
 5.  Create the repo!
 
-We'll explain the signifance of the README and .gitignore steps a bit later. For now, lets go over to our new repo on our profile. To get it onto Longleaf, we can:
+We'll explain the significance of the README and .gitignore steps a bit later. For now, lets go over to our new repo on our profile. To get it onto Longleaf, we can:
 
 1.  Click on the green "Code" box
 
@@ -255,7 +266,7 @@ We'll explain the signifance of the README and .gitignore steps a bit later. For
     git clone git@github.com:<username>/<reponame>
     ```
 
-## RProjects
+## R Projects
 
 In this section, we will be discussing recommendations for organization. From @sec-repo, we can see that our project is fairly empty
 
@@ -274,7 +285,7 @@ The hidden directory `.git/` and file `.gitignore` will be covered in the next @
 
 Organization can greatly improve the experience of coding. It is a way for us to show our future selves some kindness as well as anyone who may maintain our work in the future.
 
-Below is an example of how we may setup directories for our project:
+Below is an example of how we may setup directories, or folders, for our project:
 
 ```         
 .
@@ -293,7 +304,7 @@ Here, we have created 4 new directories: `data/`, `outputs/`, `R/` and `scripts/
 
 `R/` and `scripts/` may be a bit nuanced. Perhaps the project author will keep helpful reusable R code in the `R/` directory, while the `scripts/` directory may be analysis workflows that are called from the command line.
 
-A project may, or may not, require this level of granularity. You may choose different directory names as well. However we want to maintain some level of interpretation and do not want to contradict expectations with the files within. Critically thinking about your project structure will ultimately save you time when you return to the project. 
+A project may, or may not, require this level of granularity. You may choose different directory names as well. However we want to maintain some level of interpretation and do not want to contradict expectations with the files within. Critically thinking about your project structure will ultimately save you time when you return to the project.
 
 Here are some general guidelines to follow:
 
@@ -306,9 +317,8 @@ Here are some general guidelines to follow:
 **Organization Do Not's**
 
 -   Place all files at the top level of the repository
--   Stratifying files between too many directories <!-- can make this just as hard to find -->
--   Using spaces in file names! <!-- escaping spaces on the command line with git is annoying -->
-
+-   Stratify files between too many directories <!-- can make this just as hard to find -->
+-   Use spaces in file names! <!-- escaping spaces on the command line with git is annoying -->
 
 ### README! ... Please? 😢
 
@@ -323,10 +333,10 @@ As the name implies, this file is intended to be read by anyone who happens upon
 -   How to contribute or report a bug
 -   Project Status: active development, stable, or abandoned
 
-If your repository is being viewed on [github.com](github.com) then top level `README.md` is displayed like the landing page. 
+If your repository is being viewed on [github.com](github.com) then top level `README.md` is displayed like the landing page.
 
 ::: callout-tip
-You may also place `README.md` within sub directories as well, allowing you to communicate more specific information within. 
+You may also place `README.md` within sub directories as well, allowing you to communicate more specific information within.
 
 Here are examples of what you may include in a `data/README.md` file
 
@@ -336,6 +346,10 @@ Here are examples of what you may include in a `data/README.md` file
 :::
 
 ## Using git {#sec-git}
+
+There are three basic commands you need to push changes from your local repository (your computer) to the remote repository (GitHub): `git add`, `git commit`, and `git push`.
+
+![Image modified from: https://dev.to/mollynem/git-github\--workflow-fundamentals-5496](project-day-1_files/git_workflow.png)
 
 -   `.git/` is a hidden directory whose main function is to track your `git ...` commands. It is generally wise to ignore this directory.
 
@@ -353,7 +367,7 @@ Here are examples of what you may include in a `data/README.md` file
 
     -   `git commit -m "Hi future me, this is what I changed"`
 
-        ::: {.callout-note collapse="true" title="note: Using `vim`"}
+        ::: {.callout-note collapse="true" title="Note: Using `vim`"}
         If you were to write\
         `git commit`\
         and omit the `-m "your message here"` portion, `git` will force you to write a message by placing you into an interactive prompt. The default text editor is usually `vim` which may be tricky to navigate.
@@ -364,3 +378,13 @@ Here are examples of what you may include in a `data/README.md` file
 -   Commits are pushed to branches
 
     -   For the main branch, use `git push origin main`
+
+### I don't git it! 
+
+There is almost a 100% chance you get a git error you do not immediately the meaning of or how to solve it. There is also a nearly 100% chance someone has also run into this issue, and has asked about it on the internet. Often, git will provide an idea of how to fix the issue (e.g. `fatal: The current branch project-update has no upstream branch. To push the current branch and set the remote as upstream, use git push --set-upstream origin project-update)` but if you are still confused, copy and paste the error message into Google!
+
+There are a ton of resources/turotrials out there on using git and GitHub. Here are a few instructors have found helpful. Note that some may cover git actions we did not discuss (such as branching).
+
+-   [Hello World - GitHub Docs](https://docs.github.com/en/get-started/start-your-journey/hello-world)
+
+-   Practicing git commands in a sandbox environment: [learn git branching](https://learngitbranching.js.org), [visualizing git](https://git-school.github.io/visualizing-git/)
