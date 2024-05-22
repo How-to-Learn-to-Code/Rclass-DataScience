@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#welcome-to-how-to-learn-to-code" id="toc-welcome-to-how-to-learn-to-code" class="nav-link active" data-scroll-target="#welcome-to-how-to-learn-to-code">Welcome to How to Learn to Code!</a></li>
-  <li><a href="#class-0-goals" id="toc-class-0-goals" class="nav-link" data-scroll-target="#class-0-goals">Class 0 Goals</a></li>
+  <li><a href="#class-0-objectives" id="toc-class-0-objectives" class="nav-link" data-scroll-target="#class-0-objectives">Class 0 Objectives</a></li>
   <li><a href="#r-vs.-r-studio" id="toc-r-vs.-r-studio" class="nav-link" data-scroll-target="#r-vs.-r-studio">R vs.&nbsp;R Studio</a></li>
   <li><a href="#longleaf" id="toc-longleaf" class="nav-link" data-scroll-target="#longleaf">Longleaf</a></li>
   <li><a href="#ondemand" id="toc-ondemand" class="nav-link" data-scroll-target="#ondemand">OnDemand</a></li>
@@ -115,10 +115,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome-to-how-to-learn-to-code" class="level2">
 <h2 class="anchored" data-anchor-id="welcome-to-how-to-learn-to-code">Welcome to How to Learn to Code!</h2>
-<p>This page will walk you through setting up access to UNC’s computing cluster and introduce you a bit to R and R Studio so we can hit the ground running in the first class. To ensure you have access to the UNC cluster (and thus able to participate in class), please review this document in full at least 24 hours in advance of the first class–Research IT will need time to approve your account request.</p>
+<p>This page will walk you through setting up access to UNC’s computing cluster and introduce you a bit to R and R Studio so we can hit the ground running in the first class. To ensure you have access to the UNC cluster (and thus able to participate in class), <strong>please review this document in full at least 24 hours in advance of the first class</strong>–Research IT will need time to approve your account request.</p>
 </section>
-<section id="class-0-goals" class="level2">
-<h2 class="anchored" data-anchor-id="class-0-goals">Class 0 Goals</h2>
+<section id="class-0-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="class-0-objectives">Class 0 Objectives</h2>
 <ul>
 <li><p>Request a Longleaf account</p></li>
 <li><p>Launch an R Studio session on OnDemand</p></li>
@@ -239,14 +239,32 @@ Note
 <p><strong>Matrix:</strong> A matrix in R is very similar to a data frame. Unlike a data frame, all elements must be of the same data type.</p>
 <p><strong>Functions:</strong> A function performs a given task. This task can be very simple (add two numbers) or more complex (create a large data frame, run a linear regression, save the output to a csv file). R has many built-in functions you will use. Many packages also have functions you can use.</p>
 <p><strong>Packages:</strong> Packages in R are extensions of what is called “base R.” Base R refers to using R without any add-ons (i.e., no packages). Packages can have data, functions, and/or compiled code. It is the responsibility of package developers to maintain their package–which means some undergo frequent updates and some haven’t been touched in years (and thus might not work anymore for whatever reason). It also means that some packages can have bugs or might not be appropriate for your data/analysis. To use a package, you will first need to install it using the function <code>install.package("&lt;package_name&gt;")</code>. You will only need to install the package once. Each time you want to use the package, you’ll need to load it into your environment: <code>library(&lt;package_name')</code>. Once it is loaded into your environment, you will be able to use any functions or data in the package.</p>
+<p><strong>global vs.&nbsp;local:</strong> Global refers to something (usually a variable) that is accessible to the entire program/code. Local refers to something (usually a variable) that is accessible only relative to something else (such as within a specific code block, like a function).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global variable</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"airplane"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Function that defines a local variable</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="st">"car"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing the local variable outside the function returns an error</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># But the global variable is accessible</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing the local variable </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">my_function</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>directory:</strong> A directory is another term for what you may refer to as a “folder” on your computer.</p>
+<p><strong>paths:</strong> Paths are the directions to files and folders on your system. Understanding paths is important for reading your data into your R environment, since you will need to tell R where the file is located. You can have global and local paths. Global paths are sort of like the full set of instructions starting from your home base. Local paths are instructions given a certain starting location. Here’s an example of a global path to an example file on Longleaf: <code>/work/users/g/h/goheels/my_project/my_data.csv</code>. Here’s an example of a local path, given the starting spot of the <code>goheels</code> directory: <code>my_project/my_data.csv</code>.</p>
 <p><strong>syntax/style:</strong> The visual appearance (spaces, indentations, capitalization) of your code greatly improves readability and makes it easier for someone else to quickly understand what it’s doing (or you six months later). In this class, we will follow the Tidyverse Style Guide and encourage you to reference it during class to ensure you are consistently naming variables and using appropriate syntax. The sections most relevant for now are <a href="https://style.tidyverse.org/files.html">Files</a>, <a href="https://style.tidyverse.org/files.html">Syntax</a>, and the “Comments” section of the <a href="https://style.tidyverse.org/functions.html#comments-1">Functions</a> page. Later classes will touch on <a href="https://style.tidyverse.org/pipes.html">pipes</a> and <a href="https://style.tidyverse.org/ggplot2.html">ggplot2</a>.</p>
 <p><strong>Conditionals:</strong> A conditional is a line of code that will run only if a particular condition is met. You can recognize these by the use of “if” “else” or “while”. The best way to understand these is by actually reading the code out loud. If you were to read the below example out loud, you might say “if x equals 3, print ‘condition is met’, else print ‘condition is not met’”. What do you think will happen if <code>x == 3</code>? What if <code>x == 4</code>?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">==</span> <span class="dv">3</span>) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"condition is met"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"condition is not met"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">==</span> <span class="dv">3</span>) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"condition is met"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"condition is not met"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="understanding-errors-and-warnings" class="level2">
