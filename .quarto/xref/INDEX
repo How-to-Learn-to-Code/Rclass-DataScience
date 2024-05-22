@@ -1,0 +1,32 @@
+{
+  "index.qmd": {
+    "index.html": "51d0d62e"
+  },
+  "scripts/00_intro/class0.qmd": {
+    "class0.html": "e336ec67"
+  },
+  "scripts/01_codingBasics/class1.qmd": {
+    "class1.html": "4557ee81"
+  },
+  "scripts/01_codingBasics/class2.qmd": {
+    "class2.html": "d4df0f65"
+  },
+  "scripts/02_dataViz/class3.qmd": {
+    "class3.html": "d328c4d4"
+  },
+  "scripts/02_dataViz/class4.qmd": {
+    "class4.html": "57819310"
+  },
+  "scripts/03_dataWrangling/class5.qmd": {
+    "class5.html": "69bdfad2"
+  },
+  "scripts/04_projects/class7.qmd": {
+    "class7.html": "54216f4a"
+  },
+  "scripts/04_projects/class8.qmd": {
+    "class8.html": "ef03808e"
+  },
+  "scripts/03_dataWrangling/class6.qmd": {
+    "class6.html": "38588b07"
+  }
+}
