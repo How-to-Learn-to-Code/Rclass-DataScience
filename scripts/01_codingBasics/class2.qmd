@@ -7,7 +7,6 @@ format:
     toc: true
 ---
 
-
 ## Objectives of Coding Basics: Class 2
 
 -   Be able to apply the objectives covered in Coding Basics: Class 1 to a new dataset
@@ -21,9 +20,20 @@ This class we will be working with the `mtcars` dataset. The data was extracted 
 The other dataset we will be working with is the Palmer Penguins dataset. This is not a built-in dataset, so you will need to install it. You will only need to install the package once.
 
 ```{r}
+# this code is making sure that the correct files are installed during the project rendering
+# Students, don't worry too much about this code. It is here to make sure that our curriculum
+# book runs correcrtly, but if you are curious, feel free to ask teachers for more info. 
+if(!require("palmerpenguins")){
+  install.packages("palmerpenquins",repos = 'http://cran.us.r-project.org')
+}
+```
+
+
+```{r}
 #| eval: false
 install.packages("palmerpenguins")
 ```
+
 Once it is installed, you will need to load the package into your R environment. You will need to do this anytime you want to use a package.
 
 ```{r}
@@ -46,9 +56,9 @@ data(package = "palmerpenguins")
 4.  How many rows are in the dataset? How many columns? You may need to look up how to do this! Try searching "how to get number of rows in data frame in R" in Google.
 5.  Run `str(mtcars)` . What is this output telling you? How does it compare to what you found in #3 and #4?
 6.  For each column, find the mean, range, and median values. Are you able to do this for all columns? Why or why not?
-7. What value is in the 6th row and 10th column?
-8. Print every row of the 4th column. 
-9. Print every column of only rows 28 to 31.  
+7.  What value is in the 6th row and 10th column?
+8.  Print every row of the 4th column.
+9.  Print every column of only rows 28 to 31.
 
 ### Penguins dataset
 
@@ -56,16 +66,16 @@ data(package = "palmerpenguins")
 2.  Assign `penguins` to a new variable of your choice.
 3.  What is the data type of each column in the dataset?
 4.  How many rows and columns?
-5.  For each column, if possible, find the mean, range, and median values. 
+5.  For each column, if possible, find the mean, range, and median values.
 6.  For columns that you cannot find the mean/range/median of, try using the `table()` function, e.g. `table(penguis$species)` . What is this telling you?
 7.  Currently, the `bill_length` and `bill_depth` columns are in millimeters. Create a new column with those values converted to centimeters. (HINT: look at what you did at the end of the "Accessing parts of a list" section in Class 1)
-8. Add two new columns to the data frame of your choice. 
+8.  Add two new columns to the data frame of your choice.
 9.  The penguins dataset is not perfect--it has some missing values. Check the missing values in the column sex by running two functions: `is.na(penguins$sex)` and `sum(is.na(penguins$sex))` .
     a.  What is the difference between the two outputs?
     b.  Compare to the result in #6.
     c.  Use the help page for the `table()` function and see if you can get the output to include NAs.
 
-### Code debugging 
+### Code debugging
 
 Your former lab mate Weird Barbie graduated a few years ago. Before she left, she was working on some interesting analyses of the frequencies of Kens.
 

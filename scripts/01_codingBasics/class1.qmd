@@ -1,5 +1,6 @@
 ---
-title: "Class 1: Coding Basics"
+title: "R Coding Basics"
+subtitle: "Coding Basics, Day 1"
 author: "Matthew Sutcliffe, Madeline Gillman, JP Flores"
 format: 
   html: 
@@ -85,7 +86,7 @@ You are probably already thinking of questions you need the answers to in order 
 
 A variable is a named space in your computer's memory which can be referenced and manipulated. It's sort of a name you give "something", and that something can be just about anything.
 
-![https://mclark45.medium.com/variables-8d0ba47d9694](class1_files/variables.png)
+![https://mclark45.medium.com/variables-8d0ba47d9694](class1-files/variables.png)
 
 Variables in R are created (assigned) using an arrow: `<-` The variable name always goes on the left, and the thing being assigned to that variable on the right. For example:
 
