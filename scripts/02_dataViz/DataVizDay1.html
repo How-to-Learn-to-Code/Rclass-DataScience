@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Sarah Parker, JP Flores">
 
-<title>datavizday1</title>
+<title>Getting Started with Data Visualization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lets-get-plotting" id="toc-lets-get-plotting" class="nav-link active" data-scroll-target="#lets-get-plotting">Let’s Get Plotting!</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#objectives-of-data-visualization-class-1" id="toc-objectives-of-data-visualization-class-1" class="nav-link" data-scroll-target="#objectives-of-data-visualization-class-1">Objectives of Data Visualization: Class 1</a></li>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview">Dataset overview</a></li>
+  <li><a href="#lets-get-plotting" id="toc-lets-get-plotting" class="nav-link" data-scroll-target="#lets-get-plotting">Let’s Get Plotting!</a>
   <ul>
   <li><a href="#numeric-vs-numeric" id="toc-numeric-vs-numeric" class="nav-link" data-scroll-target="#numeric-vs-numeric">Numeric vs Numeric</a>
   <ul class="collapse">
@@ -103,11 +107,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Getting Started with Data Visualization</h1>
+<p class="subtitle lead">Data Visualization Day 1</p>
+</div>
 
 
-<p>For this lesson, we will be using a .bed file of genetic variants from <a href="https://marianattestad.com/blog" class="uri">https://marianattestad.com/blog</a>. We will need to read in this data using the <code>read.csv()</code> function, then rename the columns with the <code>name()</code> function:</p>
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sarah Parker, JP Flores </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Welcome to the first day of data visualization! Hopefully today will feel fun and rewarding as you will learn how to create beautiful plots to explore data, communicate insights, and maybe even include in a publication! We will show you how to use the two most popular methods to create plots: base R and <code>ggplot</code>. Let’s dive in! 📊</p>
+</section>
+<section id="objectives-of-data-visualization-class-1" class="level2">
+<h2 class="anchored" data-anchor-id="objectives-of-data-visualization-class-1">Objectives of Data Visualization: Class 1</h2>
+<ul>
+<li><p>Build a basic plot using base R functions</p></li>
+<li><p>Build a basic plot using the <code>ggplot</code> package</p></li>
+<li><p>Change design elements of plots using base R and <code>ggplot</code></p></li>
+</ul>
+</section>
+<section id="dataset-overview" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-overview">Dataset overview</h2>
+<p>For this lesson, we will be using a .bed file of genetic variants from <a href="https://marianattestad.com/blog" class="uri">https://marianattestad.com/blog</a>. We will need to read in this data using the <code>read.table()</code> function, then rename the columns with the <code>name()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>variants <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"DataVizDay1_files/variants_from_assembly.bed"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">quote=</span><span class="st">''</span>, <span class="at">stringsAsFactors=</span><span class="cn">TRUE</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>variants <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"DataVizDay1_files/variants_from_assembly.bed"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">quote=</span><span class="st">''</span>, <span class="at">stringsAsFactors=</span><span class="cn">TRUE</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(variants) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"chrom"</span>,<span class="st">"start"</span>,<span class="st">"stop"</span>,<span class="st">"name"</span>,<span class="st">"size"</span>,<span class="st">"strand"</span>,<span class="st">"type"</span>,<span class="st">"ref.dist"</span>,<span class="st">"query.dist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s take a look at this dataset and what kind of research questions we could explore using this data.</p>
@@ -130,6 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Are the sizes of variants of different types different?</p></li>
 </ul>
 <p>We can quickly explore questions like these by creating quick visualizations of the data.</p>
+</section>
 <section id="lets-get-plotting" class="level2">
 <h2 class="anchored" data-anchor-id="lets-get-plotting">Let’s Get Plotting!</h2>
 <p><strong>Choosing a plot type</strong></p>
@@ -462,9 +503,9 @@ Tip
 <p>Sometimes we want to see how the counts or the distribution of a continuous variable change between different categorical groups. Often, we use a barplot for this, but there are several other plot types we can use</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 18%">
+<col style="width: 58%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">

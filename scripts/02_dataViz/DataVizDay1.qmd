@@ -1,14 +1,31 @@
 ---
+title: Getting Started with Data Visualization
+subtitle: "Data Visualization Day 1"
+author: "Sarah Parker, JP Flores"
 format: 
- html: 
-  toc: true
-  toc-depth: 4
+  html: 
+    toc: true
+    toc-depth: 4
 ---
 
-For this lesson, we will be using a .bed file of genetic variants from <https://marianattestad.com/blog>. We will need to read in this data using the `read.csv()` function, then rename the columns with the `name()` function:
+## Introduction
+
+Welcome to the first day of data visualization! Hopefully today will feel fun and rewarding as you will learn how to create beautiful plots to explore data, communicate insights, and maybe even include in a publication! We will show you how to use the two most popular methods to create plots: base R and `ggplot`. Let's dive in! 📊
+
+## Objectives of Data Visualization: Class 1
+
+-   Build a basic plot using base R functions
+
+-   Build a basic plot using the `ggplot` package
+
+-   Change design elements of plots using base R and `ggplot`
+
+## Dataset overview
+
+For this lesson, we will be using a .bed file of genetic variants from <https://marianattestad.com/blog>. We will need to read in this data using the `read.table()` function, then rename the columns with the `name()` function:
 
 ```{r}
-variants <- read.csv("DataVizDay1_files/variants_from_assembly.bed", sep="\t", quote='', stringsAsFactors=TRUE,header=FALSE)
+variants <- read.table("DataVizDay1_files/variants_from_assembly.bed", sep="\t", quote='', stringsAsFactors=TRUE,header=FALSE)
 names(variants) <- c("chrom","start","stop","name","size","strand","type","ref.dist","query.dist")
 
 ```
@@ -304,6 +321,7 @@ ggplot(variants, aes(x = type, y = size)) +
 ```
 
 To make a barplot, we need to give it a bit more information. The height of the barplot is based on certain statistics, such as sum or mean. Since these are summary statistics, we will add `stat = "summary"` and `fun = "mean"` if we want the bar height to relate to the means of each category. How does this compare to the sums?
+
 ```{r}
 ## boxplot
 ggplot(variants, aes(x = type, y = size)) +
