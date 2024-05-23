@@ -1,4 +1,4 @@
-update,condition,minimal_avg-fitness,minimal_avg-offspring-cost,minimal_avg-energy-acq-rate,minimal_pop-size,selective_avg-fitness,selective_avg-offspring-cost,selective_avg-energy-acq-rate,selective_pop-size,rich_avg-fitness,rich_avg-offspring-cost,rich_avg-energy-acq-rate,rich_pop-size
+update,condition,minimal_avg.fitness,minimal_avg.offspring.cost,minimal_avg.energy.acq.rate,minimal_pop.size,selective_avg.fitness,selective_avg.offspring.cost,selective_avg.energy.acq.rate,selective_pop.size,rich_avg.fitness,rich_avg.offspring.cost,rich_avg.energy.acq.rate,rich_pop.size
 0,mutant-only,0.183206107,262,48,1,0.366412214,262,96,1,0.183206107,262,48,1
 1,mutant-only,0.183206107,262,48,1,0.366412214,262,96,1,0.183206107,262,48,1
 2,mutant-only,0.183206107,262,48,1,0.366412214,262,96,1,0.183206107,262,48,1
