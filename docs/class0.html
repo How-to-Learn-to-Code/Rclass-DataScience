@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>How To Learn to Code for Data Science in R - Welcome to How to Learn to Code!</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../scripts/01_codingBasics/class1.html" rel="next">
+<link href="../../index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">How to Learn to Code</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link active" href="https://github.com/How-to-Learn-to-Code" aria-current="page"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../scripts/00_intro/class0.html"><span class="chapter-title">Welcome to How to Learn to Code!</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/How-to-Learn-to-Code" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/00_intro/class0.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Welcome to How to Learn to Code!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/01_codingBasics/class1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">R Coding Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/01_codingBasics/class2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Applying Coding Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/02_dataViz/class3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Let’s Get Plotting!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/02_dataViz/class4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Applying Visualization Methods</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/03_dataWrangling/class5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/03_dataWrangling/class6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/04_projects/class7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running a Reproducible Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../scripts/04_projects/class8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Practicing on Real-World Data</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#class-0-objectives" id="toc-class-0-objectives" class="nav-link" data-scroll-target="#class-0-objectives">Class 0 Objectives</a></li>
+  <li><a href="#r-vs.-r-studio" id="toc-r-vs.-r-studio" class="nav-link" data-scroll-target="#r-vs.-r-studio">R vs.&nbsp;R Studio</a></li>
+  <li><a href="#longleaf" id="toc-longleaf" class="nav-link" data-scroll-target="#longleaf">Longleaf</a></li>
+  <li><a href="#ondemand" id="toc-ondemand" class="nav-link" data-scroll-target="#ondemand">OnDemand</a></li>
+  <li><a href="#navigating-r-studio" id="toc-navigating-r-studio" class="nav-link" data-scroll-target="#navigating-r-studio">Navigating R Studio</a></li>
+  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running code</a></li>
+  <li><a href="#talking-like-an-r-user" id="toc-talking-like-an-r-user" class="nav-link" data-scroll-target="#talking-like-an-r-user">Talking like an R user</a></li>
+  <li><a href="#understanding-errors-and-warnings" id="toc-understanding-errors-and-warnings" class="nav-link" data-scroll-target="#understanding-errors-and-warnings">Understanding errors and warnings</a></li>
+  <li><a href="#use-of-ai-tools" id="toc-use-of-ai-tools" class="nav-link" data-scroll-target="#use-of-ai-tools">Use of AI tools</a></li>
+  <li><a href="#im-stuck-additional-resources" id="toc-im-stuck-additional-resources" class="nav-link" data-scroll-target="#im-stuck-additional-resources">I’m stuck! Additional resources</a></li>
+  <li><a href="#bonus-installing-r-studio-on-your-personal-computer" id="toc-bonus-installing-r-studio-on-your-personal-computer" class="nav-link" data-scroll-target="#bonus-installing-r-studio-on-your-personal-computer">Bonus: Installing R Studio on your personal computer</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Welcome to How to Learn to Code!</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This page will walk you through setting up access to UNC’s computing cluster and introduce you a bit to R and R Studio so we can hit the ground running in the first class. To ensure you have access to the UNC cluster (and thus able to participate in class), <strong>please review this document in full at least 24 hours in advance of the first class</strong>–Research IT will need time to approve your account request.</p>
+</section>
+<section id="class-0-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="class-0-objectives">Class 0 Objectives</h2>
+<ul>
+<li><p>Request a Longleaf account</p></li>
+<li><p>Launch an R Studio session on OnDemand</p></li>
+<li><p>Know what each of the four panels in R Studio show</p></li>
+</ul>
+</section>
+<section id="r-vs.-r-studio" class="level2">
+<h2 class="anchored" data-anchor-id="r-vs.-r-studio">R vs.&nbsp;R Studio</h2>
+<p>In this class, you’ll hear these two terms a lot. They sound similar, but they are actually very different! <strong>R</strong> is the programming language we will be learning in this class. <strong>R Studio</strong> is a user-friendly interface (or <strong>IDE,</strong> integrated development environment) we will be using to write scripts in R and interact with R software.</p>
+</section>
+<section id="longleaf" class="level2">
+<h2 class="anchored" data-anchor-id="longleaf">Longleaf</h2>
+<p>“Longleaf” is the name for UNC’s computing system. Researchers in all departments across UNC use it to run analyses, store data, and use programs that require GPUs. Whenever someone says they are “on Longleaf” or “running code on Longleaf” it means their personal computer is connected to the cluster and they are either actively interacting with a program running on the cluster (we will be doing this with R Studio!) or writing code that tells the cluster to perform certain tasks whenever it has the memory availability.</p>
+<p><strong>Before the first class, you will need to request access to Longleaf.</strong> Follow the instructions on the <a href="https://help.rc.unc.edu/request-a-cluster-account">Research IT website</a>. In addition to your onyen and email address, you’ll need the following information:</p>
+<ul>
+<li><p>Preferred shell: bash</p></li>
+<li><p>Faculty sponsor name and onyen: You can put your PI here, or if you do not have a PI, leave blank.</p></li>
+<li><p>Type of subscription: Longleaf</p></li>
+<li><p>Description of work you will do on the cluster: How to Learn to Code R class</p></li>
+</ul>
+<p>It may take ~24 hours before your account is approved.</p>
+</section>
+<section id="ondemand" class="level2">
+<h2 class="anchored" data-anchor-id="ondemand">OnDemand</h2>
+<p>OnDemand is a web portal that allows you to access <strong>Longleaf</strong>. We will be using <strong>OnDemand</strong> to launch <strong>R Studio</strong> and run <strong>R</strong> code. You will need to have your Longleaf account approved before accessing OnDemand.</p>
+<p>To launch OnDemand, navigate to this site in a browser of your choice: <a href="https://ondemand.rc.unc.edu/">https://ondemand.rc.unc.edu</a> (you may want to bookmark this site, you’ll be accessing it for each class).</p>
+<p>Once you’ve logged in, you’ll see a page like this. Click on the <strong>RStudio Server</strong> tile.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="class0_images/Picture1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="screenshot of the OnDemand home page with a red box around the RStudio Server icon."></p>
+</figure>
+</div>
+<p>This will take you to a page where you can fill out some parameters for your R Studio Server session. The only one you’ll need to adjust is “Number of hours” where you should put “2”.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="class0_images/Picture2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Screenshot of the R Studio Server request page where a user inputs the R version, number of hours, and number of CPUs requested before launching the session."></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can request up to 10 hours, but it’s good practice to only request the amount of time you’ll need (Longleaf is a shared resource!). Since each class is 90 minutes, you’ll likely only need to request 2 hours for each class. Under “Additional job submission arguments” you adjust the amount of memory requested. This won’t be needed for How to Learn to Code classes, but may be needed when you are running your own analyses on large datasets in the future.</p>
+</div>
+</div>
+<p>After you’ve filled out the appropriate information, click Launch. This will take you to the “My Interactive Sessions” page. Your session request may be queued for a minute while space on the cluster is being allocated for your session. Once it’s ready, click “Connect to R Studio Server”. This will launch R Studio in a new tab.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="class0_images/Picture3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="navigating-r-studio" class="level2">
+<h2 class="anchored" data-anchor-id="navigating-r-studio">Navigating R Studio</h2>
+<p>Your R Studio window is divided into four panes. You can adjust the sizes of each pane (horizontally and vertically) by dragging the outer edges.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may only see three panes when you first launch R Studio. If that’s the case, go to File &gt; New File &gt; R Script.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://docs.posit.co/ide/user/ide/guide/ui/images/rstudio-panes-labeled.jpeg" class="img-fluid figure-img"></p>
+<figcaption>image: https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html</figcaption>
+</figure>
+</div>
+<p>The top left pane is called the <strong>Source</strong> and this is where you will be writing and editing code. Writing code here does not automatically <strong>execute</strong> or <strong>run</strong> it. To do that, you will need to use the <strong>Console</strong> pane in the bottom left. There are a few ways to get code written in the Source pane to the Console pane, in order from least efficient to most efficient:</p>
+<ul>
+<li><p>Copying the line of code you want to run and pasting it into the console and then hitting the “return” or “enter” key.</p></li>
+<li><p>Putting your cursor anywhere in the line of code you want to run and clicking “Run” in the upper right section of the Source pane</p></li>
+<li><p>Highlighting the line of code (or section of code) you want to run and clicking “Run” in the upper right section of the Source pane</p></li>
+<li><p>Putting your cursor anywhere in the line of code you want to run, highlighting the line of code, or highlighting the section of code you want to run and pressing Alt + Enter (for PC) or cmd + return (for Mac)</p></li>
+</ul>
+<p>Any code written in the console is <strong>not</strong> saved anywhere. Generally, people write their code in the Source pane, and then run it as needed in the Console. This is important to remember when writing reproducible code–all code needed to run your analyses, generate plots, etc. should be written in the source (which is then saved as an R script). Throughout this course, you will likely want to ensure that the code you write during each class is saved in a separate R script.</p>
+<p>The <strong>Environments</strong> pane shows current saved <strong>objects</strong>, but also has tabs to show history (all commands executed in your current session) and connections (if you connect to any local or remote databases). You will almost exclusively be using the Environment tab. The <strong>Output</strong> pane is in the bottom right and shows outputs of code such as plots. It also has tabs for files (an interactive file explorer), packages (which shows currently installed R packages), and help (which shows package documentation). You will likely be using the Plots and Help tabs the most.</p>
+</section>
+<section id="running-code" class="level2">
+<h2 class="anchored" data-anchor-id="running-code">Running code</h2>
+<p>Try running the below line of code using one of the four ways described above. First, copy the below line of code and paste it into the Source pane.</p>
+<p><code>print("hello world!")</code></p>
+<p>Before executing the code, your Source and Console panes will look like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="class0_images/Picture4.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>After executing the line of code, your source pane will look like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="class0_images/Picture5.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Congrats! You just ran your first line of code. If you want to save your script (what’s written in the source pane) go to File &gt; Save as and save your script with a helpful name in a location that makes sense (e.g., maybe in a folder called “H2L2C_class” and name the script “hello_world.R”).</p>
+<p>Review the rest of the information on this page before Class 1, but don’t worry if it doesn’t make sense right away. We will be going over some of it in the first class and touching on it throughout the course.</p>
+</section>
+<section id="talking-like-an-r-user" class="level2">
+<h2 class="anchored" data-anchor-id="talking-like-an-r-user">Talking like an R user</h2>
+<p>Below is some jargon that you may hear during class. Don’t worry about memorizing it all before Class 1! Just know that it’s here so if you are ever wondering what a term means you will know where to look.</p>
+<p><strong>Running code/run this line/execute:</strong> Telling R to perform the command given in a console. If someone says “run this line of code” that means to send it to the console (either by copying/pasting or using one of the shortcuts mentioned previously).</p>
+<p><strong>Data types:</strong> Data types in R include numeric, logical, and character. There are a few more, but those are the main three. We will touch on these more in Classes 1 and 2.</p>
+<p><strong>Vector:</strong> A series of values of any data type. A vector is created using the <code>c()</code> function (c for combine/concatenate).</p>
+<p><strong>Factors:</strong> This is the R term for categorical data. Sometimes R will automatically treat data as categorical (especially if it is a character type), but not always. You can coerce other data types (like numeric) to factors using using the <code>factor()</code> function and specifying the order using the <code>levels</code> argument. For more information on factors, see <a href="https://r4ds.hadley.nz/factors.html">this page</a> in the R for Data Science book.</p>
+<p><strong>Data frame:</strong> The best way to think of data frames is a spreadsheet. Technically, they are composed of vectors. Typically the rows in a data frame will correspond to observations and the columns will correspond to variables describing those observations. Data in a data frame can be of different types–i.e.&nbsp;you can have one column be character (maybe describing hair color for each observation) and another be numeric (maybe describing height for each observation).</p>
+<p><strong>Matrix:</strong> A matrix in R is very similar to a data frame. Unlike a data frame, all elements must be of the same data type.</p>
+<p><strong>Functions:</strong> A function performs a given task. This task can be very simple (add two numbers) or more complex (create a large data frame, run a linear regression, save the output to a csv file). R has many built-in functions you will use. Many packages also have functions you can use.</p>
+<p><strong>Packages:</strong> Packages in R are extensions of what is called “base R.” Base R refers to using R without any add-ons (i.e., no packages). Packages can have data, functions, and/or compiled code. It is the responsibility of package developers to maintain their package–which means some undergo frequent updates and some haven’t been touched in years (and thus might not work anymore for whatever reason). It also means that some packages can have bugs or might not be appropriate for your data/analysis. To use a package, you will first need to install it using the function <code>install.package("&lt;package_name&gt;")</code>. You will only need to install the package once. Each time you want to use the package, you’ll need to load it into your environment: <code>library(&lt;package_name')</code>. Once it is loaded into your environment, you will be able to use any functions or data in the package.</p>
+<p><strong>global vs.&nbsp;local:</strong> Global refers to something (usually a variable) that is accessible to the entire program/code. Local refers to something (usually a variable) that is accessible only relative to something else (such as within a specific code block, like a function).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global variable</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"airplane"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Function that defines a local variable</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="st">"car"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing the local variable outside the function returns an error</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># But the global variable is accessible</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing the local variable </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">my_function</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>directory:</strong> A directory is another term for what you may refer to as a “folder” on your computer.</p>
+<p><strong>paths:</strong> Paths are the directions to files and folders on your system. Understanding paths is important for reading your data into your R environment, since you will need to tell R where the file is located. You can have global and local paths. Global paths are sort of like the full set of instructions starting from your home base. Local paths are instructions given a certain starting location. Here’s an example of a global path to an example file on Longleaf: <code>/work/users/g/h/goheels/my_project/my_data.csv</code>. Here’s an example of a local path, given the starting spot of the <code>goheels</code> directory: <code>my_project/my_data.csv</code>.</p>
+<p><strong>syntax/style:</strong> The visual appearance (spaces, indentations, capitalization) of your code greatly improves readability and makes it easier for someone else to quickly understand what it’s doing (or you six months later). In this class, we will follow the Tidyverse Style Guide and encourage you to reference it during class to ensure you are consistently naming variables and using appropriate syntax. The sections most relevant for now are <a href="https://style.tidyverse.org/files.html">Files</a>, <a href="https://style.tidyverse.org/files.html">Syntax</a>, and the “Comments” section of the <a href="https://style.tidyverse.org/functions.html#comments-1">Functions</a> page. Later classes will touch on <a href="https://style.tidyverse.org/pipes.html">pipes</a> and <a href="https://style.tidyverse.org/ggplot2.html">ggplot2</a>.</p>
+<p><strong>Conditionals:</strong> A conditional is a line of code that will run only if a particular condition is met. You can recognize these by the use of “if” “else” or “while”. The best way to understand these is by actually reading the code out loud. If you were to read the below example out loud, you might say “if x equals 3, print ‘condition is met’, else print ‘condition is not met’”. What do you think will happen if <code>x == 3</code>? What if <code>x == 4</code>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">==</span> <span class="dv">3</span>) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"condition is met"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"condition is not met"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="understanding-errors-and-warnings" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-errors-and-warnings">Understanding errors and warnings</h2>
+<p>You will get lots of errors during your How to Learn to Code Journey. “Warnings” indicate your code ran, but some non-fatal issue arose. Sometimes these are OK to ignore, sometimes they indicate an issue you need to look into further. Either way, they should always be investigated! “Errors” are fatal issues and may be the result of things like syntax errors, typos, and incorrect data types. A good starting point for investigating any error or warning is Google (chances are quite high someone has run into the same issue, especially when you’re just learning how to code). You can copy and paste the entire error/warning into Google and usually return a helpful result.</p>
+</section>
+<section id="use-of-ai-tools" class="level2">
+<h2 class="anchored" data-anchor-id="use-of-ai-tools">Use of AI tools</h2>
+<p>Using AI tools such as ChatGPT and Microsoft Copilot can be really helpful! But before turning to these tools for assistance, try figuring out the solution yourself. Part of learning how to code is learning how to <em>think</em> like a coder, and that requires doing things the hard way for a bit. Remember that you are responsible for understanding what your code is doing and why, and that the output is accurate. Additionally, depending on the type of work you are doing, you many need to use additional caution when copying and pasting code/data (any questions/concerns on this should be directed to your PI/department).</p>
+</section>
+<section id="im-stuck-additional-resources" class="level2">
+<h2 class="anchored" data-anchor-id="im-stuck-additional-resources">I’m stuck! Additional resources</h2>
+<p>Research IT page on how to use OnDemand: <a href="https://help.rc.unc.edu/ondemand" class="uri">https://help.rc.unc.edu/ondemand</a></p>
+<p>Getting started on Longleaf: <a href="https://help.rc.unc.edu/getting-started-on-longleaf" class="uri">https://help.rc.unc.edu/getting-started-on-longleaf</a></p>
+<p>More stats please! <a href="https://odum.unc.edu/education/short-courses/#course1" class="uri">https://odum.unc.edu/education/short-courses/#course1</a></p>
+<p>Still haven’t found what you’re looking for? Post a message in the How to Learn to Code Teams!</p>
+</section>
+<section id="bonus-installing-r-studio-on-your-personal-computer" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-installing-r-studio-on-your-personal-computer">Bonus: Installing R Studio on your personal computer</h2>
+<p>A lot of you may want to use R on your personal computer (i.e., not on Longleaf). There may be reasons why you want to stick with Longleaf though (e.g., data should not be downloaded on personal devices, data/analysis requires a lot of memory). If you are interested in installing R and R Studio on your personal computer, you can use the below resources for help. All classes will be taught assuming you are using Longleaf though, so class time won’t be dedicated to troubleshooting R install issues on personal computers.</p>
+<p>If you just want to click 2 buttons and figure it out: <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></p>
+<p>If you want a more detailed install walkthrough: <a href="https://rstudio-education.github.io/hopr/starting.html" class="uri">https://rstudio-education.github.io/hopr/starting.html</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/h2l2cR\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../scripts/01_codingBasics/class1.html" class="pagination-link" aria-label="R Coding Basics">
+        <span class="nav-page-text"><span class="chapter-title">R Coding Basics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
