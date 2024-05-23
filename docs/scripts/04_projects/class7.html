@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Brian Gural">
 
-<title>How To Learn to Code for Data Science in R - 7&nbsp; Running a Reproducible Analysis</title>
+<title>How To Learn to Code for Data Science in R - 8&nbsp; Running a Reproducible Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,11 +18,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -47,43 +48,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -94,7 +65,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../scripts/04_projects/class8.html" rel="next">
-<link href="../../scripts/03_dataWrangling/class5.html" rel="prev">
+<link href="../../scripts/03_dataWrangling/class6.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +81,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -119,8 +96,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -131,54 +110,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">How to Learn to Code</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link active" href="https://github.com/How-to-Learn-to-Code" aria-current="page"><i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link active" href="https://github.com/How-to-Learn-to-Code" aria-current="page"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Running a Reproducible Analysis</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../scripts/04_projects/class7.html"><span class="chapter-title">Running a Reproducible Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        <div class="sidebar-tools-collapse">
-    <a href="https://github.com/How-to-Learn-to-Code" title="" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/How-to-Learn-to-Code" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -213,6 +192,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../scripts/03_dataWrangling/class6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../scripts/04_projects/class7.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Running a Reproducible Analysis</span></a>
   </div>
 </li>
@@ -221,36 +205,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../scripts/04_projects/class8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Practicing on Real-World Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../scripts/03_dataWrangling/class6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reproducible-science-in-silico" id="toc-reproducible-science-in-silico" class="nav-link active" data-scroll-target="#reproducible-science-in-silico"><span class="toc-section-number">7.1</span>  Reproducible science… <em>in-silico</em>??</a></li>
-  <li><a href="#how-can-computational-projects-get-derailed" id="toc-how-can-computational-projects-get-derailed" class="nav-link" data-scroll-target="#how-can-computational-projects-get-derailed"><span class="toc-section-number">7.2</span>  How can computational projects get derailed?</a></li>
-  <li><a href="#good-computational-practices-101" id="toc-good-computational-practices-101" class="nav-link" data-scroll-target="#good-computational-practices-101"><span class="toc-section-number">7.3</span>  Good computational practices 101</a></li>
-  <li><a href="#suffering-from-manual-version-control-git-can-help." id="toc-suffering-from-manual-version-control-git-can-help." class="nav-link" data-scroll-target="#suffering-from-manual-version-control-git-can-help."><span class="toc-section-number">7.4</span>  Suffering from manual version control? <code>git</code> can help.</a>
+  <li><a href="#reproducible-science-in-silico" id="toc-reproducible-science-in-silico" class="nav-link active" data-scroll-target="#reproducible-science-in-silico"><span class="header-section-number">8.1</span> Reproducible science… <em>in-silico</em>??</a></li>
+  <li><a href="#how-can-computational-projects-get-derailed" id="toc-how-can-computational-projects-get-derailed" class="nav-link" data-scroll-target="#how-can-computational-projects-get-derailed"><span class="header-section-number">8.2</span> How can computational projects get derailed?</a></li>
+  <li><a href="#good-computational-practices-101" id="toc-good-computational-practices-101" class="nav-link" data-scroll-target="#good-computational-practices-101"><span class="header-section-number">8.3</span> Good computational practices 101</a></li>
+  <li><a href="#suffering-from-manual-version-control-git-can-help." id="toc-suffering-from-manual-version-control-git-can-help." class="nav-link" data-scroll-target="#suffering-from-manual-version-control-git-can-help."><span class="header-section-number">8.4</span> Suffering from manual version control? <code>git</code> can help.</a>
   <ul>
-  <li><a href="#go-on-git" id="toc-go-on-git" class="nav-link" data-scroll-target="#go-on-git"><span class="toc-section-number">7.4.1</span>  Go on, <code>git</code>!</a></li>
+  <li><a href="#go-on-git" id="toc-go-on-git" class="nav-link" data-scroll-target="#go-on-git"><span class="header-section-number">8.4.1</span> Go on, <code>git</code>!</a></li>
   </ul></li>
-  <li><a href="#longleaf-the-darling-of-unc-bioinformaticians" id="toc-longleaf-the-darling-of-unc-bioinformaticians" class="nav-link" data-scroll-target="#longleaf-the-darling-of-unc-bioinformaticians"><span class="toc-section-number">7.5</span>  Longleaf: The darling of UNC bioinformaticians</a></li>
-  <li><a href="#connecting-longleaf-and-github" id="toc-connecting-longleaf-and-github" class="nav-link" data-scroll-target="#connecting-longleaf-and-github"><span class="toc-section-number">7.6</span>  Connecting Longleaf and Github</a></li>
-  <li><a href="#linking-via-ssh" id="toc-linking-via-ssh" class="nav-link" data-scroll-target="#linking-via-ssh"><span class="toc-section-number">7.7</span>  Linking via <code>SSH</code></a></li>
-  <li><a href="#sec-repo" id="toc-sec-repo" class="nav-link" data-scroll-target="#sec-repo"><span class="toc-section-number">7.8</span>  Making a repository</a></li>
-  <li><a href="#rprojects" id="toc-rprojects" class="nav-link" data-scroll-target="#rprojects"><span class="toc-section-number">7.9</span>  RProjects</a>
+  <li><a href="#longleaf-the-darling-of-unc-bioinformaticians" id="toc-longleaf-the-darling-of-unc-bioinformaticians" class="nav-link" data-scroll-target="#longleaf-the-darling-of-unc-bioinformaticians"><span class="header-section-number">8.5</span> Longleaf: The darling of UNC bioinformaticians</a></li>
+  <li><a href="#connecting-longleaf-and-github" id="toc-connecting-longleaf-and-github" class="nav-link" data-scroll-target="#connecting-longleaf-and-github"><span class="header-section-number">8.6</span> Connecting Longleaf and Github</a></li>
+  <li><a href="#linking-via-ssh" id="toc-linking-via-ssh" class="nav-link" data-scroll-target="#linking-via-ssh"><span class="header-section-number">8.7</span> Linking via <code>SSH</code></a></li>
+  <li><a href="#sec-repo" id="toc-sec-repo" class="nav-link" data-scroll-target="#sec-repo"><span class="header-section-number">8.8</span> Making a repository</a></li>
+  <li><a href="#rprojects" id="toc-rprojects" class="nav-link" data-scroll-target="#rprojects"><span class="header-section-number">8.9</span> RProjects</a>
   <ul>
-  <li><a href="#readme-please" id="toc-readme-please" class="nav-link" data-scroll-target="#readme-please"><span class="toc-section-number">7.9.1</span>  README! … Please? 😢</a></li>
+  <li><a href="#readme-please" id="toc-readme-please" class="nav-link" data-scroll-target="#readme-please"><span class="header-section-number">8.9.1</span> README! … Please? 😢</a></li>
   </ul></li>
-  <li><a href="#sec-git" id="toc-sec-git" class="nav-link" data-scroll-target="#sec-git"><span class="toc-section-number">7.10</span>  Using git</a></li>
+  <li><a href="#sec-git" id="toc-sec-git" class="nav-link" data-scroll-target="#sec-git"><span class="header-section-number">8.10</span> Using git</a></li>
   </ul>
 </nav>
     </div>
@@ -259,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-title">Running a Reproducible Analysis</span></h1>
+<h1 class="title"><span class="chapter-title">Running a Reproducible Analysis</span></h1>
 <p class="subtitle lead">Project Management, Day 1</p>
 </div>
 
@@ -279,32 +259,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
+
 </header>
 
-<section id="reproducible-science-in-silico" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="reproducible-science-in-silico"><span class="header-section-number">7.1</span> Reproducible science… <em>in-silico</em>??</h2>
+
+<section id="reproducible-science-in-silico" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="reproducible-science-in-silico"><span class="header-section-number">8.1</span> Reproducible science… <em>in-silico</em>??</h2>
 <ul>
 <li>Bioinformaticians are people too</li>
 <li>We need to make sure our research is well documented and reproducible just like bench scientists</li>
 <li>Projects can get complex, messy, and very computationally demanding</li>
 </ul>
 </section>
-<section id="how-can-computational-projects-get-derailed" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="how-can-computational-projects-get-derailed"><span class="header-section-number">7.2</span> How can computational projects get derailed?</h2>
+<section id="how-can-computational-projects-get-derailed" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="how-can-computational-projects-get-derailed"><span class="header-section-number">8.2</span> How can computational projects get derailed?</h2>
 <p>It turns out that computational biologists need to be careful with how they manage their code and data. <u>Leaving everything on your personal/lab computer comes with a lot of risk.</u></p>
 <p>You can reduce the risk of a mishap by housing data on UNC’s cloud computing service, <strong>Longleaf</strong>, and putting your code on <strong>Github</strong>. Both of these provide you with backups that can be accessed from anywhere with the internet.</p>
-<div class="cell" data-layout-align="center" data-hash="class7_cache/html/dog_gif_d01ac9f47d90e138a7d204692e3f58ba">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="project-day-1-files/thisisfine.gif" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">The impending destruction of their laptop doesn’t bother this dog since they use remote computing and GitHub</figcaption><p></p>
+<figcaption>The impending destruction of their laptop doesn’t bother this dog since they use remote computing and GitHub</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Don’t think it’s worth it? Here are some moments that made UNC researchers wished they had used these tools:</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Broken laptops, crushed dreams</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">“How did you make this figure from 2018?”</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
@@ -321,8 +303,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="good-computational-practices-101" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="good-computational-practices-101"><span class="header-section-number">7.3</span> Good computational practices 101</h2>
+<section id="good-computational-practices-101" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="good-computational-practices-101"><span class="header-section-number">8.3</span> Good computational practices 101</h2>
 <p>Computational projects ought to be approached with the same expectations of rigor and reproducibility expected of a bench project. This means that the work needs to be <u>well documented</u>, things need to be <u>properly stored</u>, and everything should be <u>organized clearly enough for someone to reproduce it</u>.</p>
 <p>Thankfully, we’re not the first researchers to run into these problems. A whole suite of tools and services exist to manage these issues:</p>
 <div class="columns">
@@ -343,10 +325,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="suffering-from-manual-version-control-git-can-help." class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="suffering-from-manual-version-control-git-can-help."><span class="header-section-number">7.4</span> Suffering from manual version control? <code>git</code> can help.</h2>
+<section id="suffering-from-manual-version-control-git-can-help." class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="suffering-from-manual-version-control-git-can-help."><span class="header-section-number">8.4</span> Suffering from manual version control? <code>git</code> can help.</h2>
 <p>What is <strong>version control</strong> exactly? At its core, it’s a way of keeping track of the changes made to files. Before now, you’ve probably used a system like this:</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Before GitHub</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">After GitHub</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
@@ -360,12 +342,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>paper_final_submission_revised.doc</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>paper_final_submission_revised_v2.doc</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>paper_published_version.doc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-hash="class7_cache/html/charlie_gif_3a19db05c2df07f785ab6032a974f659">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="project-day-1-files/charlie-day.gif" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Charlie explains how his file naming system makes perfect sense</figcaption><p></p>
+<figcaption>Charlie explains how his file naming system makes perfect sense</figcaption>
 </figure>
 </div>
 </div>
@@ -382,12 +364,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>3928717 - Update draft, incorporate feedback from John (2024-04-01)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>2871606 - Add second draft of the paper (2024-03-28)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>1760505 - Initial draft of the paper (2024-03-25)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-hash="class7_cache/html/thumbs_up_gif_dfecee5753dc5b54869f5517af26a7ee">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="project-day-1-files/thumbs_up.gif" class="img-fluid figure-img" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption">Kevin, age 6, finds GitHub to be totally radical</figcaption><p></p>
+<figcaption>Kevin, age 6, finds GitHub to be totally radical</figcaption>
 </figure>
 </div>
 </div>
@@ -395,8 +377,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<section id="go-on-git" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="go-on-git"><span class="header-section-number">7.4.1</span> Go on, <code>git</code>!</h3>
+<section id="go-on-git" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="go-on-git"><span class="header-section-number">8.4.1</span> Go on, <code>git</code>!</h3>
 <p><code>git</code> is version control system used to record changes to files. <span class="blue">GitHub</span> uses <code>git</code> to help users host/review code and manage projects</p>
 <p><u><code>git</code>/GitHub matter because they:</u></p>
 <ul>
@@ -407,15 +389,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </section>
 </section>
-<section id="longleaf-the-darling-of-unc-bioinformaticians" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="longleaf-the-darling-of-unc-bioinformaticians"><span class="header-section-number">7.5</span> Longleaf: The darling of UNC bioinformaticians</h2>
+<section id="longleaf-the-darling-of-unc-bioinformaticians" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="longleaf-the-darling-of-unc-bioinformaticians"><span class="header-section-number">8.5</span> Longleaf: The darling of UNC bioinformaticians</h2>
 <p>Longleaf is UNC’s high-performance computing cluster (HPC). It’s basically a ton of computers/storage. Its accessible from anywhere with internet and offers a lot of storage. Labs typically start with 40 TB, users get 10 TB. Also you’ve been using it this whole time! RStudio OnDemand is hosted by Longleaf.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -430,8 +412,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="connecting-longleaf-and-github" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="connecting-longleaf-and-github"><span class="header-section-number">7.6</span> Connecting Longleaf and Github</h2>
+<section id="connecting-longleaf-and-github" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="connecting-longleaf-and-github"><span class="header-section-number">8.6</span> Connecting Longleaf and Github</h2>
 <p>Github and Longleaf each can be daunting to novice programmers, so lets walk through how to set them up together.</p>
 <p>The setup is going to amount to three general steps:</p>
 <ol type="1">
@@ -445,12 +427,12 @@ Tip
 <p>Before we can start that, we’re going to need to know just a tad about <strong>terminals</strong> and <strong>Bash</strong>. These topics could be a whole course onto itself, but in a nutshell you can think of them like this:</p>
 <p><strong>Terminals</strong>, also called <strong>command lines</strong>, are text-based software for interacting with your computer. RStudio has a built-in terminal, on the tab next to “Console”.</p>
 <p><strong>Bash</strong> is a type of computer language that understands and carries out the instructions you type in the terminal, usually called “shell scripting”. It’s very common on Linux and Mac computers. Longleaf uses Linux and working on Longleaf means using a bit of Bash.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -459,17 +441,17 @@ Tip
 </div>
 </div>
 </section>
-<section id="linking-via-ssh" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="linking-via-ssh"><span class="header-section-number">7.7</span> Linking via <code>SSH</code></h2>
+<section id="linking-via-ssh" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="linking-via-ssh"><span class="header-section-number">8.7</span> Linking via <code>SSH</code></h2>
 <p>Let’s start by getting the terminal open. In the top left, click View -&gt; Move Focus To Terminal. It should’ve opened in the panel that also contains tabs for “Console” and “Background Jobs”.</p>
 <p>Next, let’s find the SSH key associated with your Longleaf account. We’ll run the following bash command in the terminal that we just opened (be aware that terminals are notoriously finicky with copy and paste): <code>cat ~/.ssh/id_rsa.pub</code></p>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Danger
+<div class="callout-title-container flex-fill">
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -498,8 +480,8 @@ Danger
 </ul></li>
 </ol>
 </section>
-<section id="sec-repo" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="sec-repo"><span class="header-section-number">7.8</span> Making a repository</h2>
+<section id="sec-repo" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="sec-repo"><span class="header-section-number">8.8</span> Making a repository</h2>
 <p>Great, we’ve connected Longleaf and Github (a herculean task for a beginner programmer!). What we’ll want to do next is make a repository (repo), which you could think of as a self-contained project folder. Let’s go back to Github:</p>
 <ol type="1">
 <li><p>In the “Repositories” tab of your profile, click “New”</p></li>
@@ -514,54 +496,54 @@ Danger
 <li><p>Click on “SSH”</p></li>
 <li><p>Copy the SSH right below that! It should end in `.git`</p></li>
 <li><p>Lets create a new directory to house our experimental projects. In the terminal window of RStudio, do the following:</p>
-<div class="cell" data-hash="class7_cache/html/unnamed-chunk-1_fd94f7378b9f936fbdc20c39c7720bae">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~                 <span class="co">#set working directory to home directory</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> learning-R     <span class="co">#create a new directory "learning-R"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> learning-R        <span class="co">#set "learning-R" as our working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled" title="Git Project Organization">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Note
+<div class="callout-title-container flex-fill">
+Git Project Organization
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body" title="Git Project Organization">
+<div class="callout-body-container callout-body">
 <p>Git repositories may be cloned anywhere to your file system that makes sense to you. The above is a simple example of project organization in which we may create more repositories under the <code>learning-R</code> directory. Ultimately the choice is yours on how you wish to organize your git projects.</p>
 </div>
 </div>
 </div></li>
 <li><p>Now we can clone our new github repository locally!</p>
-<div class="cell" data-hash="class7_cache/html/unnamed-chunk-2_c51f97c9ed1bcd3d26fb09e3c2ab6179">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add what you copied in step 3 behind "clone".</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Your command may look something like this</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>username<span class="op">&gt;</span>/<span class="op">&lt;</span>reponame<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ol>
 </section>
-<section id="rprojects" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="rprojects"><span class="header-section-number">7.9</span> RProjects</h2>
-<p>In this section, we will be discussing recommendations for organization. From <a href="#sec-repo"><span class="quarto-unresolved-ref">sec-repo</span></a>, we can see that our project is fairly empty</p>
+<section id="rprojects" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="rprojects"><span class="header-section-number">8.9</span> RProjects</h2>
+<p>In this section, we will be discussing recommendations for organization. From <a href="#sec-repo" class="quarto-xref"><span>Section 8.8</span></a>, we can see that our project is fairly empty</p>
 <pre><code>.
 ├── .git/
 ├── .gitignore
 └── README.md</code></pre>
 <p>It is up to use to bring some organization to our project!</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The hidden directory <code>.git/</code> and file <code>.gitignore</code> will be covered in the next <a href="#sec-git"><span class="quarto-unresolved-ref">sec-git</span></a>.</p>
+<p>The hidden directory <code>.git/</code> and file <code>.gitignore</code> will be covered in the next <a href="#sec-git" class="quarto-xref"><span>Section 8.10</span></a>.</p>
 </div>
 </div>
 <p>Organization can greatly improve the experience of coding. It is a way for us to show our future selves some kindness as well as anyone who may maintain our work in the future.</p>
@@ -591,8 +573,8 @@ Note
 <li>Stratifying files between too many directories <!-- can make this just as hard to find --></li>
 <li>Using spaces in file names! <!-- escaping spaces on the command line with git is annoying --></li>
 </ul>
-<section id="readme-please" class="level3" data-number="7.9.1">
-<h3 data-number="7.9.1" class="anchored" data-anchor-id="readme-please"><span class="header-section-number">7.9.1</span> README! … Please? 😢</h3>
+<section id="readme-please" class="level3" data-number="8.9.1">
+<h3 data-number="8.9.1" class="anchored" data-anchor-id="readme-please"><span class="header-section-number">8.9.1</span> README! … Please? 😢</h3>
 <p>As the name implies, this file is intended to be read by anyone who happens upon your repository.Think of this as extra documentation that you, as the project owner, may use to communicate aspects of the repository. Include helpful information about your project such as:</p>
 <ul>
 <li>A brief description of the project</li>
@@ -607,12 +589,12 @@ Note
 <li>Project Status: active development, stable, or abandoned</li>
 </ul>
 <p>If your repository is being viewed on <a href="github.com">github.com</a> then top level <code>README.md</code> is displayed like the landing page.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -627,8 +609,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="sec-git" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="sec-git"><span class="header-section-number">7.10</span> Using git</h2>
+<section id="sec-git" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="sec-git"><span class="header-section-number">8.10</span> Using git</h2>
 <ul>
 <li><p><code>.git/</code> is a hidden directory whose main function is to track your <code>git ...</code> commands. It is generally wise to ignore this directory.</p></li>
 <li><p><code>.gitignore</code> uses rules to exclude files by name pattern or location</p>
@@ -643,18 +625,18 @@ Tip
 <li><p>Commit staged changes with a note to your future self</p>
 <ul>
 <li><p><code>git commit -m "Hi future me, this is what I changed"</code></p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled" title="note: Using `vim`">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Note
+<div class="callout-title-container flex-fill">
+note: Using <code>vim</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body" title="note: Using `vim`">
+<div class="callout-body-container callout-body">
 <p>If you were to write<br>
 <code>git commit</code><br>
 and omit the <code>-m "your message here"</code> portion, <code>git</code> will force you to write a message by placing you into an interactive prompt. The default text editor is usually <code>vim</code> which may be tricky to navigate.</p>
@@ -700,9 +682,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -738,10 +734,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/h2l2cR\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -751,8 +764,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -764,9 +786,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -808,17 +1066,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../scripts/03_dataWrangling/class5.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Data Wrangling Basics</span></span>
+      <a href="../../scripts/03_dataWrangling/class6.html" class="pagination-link" aria-label="Data Wrangling with Real Experimental Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../scripts/04_projects/class8.html" class="pagination-link">
+      <a href="../../scripts/04_projects/class8.html" class="pagination-link" aria-label="Practicing on Real-World Data">
         <span class="nav-page-text"><span class="chapter-title">Practicing on Real-World Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

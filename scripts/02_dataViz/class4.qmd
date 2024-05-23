@@ -32,7 +32,7 @@ Welcome to Day 2 of our data visualization journey! Today, we'll dive deeper int
     -   Let creativity guide your visual storytelling.
 -   Questions are welcome. Let's make some pretty pictures!
 
-![The Palmer Archipelago penguins. Artwork by \@allison_horst.](DataVizDay2_files/lter_penguins.png) The Palmer Archipelago penguins. Artwork by @allison_horst.
+![The Palmer Archipelago penguins. Artwork by \@allison_horst.](DataVizDay2-files/lter_penguins.png) The Palmer Archipelago penguins. Artwork by @allison_horst.
 
 ## Objectives of Data Visualization: Class 2
 
@@ -611,9 +611,10 @@ As we wrap up our exploration of data visualization, remember that the choices y
 
 Data visualization is both an art and a science. As you continue to practice and explore different techniques, you'll develop a deeper understanding of how to effectively communicate your data insights. Keep experimenting, learning, and refining your skills.
 
-Happy plotting!
 
-![](DataVizDay2_files/ggcats.gif)
+```{r cat_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Happy plotting!"}
+knitr::include_graphics("DataVizDay2-files/ggcats.gif")
+```
 
 ## Some useful, free resources
 
