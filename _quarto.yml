@@ -83,15 +83,16 @@ book:
 execute: 
   freeze: auto
   cache: true
-  
+  warning: false
+  message: false
+  error: true
+
 format:
   html:
     theme: cosmo
     number-sections: false
     toc: true
     toc-depth: 4
-  pdf:
-    documentclass: scrreprt
 
 editor: visual
 

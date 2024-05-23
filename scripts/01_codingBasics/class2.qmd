@@ -24,7 +24,7 @@ The other dataset we will be working with is the Palmer Penguins dataset. This i
 # Students, don't worry too much about this code. It is here to make sure that our curriculum
 # book runs correcrtly, but if you are curious, feel free to ask teachers for more info. 
 if(!require("palmerpenguins")){
-  install.packages("palmerpenquins",repos = 'http://cran.us.r-project.org')
+  install.packages("palmerpenguins",repos = 'http://cran.us.r-project.org')
 }
 ```
 
@@ -79,7 +79,7 @@ data(package = "palmerpenguins")
 
 Your former lab mate Weird Barbie graduated a few years ago. Before she left, she was working on some interesting analyses of the frequencies of Kens.
 
-![photo credit: Warner Bros.](class2_files/weirdbarbie.jpeg){fig-align="center"}
+![photo credit: Warner Bros.](class2-files/weirdbarbie.jpeg){fig-align="center"}
 
 Here's the data below, which you will not (and should not) need to change:
 

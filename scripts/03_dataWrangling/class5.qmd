@@ -265,15 +265,15 @@ The **Placeholder** operator allows more control over where the `LHS` (left hand
 3 |> head(x = letters, n = _)
 ```
 
-```{r}
+```{r error=TRUE}
 #| error: true
-3 |> sum(2, _)
+#3 |> sum(2, _)#| #| #| #| 
 ```
 
-```{r}
+```{r error=TRUE}
 #| error: true
-add3 <- function(x, y, z) x + y + z
-3 |> add3(2, y = _, z = _)
+#add3 <- function(x, y, z) x + y + z
+#3 |> add3(2, y = _, z = _)
 ```
 :::
 :::
@@ -294,7 +294,7 @@ The `RHS` for `|>` must be a function with `()`
 
 ```{r}
 #| error: true
-letters |> head
+#letters |> head
 ```
 
 ```{r}
@@ -320,8 +320,8 @@ x <- 10
 
 ```{r}
 #| error: true
-x <- 10
-5 |> {x + _}
+#x <- 10
+#5 |> {x + _}
 ```
 
 ```{r}

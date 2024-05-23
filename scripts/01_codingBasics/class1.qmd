@@ -77,7 +77,7 @@ head(iris)
 ```
 
 ```{r}
-View(iris)
+#View(iris)
 ```
 
 You are probably already thinking of questions you need the answers to in order to familiarize yourself with this dataset. What does each row represent? Each column? How many observations (rows) do we have? What is the average petal length? Think about other questions you may want to ask. Think about how you would go about answering those questions with what you already know. Maybe you'd count each row on your screen to get the number of observations, or copy the values under `Petal.Length` into your phone calculator to calculate the mean. By the end of this class, you'll be able to do all those things very quickly in R!
