@@ -6,9 +6,9 @@ format:
     toc: true
 ---
 
-```{r setup, echo=FALSE}
+```{r setup, echo=FALSE, include=FALSE}
 library(tidyverse)
-temps <- read.csv("project-day-2-files/datasets/ebola.csv", header = TRUE, sep = ",")
+ebola <- read.csv("../datasets/ebola.csv", header = TRUE, sep = ",")
 ```
 
 # Preamble

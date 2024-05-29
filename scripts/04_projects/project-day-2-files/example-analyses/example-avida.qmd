@@ -6,11 +6,11 @@ format:
     toc: true
 ---
 
-```{r setup, echo=FALSE}
+```{r setup, echo=FALSE, include=FALSE}
 library(tidyverse)
-wt <- read.csv("project-day-2-files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
-mut <- read.csv("project-day-2-files/datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
-comp <- read.csv("project-day-2-files/datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+wt <- read.csv("../datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("../datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("../datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
 ```
 
 # Preamble
