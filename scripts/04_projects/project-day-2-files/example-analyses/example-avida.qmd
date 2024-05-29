@@ -6,6 +6,13 @@ format:
     toc: true
 ---
 
+```{r setup, echo=FALSE}
+library(tidyverse)
+wt <- read.csv("project-day-2-files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("project-day-2-files/datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("project-day-2-files/datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+```
+
 # Preamble
 
 This script will loosely follow the template document: it is more meant for you to get an idea of one way to approach the data processing and visualization! This analysis will primarily focus on using tidyverse tools (i.e. `dplyr` and `ggplot`).
@@ -24,12 +31,12 @@ The **research questions** we will address are:
 
 # 1. Load data and libraries
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 
-wt <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
-mut <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
-comp <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+wt <- read.csv("your/path/to/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("your/path/to/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("your/path/to/avida_competition.csv", header = TRUE, sep = ",")
 ```
 
 # 2. Format the Data
@@ -116,9 +123,9 @@ ggplot(all, aes(x = update, y = avg.fitness, color = condition)) +
 # read in data, load libraries
 library(tidyverse)
 
-wt <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
-mut <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
-comp <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+wt <- read.csv("your/path/to/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("your/path/to/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("your/path/to/avida_competition.csv", header = TRUE, sep = ",")
 
 # wrangle
 ## combine

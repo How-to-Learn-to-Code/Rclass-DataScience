@@ -6,6 +6,11 @@ format:
     toc: true
 ---
 
+```{r setup, echo=FALSE}
+library(tidyverse)
+temps <- read.csv("project-day-2-files/datasets/ebola.csv", header = TRUE, sep = ",")
+```
+
 # Preamble
 
 This script will loosely follow the template document: it is more meant for you to get an idea of one way to approach the data processing and visualization! This analysis will primarily focus on using tidyverse tools (i.e. `dplyr` and `ggplot`).
@@ -24,10 +29,10 @@ The **research questions** we will address are:
 
 # 1. Load data and libraries
 
-```{r}
+```{r eval=FALSE}
 library(tidyverse)
 
-ebola <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/ebola.csv", header = TRUE, sep = ",")
+ebola <- read.csv("your/path/to/ebola.csv", header = TRUE, sep = ",")
 ```
 
 # 2. Format the Data
@@ -147,7 +152,7 @@ ggplot(ebola_stats,
 # read in data, load libraries
 library(tidyverse)
 
-ebola <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/ebola.csv", header = TRUE, sep = ",")
+ebola <- read.csv("your/path/to/ebola.csv", header = TRUE, sep = ",")
 
 # wrangle
 ## filter countries and tidy column names
