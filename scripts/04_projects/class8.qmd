@@ -47,11 +47,11 @@ For each of these datasets (or as many as time allows), we'd like you to do some
 >
 > 7.  Make your code reproducible by using GitHub.
 
-To help with your analyses, we have included an **template document** (//TODO finalise location) outlining these steps that you are welcome to use.
+To help with your analyses, we have included a **project template** document outlining these steps that you are welcome to use in `project-day-2-files/example-analyses`; the location of additional files are specified below.
 
 ## Datasets
 
-The csvs are available under the `data` folder (//TODO finalise location). We have provided links to data that is publicly available for download, as well as some related publications that may give you more information about the data.
+The **csvs** are available under in `project-day-2-files/datasets`. We have provided links to data that is publicly available for download, as well as some related publications that may give you more information about the data.
 
 These datasets were chosen because we thought they represented a good variety in the different kinds of wrangling and visualization challenges you might encounter with your own data in the future: we have highlighted a few specific R skills that some of these datasets were meant to challenge you on.
 
@@ -64,7 +64,7 @@ For each dataset, we have provided a description of the research question/data c
 ::: {.callout-tip title="But I thought this was HTLTCode, not HTLTScience!"}
 To get the most out of today's activities, we highly encourage you to practice going through the whole data analysis workflow as independently as you can, using your notes and practicing your Googling skills to develop your own research questions and analysis ideas for these datasets.
 
-That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you'd rather focus more on coding or science-ing for each dataset. These research questions are split into "easier" and "harder" coding challenges, with "harder" challenges generally involving slightly more wrangling: all datasets have a **pre-filled template** in the `example-analyses` folder (//TODO finalise location) that will explain the code used to produce the example figures.
+That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you'd rather focus more on coding or science-ing for each dataset. These research questions are split into "easier" and "harder" coding challenges, with "harder" challenges generally involving slightly more wrangling: all datasets have a **pre-filled project template** in the same location as the blank template document that will explain the code used to produce the example figures.
 
 Thus, based on your comfort level, you can decide how much of the data analysis workflow you want to try independently today. You can:
 
