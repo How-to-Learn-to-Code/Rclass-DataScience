@@ -6,6 +6,13 @@ format:
     toc: true
 ---
 
+```{r setup, echo=FALSE, include=FALSE}
+library(tidyverse)
+wt <- read.csv("../datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("../datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("../datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+```
+
 # Preamble
 
 This script will loosely follow the template document: it is more meant for you to get an idea of one way to approach the data processing and visualization! This analysis will primarily focus on using tidyverse tools (i.e. `dplyr` and `ggplot`).
@@ -14,7 +21,7 @@ This script will loosely follow the template document: it is more meant for you 
 
 For this dataset, the **main skills** we want you to practice are:
 
-1.  Working with multiple datasets: to be able to work with the data in its entirety, the datasets should be combined together.
+1.  Working with multiple files: to be able to work with this data in its entirety, the files should be combined together.
 2.  Pivoting: this dataset is an example of where multiple variables are contained in the column names.
 
 The **research questions** we will address are:
@@ -24,19 +31,19 @@ The **research questions** we will address are:
 
 # 1. Load data and libraries
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 
-wt <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
-mut <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
-comp <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+wt <- read.csv("your/path/to/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("your/path/to/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("your/path/to/avida_competition.csv", header = TRUE, sep = ",")
 ```
 
 # 2. Format the Data
 
 ## Skill: Working with multiple datasets
 
-For this data, it'll be easiest to work with them if we combine them together. Because they all have the same structure (same column names and number of columns), we can just use `rbind()` to stack the rows on top of each other.
+For this data, it will be easiest to work with them if we combine the files all together. Because they all have the same structure (same column names and number of columns), we can just use `rbind()` to stack the rows on top of each other.
 
 ```{r}
 # combine
@@ -49,9 +56,9 @@ A tidyverse approach to combining 3+ dataframes that share common columns/rows b
 
 ## Skill: Pivoting
 
-To make our data tidy, let's extract the information about media type from the population metrics columns with `pivot_longer()`.
+To make our data tidy, we can extract the information about media type from the population metrics columns with `pivot_longer()`.
 
-Because of the way the column names are similarly structured as `<media type>_<measurement>`, picking the columns we want to pivot will be straightforward, if we use `starts_with()` in the `cols` argument. We want to keep the measurement name that's already in the column, so we'll specify that in the `names_to` argument. Finally, we can use the `names_sep` argument to specify where to extract the different parts for the new column names (here, they are all separated by the underscore).
+Because the column names are similarly structured as `<media type>_<measurement>`, picking the columns we want to pivot will be straightforward if we use `starts_with()` in the `cols` argument. We want to keep the measurement name that's already in the column, so we will specify that in the `names_to` argument. Finally, we can use the `names_sep` argument to specify how to break up the current column names into the new column names (here, the new column names are all separated by the underscore).
 
 ```{r}
 # pivot
@@ -67,22 +74,23 @@ all <- pivot_longer(all,
 
 ::: callout-note
 ### Research question
+
 How does population size change over time for the wildtype (or mutant) in different medias?
 :::
 
-Since we have combined all the data already, we will select the mutant/wildtype data using `filter()` and keep them distinct with `facet_wrap()`. Otherwise, the code will be similar if you just use the `wt` or `mut` data on their own (assuming that you've used similar steps to pivot).
+Since we already combined all the data, we will select the mutant/wildtype data to plot using `filter()` and keep them distinct with `facet_wrap()`. Otherwise, you can read in just the `wt` or `mut` data on their own and skip the faceting (assuming that you've used similar steps to pivot).
 
-Because we want to show change over time, we should use a line graph.
+Because we want to show something changing over time, we should use a line graph.
 
 ```{r}
-# plot population size
+# plot population size of the wt/mut
 all |>
   filter(condition != "competition") |>
   ggplot(aes(x = update, y = pop.size, color = media)) +
   facet_wrap(~condition) +
-  geom_line()
+  geom_line() +
+  labs(title = "Population size of wildtype/mutant in media over time")
 ```
-
 
 ## Harder
 
@@ -92,7 +100,7 @@ all |>
 How does the change in fitness over time compare between different treatment conditions and media types?
 :::
 
-The hardest part about this question was getting the data processed: there are no further steps to take, other than to plot.
+The hardest part about this question was getting the data combined and processed: there are no further steps to take, other than to plot.
 
 There is a similar emphasis on time here, so we will use a line plot.
 
@@ -100,9 +108,9 @@ There is a similar emphasis on time here, so we will use a line plot.
 # plot fitness
 ggplot(all, aes(x = update, y = avg.fitness, color = condition)) +
   geom_line() +
-  facet_wrap(~media)
+  facet_wrap(~media) +
+  labs(title = "Avg fitness of populations in media over time")
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -115,9 +123,9 @@ ggplot(all, aes(x = update, y = avg.fitness, color = condition)) +
 # read in data, load libraries
 library(tidyverse)
 
-wt <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
-mut <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
-comp <- read.csv("~/Desktop/Rclass-DataScience/scripts/04_projects/project-day-2_files/datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+wt <- read.csv("your/path/to/avida_wildtype.csv", header = TRUE, sep = ",")
+mut <- read.csv("your/path/to/avida_mutant.csv", header = TRUE, sep = ",")
+comp <- read.csv("your/path/to/avida_competition.csv", header = TRUE, sep = ",")
 
 # wrangle
 ## combine
@@ -135,11 +143,13 @@ all |>
   filter(condition != "competition") |>
   ggplot(aes(x = update, y = pop.size, color = media)) +
   facet_wrap(~condition) +
-  geom_line()
+  geom_line() +
+  labs(title = "Population size of wildtype/mutant in media over time")
 
 ## harder: plot fitness for all 3 conditions across all media types
 ggplot(all, aes(x = update, y = avg.fitness, color = condition)) +
   geom_line() +
-  facet_wrap(~media)
+  facet_wrap(~media) +
+  labs(title = "Avg fitness of populations in media over time")
 ```
 :::
