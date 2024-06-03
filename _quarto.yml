@@ -68,15 +68,15 @@ book:
 
   chapters:
     - index.qmd
-    - "scripts/00_intro/class0.qmd"
-    - "scripts/01_codingBasics/class1.qmd"
-    - "scripts/01_codingBasics/class2.qmd"
-    - "scripts/02_dataViz/class3.qmd"
-    - "scripts/02_dataViz/class4.qmd"
-    - "scripts/03_dataWrangling/class5.qmd"
-    - "scripts/03_dataWrangling/class6.qmd"
-    - "scripts/04_projects/class7.qmd"
-    - "scripts/04_projects/class8.qmd"
+    - "class0.qmd"
+    - "class1.qmd"
+    - "class2.qmd"
+    - "class3.qmd"
+    - "class4.qmd"
+    - "class5.qmd"
+    - "class6.qmd"
+    - "class7.qmd"
+    - "class8.qmd"
 
 
 

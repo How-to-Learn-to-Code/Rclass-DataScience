@@ -1,0 +1,365 @@
+---
+title: "Running a Reproducible Analysis"
+subtitle: "Project Management, Day 1"
+author: "Brian Gural"
+format: 
+  html:
+    number-sections: true
+    toc: true
+editor: visual
+---
+
+## Reproducible science... *in-silico*??
+
+-   Bioinformaticians are people too
+-   We need to make sure our research is well documented and reproducible just like bench scientists
+-   Projects can get complex, messy, and very computationally demanding
+
+## How can computational projects get derailed?
+
+It turns out that computational biologists need to be careful with how they manage their code and data. [Leaving everything on your personal/lab computer comes with a lot of risk.]{.underline}
+
+You can reduce the risk of a mishap by housing data on UNC's cloud computing service, **Longleaf**, and putting your code on **Github**. Both of these provide you with backups that can be accessed from anywhere with the internet.
+
+```{r dog_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "The impending destruction of their laptop doesn't bother this dog since they use remote computing and GitHub"}
+knitr::include_graphics("data/project-day-1-files/thisisfine.gif")
+```
+
+Don't think it's worth it? Here are some moments that made UNC researchers wished they had used these tools:
+
+::: panel-tabset
+## Broken laptops, crushed dreams
+
+"...there was a time where my computer just stopped letting me log in and needed to be wiped so if I wasn't using Longleaf I would have lost everything. I did lose a nice powerpoint."
+
+"In undergrad I was using local storage only on the desktop in my advisor's office. There was some big failure with IT one day (tbh I still don't know what happened) and I lost all my code"
+
+"Our collaborator lost the hard drive with the raw RNAseq data, dooming my first 1st author publication. His collaborator saved the day with a backup he had on Longleaf"
+
+## "How did you make this figure from 2018?"
+
+"An undergrad left their code in `/pine`\* when they went home over the summer and it got deleted, so they had to re-write their code from scratch (which delayed the project as a whole)"
+
+"Only having GitHub as a memory of projects I did in grad school, being able to search and find bits of code so I don't have to rewrite them."
+
+"People emailing 2 years after a paper is published asking about obscure details of simulation etc."
+
+\*`pine` was UNC's *temporary* data storage space
+:::
+
+## Good computational practices 101
+
+Computational projects ought to be approached with the same expectations of rigor and reproducibility expected of a bench project. This means that the work needs to be [well documented]{.underline}, things need to be [properly stored]{.underline}, and everything should be [organized clearly enough for someone to reproduce it]{.underline}.
+
+Thankfully, we're not the first researchers to run into these problems. A whole suite of tools and services exist to manage these issues:
+
+::: columns
+::: {.column width="60%"}
+-   Documenting everything
+
+-   Storing data & getting resources
+
+-   Keeping your R project organized
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="30%"}
+`git`/GitHub
+
+Longleaf
+
+RStudio Projects
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+:::
+
+## Suffering from manual version control? `git` can help.
+
+What is **version control** exactly? At its core, it's a way of keeping track of the changes made to files. Before now, you've probably used a system like this:
+
+::: panel-tabset
+## Before GitHub
+
+``` markdown
+paper_draft1.doc
+paper_draft2.doc
+paper_reviewed_by_john.doc
+paper_draft3_comments_incorporated.doc
+paper_final_draft.doc
+paper_final_reviewed.doc
+paper_final_submission.doc
+paper_final_submission_revised.doc
+paper_final_submission_revised_v2.doc
+paper_published_version.doc
+```
+
+```{r charlie_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Charlie explains how his file naming system makes perfect sense"}
+knitr::include_graphics("data/project-day-1-files/charlie-day.gif")
+```
+
+## After GitHub
+
+With `git`, **you can update a file while keeping a detailed log of the changes**.
+
+``` markdown
+* 9a2b3c4 - Add published version of the paper (2024-04-29)
+* 8f7e6d5 - Revise submission after additional feedback, version 2 (2024-04-25)
+* 7d6c5b4 - Update submission based on post-submission feedback (2024-04-20)
+* 6c5b4a3 - Prepare final version for submission (2024-04-15)
+* 5b4a392 - Finalize draft after thorough review (2024-04-10)
+* 4a39881 - Incorporate feedback from final review (2024-04-05)
+* 3928717 - Update draft, incorporate feedback from John (2024-04-01)
+* 2871606 - Add second draft of the paper (2024-03-28)
+* 1760505 - Initial draft of the paper (2024-03-25)
+```
+
+```{r thumbs_up_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Kevin, age 6, finds GitHub to be totally radical"}
+knitr::include_graphics("data/project-day-1-files/thumbs_up.gif")
+```
+:::
+
+### Go on, `git`!
+
+`git` is version control system used to record changes to files. [GitHub]{.blue} uses `git` to help users host/review code and manage projects
+
+[`git`/GitHub matter because they:]{.underline}
+
+-   Track every version of every script
+
+-   Publicly document your work
+
+-   Allow for new versions of projects to `branch`
+
+-   Make it easy to collaborate
+
+## Longleaf: The darling of UNC bioinformaticians
+
+Longleaf is UNC's high-performance computing cluster (HPC). It's basically a ton of computers/storage. Its accessible from anywhere with internet and offers a lot of storage. Labs typically start with 40 TB, users get 10 TB. Also you've been using it this whole time! RStudio OnDemand is hosted by Longleaf.
+
+::: callout-tip
+There are a ton of reasons to use LL:
+
+-   Many scripts can be run at once, with your computer off
+
+-   It has A LOT more resources than a typical computer
+
+-   Easy to share files!
+
+-   Dedicated technical support via ITS
+:::
+
+## Connecting Longleaf and Github
+
+Github and Longleaf each can be daunting to novice programmers, so lets walk through how to set them up together.
+
+The setup is going to amount to three general steps:
+
+1.  Introduce our Github and Longleaf accounts to each other with something called a `SSH` key
+    -   SSH keys (**s**ecure **sh**ell) are encrypted passwords that link two computer systems
+2.  Make our first repository (project) on Github
+3.  Learn how to get scripts from Github to Longleaf and update changes we made on Longleaf back to Github
+
+Before we can start that, we're going to need to know just a tad about **terminals** and **Bash**. These topics could be a whole course onto itself, but in a nutshell you can think of them like this:
+
+**Terminals**, also called **command lines**, are text-based software for interacting with your computer. RStudio has a built-in terminal, on the tab next to "Console".
+
+**Bash** is a type of computer language that understands and carries out the instructions you type in the terminal, usually called "shell scripting". It's very common on Linux and Mac computers. Longleaf uses Linux and working on Longleaf means using a bit of Bash.
+
+::: callout-tip
+This course isn't meant to teach you shell scripting, and you aren't expected to fully understand some of the Bash command we'll run. If you'd like to learn more, please refer to the following cheat sheets on [common bash commands](https://github.com/RehanSaeed/Bash-Cheat-Sheet) and [scripting in bash](https://devhints.io/bash) as helpful resources!
+:::
+
+## Linking via `SSH`
+
+Let's start by getting the terminal open. In the top left, click View -\> Move Focus To Terminal. It should've opened in the panel that also contains tabs for "Console" and "Background Jobs".
+
+Next, let's find the SSH key associated with your Longleaf account. We'll run the following bash command in the terminal that we just opened (be aware that terminals are notoriously finicky with copy and paste): `cat ~/.ssh/id_rsa.pub`
+
+::: callout-caution
+Do [**NOT**]{.underline} forget to add the `.pub` of the above extension. RSA keys come in pairs, a private and a public version. The private key (i.e. the file that does not have the `.pub` extension) should [**NEVER**]{.underline} be shared. Sharing your private key will allow malicious actors to interact with services that cache your public key [as if they were you]{.underline}!
+:::
+
+This (hopefully) has copied your public SSH key to your clipboard!
+
+Now, let's go over to Github and set up the key.
+
+1.  Go to profile settings on github and select the "ssh key" section
+
+2.  Add new key
+
+3.  Name the key (should remind you that this is the key for Longleaf)
+
+4.  Paste the copied ssh key from the `cat` step above
+
+5.  Create!
+
+With that done, we need to log into Github on Longleaf:
+
+1.  Go back to the RStudio terminal
+
+2.  `git config --global user.name "your-github-username"`
+
+    -   Keep the quotes around your username!
+
+3.  `git config --global user.email your.email.linkedwithgithub`
+
+    -   No quotes this time!
+
+## Making a repository {#sec-repo}
+
+Great, we've connected Longleaf and Github (a herculean task for a beginner programmer!). What we'll want to do next is make a repository (repo), which you could think of as a self-contained project folder. Let's go back to Github:
+
+1.  In the "Repositories" tab of your profile, click "New"
+
+2.  Give it a name, maybe "example_repo"
+
+3.  Click the "Add a README file box"
+
+4.  Add a \`.gitignore\` with an R template
+
+5.  Create the repo!
+
+We'll explain the signifance of the README and .gitignore steps a bit later. For now, lets go over to our new repo on our profile. To get it onto Longleaf, we can:
+
+1.  Click on the green "Code" box
+
+2.  Click on "SSH"
+
+3.  Copy the SSH right below that! It should end in \`.git\`
+
+4.  Lets create a new directory to house our experimental projects. In the terminal window of RStudio, do the following:
+
+    ```{bash}
+    #| eval: false
+    cd ~                 #set working directory to home directory
+    mkdir learning-R     #create a new directory "learning-R"
+    cd learning-R        #set "learning-R" as our working directory
+    ```
+
+    ::: {.callout-note collapse="true" title="Git Project Organization"}
+    Git repositories may be cloned anywhere to your file system that makes sense to you. The above is a simple example of project organization in which we may create more repositories under the `learning-R` directory. Ultimately the choice is yours on how you wish to organize your git projects.
+    :::
+
+5.  Now we can clone our new github repository locally!
+
+    ```{bash}
+    #| eval: false
+    # add what you copied in step 3 behind "clone".
+    # Your command may look something like this
+    git clone git@github.com:<username>/<reponame>
+    ```
+
+## RProjects
+
+In this section, we will be discussing recommendations for organization. From @sec-repo, we can see that our project is fairly empty
+
+```         
+.
+├── .git/
+├── .gitignore
+└── README.md
+```
+
+It is up to use to bring some organization to our project!
+
+::: callout-note
+The hidden directory `.git/` and file `.gitignore` will be covered in the next @sec-git.
+:::
+
+Organization can greatly improve the experience of coding. It is a way for us to show our future selves some kindness as well as anyone who may maintain our work in the future.
+
+Below is an example of how we may setup directories for our project:
+
+```         
+.
+├── .git/
+├── .gitignore
+├── data/
+├── outputs/
+├── R/
+├── scripts/
+└── README.md
+```
+
+Here, we have created 4 new directories: `data/`, `outputs/`, `R/` and `scripts/`. These directory names imply something to the viewer about their contents and provide quick navigation.
+
+`data/` and `outputs/` are perhaps the most self explanatory. We will reserve `data` for files we may read in for our analysis, and `outputs` as a place for us to store our results.
+
+`R/` and `scripts/` may be a bit nuanced. Perhaps the project author will keep helpful reusable R code in the `R/` directory, while the `scripts/` directory may be analysis workflows that are called from the command line.
+
+A project may, or may not, require this level of granularity. You may choose different directory names as well. However we want to maintain some level of interpretation and do not want to contradict expectations with the files within. Critically thinking about your project structure will ultimately save you time when you return to the project.
+
+Here are some general guidelines to follow:
+
+**Organization Do's**
+
+-   Place files in some sort of relative structure
+-   Use descriptive file and directory names
+-   Format dates with `YYYY-MM-DD` <!-- files will be ordered by date by your file system -->
+
+**Organization Do Not's**
+
+-   Place all files at the top level of the repository
+-   Stratifying files between too many directories <!-- can make this just as hard to find -->
+-   Using spaces in file names! <!-- escaping spaces on the command line with git is annoying -->
+
+### README! ... Please? 😢
+
+As the name implies, this file is intended to be read by anyone who happens upon your repository.Think of this as extra documentation that you, as the project owner, may use to communicate aspects of the repository. Include helpful information about your project such as:
+
+-   A brief description of the project
+-   What is the scope of the project
+    -   What problem does it solve?
+    -   Intended use cases!
+    -   Examples of what it should not be used for!
+-   How to get started or use the project
+-   How to contribute or report a bug
+-   Project Status: active development, stable, or abandoned
+
+If your repository is being viewed on [github.com](github.com) then top level `README.md` is displayed like the landing page.
+
+::: callout-tip
+You may also place `README.md` within sub directories as well, allowing you to communicate more specific information within.
+
+Here are examples of what you may include in a `data/README.md` file
+
+-   explanation of what data was collected and how it was processed.
+
+-   documentation of the columns of a `.csv` file. What the acronyms and data labels mean and how they should be interpreted.
+:::
+
+## Using git {#sec-git}
+
+-   `.git/` is a hidden directory whose main function is to track your `git ...` commands. It is generally wise to ignore this directory.
+
+-   `.gitignore` uses rules to exclude files by name pattern or location
+
+    -   Don't upload data or large files!
+
+-   Changes need to be staged with `git add`
+
+    -   `git add .` adds all files not excluded by the .gitignore in the directory
+
+    -   `git add -i` opens an interactive adding session
+
+-   Commit staged changes with a note to your future self
+
+    -   `git commit -m "Hi future me, this is what I changed"`
+
+        ::: {.callout-note collapse="true" title="note: Using `vim`"}
+        If you were to write\
+        `git commit`\
+        and omit the `-m "your message here"` portion, `git` will force you to write a message by placing you into an interactive prompt. The default text editor is usually `vim` which may be tricky to navigate.
+
+        To enter edit mode, press `i` on your keyboard, and then you may begin writing your message. When you have finished, press `ESC` to exit your current command mode. To exit vim, press `:wq` which informs vim to write your changes and quit.
+        :::
+
+-   Commits are pushed to branches
+
+    -   For the main branch, use `git push origin main`
