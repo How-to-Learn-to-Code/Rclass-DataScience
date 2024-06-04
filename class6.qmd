@@ -12,6 +12,7 @@ execute:
 ```{r, echo=FALSE}
 options(digits = 3)
 renv::restore()
+library(tidyverse)
 library(ggplot2)
 ```
 

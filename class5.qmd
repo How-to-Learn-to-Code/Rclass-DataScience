@@ -15,11 +15,11 @@ format:
 
 ## Objectives of Data Wrangling: Class 1
 
-- Be comfortable subsetting vectors and dataframes using both base R and tidyverse functions
+-   Be comfortable subsetting vectors and dataframes using both base R and tidyverse functions
 
-- Understand what tidy data is and what it looks like
+-   Understand what tidy data is and what it looks like
 
-- Understand piping basics
+-   Understand piping basics
 
 ::: {.callout-note title="Measure twice, cut once"}
 Before you begin wrangling data, you should be able to:
@@ -132,9 +132,10 @@ The bundle of tidy-associated packages is called the `tidyverse`, and it's a ðŸ”
 One of the most popular `tidyverse` packages, `dplyr`, offers a suite of helpful and readable functions for data manipulation. Let's get started with how it can help you see your data:
 
 ```{r}
-renv::restore()
 #| echo: false
 #| warning: false
+
+renv::restore()
 library(dplyr)
 library(tidyr)
 ```
