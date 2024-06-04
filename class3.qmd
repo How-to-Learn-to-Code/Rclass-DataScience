@@ -10,7 +10,7 @@ format:
 For this lesson, we will be using a .bed file of genetic variants from <https://marianattestad.com/blog>. We will need to read in this data using the `read.table()` function, then rename the columns with the `name()` function:
 
 ```{r}
-variants <- read.table("DataVizDay1-files/variants_from_assembly.bed", sep="\t", quote='', stringsAsFactors=TRUE,header=FALSE)
+variants <- read.table("data/DataVizDay1-files/variants_from_assembly.bed", sep="\t", quote='', stringsAsFactors=TRUE,header=FALSE)
 names(variants) <- c("chrom","start","stop","name","size","strand","type","ref.dist","query.dist")
 
 ```
@@ -263,7 +263,7 @@ ggplot(variants, aes(x = size)) +
 Sometimes we want to see how the counts or the distribution of a continuous variable change between different categorical groups. Often, we use a barplot for this, but there are several other plot types we can use
 
 | Plot Type    | Base R Function                             | ggplot Function  |
-|------------------------|------------------------|------------------------|
+|--------------|---------------------------------------------|------------------|
 | bar plot     | `barplot(name = cat_var, value = cont_var)` | `geom_bar()`     |
 | boxplots     | `boxplot(cont_var ~ cat_var)`               | `geom_boxplot()` |
 | violin plots | not available                               | `geom_violin()`  |

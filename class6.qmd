@@ -11,6 +11,7 @@ execute:
 
 ```{r, echo=FALSE}
 options(digits = 3)
+library(ggplot2)
 ```
 
 ## Objectives of Data Wrangling: Class 2

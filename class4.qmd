@@ -11,6 +11,7 @@ format:
 #standardize figure sizes
 knitr::opts_chunk$set(fig.width = 8.5, fig.height = 8.5)
 options(tibble.width = Inf)  # Set to Inf to attempt to print all columns of tibbles
+library(ggplot2,warn.conflicts = FALSE,verbose = FALSE)
 ```
 
 ## Introduction
@@ -610,7 +611,6 @@ As we wrap up our exploration of data visualization, remember that the choices y
 -   **Integrity**: Ensure your visualizations are honest and accurate. Avoid manipulative practices that could mislead viewers or misrepresent the data.
 
 Data visualization is both an art and a science. As you continue to practice and explore different techniques, you'll develop a deeper understanding of how to effectively communicate your data insights. Keep experimenting, learning, and refining your skills.
-
 
 ```{r cat_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Happy plotting!"}
 knitr::include_graphics("data/DataVizDay2-files/ggcats.gif")
