@@ -11,7 +11,8 @@ format:
 #standardize figure sizes
 knitr::opts_chunk$set(fig.width = 8.5, fig.height = 8.5)
 options(tibble.width = Inf)  # Set to Inf to attempt to print all columns of tibbles
-library(ggplot2,warn.conflicts = FALSE,verbose = FALSE)
+
+renv::restore()
 ```
 
 ## Introduction

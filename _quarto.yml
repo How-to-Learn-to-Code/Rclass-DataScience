@@ -82,7 +82,7 @@ book:
 
 execute: 
   freeze: auto
-  cache: false
+  cache: true
   warning: false
   message: false
   error: true
