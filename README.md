@@ -6,14 +6,15 @@ This is our curriculum for learning R programming in the context of data analysi
 
 | Class Day |          Topic          |                          Link                           |
 |:----------------------:|:----------------------:|:----------------------:|
-|     0     | Welcome to How to Learn to Code! |       [Introduction](scripts/00_intro/class0.qmd)       |
-|     1     | R Coding Basics |   [Coding Basics 1](scripts/01_codingBasics/class1.qmd)    |
-|     2     | Applying Coding Basics |   [Coding Basics 2](scripts/01_codingBasics/class2.qmd)    |
-|     3     | Let's Get Plotting! |  [Data Visualization 1](scripts/02_dataViz/class3.qmd)  |
-|     4     | Applying Visualization Methods |  [Data Vizualization 2](scripts/02_dataViz/class4.qmd)  |
-|     5     | Data Wrangling Basics | [Data Wrangling 1](scripts/03_dataWrangling/class5.qmd) |
-|     6     | Data Wrangling with Real Experimental Data | [Data Wrangling 2](scripts/03_dataWrangling/class6.qmd) |
-|     7     | Running a Reproducible Analysis |       [Project 1](scripts/04_projects/class7.qmd)       |
-|     8     | Practicing on Real World Data |       [Project 2](scripts/04_projects/class8.qmd)       |
+|     0     | Welcome to How to Learn to Code! |       [Introduction](class0.qmd)       |
+|     1     | R Coding Basics |   [Coding Basics 1](class1.qmd)    |
+|     2     | Applying Coding Basics |   [Coding Basics 2](class2.qmd)    |
+|     3     | Let's Get Plotting! |  [Data Visualization 1](class3.qmd)  |
+|     4     | Applying Visualization Methods |  [Data Vizualization 2](class4.qmd)  |
+|     5     | Data Wrangling Basics | [Data Wrangling 1](class5.qmd) |
+|     6     | Data Wrangling with Real Experimental Data | [Data Wrangling 2](class6.qmd) |
+|     7     | Running a Reproducible Analysis |       [Project 1](class7.qmd)       |
+|     8     | Practicing on Real World Data |       [Project 2](class8.qmd)       |
 
 : Table of Contents
+
