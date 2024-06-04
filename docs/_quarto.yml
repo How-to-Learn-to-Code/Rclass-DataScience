@@ -2,8 +2,6 @@ project:
   type: book
   output-dir: docs
 
-
-
 book:
   site-url: https://h2l2cR.com
   sidebar:
@@ -26,7 +24,7 @@ book:
       border: true
       style: "floating"
       
-  title: "How To Learn to Code for Data Science in R"
+  title: "How To Learn to Code : R for Data Science"
   
   date: "05/22/2024"
   author:
