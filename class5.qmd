@@ -132,6 +132,7 @@ The bundle of tidy-associated packages is called the `tidyverse`, and it's a ðŸ”
 One of the most popular `tidyverse` packages, `dplyr`, offers a suite of helpful and readable functions for data manipulation. Let's get started with how it can help you see your data:
 
 ```{r}
+renv::restore()
 #| echo: false
 #| warning: false
 library(dplyr)

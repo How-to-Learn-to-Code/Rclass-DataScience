@@ -11,6 +11,7 @@ execute:
 
 ```{r, echo=FALSE}
 options(digits = 3)
+renv::restore()
 library(ggplot2)
 ```
 
