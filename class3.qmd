@@ -10,7 +10,10 @@ format:
 For this lesson, we will be using a .bed file of genetic variants from <https://marianattestad.com/blog>. We will need to read in this data using the `read.table()` function, then rename the columns with the `name()` function:
 
 ```{r}
-variants <- read.table("data/DataVizDay1-files/variants_from_assembly.bed", sep="\t", quote='', stringsAsFactors=TRUE,header=FALSE)
+# Specify the URL of the dataset
+url <- "https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/DataVizDay1-files/variants_from_assembly.bed"
+
+variants <- read.table(url, sep="\t", quote='', stringsAsFactors=TRUE,header=FALSE)
 names(variants) <- c("chrom","start","stop","name","size","strand","type","ref.dist","query.dist")
 
 ```

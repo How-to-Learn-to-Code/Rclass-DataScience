@@ -1,7 +1,7 @@
 ---
 title: "Running a Reproducible Analysis"
 subtitle: "Project Management, Day 1"
-author: "Brian Gural"
+author: "Brian Gural, Justin Landis"
 format: 
   html:
     number-sections: true

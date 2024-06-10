@@ -5,15 +5,14 @@ author: "Brian Gural, Lorrie He, JP Flores"
 format: 
   html: 
     toc: true
-execute: 
-  freeze: true
+
 ---
 
 ```{r, echo=FALSE}
-options(digits = 3)
 renv::restore()
 library(tidyverse)
 library(ggplot2)
+options(digits = 3)
 ```
 
 ## Objectives of Data Wrangling: Class 2
@@ -43,7 +42,7 @@ Take a moment to talk among yourselves about this/any ideas you had since last c
 
 ```{r}
 # Load the data. The sample IDs were stored as the first row, so lets make those the row.names
-cell_props <- read.table("data/wrangling-files/cellProportions.csv",
+cell_props <- read.table("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/cellProportions.csv",
                        row.names = 1, header = TRUE, sep = ",")
 
 head(cell_props)
@@ -70,7 +69,7 @@ Raw RNA-seq matrices should go up to 100,000s. So if you only see small numbers 
 We also have the phenotypes for the samples in a separate file:
 
 ```{r}
-cell_phenos <- read.table("data/wrangling-files/cellPhenotypes.csv",
+cell_phenos <- read.table("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/cellPhenotypes.csv",
                         row.names = 1,sep = ",",header = TRUE)
 
 str(cell_phenos)
