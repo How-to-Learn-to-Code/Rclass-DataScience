@@ -1,0 +1,27 @@
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+name: Quarto Render and Deploy
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          tinytex: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+
+      - name: Render book to all format
+        run: |
+          quarto render
+      - name: deploy to GH pages
+        id: gh-pages-deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
