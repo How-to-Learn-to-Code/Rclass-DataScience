@@ -21,6 +21,9 @@ knitr::opts_chunk$set(echo=FALSE, digits = 3)
 
 ## Final class!
 
+\
+\
+
 ::: {.callout-note collapse="true"}
 ## Instructor notes
 
@@ -154,7 +157,7 @@ knitr::kable(head(avida0))
 #### Column metadata
 
 | Column                      | Type      | Description                                                                       | Values                                                       |
-|-------------|-------------|---------------------------|-------------------|
+|-----------------|-----------------|---------------------|-----------------|
 | `update`                    | integer   | Time elapsed                                                                      | Ranges 0-300                                                 |
 | `condition`                 | character | Testing conditions (single population or competition)                             | Based off csv: `wildtype-only`, `mutant-only`, `competition` |
 | `media_avg-fitness`         | numeric   | Average individual reproductive success in specified media                        | Ranges 0-1                                                   |
@@ -225,7 +228,7 @@ knitr::kable(head(ebola0))
 #### Column metadata
 
 | Column                                                       | Type      | Description                     | Values     |
-|--------------------------------|-------------|---------------|-------------|
+|-----------------------|-----------------|-----------------|-----------------|
 | `Country`                                                    | character | Country of report               |            |
 | `Date`                                                       | character | Date of report                  | YYYY-MM-DD |
 | `Cumulative.no..of.confirmed..probable.and.suspected.cases`  | numeric   | Cumulative number till this day |            |
@@ -296,7 +299,7 @@ knitr::kable(head(temps0))
 #### Column metadata
 
 | Column        | Type      | Description                                                       | Values                                                                   |
-|------------|------------|-----------------------|-------------------------|
+|------------------|------------------|------------------|--------------------|
 | `Subject.ID`  | character | Subject identifier where number (1-5) corresponds to neighborhood | 1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch |
 | `period`      | character | 4 hour measurement period                                         | weekday, period                                                          |
 | `temperature` | num       | 4 hour average of IET during specified period                     | Celcius                                                                  |
