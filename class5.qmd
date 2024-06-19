@@ -1,0 +1,385 @@
+---
+title: "Data Wrangling Basics"
+subtitle: "Data Wrangling Day 1"
+author: "Brian Gural, Lorrie He, Justin Landis, JP Flores"
+format: 
+  html: 
+    toc: true
+---
+
+## What is data wrangling?
+
+-   Data wrangling, manipulation, or cleaning is the process of transforming data into a format that is more suitable for analysis. This can include removing missing values, changing the format of data, or combining multiple datasets.
+
+-   There's rarely a single way to approach any given data-wrangling problem! Expanding your "toolkit" allows you to tackle problems from different angles.
+
+## Objectives of Data Wrangling: Class 1
+
+-   Be comfortable subsetting vectors and dataframes using both base R and tidyverse functions
+
+-   Understand what tidy data is and what it looks like
+
+-   Understand piping basics
+
+::: {.callout-note title="Measure twice, cut once"}
+Before you begin wrangling data, you should be able to:
+
+-   Define how you want the data to look and why
+
+-   Document it well so that others (and future you!) know what you did
+
+-   Know what tools you have and how to use them
+:::
+
+## Building a toolkit
+
+### Working with vectors
+
+Pulling out specific parts of a data set is important when analyzing with R. **Indexing**, or accessing elements, subsets data based on numeric positions in a vector. You may remember this from the first class. Some things to be aware of when indexing:
+
+-   Indexing uses brackets. i.e. the 5th element in a vector will be returned if you run `vector[5]`.
+
+-   It's helpful for getting several elements at once, or reordering data.
+
+Here are some examples:
+
+```{r}
+# First, we'll make a vector to play with
+names <- c("rosalind", "marie", "barbara")
+```
+
+```{r}
+# if we print the output, we'd get:
+names
+```
+
+```{r}
+# If we want to access the first name, we can use brackets and the position of the name in the vector:
+names[1]
+```
+
+```{r}
+# This works with any position, for example the third name:
+names[3]
+
+# You can index more than one position at a time too:
+names[c(1,2)]
+
+# Changing the order of numbers you supply changes the order of names returned
+names[c(2,1)]
+```
+
+### Working with data frames
+
+This works for two-dimensional structures too, like data frames and matrices. We'd just format it as: `dataframe[row,column]`. Let's try it out:
+
+```{r}
+# Make a data frame
+df <- data.frame(
+  name = c("Rosalind Franklin", "Marie Curie", "Barbara McClintock", "Ada Lovelace", "Dorothy Hodgkin", 
+           "Lise Meitner", "Grace Hopper", "Chien-Shiung Wu", "Gerty Cori", "Katherine Johnson"),
+  field = c("DNA X-ray crystallography", "Radioactivity", "Genetics", "Computer Programming", "X-ray Crystallography", 
+            "Nuclear Physics", "Computer Programming", "Experimental Physics", "Biochemistry", "Orbital Mechanics"),
+  school = c("Cambridge", "Sorbonne", "Cornell", "University of London", "Oxford", 
+             "University of Berlin", "Yale", "Princeton", "Washington University", "West Virginia University"),
+  date_of_birth = c("1920-07-25", "1867-11-07", "1902-06-16", "1815-12-10", "1910-05-12", 
+                    "1878-11-07", "1906-12-09", "1912-05-31", "1896-08-15", "1918-08-26"),
+  working_region = c("Western Europe", "Western Europe", "North America", "Western Europe", "Western Europe", "Western Europe", "North America", "North America", "North America",  "North America")
+)
+
+# To get the first row:
+df[1,]
+
+# or the first column: 
+df[,1]
+
+# for specific cells: 
+df[2,3]
+
+# We can use the column name instead of numbers:
+df[2,"school"]
+
+# We can do the same thing by using a dollar sign:
+df$name
+
+# We can also give a list of columns
+# which return in the order provided
+df[,c("school","name")]
+```
+
+### Standard data formats and Tidy
+
+That data, and most two-dimensional data sets (data frames, matrices, etc.) is often organized the similarly:
+
+-   Each variable is its own column
+
+-   Each observation is its own row
+
+-   Each value is a single cell.
+
+```{r tidy_style,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Hadley Wickham’s R for Data Science, 1st Edition"}
+knitr::include_graphics("data/wrangling-files/tidy-style.png")
+```
+
+This follows the *tidy data* style, an approach to handling data in R that aims to be clear and readable.
+
+::: {.callout-note title="Tidiest Universe"}
+The bundle of tidy-associated packages is called the `tidyverse`, and it's a 🔥 hot-topic 🔥 in the R world. In fact, `ggplot` is a package that you have already used that is part of the `tidyverse`! Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners, as there are multiple ways to accomplish the same thing!
+:::
+
+### `dplyr` verbs
+
+One of the most popular `tidyverse` packages, `dplyr`, offers a suite of helpful and readable functions for data manipulation. Let's get started with how it can help you see your data:
+
+```{r}
+#| echo: false
+#| warning: false
+
+renv::restore()
+library(dplyr)
+library(tidyr)
+```
+
+```{r}
+dplyr::glimpse(df)
+```
+
+With the `glimpse` function we see that this is a data frame with 3 observations and 3 variables. We can also see the type of each variable and the first few values.
+
+::: callout-tip
+`dplyr` functions have a lot in common:
+
+-   The first argument is always a data frame
+
+-   The following arguments typically specify which columns to operate on, using the variable names (without quotes)
+
+-   The output is always a new data frame
+:::
+
+```{r dplyr_syntax,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Joshua Ebner’s A Quick Introduction to Dplyr"}
+knitr::include_graphics("data/wrangling-files/dplyr_syntax.png")
+```
+
+The `dplyr` package has a set of functions that are used to manipulate data frames (you may see these referred to as "verbs", and it may also be helpful to think of them as verbs performing an action on your dataframe). These functions can either act on rows (e.g. `filter` out specific rows by some condition) or columns (e.g. `select` columns XYZ). There are also functions for working with groups (e.g. group rows by what values they have in a column with `group_by`).
+
+::: panel-tabset
+## rows
+
+The most important verbs that operate on rows of a dataset are `filter()`, which changes which rows are present without changing their order, and `arrange()`, which changes the order of the rows without changing which are present. Both functions only affect the rows, and the columns are left unchanged. We'll also discuss `distinct()` which finds rows with unique values but unlike `arrange()` and `filter()` it can also optionally modify the columns.
+
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#rows).
+
+## columns
+
+There are four important verbs that affect the columns without changing the rows: `mutate()` creates new columns that are derived from the existing columns, `select()` changes which columns are present, `rename()` changes the names of the columns, and `relocate()` changes the positions of the columns.
+
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#columns).
+
+## groups
+
+`group_by` allows you to create groups using more than one variable.
+
+`summarize` works on grouped objects and allows you to calculate a single summary statistic, reducing the data frame to have a single row for each group.
+
+The `slice` family of functions allows you to extract specific rows within each group
+
+More information about functions like this can be found [here](https://r4ds.hadley.nz/data-transform#groups).
+:::
+
+::: callout-tip
+`dplyr` verbs work great as a team!
+:::
+
+Although these were basic examples, hopefully you feel a little more confident about working with vectors, and data frames using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
+
+### Functions on functions
+
+#### An introduction to pipes
+
+Data scientists often want to make many changes to their data at one time. Typically, this means using more than one function at once. However, the way we've been writing our scripts so far would make for some very confusing looking code.
+
+For example, let's use `dplyr` functions to perform two operations on our data set of scientists: filter for those born after 1900 and then arrange them by date of birth.
+
+::: panel-tabset
+## Writing it as separate steps
+
+Here we first filter and then arrange. Note that we are creating an intermediate variable in between the steps.
+
+```{r}
+# Filtering for scientists born after 1900
+filtered_data <- filter(df, as.Date(date_of_birth) > as.Date("1900-01-01"))
+
+# Arranging the filtered data by date of birth
+arranged_data <- arrange(filtered_data, date_of_birth)
+```
+
+## Combining functions in one line
+
+We can do the same thing without creating an intermediate variable. It's more compact but can start to get confusing if we add more functions.
+
+```{r}
+arranged_data <- arrange(filter(df, as.Date(date_of_birth) > as.Date("1900-01-01")), date_of_birth)
+```
+
+## Using pipes to clean up the code
+
+The **pipe operator**, `|>`, is a tool that can help make the script more readable. It allows us to pass the result of one function directly into the next. Think of it as saying, "and then.."
+
+Let's dissect our goal: *filter for those born after 1900* **and then** *arrange them by date of birth*.
+
+`filter` is doing the *filter for...* part
+
+`arrange` is doing the *arrange them...* part
+
+and the pipe, `|>`, is going to do the **and then...** part.
+
+```{r}
+# Using pipes
+arranged_data <- df |>
+  filter(as.Date(date_of_birth) > as.Date("1900-01-01")) |>
+  arrange(date_of_birth)
+```
+
+Once you're comfortable with this style, you should be able to read it as: Take `data` *and then* `filter` by DoB *and then* `arrange` by DoB. This helps keep our code both clean and readable.
+:::
+
+::: callout-tip
+There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. You may see `%>%`more frequently in code from previous lab members.
+
+::: {.callout-note title="Placeholders" collapse="true"}
+The **Placeholder** operator allows more control over where the `LHS` (left hand side) is placed into the `RHS` (right hand side) of the pipe operator.
+
+::: panel-tabset
+#### `%>%`
+
+`%>%` uses `.` as its placeholder operator. In addition to this, you may use `.` multiple times on the `RHS`
+
+```{r}
+3 %>% head(x = letters, n = .)
+3 %>% sum(2, ., .)
+```
+
+#### `|>`
+
+`|>` uses `_` as its placeholder operator. However, the `_` placeholder must only be used once and the argument must be named
+
+```{r}
+3 |> head(x = letters, n = _)
+```
+
+```{r error=TRUE}
+#| error: true
+#3 |> sum(2, _)#| #| #| #| 
+```
+
+```{r error=TRUE}
+#| error: true
+#add3 <- function(x, y, z) x + y + z
+#3 |> add3(2, y = _, z = _)
+```
+:::
+:::
+
+::: {.callout-note title="Right Hand Side (RHS)" collapse="true"}
+::: panel-tabset
+#### `%>%`
+
+`%>%` can take a function name on the `RHS`
+
+```{r}
+letters %>% head
+```
+
+#### `|>`
+
+The `RHS` for `|>` must be a function with `()`
+
+```{r}
+#| error: true
+#letters |> head
+```
+
+```{r}
+letters |> head()
+```
+:::
+:::
+
+::: {.callout-note title="Anonymous Functions" collapse="true"}
+::: panel-tabset
+#### `%>%`
+
+`%>%` can take expressions in curly braces `{}`
+
+```{r}
+x <- 10
+5 %>% {x + .}
+```
+
+#### `|>`
+
+`|>` must have a function call on `RHS`
+
+```{r}
+#| error: true
+#x <- 10
+#5 |> {x + _}
+```
+
+```{r}
+5 |> {function(y) x + y}()
+```
+:::
+:::
+
+To summarize, `%>%` is slightly more lenient than `|>` when it comes to the Placeholder operator, the Right Hand Side (RHS) and Anonymous functions.
+:::
+
+## Case Study Introduction
+
+Just reading about ways to manipulate data can be hard to understand without an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set.
+
+For this example, we have some data from an experiment that measured the proportions of different cell times within mouse cardiac tissue. These samples are from treatment vs. control and WT (wild type) vs. mutant.
+
+What are some things that we, as researchers, would want to know about our data?
+
+-   Did the experiment work?
+
+::: {.callout-note title="Things to consider:"}
+Check your controls or expected features!
+:::
+
+-   Do we see differences between our experimental groups?
+
+To get at these questions, we need to be able to manipulate our data into the formats needed to check those features and for plotting. To start, lets take a look at how the results are structured before we start planning how to do the processing.
+
+### Getting familiar with the data
+
+```{r}
+options(digits = 3)
+# Load the data. The sample IDs were stored as the first row, so lets make those the row.names
+cell_props <- read.csv("data/wrangling-files/cellProportions.csv",
+                       row.names = 1)
+
+head(cell_props)
+```
+
+::: {.callout-note title="Whole vs. Fractions"}
+`Fraction` samples are our controls. They are supposed to be almost completely one single cell type. They're just here to make sure we accurately measured cell type proportions.
+
+`Whole` samples are our test samples. They're from the treatment/control mice, which you'd expect to have a range of cell types.
+:::
+
+### Analysis Goals
+
+For next class, you should brainstorm some ideas for how to approach the analysis. Try to consider these angles:
+
+-   What do we want to know about this data set?
+-   What kind of visuals would we want to make to check that?
+-   What would the data need to look like to get those visuals?
+-   How does the data look now?
+-   Which functions might we use to get the data from its current state to what we need for plotting?
+
+In the beginning of next class, we'll chat about what ideas you had!
+
+(Ambitious students who want to try before then will also need the phenotype data located at `data/wrangling-files/cellPhenotypes.csv`)
