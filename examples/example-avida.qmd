@@ -7,9 +7,11 @@ format:
 
 ```{r setup, echo=FALSE, include=FALSE}
 library(tidyverse)
-wt <- read.csv("../datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
-mut <- read.csv("../datasets/avida/avida_mutant.csv", header = TRUE, sep = ",")
-comp <- read.csv("../datasets/avida/avida_competition.csv", header = TRUE, sep = ",")
+library(here)
+data_path <- "data/project-day-2-files/datasets/avida"
+wt <- read.csv(here(data_path, "avida_wildtype.csv"), header = TRUE, sep = ",")
+mut <- read.csv(here(data_path, "avida_mutant.csv"), header = TRUE, sep = ",")
+comp <- read.csv(here(data_path, "avida_competition.csv"), header = TRUE, sep = ",")
 ```
 
 # Preamble

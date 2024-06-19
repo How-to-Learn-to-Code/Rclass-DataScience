@@ -7,7 +7,9 @@ format:
 
 ```{r setup, echo=FALSE, include=FALSE}
 library(tidyverse)
-temps <- read.csv("../datasets/temperatures.csv", header = TRUE, sep = ",")
+library(here)
+data_path <- "data/project-day-2-files/datasets"
+temps <- read.csv(here(data_path, "temperatures.csv"), header = TRUE, sep = ",")
 ```
 
 # Preamble
