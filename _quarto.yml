@@ -74,7 +74,11 @@ book:
     - "class5.qmd"
     - "class6.qmd"
     - "class7.qmd"
-    - "class8.qmd"
+    - part: "class8.qmd"
+      chapters: 
+        - deprecates/scripts/04_projects/project-day-2-files/example-analyses/example-temperatures.qmd
+        - deprecates/scripts/04_projects/project-day-2-files/example-analyses/example-ebola.qmd
+        - deprecates/scripts/04_projects/project-day-2-files/example-analyses/example-avida.qmd
 
 
 
