@@ -1,6 +1,5 @@
 ---
 title: "Example Analysis: Ebola"
-date: "today"
 format: 
   html:
     toc: true

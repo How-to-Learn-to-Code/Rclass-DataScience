@@ -1,6 +1,5 @@
 ---
 title: "Example Analysis: Avida"
-date: "today"
 format: 
   html:
     toc: true
