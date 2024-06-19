@@ -32,6 +32,7 @@ jobs:
       - name: deploy to GH pages
         id: gh-pages-deploy
         uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
