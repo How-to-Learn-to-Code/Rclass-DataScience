@@ -19,19 +19,21 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # If you use renv to manage your R packages:
+      # Restore R dependencies using renv (if you're using renv)
       - name: Restore R dependencies with renv
         run: Rscript -e 'renv::restore()'
       
-      # Alternatively, if not using renv, install packages manually:
-      # - name: Install required R packages
-      #   run: Rscript -e 'install.packages(c("pkg1", "pkg2"), dependencies = TRUE)'
-
+      # Render your Quarto site
       - name: Render site with Quarto
         run: quarto render
 
+      # Debug step: List files in the output directory to verify rendering
+      - name: List rendered files
+        run: ls -la docs
+
+      # Deploy the rendered site to GitHub Pages (using the correct output directory)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site  # Adjust if your output directory is different
+          publish_dir: ./docs
