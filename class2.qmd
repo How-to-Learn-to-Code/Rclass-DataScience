@@ -78,7 +78,7 @@ data(package = "palmerpenguins")
 
 Your former lab mate Weird Barbie graduated a few years ago. Before she left, she was working on some interesting analyses of the frequencies of Kens.
 
-This is a test!
+This is a test
 
 ![photo credit: Warner Bros.](data/class2_files/weirdbarbie.jpeg){fig-align="center"}
 
