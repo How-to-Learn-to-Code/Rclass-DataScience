@@ -1,0 +1,30 @@
+name: Custom GitHub Pages Build and Deploy
+
+on:
+  push:
+    branches:
+      - test   # Only trigger this workflow when pushing to 'test '
+  workflow_dispatch:   # Allows you to trigger the workflow manually if desired
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render site with Quarto
+        run: quarto render
+
+      - name: List files for debugging
+        run: ls -la
+
+      # You can adjust the publish_dir if your build output goes to a different directory.
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
