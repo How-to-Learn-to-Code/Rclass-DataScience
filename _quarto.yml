@@ -1,0 +1,96 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  site-url: https://h2l2cR.com
+  sidebar:
+      tools:
+        - icon: github
+          href: https://github.com/How-to-Learn-to-Code
+  navbar:
+    foreground: "black"
+    background: "lightblue"
+    title: "How to Learn to Code"
+    collapse: true
+    search: true
+    pinned: true
+    right:
+      - icon: github
+        href: https://github.com/How-to-Learn-to-Code
+        aria-label: GitHub
+    sidebar:
+      search: true
+      border: true
+      style: "floating"
+      
+  title: "How To Learn to Code : R for Data Science"
+  
+  date: "05/22/2024"
+  author:
+    - name: "Austin Daigle"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "AD"
+    - name: "John Patrick Flores"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "JPF"
+      role: "Authoring Data Vizualization, Data Wrangling"
+    - name: "Madeline Gillman"
+      affiliation: "UNC Chapel Hill,  Bioinformatics and Computational Biology Curriculum Curriculum"
+      id: "MG"
+      role: "Authoring Coding Basics and Projects"  
+    - name: "Brian Gural"
+      affiliation: "UNC Chapel Hill, Genetics Curriculum"
+      id: "BG"
+      role: "Authoring Data Wrangling and Projects"
+    - name: "Lorrie He"
+      affiliation: "UNC Chapel Hill, Evolution, Ecology, and Organismal Biology Curriculum"
+      id: "LH"
+      role: "Authoring Coding Basics and Projects"
+    - name: "Justin Landis"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "JL"
+      role: "Authoring Data Wrangling"
+    - name: "Teresa McGee"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "TM"
+    - name: "Sarah Mae Parker"
+      affiliation: "UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum"
+      id: "SMP"
+      role: "Authoring Data Visualization, "
+
+    - name: "Matthew Sutcliffe"
+      affiliation: "UNC Chapel Hill,  MDPhD - Bioinformatics and Computational Biology Curriculum Curriculum"
+      id: "MS"
+      role: "Authoring Coding Basics and Projects"
+
+  chapters:
+    - index.qmd
+    - "class0.qmd"
+    - "class1.qmd"
+    - "class2.qmd"
+    - "class3.qmd"
+    - "class4.qmd"
+    - "class5.qmd"
+    - "class6.qmd"
+    - "class7.qmd"
+    - "class8.qmd"
+
+
+
+execute: 
+  freeze: auto
+  cache: true
+  warning: false
+  message: false
+  error: true
+
+format:
+  html:
+    theme: cosmo
+    number-sections: false
+    toc: true
+    toc-depth: 4
+
+editor: visual
+
