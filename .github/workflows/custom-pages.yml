@@ -3,7 +3,7 @@ name: Custom GitHub Pages Build and Deploy
 on:
   push:
     branches:
-      - custom-site  # or any branch you want to test on
+      - test  # or any branch you want to test on
   workflow_dispatch:   # optional, for manual triggering
 
 jobs:
