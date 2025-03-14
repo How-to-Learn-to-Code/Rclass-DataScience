@@ -23,18 +23,18 @@ jobs:
       - name: Restore R dependencies with renv
         run: Rscript -e 'renv::restore()'
       
-      # Render your Quarto site
+      # Render your Quarto site; output will go into the docs folder
       - name: Render site with Quarto
         run: quarto render
 
-      # Debug step: List files in the output directory to verify rendering
+      # Debug step: List files in the docs directory to verify rendering
       - name: List rendered files
         run: ls -la docs
 
-      # Deploy the rendered site to GitHub Pages (using the specified publish branch)
+      # Deploy the rendered site to GitHub Pages (using gh-pages branch)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_branch: gh-pages  # Change this if your GitHub Pages is configured to publish from a different branch
+          publish_dir: ./docs
+          publish_branch: gh-pages

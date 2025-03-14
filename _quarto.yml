@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  site-url: https://h2l2cR.com
+  site-url: https://how-to-learn-to-code.github.io/Rclass-DataScience/
   sidebar:
       tools:
         - icon: github
