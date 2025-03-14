@@ -3,8 +3,8 @@ name: Custom GitHub Pages Build and Deploy
 on:
   push:
     branches:
-      - test   # Only trigger this workflow when pushing to 'test '
-  workflow_dispatch:   # Allows you to trigger the workflow manually if desired
+      - custom-site  # or any branch you want to test on
+  workflow_dispatch:   # optional, for manual triggering
 
 jobs:
   build:
@@ -13,18 +13,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+
+      # If you use renv to manage your R packages:
+      - name: Restore R dependencies with renv
+        run: Rscript -e 'renv::restore()'
+      
+      # Alternatively, if not using renv, install packages manually:
+      # - name: Install required R packages
+      #   run: Rscript -e 'install.packages(c("pkg1", "pkg2"), dependencies = TRUE)'
 
       - name: Render site with Quarto
         run: quarto render
 
-      - name: List files for debugging
-        run: ls -la
-
-      # You can adjust the publish_dir if your build output goes to a different directory.
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          publish_dir: ./_site  # Adjust if your output directory is different
