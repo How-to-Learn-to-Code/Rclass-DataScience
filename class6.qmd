@@ -1,11 +1,10 @@
 ---
 title: "Data Wrangling with Real Experimental Data"
-subtitle: "Data Wrangling, Day 2"
+subtitle: "Data Wrangling, Day 2 (Single cell data edition)"
 author: "Brian Gural, Lorrie He, JP Flores"
 format: 
   html: 
     toc: true
-
 ---
 
 ```{r, echo=FALSE}

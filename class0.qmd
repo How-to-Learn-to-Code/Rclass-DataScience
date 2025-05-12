@@ -119,9 +119,9 @@ Below is some jargon that you may hear during class. Don't worry about memorizin
 
 **Functions:** A function performs a given task. This task can be very simple (add two numbers) or more complex (create a large data frame, run a linear regression, save the output to a csv file). R has many built-in functions you will use. Many packages also have functions you can use.
 
-**Packages:** Packages in R are extensions of what is called "base R." Base R refers to using R without any add-ons (i.e., no packages). Packages can have data, functions, and/or compiled code. It is the responsibility of package developers to maintain their package--which means some undergo frequent updates and some haven't been touched in years (and thus might not work anymore for whatever reason). It also means that some packages can have bugs or might not be appropriate for your data/analysis. To use a package, you will first need to install it using the function `install.package("<package_name>")`. You will only need to install the package once. Each time you want to use the package, you'll need to load it into your environment: `library(<package_name')`. Once it is loaded into your environment, you will be able to use any functions or data in the package. 
+**Packages:** Packages in R are extensions of what is called "base R." Base R refers to using R without any add-ons (i.e., no packages). Packages can have data, functions, and/or compiled code. It is the responsibility of package developers to maintain their package--which means some undergo frequent updates and some haven't been touched in years (and thus might not work anymore for whatever reason). It also means that some packages can have bugs or might not be appropriate for your data/analysis. To use a package, you will first need to install it using the function `install.package("<package_name>")`. You will only need to install the package once. Each time you want to use the package, you'll need to load it into your environment: `library(<package_name')`. Once it is loaded into your environment, you will be able to use any functions or data in the package.
 
-**global vs. local:** Global refers to something (usually a variable) that is accessible to the entire program/code. Local refers to something (usually a variable) that is accessible only relative to something else (such as within a specific code block, like a function).  
+**global vs. local:** Global refers to something (usually a variable) that is accessible to the entire program/code. Local refers to something (usually a variable) that is accessible only relative to something else (such as within a specific code block, like a function).
 
 ```{r}
 #| eval: false
@@ -141,11 +141,11 @@ z <- my_function()
 z
 ```
 
-**directory:** A directory is another term for what you may refer to as a "folder" on your computer. 
+**directory:** A directory is another term for what you may refer to as a "folder" on your computer.
 
-**paths:** Paths are the directions to files and folders on your system. Understanding paths is important for reading your data into your R environment, since you will need to tell R where the file is located. You can have global and local paths. Global paths are sort of like the full set of instructions starting from your home base. Local paths are instructions given a certain starting location. Here's an example of a global path to an example file on Longleaf: `/work/users/g/h/goheels/my_project/my_data.csv`. Here's an example of a local path, given the starting spot of the `goheels` directory: `my_project/my_data.csv`. 
+**paths:** Paths are the directions to files and folders on your system. Understanding paths is important for reading your data into your R environment, since you will need to tell R where the file is located. You can have global and local paths. Global paths are sort of like the full set of instructions starting from your home base. Local paths are instructions given a certain starting location. Here's an example of a global path to an example file on Longleaf: `/work/users/g/h/goheels/my_project/my_data.csv`. Here's an example of a local path, given the starting spot of the `goheels` directory: `my_project/my_data.csv`.
 
-**syntax/style:** The visual appearance (spaces, indentations, capitalization) of your code greatly improves readability and makes it easier for someone else to quickly understand what it's doing (or you six months later). In this class, we will follow the Tidyverse Style Guide and encourage you to reference it during class to ensure you are consistently naming variables and using appropriate syntax. The sections most relevant for now are [Files](https://style.tidyverse.org/files.html), [Syntax](https://style.tidyverse.org/files.html), and the "Comments" section of the [Functions](https://style.tidyverse.org/functions.html#comments-1) page. Later classes will touch on [pipes](https://style.tidyverse.org/pipes.html) and [ggplot2](https://style.tidyverse.org/ggplot2.html). 
+**syntax/style:** The visual appearance (spaces, indentations, capitalization) of your code greatly improves readability and makes it easier for someone else to quickly understand what it's doing (or you six months later). In this class, we will follow the Tidyverse Style Guide and encourage you to reference it during class to ensure you are consistently naming variables and using appropriate syntax. The sections most relevant for now are [Files](https://style.tidyverse.org/files.html), [Syntax](https://style.tidyverse.org/files.html), and the "Comments" section of the [Functions](https://style.tidyverse.org/functions.html#comments-1) page. Later classes will touch on [pipes](https://style.tidyverse.org/pipes.html) and [ggplot2](https://style.tidyverse.org/ggplot2.html).
 
 **Conditionals:** A conditional is a line of code that will run only if a particular condition is met. You can recognize these by the use of "if" "else" or "while". The best way to understand these is by actually reading the code out loud. If you were to read the below example out loud, you might say "if x equals 3, print 'condition is met', else print 'condition is not met'". What do you think will happen if `x == 3`? What if `x == 4`?
 
@@ -160,7 +160,7 @@ if(x == 3) {
 
 ## Understanding errors and warnings
 
-You will get lots of errors during your How to Learn to Code Journey. "Warnings" indicate your code ran, but some non-fatal issue arose. Sometimes these are OK to ignore, sometimes they indicate an issue you need to look into further. Either way, they should always be investigated! "Errors" are fatal issues and may be the result of things like syntax errors, typos, and incorrect data types. A good starting point for investigating any error or warning is Google (chances are quite high someone has run into the same issue, especially when you're just learning how to code). You can copy and paste the entire error/warning into Google and usually return a helpful result. 
+You will get lots of errors during your How to Learn to Code Journey. "Warnings" indicate your code ran, but some non-fatal issue arose. Sometimes these are OK to ignore, sometimes they indicate an issue you need to look into further. Either way, they should always be investigated! "Errors" are fatal issues and may be the result of things like syntax errors, typos, and incorrect data types. A good starting point for investigating any error or warning is Google (chances are quite high someone has run into the same issue, especially when you're just learning how to code). You can copy and paste the entire error/warning into Google and usually return a helpful result.
 
 ## Use of AI tools
 
@@ -182,4 +182,4 @@ A lot of you may want to use R on your personal computer (i.e., not on Longleaf)
 
 If you just want to click 2 buttons and figure it out: <https://posit.co/download/rstudio-desktop/>
 
-If you want a more detailed install walkthrough: <https://rstudio-education.github.io/hopr/starting.html>
+If you want a more detailed install walk-through: <https://rstudio-education.github.io/hopr/starting.html>
