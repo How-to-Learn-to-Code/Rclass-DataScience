@@ -35,6 +35,9 @@ jobs:
           echo "Version:" 
           quarto --version
 
+      - name: Install quarto-live extension
+        run: quarto add --no-prompt r-wasm/quarto-live
+
       # ──────────────────────────────────────────────────────────────────────
       - name: Cache renv packages
         uses: actions/cache@v4
