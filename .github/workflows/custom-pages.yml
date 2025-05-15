@@ -18,6 +18,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v2    # Quarto needs Pandoc
 
       - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: '>=1.5.0'
 
       # speed: reuse compiled packages
       - name: Cache renv packages
