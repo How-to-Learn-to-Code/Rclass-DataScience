@@ -12,22 +12,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: r-lib/actions/setup-r@v2         # freeze R
-        with: { r-version: "4.4.2" }
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.2'
 
-      - uses: r-lib/actions/setup-pandoc@v2    # Quarto needs Pandoc
+      - uses: r-lib/actions/setup-pandoc@v2
 
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: '1.6.43'
 
-      - name: Uninstall any pip-installed Quarto
-        run: pip uninstall -y quarto-cli || true
-        
-      - name: Force system Quarto in PATH
-        run: echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
-        
-      # speed: reuse compiled packages
+      # ──────────────────────────────────────────────────────────────────────
+      # Prepend /usr/bin so the .deb version of Quarto wins over any shims
+      - name: Prioritize APT-installed Quarto
+        run: echo "PATH=/usr/bin:${PATH}" >> $GITHUB_ENV
+
+      # Debug: confirm the right binary is being used
+      - name: Check Quarto version
+        run: |
+          echo "Which quarto:" 
+          which -a quarto
+          echo "Version:" 
+          quarto --version
+
+      # ──────────────────────────────────────────────────────────────────────
       - name: Cache renv packages
         uses: actions/cache@v4
         with:
@@ -37,18 +45,15 @@ jobs:
           key: ${{ runner.os }}-renv-${{ hashFiles('renv.lock') }}
           restore-keys: ${{ runner.os }}-renv-
 
-      # restore packages exactly as in renv.lock
       - name: Restore R packages
         run: Rscript -e 'renv::restore(prompt = FALSE)'
 
-      # build the site
       - name: Render site
         run: quarto render
 
-      - name: List rendered files   # optional debug
+      - name: List rendered files
         run: ls -la docs
 
-      # deploy
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
