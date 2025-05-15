@@ -21,8 +21,11 @@ jobs:
         with:
           version: '1.6.43'
 
-      - name: Prioritize system Quarto
-        run: echo "/usr/bin" >> $GITHUB_PATH
+      - name: Uninstall any pip-installed Quarto
+        run: pip uninstall -y quarto-cli || true
+        
+      - name: Force system Quarto in PATH
+        run: echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
         
       # speed: reuse compiled packages
       - name: Cache renv packages
