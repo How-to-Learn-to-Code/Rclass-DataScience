@@ -19,7 +19,7 @@ jobs:
 
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: '>=1.5.0'
+          version: '1.6.43'
 
       # speed: reuse compiled packages
       - name: Cache renv packages
