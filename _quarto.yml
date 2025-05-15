@@ -1,6 +1,7 @@
 project:
   type: book
   output-dir: docs
+  extensions: [r-wasm/quarto-live]
 
 book:
   site-url: https://how-to-learn-to-code.github.io/Rclass-DataScience/
@@ -86,10 +87,10 @@ execute:
   error: true
 
 format:
-  html:
+  live-html:
     theme: cosmo
-    number-sections: false
     toc: true
+    number-sections: false
     toc-depth: 4
 
 editor: visual

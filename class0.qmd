@@ -123,7 +123,7 @@ Below is some jargon that you may hear during class. Don't worry about memorizin
 
 **global vs. local:** Global refers to something (usually a variable) that is accessible to the entire program/code. Local refers to something (usually a variable) that is accessible only relative to something else (such as within a specific code block, like a function).
 
-```{r}
+```{webr}
 #| eval: false
 
 # Global variable
