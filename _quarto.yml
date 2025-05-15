@@ -1,7 +1,6 @@
 project:
   type: book
   output-dir: docs
-  extensions: [r-wasm/quarto-live]
 
 book:
   site-url: https://how-to-learn-to-code.github.io/Rclass-DataScience/
