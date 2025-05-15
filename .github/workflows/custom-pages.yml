@@ -1,38 +1,47 @@
-name: Custom GitHub Pages Build and Deploy
+name: Build-and-Deploy
 
 on:
   push:
-    branches:
-      - test  # or any branch you want to test on
-  workflow_dispatch:   # optional, for manual triggering
+    branches: [ test ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r@v2         # freeze R
+        with: { r-version: "4.4.2" }
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
+      - uses: r-lib/actions/setup-pandoc@v2    # Quarto needs Pandoc
 
-      # Restore R dependencies using renv (if you're using renv)
-      - name: Restore R dependencies with renv
-        run: Rscript -e 'renv::restore()'
-      
-      # Render your Quarto site; output will go into the docs folder
-      - name: Render site with Quarto
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      # speed: reuse compiled packages
+      - name: Cache renv packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/R/renv
+            renv/cache
+          key: ${{ runner.os }}-renv-${{ hashFiles('renv.lock') }}
+          restore-keys: ${{ runner.os }}-renv-
+
+      # restore packages exactly as in renv.lock
+      - name: Restore R packages
+        run: Rscript -e 'renv::restore(prompt = FALSE)'
+
+      # build the site
+      - name: Render site
         run: quarto render
 
-      # Debug step: List files in the docs directory to verify rendering
-      - name: List rendered files
+      - name: List rendered files   # optional debug
         run: ls -la docs
 
-      # Deploy the rendered site to GitHub Pages (using gh-pages branch)
-      - name: Deploy to GitHub Pages
+      # deploy
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
