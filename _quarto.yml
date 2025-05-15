@@ -77,8 +77,6 @@ book:
     - "class7.qmd"
     - "class8.qmd"
 
-
-
 execute: 
   freeze: auto
   cache: true
