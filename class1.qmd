@@ -45,7 +45,7 @@ Curious about what the rest of the classes will look like?
 
 -   Module 3: Data Wrangling
 
--   Module 4: Project Management (and applying everything you've learned to a real-world dataset!)
+-   Module 4: Putting it all together: Projects
 
 ## Objectives of Coding Basics: Class 1
 
@@ -116,11 +116,11 @@ iris_dataset_copy <- iris
 
 ## Data types
 
-As you probably know from your own work, data can come in many forms. You can classify dragons as either "purple" or "green" and also record the number of spines on their backs as numeric types (15, 27). Data types are important to understand in R because the type of data impacts what you can do with that data. For example, it wouldn't make sense to calculate a mean for the dragon color, but it would for the number of back spines.
+As you probably know from your own work, data can come in many forms. You can classify dragons as either "purple" or "green" and also record the number of spines on their backs as numeric types (15, 27). Data types are important to understand in R because the type of data impacts what you can do with it. For example, it wouldn't make sense to calculate a mean for the dragon color, but it would for the number of back spines.
 
 In R, we will focus on three basic data types that are used specify the type of data stored in a variable (there are a few more, but you probably won't ever run into them): **character, numeric,** and **logical.**
 
-**Character:** A character represents a string value. This can be anything from a single letter to entire paragraphs. Examples include `“a”, “B”, “c is third”, "5"`
+**Character:** A character represents a string value. This can be anything from a single letter to entire paragraphs. Examples include `"a", "B", "c is third", "5"`
 
 **Numeric:** A decimal value. Examples include `1.0, 3.1415926535`.
 

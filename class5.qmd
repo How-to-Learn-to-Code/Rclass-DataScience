@@ -243,10 +243,10 @@ arranged_data <- df |>
 Once you're comfortable with this style, you should be able to read it as: Take `data` *and then* `filter` by DoB *and then* `arrange` by DoB. This helps keep our code both clean and readable.
 :::
 
-::: callout-tip
+::::::::: callout-tip
 There are two pipe operators: `|>` and `%>%`. They work almost the exact same way. `%>%` is from the `magrittr` package and was the only way to pipe before version R 4.1.0. You may see `%>%`more frequently in code from previous lab members.
 
-::: {.callout-note title="Placeholders" collapse="true"}
+:::: {.callout-note title="Placeholders" collapse="true"}
 The **Placeholder** operator allows more control over where the `LHS` (left hand side) is placed into the `RHS` (right hand side) of the pipe operator.
 
 ::: panel-tabset
@@ -278,9 +278,9 @@ The **Placeholder** operator allows more control over where the `LHS` (left hand
 #3 |> add3(2, y = _, z = _)
 ```
 :::
-:::
+::::
 
-::: {.callout-note title="Right Hand Side (RHS)" collapse="true"}
+:::: {.callout-note title="Right Hand Side (RHS)" collapse="true"}
 ::: panel-tabset
 #### `%>%`
 
@@ -303,9 +303,9 @@ The `RHS` for `|>` must be a function with `()`
 letters |> head()
 ```
 :::
-:::
+::::
 
-::: {.callout-note title="Anonymous Functions" collapse="true"}
+:::: {.callout-note title="Anonymous Functions" collapse="true"}
 ::: panel-tabset
 #### `%>%`
 
@@ -330,56 +330,7 @@ x <- 10
 5 |> {function(y) x + y}()
 ```
 :::
-:::
+::::
 
 To summarize, `%>%` is slightly more lenient than `|>` when it comes to the Placeholder operator, the Right Hand Side (RHS) and Anonymous functions.
-:::
-
-## Case Study Introduction
-
-Just reading about ways to manipulate data can be hard to understand without an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set.
-
-For this example, we have some data from an experiment that measured the proportions of different cell times within mouse cardiac tissue. These samples are from treatment vs. control and WT (wild type) vs. mutant.
-
-What are some things that we, as researchers, would want to know about our data?
-
--   Did the experiment work?
-
-::: {.callout-note title="Things to consider:"}
-Check your controls or expected features!
-:::
-
--   Do we see differences between our experimental groups?
-
-To get at these questions, we need to be able to manipulate our data into the formats needed to check those features and for plotting. To start, lets take a look at how the results are structured before we start planning how to do the processing.
-
-### Getting familiar with the data
-
-```{r}
-options(digits = 3)
-# Load the data. The sample IDs were stored as the first row, so lets make those the row.names
-cell_props <- read.csv("data/wrangling-files/cellProportions.csv",
-                       row.names = 1)
-
-head(cell_props)
-```
-
-::: {.callout-note title="Whole vs. Fractions"}
-`Fraction` samples are our controls. They are supposed to be almost completely one single cell type. They're just here to make sure we accurately measured cell type proportions.
-
-`Whole` samples are our test samples. They're from the treatment/control mice, which you'd expect to have a range of cell types.
-:::
-
-### Analysis Goals
-
-For next class, you should brainstorm some ideas for how to approach the analysis. Try to consider these angles:
-
--   What do we want to know about this data set?
--   What kind of visuals would we want to make to check that?
--   What would the data need to look like to get those visuals?
--   How does the data look now?
--   Which functions might we use to get the data from its current state to what we need for plotting?
-
-In the beginning of next class, we'll chat about what ideas you had!
-
-(Ambitious students who want to try before then will also need the phenotype data located at `data/wrangling-files/cellPhenotypes.csv`)
+:::::::::

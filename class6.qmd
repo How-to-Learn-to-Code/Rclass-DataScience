@@ -1,15 +1,14 @@
 ---
-title: "Data Wrangling with Real Experimental Data"
-subtitle: "Data Wrangling, Day 2"
-author: "Brian Gural, Lorrie He, JP Flores"
+title: "Data Wrangling with Real World Data"
+subtitle: "Data Wrangling, Day 2 (Tour de France edition)"
+author: "Madeline Gillman & Austin Daigle"
 format: 
   html: 
     toc: true
-
 ---
 
-```{r, echo=FALSE}
-renv::restore()
+```{r}
+#| echo: false
 library(tidyverse)
 library(ggplot2)
 options(digits = 3)
@@ -19,349 +18,107 @@ options(digits = 3)
 
 -   Be able to apply the objectives covered in Data Wrangling: Class 1 to a new dataset
 
-## Case Study
+## Case Study: Tour de France 🚴
 
-Last class, we had introduced a dataset/experiment that we would work through. Let's remind ourselves of some of the details:
+Bienvenue en France! 🇫🇷 Today we are traveling across the Atlantic Ocean to conduct urgent data analysis for [Team Visma-Lease A Bike](https://www.teamvismaleaseabike.com) (Team VLAB) for the Tour de France. The [Tour de France](https://en.wikipedia.org/wiki/Tour_de_France) is an annual multi-week bicycle race held primarily in France. The race comprises 21 stages held over 23 days. Each stage covers a different area of France and different terrain; and the course changes each year. There are 20 to 22 teams that participate each year and each team is made up of 8 riders.
 
--   We have proportions of cell types across samples
--   There controls made of mostly pure cell types (`fractions`) and experimental samples (`whole`)
--   There are `.csv` files for both the cell type proportion data and the sample phenotypes
+The year is 2024 and this year's tour, as in prior years, is a nail-biter between Team UAE's Tadej Pogačar and Team VLAB's Jonas Vingegaard. So far, 14 stages and nearly 1,300 miles have been completed and Jonas is trailing his rival Tadej by just one minute and fourteen seconds. Stage 15 is tomorrow, and Team VLAB wants to know if Jonas has a chance to make up time and win the Tour. To help determine race strategy, Team VLAB wants you to analyze historical trends.
 
-There are a few things to think about when wrangling/exploring data:
+![PHOTO: CHRIS AULD/VELO](https://velo-cdn.outsideonline.com/wp-content/uploads/2024/07/Tour-de-France-Chris-Auld-photo-stage-11-2024-tadej-pogacar-jonas-vingegaard-yellow-jersey.jpg)
 
--   What do you want to know about this data?
--   What kind of visuals would you want to make?
--   How does the data need to be formatted to get those visuals?
--   What are some expected features of our data?
+## Part 1: Analyzing historical trends
 
-Take a moment to talk among yourselves about this/any ideas you had since last class!
+### **The data**
 
-### Getting familiar with the data
-
-#### Proportions Data
-
-```{r}
-# Load the data. The sample IDs were stored as the first row, so lets make those the row.names
-cell_props <- read.table("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/cellProportions.csv",
-                       row.names = 1, header = TRUE, sep = ",")
-
-head(cell_props)
-```
-
-::: callout-tip
-Our data fits the `tidy` style, since each row is a sample (observation) and each column is a different cell type (variable).
-:::
-
-When assessing data, it's good to *consider what features you'd expect from a given data set*. This helps you know if something has gone wrong before you've gotten your hands on it.
-
-We're looking at the proportion of cell types in each sample, which should sum up to 1. Checking that the values in each row add to 1 would help confirm that we have what we're expecting:
-
-```{r}
-rowSums(cell_props)
-```
-
-::: callout-tip
-Raw RNA-seq matrices should go up to 100,000s. So if you only see small numbers in the data, it's likely been manipulated in some way.
-:::
-
-#### Phenotype data
-
-We also have the phenotypes for the samples in a separate file:
-
-```{r}
-cell_phenos <- read.table("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/cellPhenotypes.csv",
-                        row.names = 1,sep = ",",header = TRUE)
-
-str(cell_phenos)
-```
-
-"
-
-### Planning the analysis
-
-We want to know:
-
--   If the controls look as we'd expect
--   What group differences there are
-
-To get at the question about controls, we'd need to check `cell_phenos` to see which samples are from the control or experimental groups. After, we'll plot the proportions.
-
-```{mermaid}
-flowchart LR
-A[Data frame of\n cell proportions] --> C(Merged proportions\n and phenotypes)
-B[Data frame of\n sample phenotypes]  --> C
-C --> D{Steps to get data\nformatted for plotting}
-D --> E[Plot of control samples]
-D --> F[Plot of experiment samples]
-```
-
-### Manipulating data frames
-
-#### Summarizing and subsetting
-
-Let's get more context on what's in the data. `table` is a convenient way to summarize columns and lists:
-
-```{r}
-# What unique values and how many of each are in the "genotype" field
-table(cell_phenos$genotype)
-# Table can also compare two variables. useNA need to be added to include cells with NAs
-table(cell_phenos$type, cell_phenos$genotype,  useNA = "ifany")
-```
-
-Seems that the purified cell types list NA for their genotype and that there are three types. Also, we have 8 knock-outs and 8 are wild type.
-
-#### Combining and reordering
-
-Data frames can be combined in a bunch of ways, but no matter the method [it is essential that the order of samples match]{.underline}. R has two built-in methods, binds (`cbind` and `rbind`) and `merge`.
-
-```{r captain_planet_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Captain Planet and the Planeteers likely combined using merge functions"}
-knitr::include_graphics("data/wrangling-files/captain-planet.gif")
-```
-
-Binds slap two data frames together. `cbind` adds columns, `rbind` adds rows. Binds don't consider the order of the data sets, so there's a risk of things being out of order.
-
-`merge` is similar to `cbind`, but matches the data sets based on a common column.
-
-##### `cbind`
-
-```{r}
-# bind the rownames to see if they match
-cbind(rownames(cell_phenos), rownames(cell_props)) |> head()
-
-```
-
-Above, you can see that `cbind` would mismatch the samples. **Always be careful when using `cbind`! It has no guardrails for ordering!**
-
-```{r}
-# Reorder one to match the other
-# This uses the cell_phenos rownames as a list to specify the order of indices 
-cell_props <- cell_props[rownames(cell_phenos),]
-
-# They should all be TRUE now
-all(rownames(cell_phenos) == rownames(cell_props))
-
-# Now we can merge them 
-data_bind <- cbind(cell_phenos, cell_props)
-
-head(data_bind)
-```
-
-##### `merge`
-
-```{r}
-# Specify row.names as the feature to merge by
-data_merge <- merge(cell_phenos, cell_props, by = "row.names")
-
-head(data_merge)
-```
-
-While this won't always be the case with `merge` vs. `bind`, its better to use `merge` in this scenario, since it helps keep your script *interpretable.*
-
-::: {.callout-note title="Reproducible code"}
-If you continue with programming, you'll need to share your code or return to code you wrote months ago. Writing easy-to-understand scripts gives you less headache later!
-:::
-
-### Preparing for different visualizations
-
-At this point, we should ask ourselves a few questions:
-
--   What am I trying to see about the data?
--   What kind of plot helps us see that?
-
-Take a minute to talk as a group about how you would visualize the data!
-
-**What am I trying to see about the data?**
-
-Our samples have data on the proportions of many cell types. I'd want to easily compare all of these cell types at once, with samples/groups side-by-side.
-
-**What kind of plot do we want?**
-
-Pie charts are often used to visualize percents/proportions, but its difficult to see differences between two pie charts. A stacked bar plot would be a better fit, since we're trying to compare different sample groups.
-
-**What format does my data need to be to make said plot?**
-
-This stacked bar plot would have:
-
--   Samples on the X-axis
-
--   Cell-type proportions on the Y-axis
-
--   Colors for each cell type in each bar
-
-For `ggplot` to make this our data needs to have a column for each term, but the data is spread across many columns. To solve this, we first need to understand the concepts of wide and long data.
-
-#### Pivoting wide and long
-
-Data is often formatted as *wide* or *long*. Our data is in a wide format, which has a single row for each sample and a column for each variable. When wide data is pivoted into a long format columns are condensed together.
-
-```{r ross_gif,echo=FALSE, fig.align = 'center', out.width = "80%", fig.cap = "Ross understands the importance of converting wide and long data"}
-knitr::include_graphics("data/wrangling-files/pivot.gif")
-```
-
-It's easiest to understand how pivoting works in visuals:
+We are given two files: one with rider history, and one with stage history. Note that only cyclists who have completed the race are included in these files. These files only contain data for Tours 1919 and later. The Tour was not held between 1940 and 1946 due to World War II. This data is modified from the original files provided by [thomascamminady](https://github.com/thomascamminady) in [LeTourDataset](https://github.com/thomascamminady/LeTourDataSet?tab=readme-ov-file).
 
 ::: panel-tabset
-## Still images
+#### Rider History
 
-```{r pivot_still,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
-knitr::include_graphics("data/wrangling-files/tidyr_pivot.png")
-```
+| Column Name | Description |
+|------------------------------------|------------------------------------|
+| Rider | Name of the cyclist |
+| Team | Name of the team. Note that because teams are named for their sponsors, team names can vary slightly from year to year |
+| Times | Cumulative time provided in hours, minutes, and seconds (e.g. `114h 35' 31''` ) |
+| Gap | Amount of time behind race winner provided in hours, minutes, and seconds |
+| Year | Year of race |
+| Distance (km) | Total distance in km of that year's race |
+| Number of stages | Number of stages in that year's race |
+| TotalSeconds | Cumulative time in seconds |
+| GapSeconds | Amount of time behind race winner in seconds |
 
-## Animated transition
+#### Stage History
 
-```{r pivot_gif,echo=FALSE, fig.align = 'center', out.width = "100%", fig.cap = "Source: Garrick Aden-Buie’s (@grrrck) Tidy Animated Verbs github.com/gadenbuie/tidyexplain"}
-knitr::include_graphics("data/wrangling-files/tidyr-pivoting.gif")
-```
+| Column Name | Description |
+|------------------------------------|------------------------------------|
+| Year | Year of race |
+| TotalTDFDistance | Total distance in km of that year's race |
+| Stages | The stage number for that year's race |
+| Start | Name of the city in which the stage started |
+| End | Name of city in which the stage ended |
+| Winner of stage | Stage winner |
+| Leader | Race leader (prior to use of the yellow jersey, only a race leader was tracked). NA for years \> 1914 |
+| Yellow Jersey | Race leader for years \> 1914 |
+| Polka-dot jersey | Rider with the greatest number of points in the Mountains classification. Awarded for races in years \>= 1975 |
+| Green jersey | Rider with the greatest number of points (which generally ends up being sprinters, so this is often called the sprinter's jersey). Awarded for races in years \>= 1953 |
+| White jersey | The fastest rider under the age of 23. Awarded for races in years \>= 1968 |
 :::
 
-As a reminder, we want to make a **column of proportions values** (val) and a **column specifying cell types** (key).
+Let's read in the data and dig in!
 
 ```{r}
-library(tidyverse)
-# cell types are specified with cols = and name the new column with names_to
-# values originally in those columns are going to move to a new values column, which we can name with values_to =
-data_long <- pivot_longer(data_merge, 
-                          cols = c(Cardiomyocytes, Fibroblast, Endothelial.Cells, Macrophage, Pericytes.SMC), 
-                          names_to = "cell.type", values_to = "proportion")
+#| warning: false
 
-str(data_long)
-```
+rider_hx <- read_csv("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Riders_History_1919-2023.csv")
 
-We have a couple of changes:
-
--   There are two new columns, `cell.type` and `proportion`
-
--   We have A LOT more rows than we did originally
-
--   The sample IDs were coerced to a column "Row.names" that is an 'AsIs' character. We'll need to correct that before we plot the data
-
-#### Wrangling for plotting
-
-##### Pure cell-type fraction controls
-
-With our data in this format, we can make a lot of cool plots. Lets start with the bar plot we had planned.
-
-```{r}
-data_long |> 
-  mutate(id = as.character(Row.names)) |> # fix the AsIs type
-  ggplot(aes(x = id, y = proportion, fill = cell.type))+
-  geom_bar(position="fill", stat="identity")
-```
-
-::: callout-tip
-`mutate` is a great way to modify specific parts of your data or make new columns!
-:::
-
-It worked, but it looks... less than pleasing. Lets remind ourselves of what we wanted to see in the plot: groups side-by-side.
-
-I'd like to start by making a plot just for the controls for now. `filter` from the `dplyr` package will help separate the groups. Also, I'll make aesthetic changes to make it easier to compare groups and nicer to look at.
-
-```{r}
-data_long |> 
-  filter(type != "whole_tissue") |> 
-  mutate(id = as.character(Row.names)) |> 
-  ggplot(aes(x = id, y = proportion, fill = cell.type))+
-  geom_bar(position="fill", stat="identity", color = "black", width = 1) +
-  facet_grid(cols=vars(type), scales = "free") +
-  scale_fill_manual(values = c("#66C2A5","#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854")) +
-  theme_minimal() +
-  theme(
-    axis.title.x = element_blank(), 
-    legend.title = element_blank(),
-    legend.position = "bottom"
-  ) +
-  guides(x = guide_axis(angle = 45)) +
-  labs(title = "Cell type proportions in purified control samples",
-       y = "Cell Type Proportion")
-
+stage_hx <- read_csv("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Stages_History_1919-2023")
 
 ```
 
-This looks good! We can see what we expected of our control samples. Each of the fractions are made up of a single cell type. Let's move onto the experimental samples.
+1.  Use your favorite function to check out the data frame real quick. Options include: `head()`, `glimpse()` , and `str()` . Would you consider this "tidy" data?
+2.  These column names are not very...tidy. You may notice inconsistent capitalization, spaces (which make our coding lives difficult) and special characters. Use the `rename()` function to rename columns in a consistent format.
+3.  Take another look at the rider history data. You may notice that some columns are duplicative: we have two different columns for total time and time gap, just in different units. But do these contain the same data? It's entirely possible that there are discrepancies and that could be something to flag before we begin analysis.
+    a.  First, use the function `str_extract()` to place the hours, minutes, and seconds into three separate columns. Convert the hours and minutes columns to seconds using `mutate()`
+    b.  Create a new column called `new_total_seconds` summing the new hours, minutes, and seconds columns.
+    c.  Then, use `filter()` to identify rows where the total seconds you just calculated doesn't match the one in the TotalSeconds column originally provided in the data. Which column should be used for analysis?
+    d.  Bonus challenge: Write a function that will do a & b!
+4.  Let's add a few columns that will help with analyzing trends:
+    a.  Total distance in **miles**
+    b.  Average speed in km/h and mph
+5.  Identify the winner each year using the rider history dataset.
+    a.  First, write out in plain language how you would do this step-by-step, similar to what is done in 3a-c.
+    b.  Do you notice if any of the words you used above correspond to dplyr functions?
+    c.  Need a hint? As with many coding tasks, there are many ways to do this! You may want to start by using `group_by()` and `summarize()`. You can also try looking up a function to select the smallest row in a group in R.
+6.  Team VLAB is getting antsy–let's make some plots. Pick at least one of the analysis questions below and make a plot that helps answer the question. It may also be helpful to calculate a summary statistic (e.g. mean).
+    a.  Have winners of the Tour gotten faster over time?
+    b.  Has the average speed per year gotten faster over time? This would be the average speed of [peloton](https://en.wikipedia.org/wiki/Peloton).
+    c.  How does Jonas' average speed compare this year to prior years? What about Tadej's?
+7.  BONUS if you like scandal! Identify the winner each year using the rider history dataset (you may have done this in #6). Examine the ranges/values in each column. Notice anything weird for any particular years?
 
-##### Experimental Samples
+## Part 2: Incorporating this year's data
 
-There are two things we should consider before we visualize differences between our experimental groups:
+Team VLAB has handed you data with rankings though Stage 13 (remember, Stage 14 of 21 is tomorrow). The team is interested in knowing how Jonas' speed this year compares to previous years.
 
--   It would be easier to compare shifts in specific cell types if we break up the stacked bar chart so that the cell types are spread across the x-axis.
--   In our last plot, we compared samples across a single phenotypic factor: `type`. This time, it's more complicated because we want to we want to compare both `genotype` and `treatment`.
-
-```{r}
-data_long   |> 
-  filter(type == "whole_tissue") |> 
-  ggplot(aes(x = cell.type, y = proportion)) +
-  geom_bar(stat = "summary", fun = mean, width = 0.9,  color = "black") +
-  facet_grid(genotype ~ treatment, scales = "free") + 
-  theme_minimal() +
-  theme(
-    axis.title.x = element_blank(), 
-    legend.title = element_blank(),
-    legend.position = "bottom"
-  ) +
-  labs(y = "Estimated Proportion") +
-  scale_fill_manual(values = c("#66C2A5","#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854")) +
-  guides(x = guide_axis(angle = 45))
-```
-
-We just made three major changes:
-
--   `cell.type` is on the x-axis, not sample `id`s
--   We're plotting the **mean** of each cell type across many samples in each group. `geom_bar` can do this automatically with `stat = "summary", fun = mean,`
--   We're showing four plots at once by having `facet_grid` contrast them with `genotype ~ treatment`
-
-However, it may still be tough to compare across the groups. Also, only showing the mean masks any variation within groups. Lets make two more major changes to fix that:
-
--   Put all of the groups into a single plot
--   Add dots for each sample onto each bar
-
-And to make it easier to read, let's reorder the X-axis by most to least abundant cell types.
-
-###### Reorder cell types
-
-We can take advantage of `factors` to reorder, since `ggplot` references the order of factors when plotting.
+Read in the dataset.
 
 ```{r}
-# Find the most-to-least abundant cell types
-cell.type.order <- data_long |> 
-  filter(type == "whole_tissue") |> 
-  group_by(cell.type) |> # Manipulate the data within cell-type groups
-  mutate(mean = mean(proportion)) |> # make a new column that is the mean of the proportions 
-  arrange(desc(mean)) |> # arrange by mean proportion
-  pull(cell.type) |> # pull out the cell type column as a list
-  unique() # remove duplicated values
-cell.type.order
+
+tdf_2024_df <- read_csv("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/tdf_2024_stage13_data")
 ```
 
-###### Put all groups on a single plot
+1.  Try using `rbind()`, `bind_rows()` , and `merge()` to join the new data with the rider history data from above. Which one(s), if any, work? Why do you think they do (or do not) work?
+2.  If you need to make any modifications to the new data to enable a join, do so and then join the datasets. Make these changes in R, NOT Excel or a text editor. Doing so in R ensures that your changes are *reproducible* and that the original data is not destroyed or modified.
+3.  Use this new dataset to add this year's average speed to the same plots you made in Part 1.
+4.  Review your code from Parts 1 and 2. See if you can use pipes to connect as many steps as possible. As you do this, make sure you add comments to your code and consider if using too many pipes sacrifices code readability.
 
-If we combine `genotype` and `treatment` into a single variable, we can condense down to a single plot. While we're at it, we can apply `cell.type.order` to make the `data_long$cell.type` into a factor-level column:
+## Part 3: Stage History
 
-```{r}
-data_long <- data_long |> 
-  mutate(cell.type = factor(cell.type, levels = cell.type.order),
-         Genotype_Treatment = factor(paste(genotype, "-", treatment), levels = c("WT - Sham", "WT - MI", "cmAKO - Sham", "cmAKO - MI")))
-```
+The stage history dataset has data from every stage of the Tour de France. For the below questions, use your data wrangling skills to find the answer.
 
-###### Plot
-
-```{r}
-# Generate boxplot
-data_long  |> 
-  filter(type == "whole_tissue") |> 
-  ggplot(aes(x = cell.type, y = proportion, fill = Genotype_Treatment)) +
-  geom_bar(stat = "summary", fun = mean, width = 0.9,  color = "black",
-           position = position_dodge(0.9)) +
-  geom_jitter(inherit.aes = T, 
-              position = position_dodge(0.9),
-              size = 2, alpha = 0.3) +
-  labs(y = "Estimated Proportion", 
-       fill = "Treatment") +
-  theme(
-    axis.title.x = element_blank(), 
-    legend.title = element_blank(),
-    legend.position = "bottom"
-  ) +
-  scale_fill_manual(values = c("#A6CEE3", "#1F78B4", "#FDBF6F", "#FF7F00")) +
-  guides(x = guide_axis(angle = 45))
-
-```
+1.  Use `rename()` to tidy the column names.
+2.  Check for missing values in each column. Are all missing values coded the same? If not, figure out a way to fix this–you may want to use Google!
+3.  Which city has had the most visits from the Tour de France? (This means you must consider both start and end cities)
+4.  Who has won the most stages?
+5.  Who has worn the yellow jersey for the most days in a single tour? What about the polka dot jersey? Green jersey?
+6.  Identify the top 10 wearers of the yellow jersey, polka dot jersey, and green jersey. Make a bar plot with the name of the rider on the x-axis and number of stages/days worn on the y-axis. See if you can color the bars so that the colors match the jersey (i.e. the plot for yellow jersey has yellow bars).
+    a.  See if you can get these all plotted on the **same** plot. It might involve some pivoting!

@@ -182,4 +182,5 @@ A lot of you may want to use R on your personal computer (i.e., not on Longleaf)
 
 If you just want to click 2 buttons and figure it out: <https://posit.co/download/rstudio-desktop/>
 
-If you want a more detailed install walkthrough: <https://rstudio-education.github.io/hopr/starting.html>
+If you want a more detailed install walk-through: <https://rstudio-education.github.io/hopr/starting.html>
+

@@ -1,365 +1,296 @@
 ---
-title: "Running a Reproducible Analysis"
+title: "Practicing on Real-World Data"
 subtitle: "Project Management, Day 1"
-author: "Brian Gural, Justin Landis"
+authors: "Lorrie He, Matthew Sutcliffe"
 format: 
   html:
-    number-sections: true
     toc: true
+output:
+  html_document:
 editor: visual
 ---
 
-## Reproducible science... *in-silico*??
+```{r setup, echo=FALSE}
+# read in data for later
+ebola0 <- read.table("data/project-day-2-files/datasets/ebola.csv", header = TRUE, sep = ",")
+temps0 <- read.table("data/project-day-2-files/datasets/temperatures.csv", header = TRUE, sep = ",")
+avida0 <- read.table("data/project-day-2-files/datasets/avida/avida_wildtype.csv", header = TRUE, sep = ",")
 
--   Bioinformaticians are people too
--   We need to make sure our research is well documented and reproducible just like bench scientists
--   Projects can get complex, messy, and very computationally demanding
-
-## How can computational projects get derailed?
-
-It turns out that computational biologists need to be careful with how they manage their code and data. [Leaving everything on your personal/lab computer comes with a lot of risk.]{.underline}
-
-You can reduce the risk of a mishap by housing data on UNC's cloud computing service, **Longleaf**, and putting your code on **Github**. Both of these provide you with backups that can be accessed from anywhere with the internet.
-
-```{r dog_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "The impending destruction of their laptop doesn't bother this dog since they use remote computing and GitHub"}
-knitr::include_graphics("data/project-day-1-files/thisisfine.gif")
+knitr::opts_chunk$set(echo=FALSE, digits = 3)
 ```
 
-Don't think it's worth it? Here are some moments that made UNC researchers wished they had used these tools:
+## Final class!
 
-::: panel-tabset
-## Broken laptops, crushed dreams
+In previous classes, you gained experience working with Quarto documents within R projects.
 
-"...there was a time where my computer just stopped letting me log in and needed to be wiped so if I wasn't using Longleaf I would have lost everything. I did lose a nice powerpoint."
+Today, now that you've been through the entire course, we want to reinforce some of the skills that you've learned by having you apply your knowledge to several existing datasets and go through the wrangling, analysis, and visualization process as independently as you can. By the end of this lesson, you should have a directory (and maybe GitHub repo) containing scripts for wrangling and analysis for at least one of these datasets that you can show to others (or at least have as a reference for your future self).
 
-"In undergrad I was using local storage only on the desktop in my advisor's office. There was some big failure with IT one day (tbh I still don't know what happened) and I lost all my code"
+For each of these datasets (or as many as time allows), we'd like you to do some basic analysis, including the following steps:
 
-"Our collaborator lost the hard drive with the raw RNAseq data, dooming my first 1st author publication. His collaborator saved the day with a backup he had on Longleaf"
+> 1.  Create a directory for the analysis of this dataset, using best practices discussed in the previous class.
+>
+> 2.  Load in the data.
+>
+> 3.  Perform some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)
+>
+> 4.  Identify at least 1 research question that you could try to answer with this dataset.
+>
+> 5.  Format the data in a way that allows for this analysis.
+>
+> 6.  Visualize the data in helpful ways to answer your question.
+>
+> 7.  Bonus challenge: Make your code reproducible by using GitHub.
 
-## "How did you make this figure from 2018?"
+To help with your analyses, we have included a **project template** document outlining these steps that you are welcome to use in `data/project-day-2-files/example-analyses`; the location of additional files are specified below.
 
-"An undergrad left their code in `/pine`\* when they went home over the summer and it got deleted, so they had to re-write their code from scratch (which delayed the project as a whole)"
+## Datasets
 
-"Only having GitHub as a memory of projects I did in grad school, being able to search and find bits of code so I don't have to rewrite them."
+The **csvs** are available under in `data/project-day-2-files/datasets`. We have provided links to data that is publicly available for download, as well as some related publications that may give you more information about the data.
 
-"People emailing 2 years after a paper is published asking about obscure details of simulation etc."
-
-\*`pine` was UNC's *temporary* data storage space
-:::
-
-## Good computational practices 101
-
-Computational projects ought to be approached with the same expectations of rigor and reproducibility expected of a bench project. This means that the work needs to be [well documented]{.underline}, things need to be [properly stored]{.underline}, and everything should be [organized clearly enough for someone to reproduce it]{.underline}.
-
-Thankfully, we're not the first researchers to run into these problems. A whole suite of tools and services exist to manage these issues:
-
-::: columns
-::: {.column width="60%"}
--   Documenting everything
-
--   Storing data & getting resources
-
--   Keeping your R project organized
-:::
-
-::: {.column width="5%"}
-<!-- empty column to create gap -->
-:::
-
-::: {.column width="30%"}
-`git`/GitHub
-
-Longleaf
-
-RStudio Projects
-:::
-
-::: {.column width="5%"}
-<!-- empty column to create gap -->
-:::
-:::
-
-## Suffering from manual version control? `git` can help.
-
-What is **version control** exactly? At its core, it's a way of keeping track of the changes made to files. Before now, you've probably used a system like this:
-
-::: panel-tabset
-## Before GitHub
-
-``` markdown
-paper_draft1.doc
-paper_draft2.doc
-paper_reviewed_by_john.doc
-paper_draft3_comments_incorporated.doc
-paper_final_draft.doc
-paper_final_reviewed.doc
-paper_final_submission.doc
-paper_final_submission_revised.doc
-paper_final_submission_revised_v2.doc
-paper_published_version.doc
-```
-
-```{r charlie_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Charlie explains how his file naming system makes perfect sense"}
-knitr::include_graphics("data/project-day-1-files/charlie-day.gif")
-```
-
-## After GitHub
-
-With `git`, **you can update a file while keeping a detailed log of the changes**.
-
-``` markdown
-* 9a2b3c4 - Add published version of the paper (2024-04-29)
-* 8f7e6d5 - Revise submission after additional feedback, version 2 (2024-04-25)
-* 7d6c5b4 - Update submission based on post-submission feedback (2024-04-20)
-* 6c5b4a3 - Prepare final version for submission (2024-04-15)
-* 5b4a392 - Finalize draft after thorough review (2024-04-10)
-* 4a39881 - Incorporate feedback from final review (2024-04-05)
-* 3928717 - Update draft, incorporate feedback from John (2024-04-01)
-* 2871606 - Add second draft of the paper (2024-03-28)
-* 1760505 - Initial draft of the paper (2024-03-25)
-```
-
-```{r thumbs_up_gif,echo=FALSE, fig.align = 'center', out.width = "70%", fig.cap = "Kevin, age 6, finds GitHub to be totally radical"}
-knitr::include_graphics("data/project-day-1-files/thumbs_up.gif")
-```
-:::
-
-### Go on, `git`!
-
-`git` is version control system used to record changes to files. [GitHub]{.blue} uses `git` to help users host/review code and manage projects
-
-[`git`/GitHub matter because they:]{.underline}
-
--   Track every version of every script
-
--   Publicly document your work
-
--   Allow for new versions of projects to `branch`
-
--   Make it easy to collaborate
-
-## Longleaf: The darling of UNC bioinformaticians
-
-Longleaf is UNC's high-performance computing cluster (HPC). It's basically a ton of computers/storage. Its accessible from anywhere with internet and offers a lot of storage. Labs typically start with 40 TB, users get 10 TB. Also you've been using it this whole time! RStudio OnDemand is hosted by Longleaf.
-
-::: callout-tip
-There are a ton of reasons to use LL:
-
--   Many scripts can be run at once, with your computer off
-
--   It has A LOT more resources than a typical computer
-
--   Easy to share files!
-
--   Dedicated technical support via ITS
-:::
-
-## Connecting Longleaf and Github
-
-Github and Longleaf each can be daunting to novice programmers, so lets walk through how to set them up together.
-
-The setup is going to amount to three general steps:
-
-1.  Introduce our Github and Longleaf accounts to each other with something called a `SSH` key
-    -   SSH keys (**s**ecure **sh**ell) are encrypted passwords that link two computer systems
-2.  Make our first repository (project) on Github
-3.  Learn how to get scripts from Github to Longleaf and update changes we made on Longleaf back to Github
-
-Before we can start that, we're going to need to know just a tad about **terminals** and **Bash**. These topics could be a whole course onto itself, but in a nutshell you can think of them like this:
-
-**Terminals**, also called **command lines**, are text-based software for interacting with your computer. RStudio has a built-in terminal, on the tab next to "Console".
-
-**Bash** is a type of computer language that understands and carries out the instructions you type in the terminal, usually called "shell scripting". It's very common on Linux and Mac computers. Longleaf uses Linux and working on Longleaf means using a bit of Bash.
-
-::: callout-tip
-This course isn't meant to teach you shell scripting, and you aren't expected to fully understand some of the Bash command we'll run. If you'd like to learn more, please refer to the following cheat sheets on [common bash commands](https://github.com/RehanSaeed/Bash-Cheat-Sheet) and [scripting in bash](https://devhints.io/bash) as helpful resources!
-:::
-
-## Linking via `SSH`
-
-Let's start by getting the terminal open. In the top left, click View -\> Move Focus To Terminal. It should've opened in the panel that also contains tabs for "Console" and "Background Jobs".
-
-Next, let's find the SSH key associated with your Longleaf account. We'll run the following bash command in the terminal that we just opened (be aware that terminals are notoriously finicky with copy and paste): `cat ~/.ssh/id_rsa.pub`
-
-::: callout-caution
-Do [**NOT**]{.underline} forget to add the `.pub` of the above extension. RSA keys come in pairs, a private and a public version. The private key (i.e. the file that does not have the `.pub` extension) should [**NEVER**]{.underline} be shared. Sharing your private key will allow malicious actors to interact with services that cache your public key [as if they were you]{.underline}!
-:::
-
-This (hopefully) has copied your public SSH key to your clipboard!
-
-Now, let's go over to Github and set up the key.
-
-1.  Go to profile settings on github and select the "ssh key" section
-
-2.  Add new key
-
-3.  Name the key (should remind you that this is the key for Longleaf)
-
-4.  Paste the copied ssh key from the `cat` step above
-
-5.  Create!
-
-With that done, we need to log into Github on Longleaf:
-
-1.  Go back to the RStudio terminal
-
-2.  `git config --global user.name "your-github-username"`
-
-    -   Keep the quotes around your username!
-
-3.  `git config --global user.email your.email.linkedwithgithub`
-
-    -   No quotes this time!
-
-## Making a repository {#sec-repo}
-
-Great, we've connected Longleaf and Github (a herculean task for a beginner programmer!). What we'll want to do next is make a repository (repo), which you could think of as a self-contained project folder. Let's go back to Github:
-
-1.  In the "Repositories" tab of your profile, click "New"
-
-2.  Give it a name, maybe "example_repo"
-
-3.  Click the "Add a README file box"
-
-4.  Add a \`.gitignore\` with an R template
-
-5.  Create the repo!
-
-We'll explain the signifance of the README and .gitignore steps a bit later. For now, lets go over to our new repo on our profile. To get it onto Longleaf, we can:
-
-1.  Click on the green "Code" box
-
-2.  Click on "SSH"
-
-3.  Copy the SSH right below that! It should end in \`.git\`
-
-4.  Lets create a new directory to house our experimental projects. In the terminal window of RStudio, do the following:
-
-    ```{bash}
-    #| eval: false
-    cd ~                 #set working directory to home directory
-    mkdir learning-R     #create a new directory "learning-R"
-    cd learning-R        #set "learning-R" as our working directory
-    ```
-
-    ::: {.callout-note collapse="true" title="Git Project Organization"}
-    Git repositories may be cloned anywhere to your file system that makes sense to you. The above is a simple example of project organization in which we may create more repositories under the `learning-R` directory. Ultimately the choice is yours on how you wish to organize your git projects.
-    :::
-
-5.  Now we can clone our new github repository locally!
-
-    ```{bash}
-    #| eval: false
-    # add what you copied in step 3 behind "clone".
-    # Your command may look something like this
-    git clone git@github.com:<username>/<reponame>
-    ```
-
-## RProjects
-
-In this section, we will be discussing recommendations for organization. From @sec-repo, we can see that our project is fairly empty
-
-```         
-.
-├── .git/
-├── .gitignore
-└── README.md
-```
-
-It is up to use to bring some organization to our project!
+These datasets were chosen because we thought they represented a good variety in the different kinds of wrangling and visualization challenges you might encounter with your own data in the future: we have highlighted a few specific R skills that some of these datasets were meant to challenge you on.
 
 ::: callout-note
-The hidden directory `.git/` and file `.gitignore` will be covered in the next @sec-git.
+The datasets are presented roughly in order of increasing wrangling complexity. Though you should have most of the basic skills you need to wrangle and analyze these datasets, we have specifically provided some code to aid you in certain wrangling tasks for some of the later datasets: see the "Analysis ideas and hints" callout for each dataset.
 :::
 
-Organization can greatly improve the experience of coding. It is a way for us to show our future selves some kindness as well as anyone who may maintain our work in the future.
+For each dataset, we have provided a description of the research question/data collection methods, metadata, and the first few lines of each dataset. Read through these descriptions and work on the dataset you find most interesting. Feel free to work with a partner!
 
-Below is an example of how we may setup directories for our project:
+::: {.callout-tip title="But I thought this was HTLTCode, not HTLTScience!"}
+To get the most out of today's activities, we highly encourage you to practice going through the whole data analysis workflow as independently as you can, using your notes and practicing your Googling skills to develop your own research questions and analysis ideas for these datasets.
 
-```         
-.
-├── .git/
-├── .gitignore
-├── data/
-├── outputs/
-├── R/
-├── scripts/
-└── README.md
+That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you'd rather focus more on coding or science-ing for each dataset. These research questions are split into "easier" and "harder" coding challenges, with "harder" challenges generally involving slightly more wrangling: all datasets have a **pre-filled project template** in the same location as the blank template document that will explain the code used to produce the example figures.
+
+Thus, based on your comfort level, you can decide how much of the data analysis workflow you want to try independently today. You can:
+
+1.  Just recreate our figures,
+2.  Develop your own analysis and figures to answer our research questions, or
+3.  Develop your own research questions, analysis, and figures.
+:::
+
+### Avida digital evolution dataset
+
+[Related publications](https://avida-ed.msu.edu/digital-evolution/)[^class7-1]
+
+[^class7-1]: In particular, see [Lenski et al. (2003)](https://www.nature.com/articles/nature01568) and [Smith et al. (2016)](https://link.springer.com/article/10.1186/s12052-016-0060-0).
+
+**Skills to practice:** working with multiple files, pivoting
+
+**Background:** The following data was generated using [Avida-ED](https://avida-ed.msu.edu/avida-ed-application/), an online educational application that allows one to study the dynamics of evolutionary processes. Digital, asexually-reproducing organisms known as "Avidians" can be placed into something akin to a virtual Petri dish to evolve in, and one can manipulate parameters such as mutation rate, resource availability, and dish size to study how those factors affect the evolution of the population.
+
+Your friend needs your help to analyze their Avida-Ed data. They designed a series of experiments around a mutant Avidian that gets an energy bonus when the sugar "nanose" is present and a wildtype Avidian that does not. They wanted to see how competition and resource availability affect the population dynamics of these Avidians.
+
+Your friend grew either the wildtype only, mutant only, or both populations together (competition) in the following 3 environments:
+
+-   Minimal (no additional sugars present)
+
+-   Selective (only nanose present)
+
+-   Rich (nanose and additional sugars present)
+
+![Avida experiment setup](data/project-day-2-files/figs/avida-expt.png){fig-align="center" width="65%"}
+
+Help your friend get started with some of the exploratory data analysis. *What relationships can you find between genotype, competition, and resource availability?*
+
+:::: {.callout-note collapse="true" title="Data overview"}
+::: panel-tabset
+#### Data preview
+
+Data for `avida_wildtype.csv` shown only:
+
+```{r}
+knitr::kable(head(avida0))
 ```
 
-Here, we have created 4 new directories: `data/`, `outputs/`, `R/` and `scripts/`. These directory names imply something to the viewer about their contents and provide quick navigation.
+#### Column metadata
 
-`data/` and `outputs/` are perhaps the most self explanatory. We will reserve `data` for files we may read in for our analysis, and `outputs` as a place for us to store our results.
+| Column | Type | Description | Values |
+|------------------|------------------|-------------------|------------------|
+| `update` | integer | Time elapsed | Ranges 0-300 |
+| `condition` | character | Testing conditions (single population or competition) | Based off csv: `wildtype-only`, `mutant-only`, `competition` |
+| `media_avg.fitness` | numeric | Average individual reproductive success in specified media | Ranges 0-1 |
+| `media_avg.offspring.cost` | numeric | Average individual reproductive cost in specified media |  |
+| `media_avg.energy.acq.rate` | numeric | Average individual rate of energy acquisition from environment in specified media |  |
+| `media_pop.size` | integer | Population size in specified media | Ranges 0-900 |
 
-`R/` and `scripts/` may be a bit nuanced. Perhaps the project author will keep helpful reusable R code in the `R/` directory, while the `scripts/` directory may be analysis workflows that are called from the command line.
-
-A project may, or may not, require this level of granularity. You may choose different directory names as well. However we want to maintain some level of interpretation and do not want to contradict expectations with the files within. Critically thinking about your project structure will ultimately save you time when you return to the project.
-
-Here are some general guidelines to follow:
-
-**Organization Do's**
-
--   Place files in some sort of relative structure
--   Use descriptive file and directory names
--   Format dates with `YYYY-MM-DD` <!-- files will be ordered by date by your file system -->
-
-**Organization Do Not's**
-
--   Place all files at the top level of the repository
--   Stratifying files between too many directories <!-- can make this just as hard to find -->
--   Using spaces in file names! <!-- escaping spaces on the command line with git is annoying -->
-
-### README! ... Please? 😢
-
-As the name implies, this file is intended to be read by anyone who happens upon your repository.Think of this as extra documentation that you, as the project owner, may use to communicate aspects of the repository. Include helpful information about your project such as:
-
--   A brief description of the project
--   What is the scope of the project
-    -   What problem does it solve?
-    -   Intended use cases!
-    -   Examples of what it should not be used for!
--   How to get started or use the project
--   How to contribute or report a bug
--   Project Status: active development, stable, or abandoned
-
-If your repository is being viewed on [github.com](github.com) then top level `README.md` is displayed like the landing page.
-
-::: callout-tip
-You may also place `README.md` within sub directories as well, allowing you to communicate more specific information within.
-
-Here are examples of what you may include in a `data/README.md` file
-
--   explanation of what data was collected and how it was processed.
-
--   documentation of the columns of a `.csv` file. What the acronyms and data labels mean and how they should be interpreted.
+All population measurements were determined for `minimal`, `selective`, and `rich` media.
 :::
+::::
 
-## Using git {#sec-git}
+:::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+::: panel-tabset
+#### Analysis hints
 
--   `.git/` is a hidden directory whose main function is to track your `git ...` commands. It is generally wise to ignore this directory.
+-   Which files have the pieces of data you need? Do you need to mix-and-match anything?
 
--   `.gitignore` uses rules to exclude files by name pattern or location
+-   The data could be "tidier"...
 
-    -   Don't upload data or large files!
+#### Example questions
 
--   Changes need to be staged with `git add`
+Use these questions to develop your own or answer them as-is. There is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
 
-    -   `git add .` adds all files not excluded by the .gitignore in the directory
+**Bolded** questions have an accompanying figure and code.
 
-    -   `git add -i` opens an interactive adding session
+------------------------------------------------------------------------
 
--   Commit staged changes with a note to your future self
+Easier
 
-    -   `git commit -m "Hi future me, this is what I changed"`
+-   **How does population size change over time for the wildtype (or mutant) in different medias?**
+-   What is the relationship between fitness and offspring cost in competition conditions in different medias?
 
-        ::: {.callout-note collapse="true" title="note: Using `vim`"}
-        If you were to write\
-        `git commit`\
-        and omit the `-m "your message here"` portion, `git` will force you to write a message by placing you into an interactive prompt. The default text editor is usually `vim` which may be tricky to navigate.
+Harder
 
-        To enter edit mode, press `i` on your keyboard, and then you may begin writing your message. When you have finished, press `ESC` to exit your current command mode. To exit vim, press `:wq` which informs vim to write your changes and quit.
-        :::
+-   **How does the change in fitness over time compare between different treatment conditions and media types?**
+-   Which media type allows for the most maximal performance of the wildtype? The mutant? Competition conditions?
 
--   Commits are pushed to branches
+#### Example figures
 
-    -   For the main branch, use `git push origin main`
+**Easier: How does population size change over time for the wildtype (or mutant) in different medias?**
+
+![](data/project-day-2-files/figs/avida-easy.png){width="75%"}
+
+**Harder: how does the change in fitness over time compare between different treatment conditions and media types?**
+
+![](data/project-day-2-files/figs/avida-hard.png){width="75%"}
+:::
+::::
+
+### Western Africa Ebola public health dataset
+
+[Data source](https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset)
+
+**Skills to practice:** working with dates, pivoting
+
+**Background:** The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.
+
+*How might you depict the dynamics of this outbreak?*
+
+:::: {.callout-note collapse="true" title="Data overview"}
+::: panel-tabset
+#### Data preview
+
+```{r}
+knitr::kable(head(ebola0))
+```
+
+#### Column metadata
+
+| Column | Type | Description | Values |
+|-------------------|------------------|------------------|------------------|
+| `Country` | character | Country of report |  |
+| `Date` | character | Date of report | YYYY-MM-DD |
+| `Cumulative.no..of.confirmed..probable.and.suspected.cases` | numeric | Cumulative number till this day |  |
+| `Cumulative.no..of.confirmed..probable.and.suspected.deaths` | numeric | Cumulative number till this day |  |
+:::
+::::
+
+:::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+::: panel-tabset
+#### Analysis hints
+
+-   This dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.
+
+-   The data could be "tidier"...
+
+-   You can use `format()` to extract specific parts of a date object: e.g. if `x` is a date object with the format `%Y-%m-%d`, you can get the year with `format(x, "%Y")`.
+
+#### Example questions
+
+Use these questions to develop your own or answer them as-is. There is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
+
+**Bolded** questions have an accompanying figure and code.
+
+------------------------------------------------------------------------
+
+Easier
+
+-   **How many cases and deaths in total were recorded by each country from 2014-2016?**
+-   For a specific year, how did the number of cases and deaths change over time for each country?
+
+Harder
+
+-   **By country, how did the average number of cases and death change each year?**
+-   Are there any seasonal patterns in the average cases and deaths?
+
+#### Example figures
+
+**Easier: How many cases and deaths in total were recorded by each country from 2014-2016?**
+
+![](data/project-day-2-files/figs/ebola-easy.png){width="75%"}
+
+**Harder: By country, how did the average number of cases and death change each year?**
+
+![](data/project-day-2-files/figs/ebola-hard.png){width="75%"}
+:::
+::::
+
+### Heat exposure in Phoenix, Arizona ecological dataset
+
+[Data source](https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2) \| [Related publication](https://doi.org/10.1016/j.envint.2020.106271)
+
+**Skills to practice:** parsing strings, dealing with `NA` values
+
+**Background:** Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.
+
+To further investigate, the Central Arizona-Pheonix Long-Term Ecological Research Program [(CAP-LTER)](https://sustainability-innovation.asu.edu/caplter/) recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities.
+
+*What relationships can you find between individual activity, temperature, and neighborhood?*
+
+:::: {.callout-note collapse="true" title="Data overview"}
+::: panel-tabset
+#### Data preview
+
+```{r}
+knitr::kable(head(temps0))
+```
+
+#### Column metadata
+
+| Column | Type | Description | Values |
+|------------------|------------------|------------------|-------------------|
+| `Subject.ID` | character | Subject identifier where number (1-5) corresponds to neighborhood | 1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch |
+| `period` | character | 4 hour measurement period | weekday, period |
+| `temperature` | numeric | 4 hour average of IET during specified period | Celcius |
+:::
+::::
+
+:::: {.callout-tip collapse="true" title="Analysis ideas and hints"}
+::: panel-tabset
+#### Analysis hints
+
+-   We recommend using functions in the `stringr` package from the tidyverse to parse the strings, particularly `str_sub()` and `str_split_fixed()`.
+
+    -   e.g. If you had a vector `x` containing a bunch of 2 character codes (`XX`), you could extract the first character with `str_sub(x, 1, 1).`
+
+    -   e.g. If you had a vector `x` containing information in the format `first-second-third`, you could extract that first chunk with `str_split_fixed(x, "-", n=3)[,1].`
+
+-   R has some "counting" functions such as `length()` and `n()`: how could you get unique counts? Is there a single function that does that?
+
+#### Example questions
+
+Use these questions to develop your own or answer them as-is. There is no "single" or "correct" way to answer to these questions, and you can refine or broaden the scope of these questions as needed.
+
+**Bolded** questions have an accompanying figure and code.
+
+------------------------------------------------------------------------
+
+Easier
+
+-   **How many participants were there for each neighborhood in the study?**
+-   On average, which 4-hour measurement period is the warmest? The coolest?
+
+Harder
+
+-   **What was the daily average temperature for each neighborhood during the study period?**
+-   For a specific neighborhood on a specific day, what were all of the individual temperatures experienced for each 4-hour measurement period?
+
+#### Example figures
+
+**Easier: How many participants were there for each neighborhood in the study?**
+
+![](data/project-day-2-files/figs/temps-easy.png){width="75%"}
+
+**Harder: What was the daily average temperature for each neighborhood during the study period?**
+
+![](data/project-day-2-files/figs/temps-hard.png){width="75%"}
+:::
+::::
