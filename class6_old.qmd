@@ -5,6 +5,7 @@ author: "Brian Gural, Lorrie He, JP Flores"
 format: 
   html: 
     toc: true
+sidebar: false 
 ---
 
 ```{r, echo=FALSE}
