@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  site-url: https://h2l2cR.com
+  site-url: https://how-to-learn-to-code.github.io/Rclass-DataScience/
   sidebar:
       tools:
         - icon: github
@@ -84,7 +84,6 @@ book:
         sidebar: false        # <─ hides from the sidebar
     - file: class6_old.qmd
         sidebar: false
- 
 
 execute: 
   freeze: auto
@@ -94,10 +93,10 @@ execute:
   error: true
 
 format:
-  html:
+  live-html:
     theme: cosmo
-    number-sections: false
     toc: true
+    number-sections: false
     toc-depth: 4
 
 editor: visual
