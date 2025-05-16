@@ -66,17 +66,25 @@ book:
 
   chapters:
     - index.qmd
-    - "class0.qmd"
-    - "class1.qmd"
-    - "class2.qmd"
-    - "class3.qmd"
-    - "class4.qmd"
-    - "class5.qmd"
-    - "class6.qmd"
-    - "class7.qmd"
-    - "class8.qmd"
-
-
+    - class0.qmd
+    - class1.qmd
+    - class2.qmd
+    - class3.qmd
+    - class4.qmd
+    - class5.qmd
+    - class6.qmd
+    - class7.qmd
+   
+    # ——— Class 8 shown in the sidebar ———
+    - file: class8.qmd
+        title: "Extras & Supplements"
+  
+    # ——— Bonus material (built but hidden) ———
+    - file: bonus-git-and-github.qmd
+        sidebar: false        # <─ hides from the sidebar
+    - file: class6_old.qmd
+        sidebar: false
+ 
 
 execute: 
   freeze: auto
