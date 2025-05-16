@@ -74,15 +74,11 @@ book:
     - class5.qmd
     - class6.qmd
     - class7.qmd
-   
-    # ——— Class 8 shown in the sidebar ———
-    - class8.qmd
+    - Extras.qmd
   
     # ——— Bonus material (built but hidden) ———
     - bonus-git-and-github.qmd
-      sidebar: false        # <─ hides from the sidebar
     - class6_old.qmd
-      sidebar: false
 
 execute: 
   freeze: auto
