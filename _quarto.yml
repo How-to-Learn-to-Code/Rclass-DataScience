@@ -75,10 +75,6 @@ book:
     - class6.qmd
     - class7.qmd
     - Extras.qmd
-  
-    # ——— Bonus material (built but hidden) ———
-    - bonus-git-and-github.qmd
-    - class6_old.qmd
 
 execute: 
   freeze: auto
