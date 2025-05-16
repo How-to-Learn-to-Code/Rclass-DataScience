@@ -638,5 +638,35 @@
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practicing on Real-World Data</span>"
     ]
+  },
+  {
+    "objectID": "Extras.html",
+    "href": "Extras.html",
+    "title": "Bonus lessons",
+    "section": "",
+    "text": "Supplemental Materials\nWelcome to the Bonus lessons page. Below are two extra chapters you can explore:",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Bonus lessons</span>"
+    ]
+  },
+  {
+    "objectID": "Extras.html#bonus-git-and-github",
+    "href": "Extras.html#bonus-git-and-github",
+    "title": "Bonus lessons",
+    "section": "Bonus: Git and GitHub",
+    "text": "Bonus: Git and GitHub\nLearn how to create a GitHub account, set up Git on your computer, and start version-controlling your projects. This guide will walk you through:\n\nRegistering for GitHub\n\nInstalling and configuring Git\n\nYour first commit and push\n\nGo to Bonus: Git and GitHub",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Bonus lessons</span>"
+    ]
+  },
+  {
+    "objectID": "Extras.html#alternative-data-wrangling-class-6-old-version",
+    "href": "Extras.html#alternative-data-wrangling-class-6-old-version",
+    "title": "Bonus lessons",
+    "section": "Alternative Data Wrangling (Class 6 Old Version)",
+    "text": "Alternative Data Wrangling (Class 6 Old Version)\nThis is an alternate take on Data Wrangling Day 2, covering the same concepts with a slightly different workflow and examples. It’s great if you want more practice or a different perspective.\nGo to Class 6 (Old Version)",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Bonus lessons</span>"
+    ]
   }
 ]

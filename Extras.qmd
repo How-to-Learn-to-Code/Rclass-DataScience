@@ -1,0 +1,31 @@
+---
+title: "Bonus lessons"
+author: "Austin Daigle"
+format: 
+  html: 
+    toc: true
+---
+
+# Supplemental Materials
+
+Welcome to the **Bonus lessons** page. Below are two extra chapters you can explore:
+
+---
+
+## Bonus: Git and GitHub
+
+Learn how to create a GitHub account, set up Git on your computer, and start version-controlling your projects. This guide will walk you through:
+
+- Registering for GitHub  
+- Installing and configuring Git  
+- Your first commit and push  
+
+[Go to Bonus: Git and GitHub](bonus-git-and-github.html)
+
+---
+
+## Alternative Data Wrangling (Class 6 Old Version)
+
+This is an alternate take on **Data Wrangling Day 2**, covering the same concepts with a slightly different workflow and examples. It’s great if you want more practice or a different perspective.
+
+[Go to Class 6 (Old Version)](class6_old.html)
