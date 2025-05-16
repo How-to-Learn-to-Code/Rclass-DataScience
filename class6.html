@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Brian Gural, Lorrie He, JP Flores">
+<meta name="author" content="Madeline Gillman &amp; Austin Daigle">
 
-<title>Data Wrangling with Real Experimental Data – How To Learn to Code : R for Data Science</title>
+<title>Data Wrangling with Real World Data – How To Learn to Code : R for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,9 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -146,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./class6.html"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./class6.html"><span class="chapter-title">Data Wrangling with Real World Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -199,17 +196,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
+  <a href="./class6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Data Wrangling with Real World Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running a Reproducible Analysis</span></a>
+  <a href="./class7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Practicing on Real-World Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Practicing on Real-World Data</span></a>
+  <a href="./Extras.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bonus lessons</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bonus-git-and-github.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running a Reproducible Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./class6_old.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
   </div>
 </li>
     </ul>
@@ -223,25 +230,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#objectives-of-data-wrangling-class-2" id="toc-objectives-of-data-wrangling-class-2" class="nav-link active" data-scroll-target="#objectives-of-data-wrangling-class-2">Objectives of Data Wrangling: Class 2</a></li>
-  <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study">Case Study</a>
+  <li><a href="#case-study-tour-de-france" id="toc-case-study-tour-de-france" class="nav-link" data-scroll-target="#case-study-tour-de-france">Case Study: Tour de France 🚴</a></li>
+  <li><a href="#part-1-analyzing-historical-trends" id="toc-part-1-analyzing-historical-trends" class="nav-link" data-scroll-target="#part-1-analyzing-historical-trends">Part 1: Analyzing historical trends</a>
   <ul>
-  <li><a href="#getting-familiar-with-the-data" id="toc-getting-familiar-with-the-data" class="nav-link" data-scroll-target="#getting-familiar-with-the-data">Getting familiar with the data</a>
-  <ul class="collapse">
-  <li><a href="#proportions-data" id="toc-proportions-data" class="nav-link" data-scroll-target="#proportions-data">Proportions Data</a></li>
-  <li><a href="#phenotype-data" id="toc-phenotype-data" class="nav-link" data-scroll-target="#phenotype-data">Phenotype data</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><strong>The data</strong></a></li>
   </ul></li>
-  <li><a href="#planning-the-analysis" id="toc-planning-the-analysis" class="nav-link" data-scroll-target="#planning-the-analysis">Planning the analysis</a></li>
-  <li><a href="#manipulating-data-frames" id="toc-manipulating-data-frames" class="nav-link" data-scroll-target="#manipulating-data-frames">Manipulating data frames</a>
-  <ul class="collapse">
-  <li><a href="#summarizing-and-subsetting" id="toc-summarizing-and-subsetting" class="nav-link" data-scroll-target="#summarizing-and-subsetting">Summarizing and subsetting</a></li>
-  <li><a href="#combining-and-reordering" id="toc-combining-and-reordering" class="nav-link" data-scroll-target="#combining-and-reordering">Combining and reordering</a></li>
-  </ul></li>
-  <li><a href="#preparing-for-different-visualizations" id="toc-preparing-for-different-visualizations" class="nav-link" data-scroll-target="#preparing-for-different-visualizations">Preparing for different visualizations</a>
-  <ul class="collapse">
-  <li><a href="#pivoting-wide-and-long" id="toc-pivoting-wide-and-long" class="nav-link" data-scroll-target="#pivoting-wide-and-long">Pivoting wide and long</a></li>
-  <li><a href="#wrangling-for-plotting" id="toc-wrangling-for-plotting" class="nav-link" data-scroll-target="#wrangling-for-plotting">Wrangling for plotting</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#part-2-incorporating-this-years-data" id="toc-part-2-incorporating-this-years-data" class="nav-link" data-scroll-target="#part-2-incorporating-this-years-data">Part 2: Incorporating this year’s data</a></li>
+  <li><a href="#part-3-stage-history" id="toc-part-3-stage-history" class="nav-link" data-scroll-target="#part-3-stage-history">Part 3: Stage History</a></li>
   </ul>
 </nav>
     </div>
@@ -250,8 +245,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></h1>
-<p class="subtitle lead">Data Wrangling, Day 2</p>
+<h1 class="title"><span class="chapter-title">Data Wrangling with Real World Data</span></h1>
+<p class="subtitle lead">Data Wrangling, Day 2 (Tour de France edition)</p>
 </div>
 
 
@@ -261,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Brian Gural, Lorrie He, JP Flores </p>
+             <p>Madeline Gillman &amp; Austin Daigle </p>
           </div>
   </div>
     
@@ -274,529 +269,216 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>- The library is already synchronized with the lockfile.</code></pre>
-</div>
-</div>
 <section id="objectives-of-data-wrangling-class-2" class="level2">
 <h2 class="anchored" data-anchor-id="objectives-of-data-wrangling-class-2">Objectives of Data Wrangling: Class 2</h2>
 <ul>
 <li>Be able to apply the objectives covered in Data Wrangling: Class 1 to a new dataset</li>
 </ul>
 </section>
-<section id="case-study" class="level2">
-<h2 class="anchored" data-anchor-id="case-study">Case Study</h2>
-<p>Last class, we had introduced a dataset/experiment that we would work through. Let’s remind ourselves of some of the details:</p>
-<ul>
-<li>We have proportions of cell types across samples</li>
-<li>There controls made of mostly pure cell types (<code>fractions</code>) and experimental samples (<code>whole</code>)</li>
-<li>There are <code>.csv</code> files for both the cell type proportion data and the sample phenotypes</li>
-</ul>
-<p>There are a few things to think about when wrangling/exploring data:</p>
-<ul>
-<li>What do you want to know about this data?</li>
-<li>What kind of visuals would you want to make?</li>
-<li>How does the data need to be formatted to get those visuals?</li>
-<li>What are some expected features of our data?</li>
-</ul>
-<p>Take a moment to talk among yourselves about this/any ideas you had since last class!</p>
-<section id="getting-familiar-with-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="getting-familiar-with-the-data">Getting familiar with the data</h3>
-<section id="proportions-data" class="level4">
-<h4 class="anchored" data-anchor-id="proportions-data">Proportions Data</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/cellProportions.csv"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Cardiomyocytes Fibroblast Endothelial.Cells Macrophage
-whole_2              0.652     0.0886           0.06700     0.1761
-fraction_13          0.824     0.0370           0.06387     0.0692
-fraction_12          0.895     0.0213           0.04436     0.0390
-fraction_19          0.000     0.9983           0.00167     0.0000
-fraction_18          0.000     1.0000           0.00000     0.0000
-whole_16             0.820     0.0208           0.08889     0.0501
-            Pericytes.SMC
-whole_2           0.01672
-fraction_13       0.00558
-fraction_12       0.00000
-fraction_19       0.00000
-fraction_18       0.00000
-whole_16          0.02058</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Our data fits the <code>tidy</code> style, since each row is a sample (observation) and each column is a different cell type (variable).</p>
-</div>
-</div>
-<p>When assessing data, it’s good to <em>consider what features you’d expect from a given data set</em>. This helps you know if something has gone wrong before you’ve gotten your hands on it.</p>
-<p>We’re looking at the proportion of cell types in each sample, which should sum up to 1. Checking that the values in each row add to 1 would help confirm that we have what we’re expecting:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowSums</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    whole_2 fraction_13 fraction_12 fraction_19 fraction_18    whole_16 
-          1           1           1           1           1           1 
-   whole_15    whole_12 fraction_14     whole_8    whole_14     whole_3 
-          1           1           1           1           1           1 
- fraction_9 fraction_11     whole_6 fraction_16  fraction_8     whole_4 
-          1           1           1           1           1           1 
- fraction_5  fraction_1    whole_10 fraction_10     whole_7     whole_5 
-          1           1           1           1           1           1 
-    whole_9  fraction_6  fraction_3 fraction_17     whole_1    whole_13 
-          1           1           1           1           1           1 
- fraction_7  fraction_4    whole_11 fraction_20  fraction_2 fraction_15 
-          1           1           1           1           1           1 </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Raw RNA-seq matrices should go up to 100,000s. So if you only see small numbers in the data, it’s likely been manipulated in some way.</p>
-</div>
-</div>
-</section>
-<section id="phenotype-data" class="level4">
-<h4 class="anchored" data-anchor-id="phenotype-data">Phenotype data</h4>
-<p>We also have the phenotypes for the samples in a separate file:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cell_phenos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/cellPhenotypes.csv"</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">row.names =</span> <span class="dv">1</span>,<span class="at">sep =</span> <span class="st">","</span>,<span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cell_phenos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   36 obs. of  3 variables:
- $ type     : chr  "purified_cardiomyocytes" "purified_cardiomyocytes" "purified_cardiomyocytes" "purified_cardiomyocytes" ...
- $ genotype : chr  NA NA NA NA ...
- $ treatment: chr  NA NA NA NA ...</code></pre>
-</div>
-</div>
-<p>”</p>
-</section>
-</section>
-<section id="planning-the-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="planning-the-analysis">Planning the analysis</h3>
-<p>We want to know:</p>
-<ul>
-<li>If the controls look as we’d expect</li>
-<li>What group differences there are</li>
-</ul>
-<p>To get at the question about controls, we’d need to check <code>cell_phenos</code> to see which samples are from the control or experimental groups. After, we’ll plot the proportions.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-A[Data frame of\n cell proportions] --&gt; C(Merged proportions\n and phenotypes)
-B[Data frame of\n sample phenotypes]  --&gt; C
-C --&gt; D{Steps to get data\nformatted for plotting}
-D --&gt; E[Plot of control samples]
-D --&gt; F[Plot of experiment samples]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="manipulating-data-frames" class="level3">
-<h3 class="anchored" data-anchor-id="manipulating-data-frames">Manipulating data frames</h3>
-<section id="summarizing-and-subsetting" class="level4">
-<h4 class="anchored" data-anchor-id="summarizing-and-subsetting">Summarizing and subsetting</h4>
-<p>Let’s get more context on what’s in the data. <code>table</code> is a convenient way to summarize columns and lists:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What unique values and how many of each are in the "genotype" field</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cell_phenos<span class="sc">$</span>genotype)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-cmAKO    WT 
-    8     8 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table can also compare two variables. useNA need to be added to include cells with NAs</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cell_phenos<span class="sc">$</span>type, cell_phenos<span class="sc">$</span>genotype,  <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                            
-                             cmAKO WT &lt;NA&gt;
-  purified_cardiomyocytes        0  0    9
-  purified_endothelial_cells     0  0    3
-  purified_fibroblasts           0  0    8
-  whole_tissue                   8  8    0</code></pre>
-</div>
-</div>
-<p>Seems that the purified cell types list NA for their genotype and that there are three types. Also, we have 8 knock-outs and 8 are wild type.</p>
-</section>
-<section id="combining-and-reordering" class="level4">
-<h4 class="anchored" data-anchor-id="combining-and-reordering">Combining and reordering</h4>
-<p>Data frames can be combined in a bunch of ways, but no matter the method <u>it is essential that the order of samples match</u>. R has two built-in methods, binds (<code>cbind</code> and <code>rbind</code>) and <code>merge</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<section id="case-study-tour-de-france" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-tour-de-france">Case Study: Tour de France 🚴</h2>
+<p>Bienvenue en France! 🇫🇷 Today we are traveling across the Atlantic Ocean to conduct urgent data analysis for <a href="https://www.teamvismaleaseabike.com">Team Visma-Lease A Bike</a> (Team VLAB) for the Tour de France. The <a href="https://en.wikipedia.org/wiki/Tour_de_France">Tour de France</a> is an annual multi-week bicycle race held primarily in France. The race comprises 21 stages held over 23 days. Each stage covers a different area of France and different terrain; and the course changes each year. There are 20 to 22 teams that participate each year and each team is made up of 8 riders.</p>
+<p>The year is 2024 and this year’s tour, as in prior years, is a nail-biter between Team UAE’s Tadej Pogačar and Team VLAB’s Jonas Vingegaard. So far, 14 stages and nearly 1,300 miles have been completed and Jonas is trailing his rival Tadej by just one minute and fourteen seconds. Stage 15 is tomorrow, and Team VLAB wants to know if Jonas has a chance to make up time and win the Tour. To help determine race strategy, Team VLAB wants you to analyze historical trends.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data/wrangling-files/captain-planet.gif" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Captain Planet and the Planeteers likely combined using merge functions</figcaption>
+<p><img src="https://velo-cdn.outsideonline.com/wp-content/uploads/2024/07/Tour-de-France-Chris-Auld-photo-stage-11-2024-tadej-pogacar-jonas-vingegaard-yellow-jersey.jpg" class="img-fluid figure-img"></p>
+<figcaption>PHOTO: CHRIS AULD/VELO</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p>Binds slap two data frames together. <code>cbind</code> adds columns, <code>rbind</code> adds rows. Binds don’t consider the order of the data sets, so there’s a risk of things being out of order.</p>
-<p><code>merge</code> is similar to <code>cbind</code>, but matches the data sets based on a common column.</p>
-<section id="cbind" class="level5">
-<h5 class="anchored" data-anchor-id="cbind"><code>cbind</code></h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bind the rownames to see if they match</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">rownames</span>(cell_phenos), <span class="fu">rownames</span>(cell_props)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     [,1]         [,2]         
-[1,] "fraction_1" "whole_2"    
-[2,] "fraction_2" "fraction_13"
-[3,] "fraction_3" "fraction_12"
-[4,] "fraction_4" "fraction_19"
-[5,] "fraction_5" "fraction_18"
-[6,] "fraction_6" "whole_16"   </code></pre>
-</div>
-</div>
-<p>Above, you can see that <code>cbind</code> would mismatch the samples. <strong>Always be careful when using <code>cbind</code>! It has no guardrails for ordering!</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder one to match the other</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This uses the cell_phenos rownames as a list to specify the order of indices </span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> cell_props[<span class="fu">rownames</span>(cell_phenos),]</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># They should all be TRUE now</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">rownames</span>(cell_phenos) <span class="sc">==</span> <span class="fu">rownames</span>(cell_props))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we can merge them </span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>data_bind <span class="ot">&lt;-</span> <span class="fu">cbind</span>(cell_phenos, cell_props)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_bind)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                              type genotype treatment Cardiomyocytes Fibroblast
-fraction_1 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.911     0.0160
-fraction_2 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.941     0.0118
-fraction_3 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.898     0.0165
-fraction_4 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.869     0.0508
-fraction_5 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.946     0.0129
-fraction_6    purified_fibroblasts     &lt;NA&gt;      &lt;NA&gt;          0.000     0.8976
-           Endothelial.Cells Macrophage Pericytes.SMC
-fraction_1            0.0398     0.0328       0.00000
-fraction_2            0.0266     0.0202       0.00000
-fraction_3            0.0446     0.0339       0.00720
-fraction_4            0.0235     0.0524       0.00434
-fraction_5            0.0215     0.0199       0.00000
-fraction_6            0.0138     0.0184       0.07029</code></pre>
-</div>
-</div>
 </section>
-<section id="merge" class="level5">
-<h5 class="anchored" data-anchor-id="merge"><code>merge</code></h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify row.names as the feature to merge by</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data_merge <span class="ot">&lt;-</span> <span class="fu">merge</span>(cell_phenos, cell_props, <span class="at">by =</span> <span class="st">"row.names"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_merge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Row.names                    type genotype treatment Cardiomyocytes
-1  fraction_1 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.911
-2 fraction_10    purified_fibroblasts     &lt;NA&gt;      &lt;NA&gt;          0.000
-3 fraction_11 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.772
-4 fraction_12 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.895
-5 fraction_13 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.824
-6 fraction_14 purified_cardiomyocytes     &lt;NA&gt;      &lt;NA&gt;          0.928
-  Fibroblast Endothelial.Cells Macrophage Pericytes.SMC
-1    0.01600            0.0398    0.03277      0.000000
-2    0.99385            0.0050    0.00114      0.000000
-3    0.06261            0.0599    0.09814      0.007635
-4    0.02127            0.0444    0.03896      0.000000
-5    0.03702            0.0639    0.06917      0.005581
-6    0.00861            0.0416    0.02198      0.000179</code></pre>
-</div>
-</div>
-<p>While this won’t always be the case with <code>merge</code> vs.&nbsp;<code>bind</code>, its better to use <code>merge</code> in this scenario, since it helps keep your script <em>interpretable.</em></p>
-<div class="callout callout-style-default callout-note callout-titled" title="Reproducible code">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reproducible code
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you continue with programming, you’ll need to share your code or return to code you wrote months ago. Writing easy-to-understand scripts gives you less headache later!</p>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="preparing-for-different-visualizations" class="level3">
-<h3 class="anchored" data-anchor-id="preparing-for-different-visualizations">Preparing for different visualizations</h3>
-<p>At this point, we should ask ourselves a few questions:</p>
-<ul>
-<li>What am I trying to see about the data?</li>
-<li>What kind of plot helps us see that?</li>
-</ul>
-<p>Take a minute to talk as a group about how you would visualize the data!</p>
-<p><strong>What am I trying to see about the data?</strong></p>
-<p>Our samples have data on the proportions of many cell types. I’d want to easily compare all of these cell types at once, with samples/groups side-by-side.</p>
-<p><strong>What kind of plot do we want?</strong></p>
-<p>Pie charts are often used to visualize percents/proportions, but its difficult to see differences between two pie charts. A stacked bar plot would be a better fit, since we’re trying to compare different sample groups.</p>
-<p><strong>What format does my data need to be to make said plot?</strong></p>
-<p>This stacked bar plot would have:</p>
-<ul>
-<li><p>Samples on the X-axis</p></li>
-<li><p>Cell-type proportions on the Y-axis</p></li>
-<li><p>Colors for each cell type in each bar</p></li>
-</ul>
-<p>For <code>ggplot</code> to make this our data needs to have a column for each term, but the data is spread across many columns. To solve this, we first need to understand the concepts of wide and long data.</p>
-<section id="pivoting-wide-and-long" class="level4">
-<h4 class="anchored" data-anchor-id="pivoting-wide-and-long">Pivoting wide and long</h4>
-<p>Data is often formatted as <em>wide</em> or <em>long</em>. Our data is in a wide format, which has a single row for each sample and a column for each variable. When wide data is pivoted into a long format columns are condensed together.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="data/wrangling-files/pivot.gif" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Ross understands the importance of converting wide and long data</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>It’s easiest to understand how pivoting works in visuals:</p>
+<section id="part-1-analyzing-historical-trends" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-analyzing-historical-trends">Part 1: Analyzing historical trends</h2>
+<section id="the-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-data"><strong>The data</strong></h3>
+<p>We are given two files: one with rider history, and one with stage history. Note that only cyclists who have completed the race are included in these files. These files only contain data for Tours 1919 and later. The Tour was not held between 1940 and 1946 due to World War II. This data is modified from the original files provided by <a href="https://github.com/thomascamminady">thomascamminady</a> in <a href="https://github.com/thomascamminady/LeTourDataSet?tab=readme-ov-file">LeTourDataset</a>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Still images</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Animated transition</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Rider History</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Stage History</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="data/wrangling-files/tidyr_pivot.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Source: Garrick Aden-Buie’s (<span class="citation" data-cites="grrrck">@grrrck</span>) Tidy Animated Verbs github.com/gadenbuie/tidyexplain</figcaption>
-</figure>
-</div>
-</div>
-</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rider</td>
+<td>Name of the cyclist</td>
+</tr>
+<tr class="even">
+<td>Team</td>
+<td>Name of the team. Note that because teams are named for their sponsors, team names can vary slightly from year to year</td>
+</tr>
+<tr class="odd">
+<td>Times</td>
+<td>Cumulative time provided in hours, minutes, and seconds (e.g.&nbsp;<code>114h&nbsp;35'&nbsp;31''</code> )</td>
+</tr>
+<tr class="even">
+<td>Gap</td>
+<td>Amount of time behind race winner provided in hours, minutes, and seconds</td>
+</tr>
+<tr class="odd">
+<td>Year</td>
+<td>Year of race</td>
+</tr>
+<tr class="even">
+<td>Distance (km)</td>
+<td>Total distance in km of that year’s race</td>
+</tr>
+<tr class="odd">
+<td>Number of stages</td>
+<td>Number of stages in that year’s race</td>
+</tr>
+<tr class="even">
+<td>TotalSeconds</td>
+<td>Cumulative time in seconds</td>
+</tr>
+<tr class="odd">
+<td>GapSeconds</td>
+<td>Amount of time behind race winner in seconds</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="data/wrangling-files/tidyr-pivoting.gif" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Source: Garrick Aden-Buie’s (<span class="citation" data-cites="grrrck">@grrrck</span>) Tidy Animated Verbs github.com/gadenbuie/tidyexplain</figcaption>
-</figure>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Year</td>
+<td>Year of race</td>
+</tr>
+<tr class="even">
+<td>TotalTDFDistance</td>
+<td>Total distance in km of that year’s race</td>
+</tr>
+<tr class="odd">
+<td>Stages</td>
+<td>The stage number for that year’s race</td>
+</tr>
+<tr class="even">
+<td>Start</td>
+<td>Name of the city in which the stage started</td>
+</tr>
+<tr class="odd">
+<td>End</td>
+<td>Name of city in which the stage ended</td>
+</tr>
+<tr class="even">
+<td>Winner of stage</td>
+<td>Stage winner</td>
+</tr>
+<tr class="odd">
+<td>Leader</td>
+<td>Race leader (prior to use of the yellow jersey, only a race leader was tracked). NA for years &gt; 1914</td>
+</tr>
+<tr class="even">
+<td>Yellow Jersey</td>
+<td>Race leader for years &gt; 1914</td>
+</tr>
+<tr class="odd">
+<td>Polka-dot jersey</td>
+<td>Rider with the greatest number of points in the Mountains classification. Awarded for races in years &gt;= 1975</td>
+</tr>
+<tr class="even">
+<td>Green jersey</td>
+<td>Rider with the greatest number of points (which generally ends up being sprinters, so this is often called the sprinter’s jersey). Awarded for races in years &gt;= 1953</td>
+</tr>
+<tr class="odd">
+<td>White jersey</td>
+<td>The fastest rider under the age of 23. Awarded for races in years &gt;= 1968</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<p>As a reminder, we want to make a <strong>column of proportions values</strong> (val) and a <strong>column specifying cell types</strong> (key).</p>
+<p>Let’s read in the data and dig in!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cell types are specified with cols = and name the new column with names_to</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># values originally in those columns are going to move to a new values column, which we can name with values_to =</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(data_merge, </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">cols =</span> <span class="fu">c</span>(Cardiomyocytes, Fibroblast, Endothelial.Cells, Macrophage, Pericytes.SMC), </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_to =</span> <span class="st">"cell.type"</span>, <span class="at">values_to =</span> <span class="st">"proportion"</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [180 × 6] (S3: tbl_df/tbl/data.frame)
- $ Row.names : 'AsIs' chr [1:180] "fraction_1" "fraction_1" "fraction_1" "fraction_1" ...
- $ type      : chr [1:180] "purified_cardiomyocytes" "purified_cardiomyocytes" "purified_cardiomyocytes" "purified_cardiomyocytes" ...
- $ genotype  : chr [1:180] NA NA NA NA ...
- $ treatment : chr [1:180] NA NA NA NA ...
- $ cell.type : chr [1:180] "Cardiomyocytes" "Fibroblast" "Endothelial.Cells" "Macrophage" ...
- $ proportion: num [1:180] 0.9115 0.016 0.0398 0.0328 0 ...</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rider_hx <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Riders_History_1919-2023.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>stage_hx <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Stages_History_1919-2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in open.connection(structure(4L, class = c("curl", "connection"), conn_id = &lt;pointer: 0x62c&gt;), : HTTP error 404.</code></pre>
 </div>
 </div>
-<p>We have a couple of changes:</p>
-<ul>
-<li><p>There are two new columns, <code>cell.type</code> and <code>proportion</code></p></li>
-<li><p>We have A LOT more rows than we did originally</p></li>
-<li><p>The sample IDs were coerced to a column “Row.names” that is an ‘AsIs’ character. We’ll need to correct that before we plot the data</p></li>
-</ul>
+<ol type="1">
+<li>Use your favorite function to check out the data frame real quick. Options include: <code>head()</code>, <code>glimpse()</code> , and <code>str()</code> . Would you consider this “tidy” data?</li>
+<li>These column names are not very…tidy. You may notice inconsistent capitalization, spaces (which make our coding lives difficult) and special characters. Use the <code>rename()</code> function to rename columns in a consistent format.</li>
+<li>Take another look at the rider history data. You may notice that some columns are duplicative: we have two different columns for total time and time gap, just in different units. But do these contain the same data? It’s entirely possible that there are discrepancies and that could be something to flag before we begin analysis.
+<ol type="a">
+<li>First, use the function <code>str_extract()</code> to place the hours, minutes, and seconds into three separate columns. Convert the hours and minutes columns to seconds using <code>mutate()</code></li>
+<li>Create a new column called <code>new_total_seconds</code> summing the new hours, minutes, and seconds columns.</li>
+<li>Then, use <code>filter()</code> to identify rows where the total seconds you just calculated doesn’t match the one in the TotalSeconds column originally provided in the data. Which column should be used for analysis?</li>
+<li>Bonus challenge: Write a function that will do a &amp; b!</li>
+</ol></li>
+<li>Let’s add a few columns that will help with analyzing trends:
+<ol type="a">
+<li>Total distance in <strong>miles</strong></li>
+<li>Average speed in km/h and mph</li>
+</ol></li>
+<li>Identify the winner each year using the rider history dataset.
+<ol type="a">
+<li>First, write out in plain language how you would do this step-by-step, similar to what is done in 3a-c.</li>
+<li>Do you notice if any of the words you used above correspond to dplyr functions?</li>
+<li>Need a hint? As with many coding tasks, there are many ways to do this! You may want to start by using <code>group_by()</code> and <code>summarize()</code>. You can also try looking up a function to select the smallest row in a group in R.</li>
+</ol></li>
+<li>Team VLAB is getting antsy–let’s make some plots. Pick at least one of the analysis questions below and make a plot that helps answer the question. It may also be helpful to calculate a summary statistic (e.g.&nbsp;mean).
+<ol type="a">
+<li>Have winners of the Tour gotten faster over time?</li>
+<li>Has the average speed per year gotten faster over time? This would be the average speed of <a href="https://en.wikipedia.org/wiki/Peloton">peloton</a>.</li>
+<li>How does Jonas’ average speed compare this year to prior years? What about Tadej’s?</li>
+</ol></li>
+<li>BONUS if you like scandal! Identify the winner each year using the rider history dataset (you may have done this in #6). Examine the ranges/values in each column. Notice anything weird for any particular years?</li>
+</ol>
 </section>
-<section id="wrangling-for-plotting" class="level4">
-<h4 class="anchored" data-anchor-id="wrangling-for-plotting">Wrangling for plotting</h4>
-<section id="pure-cell-type-fraction-controls" class="level5">
-<h5 class="anchored" data-anchor-id="pure-cell-type-fraction-controls">Pure cell-type fraction controls</h5>
-<p>With our data in this format, we can make a lot of cool plots. Lets start with the bar plot we had planned.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.character</span>(Row.names)) <span class="sc">|&gt;</span> <span class="co"># fix the AsIs type</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> proportion, <span class="at">fill =</span> cell.type))<span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">stat=</span><span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="class6_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>mutate</code> is a great way to modify specific parts of your data or make new columns!</p>
-</div>
-</div>
-<p>It worked, but it looks… less than pleasing. Lets remind ourselves of what we wanted to see in the plot: groups side-by-side.</p>
-<p>I’d like to start by making a plot just for the controls for now. <code>filter</code> from the <code>dplyr</code> package will help separate the groups. Also, I’ll make aesthetic changes to make it easier to compare groups and nicer to look at.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data_long <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">!=</span> <span class="st">"whole_tissue"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.character</span>(Row.names)) <span class="sc">|&gt;</span> </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> proportion, <span class="at">fill =</span> cell.type))<span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols=</span><span class="fu">vars</span>(type), <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#66C2A5"</span>,<span class="st">"#FC8D62"</span>, <span class="st">"#8DA0CB"</span>, <span class="st">"#E78AC3"</span>, <span class="st">"#A6D854"</span>)) <span class="sc">+</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">x =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">45</span>)) <span class="sc">+</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cell type proportions in purified control samples"</span>,</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Cell Type Proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="class6_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This looks good! We can see what we expected of our control samples. Each of the fractions are made up of a single cell type. Let’s move onto the experimental samples.</p>
 </section>
-<section id="experimental-samples" class="level5">
-<h5 class="anchored" data-anchor-id="experimental-samples">Experimental Samples</h5>
-<p>There are two things we should consider before we visualize differences between our experimental groups:</p>
-<ul>
-<li>It would be easier to compare shifts in specific cell types if we break up the stacked bar chart so that the cell types are spread across the x-axis.</li>
-<li>In our last plot, we compared samples across a single phenotypic factor: <code>type</code>. This time, it’s more complicated because we want to we want to compare both <code>genotype</code> and <code>treatment</code>.</li>
-</ul>
+<section id="part-2-incorporating-this-years-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-incorporating-this-years-data">Part 2: Incorporating this year’s data</h2>
+<p>Team VLAB has handed you data with rankings though Stage 13 (remember, Stage 14 of 21 is tomorrow). The team is interested in knowing how Jonas’ speed this year compares to previous years.</p>
+<p>Read in the dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data_long   <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"whole_tissue"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cell.type, <span class="at">y =</span> proportion)) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean, <span class="at">width =</span> <span class="fl">0.9</span>,  <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(genotype <span class="sc">~</span> treatment, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span> </span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Estimated Proportion"</span>) <span class="sc">+</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#66C2A5"</span>,<span class="st">"#FC8D62"</span>, <span class="st">"#8DA0CB"</span>, <span class="st">"#E78AC3"</span>, <span class="st">"#A6D854"</span>)) <span class="sc">+</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">x =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="class6_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tdf_2024_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/tdf_2024_stage13_data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in open.connection(structure(5L, class = c("curl", "connection"), conn_id = &lt;pointer: 0x653&gt;), : HTTP error 404.</code></pre>
 </div>
 </div>
-</div>
-<p>We just made three major changes:</p>
-<ul>
-<li><code>cell.type</code> is on the x-axis, not sample <code>id</code>s</li>
-<li>We’re plotting the <strong>mean</strong> of each cell type across many samples in each group. <code>geom_bar</code> can do this automatically with <code>stat = "summary", fun = mean,</code></li>
-<li>We’re showing four plots at once by having <code>facet_grid</code> contrast them with <code>genotype ~ treatment</code></li>
-</ul>
-<p>However, it may still be tough to compare across the groups. Also, only showing the mean masks any variation within groups. Lets make two more major changes to fix that:</p>
-<ul>
-<li>Put all of the groups into a single plot</li>
-<li>Add dots for each sample onto each bar</li>
-</ul>
-<p>And to make it easier to read, let’s reorder the X-axis by most to least abundant cell types.</p>
-<section id="reorder-cell-types" class="level6">
-<h6 class="anchored" data-anchor-id="reorder-cell-types">Reorder cell types</h6>
-<p>We can take advantage of <code>factors</code> to reorder, since <code>ggplot</code> references the order of factors when plotting.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the most-to-least abundant cell types</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>cell.type.order <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"whole_tissue"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cell.type) <span class="sc">|&gt;</span> <span class="co"># Manipulate the data within cell-type groups</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean =</span> <span class="fu">mean</span>(proportion)) <span class="sc">|&gt;</span> <span class="co"># make a new column that is the mean of the proportions </span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean)) <span class="sc">|&gt;</span> <span class="co"># arrange by mean proportion</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(cell.type) <span class="sc">|&gt;</span> <span class="co"># pull out the cell type column as a list</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="co"># remove duplicated values</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>cell.type.order</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Cardiomyocytes"    "Macrophage"        "Fibroblast"       
-[4] "Endothelial.Cells" "Pericytes.SMC"    </code></pre>
-</div>
-</div>
+<ol type="1">
+<li>Try using <code>rbind()</code>, <code>bind_rows()</code> , and <code>merge()</code> to join the new data with the rider history data from above. Which one(s), if any, work? Why do you think they do (or do not) work?</li>
+<li>If you need to make any modifications to the new data to enable a join, do so and then join the datasets. Make these changes in R, NOT Excel or a text editor. Doing so in R ensures that your changes are <em>reproducible</em> and that the original data is not destroyed or modified.</li>
+<li>Use this new dataset to add this year’s average speed to the same plots you made in Part 1.</li>
+<li>Review your code from Parts 1 and 2. See if you can use pipes to connect as many steps as possible. As you do this, make sure you add comments to your code and consider if using too many pipes sacrifices code readability.</li>
+</ol>
 </section>
-<section id="put-all-groups-on-a-single-plot" class="level6">
-<h6 class="anchored" data-anchor-id="put-all-groups-on-a-single-plot">Put all groups on a single plot</h6>
-<p>If we combine <code>genotype</code> and <code>treatment</code> into a single variable, we can condense down to a single plot. While we’re at it, we can apply <code>cell.type.order</code> to make the <code>data_long$cell.type</code> into a factor-level column:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cell.type =</span> <span class="fu">factor</span>(cell.type, <span class="at">levels =</span> cell.type.order),</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Genotype_Treatment =</span> <span class="fu">factor</span>(<span class="fu">paste</span>(genotype, <span class="st">"-"</span>, treatment), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"WT - Sham"</span>, <span class="st">"WT - MI"</span>, <span class="st">"cmAKO - Sham"</span>, <span class="st">"cmAKO - MI"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="plot" class="level6">
-<h6 class="anchored" data-anchor-id="plot">Plot</h6>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate boxplot</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>data_long  <span class="sc">|&gt;</span> </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"whole_tissue"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cell.type, <span class="at">y =</span> proportion, <span class="at">fill =</span> Genotype_Treatment)) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean, <span class="at">width =</span> <span class="fl">0.9</span>,  <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>)) <span class="sc">+</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">inherit.aes =</span> T, </span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>),</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Estimated Proportion"</span>, </span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Treatment"</span>) <span class="sc">+</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#A6CEE3"</span>, <span class="st">"#1F78B4"</span>, <span class="st">"#FDBF6F"</span>, <span class="st">"#FF7F00"</span>)) <span class="sc">+</span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">x =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="class6_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="part-3-stage-history" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-stage-history">Part 3: Stage History</h2>
+<p>The stage history dataset has data from every stage of the Tour de France. For the below questions, use your data wrangling skills to find the answer.</p>
+<ol type="1">
+<li>Use <code>rename()</code> to tidy the column names.</li>
+<li>Check for missing values in each column. Are all missing values coded the same? If not, figure out a way to fix this–you may want to use Google!</li>
+<li>Which city has had the most visits from the Tour de France? (This means you must consider both start and end cities)</li>
+<li>Who has won the most stages?</li>
+<li>Who has worn the yellow jersey for the most days in a single tour? What about the polka dot jersey? Green jersey?</li>
+<li>Identify the top 10 wearers of the yellow jersey, polka dot jersey, and green jersey. Make a bar plot with the name of the rider on the x-axis and number of stages/days worn on the y-axis. See if you can color the bars so that the colors match the jersey (i.e.&nbsp;the plot for yellow jersey has yellow bars).
+<ol type="a">
+<li>See if you can get these all plotted on the <strong>same</strong> plot. It might involve some pivoting!</li>
+</ol></li>
+</ol>
 
 
 <script type="ojs-module-contents">
@@ -813,10 +495,6 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-</section>
-</section>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1255,8 +933,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./class7.html" class="pagination-link" aria-label="Running a Reproducible Analysis">
-        <span class="nav-page-text"><span class="chapter-title">Running a Reproducible Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./class7.html" class="pagination-link" aria-label="Practicing on Real-World Data">
+        <span class="nav-page-text"><span class="chapter-title">Practicing on Real-World Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

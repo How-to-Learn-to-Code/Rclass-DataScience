@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Brian Gural, Justin Landis">
 
-<title>Running a Reproducible Analysis – How To Learn to Code : R for Data Science</title>
+<title>Practicing on Real-World Data – How To Learn to Code : R for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +29,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./class8.html" rel="next">
+<link href="./Extras.html" rel="next">
 <link href="./class6.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -143,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./class7.html"><span class="chapter-title">Running a Reproducible Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./class7.html"><span class="chapter-title">Practicing on Real-World Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -196,17 +161,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
+  <a href="./class6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real World Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class7.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Running a Reproducible Analysis</span></a>
+  <a href="./class7.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Practicing on Real-World Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Practicing on Real-World Data</span></a>
+  <a href="./Extras.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bonus lessons</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bonus-git-and-github.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running a Reproducible Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./class6_old.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
   </div>
 </li>
     </ul>
@@ -219,22 +194,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reproducible-science-in-silico" id="toc-reproducible-science-in-silico" class="nav-link active" data-scroll-target="#reproducible-science-in-silico">Reproducible science… <em>in-silico</em>??</a></li>
-  <li><a href="#how-can-computational-projects-get-derailed" id="toc-how-can-computational-projects-get-derailed" class="nav-link" data-scroll-target="#how-can-computational-projects-get-derailed">How can computational projects get derailed?</a></li>
-  <li><a href="#good-computational-practices-101" id="toc-good-computational-practices-101" class="nav-link" data-scroll-target="#good-computational-practices-101">Good computational practices 101</a></li>
-  <li><a href="#suffering-from-manual-version-control-git-can-help." id="toc-suffering-from-manual-version-control-git-can-help." class="nav-link" data-scroll-target="#suffering-from-manual-version-control-git-can-help.">Suffering from manual version control? <code>git</code> can help.</a>
+  <li><a href="#final-class" id="toc-final-class" class="nav-link active" data-scroll-target="#final-class">Final class!</a></li>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a>
   <ul>
-  <li><a href="#go-on-git" id="toc-go-on-git" class="nav-link" data-scroll-target="#go-on-git">Go on, <code>git</code>!</a></li>
+  <li><a href="#avida-digital-evolution-dataset" id="toc-avida-digital-evolution-dataset" class="nav-link" data-scroll-target="#avida-digital-evolution-dataset">Avida digital evolution dataset</a></li>
+  <li><a href="#western-africa-ebola-public-health-dataset" id="toc-western-africa-ebola-public-health-dataset" class="nav-link" data-scroll-target="#western-africa-ebola-public-health-dataset">Western Africa Ebola public health dataset</a></li>
+  <li><a href="#heat-exposure-in-phoenix-arizona-ecological-dataset" id="toc-heat-exposure-in-phoenix-arizona-ecological-dataset" class="nav-link" data-scroll-target="#heat-exposure-in-phoenix-arizona-ecological-dataset">Heat exposure in Phoenix, Arizona ecological dataset</a></li>
   </ul></li>
-  <li><a href="#longleaf-the-darling-of-unc-bioinformaticians" id="toc-longleaf-the-darling-of-unc-bioinformaticians" class="nav-link" data-scroll-target="#longleaf-the-darling-of-unc-bioinformaticians">Longleaf: The darling of UNC bioinformaticians</a></li>
-  <li><a href="#connecting-longleaf-and-github" id="toc-connecting-longleaf-and-github" class="nav-link" data-scroll-target="#connecting-longleaf-and-github">Connecting Longleaf and Github</a></li>
-  <li><a href="#linking-via-ssh" id="toc-linking-via-ssh" class="nav-link" data-scroll-target="#linking-via-ssh">Linking via <code>SSH</code></a></li>
-  <li><a href="#sec-repo" id="toc-sec-repo" class="nav-link" data-scroll-target="#sec-repo">Making a repository</a></li>
-  <li><a href="#rprojects" id="toc-rprojects" class="nav-link" data-scroll-target="#rprojects">RProjects</a>
-  <ul>
-  <li><a href="#readme-please" id="toc-readme-please" class="nav-link" data-scroll-target="#readme-please">README! … Please? 😢</a></li>
-  </ul></li>
-  <li><a href="#sec-git" id="toc-sec-git" class="nav-link" data-scroll-target="#sec-git">Using git</a></li>
   </ul>
 </nav>
     </div>
@@ -243,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Running a Reproducible Analysis</span></h1>
+<h1 class="title"><span class="chapter-title">Practicing on Real-World Data</span></h1>
 <p class="subtitle lead">Project Management, Day 1</p>
 </div>
 
@@ -254,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Brian Gural, Justin Landis </p>
+             <p>Lorrie He, Matthew Sutcliffe </p>
           </div>
   </div>
     
@@ -267,276 +233,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="reproducible-science-in-silico" class="level2">
-<h2 class="anchored" data-anchor-id="reproducible-science-in-silico">Reproducible science… <em>in-silico</em>??</h2>
-<ul>
-<li>Bioinformaticians are people too</li>
-<li>We need to make sure our research is well documented and reproducible just like bench scientists</li>
-<li>Projects can get complex, messy, and very computationally demanding</li>
-</ul>
-</section>
-<section id="how-can-computational-projects-get-derailed" class="level2">
-<h2 class="anchored" data-anchor-id="how-can-computational-projects-get-derailed">How can computational projects get derailed?</h2>
-<p>It turns out that computational biologists need to be careful with how they manage their code and data. <u>Leaving everything on your personal/lab computer comes with a lot of risk.</u></p>
-<p>You can reduce the risk of a mishap by housing data on UNC’s cloud computing service, <strong>Longleaf</strong>, and putting your code on <strong>Github</strong>. Both of these provide you with backups that can be accessed from anywhere with the internet.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="data/project-day-1-files/thisisfine.gif" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>The impending destruction of their laptop doesn’t bother this dog since they use remote computing and GitHub</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Don’t think it’s worth it? Here are some moments that made UNC researchers wished they had used these tools:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Broken laptops, crushed dreams</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">“How did you make this figure from 2018?”</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>“…there was a time where my computer just stopped letting me log in and needed to be wiped so if I wasn’t using Longleaf I would have lost everything. I did lose a nice powerpoint.”</p>
-<p>“In undergrad I was using local storage only on the desktop in my advisor’s office. There was some big failure with IT one day (tbh I still don’t know what happened) and I lost all my code”</p>
-<p>“Our collaborator lost the hard drive with the raw RNAseq data, dooming my first 1st author publication. His collaborator saved the day with a backup he had on Longleaf”</p>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>“An undergrad left their code in <code>/pine</code>* when they went home over the summer and it got deleted, so they had to re-write their code from scratch (which delayed the project as a whole)”</p>
-<p>“Only having GitHub as a memory of projects I did in grad school, being able to search and find bits of code so I don’t have to rewrite them.”</p>
-<p>“People emailing 2 years after a paper is published asking about obscure details of simulation etc.”</p>
-<p>*<code>pine</code> was UNC’s <em>temporary</em> data storage space</p>
-</div>
-</div>
-</div>
-</section>
-<section id="good-computational-practices-101" class="level2">
-<h2 class="anchored" data-anchor-id="good-computational-practices-101">Good computational practices 101</h2>
-<p>Computational projects ought to be approached with the same expectations of rigor and reproducibility expected of a bench project. This means that the work needs to be <u>well documented</u>, things need to be <u>properly stored</u>, and everything should be <u>organized clearly enough for someone to reproduce it</u>.</p>
-<p>Thankfully, we’re not the first researchers to run into these problems. A whole suite of tools and services exist to manage these issues:</p>
-<div class="columns">
-<div class="column" style="width:60%;">
-<ul>
-<li><p>Documenting everything</p></li>
-<li><p>Storing data &amp; getting resources</p></li>
-<li><p>Keeping your R project organized</p></li>
-</ul>
-</div><div class="column" style="width:5%;">
-<!-- empty column to create gap -->
-</div><div class="column" style="width:30%;">
-<p><code>git</code>/GitHub</p>
-<p>Longleaf</p>
-<p>RStudio Projects</p>
-</div><div class="column" style="width:5%;">
-<!-- empty column to create gap -->
-</div>
-</div>
-</section>
-<section id="suffering-from-manual-version-control-git-can-help." class="level2">
-<h2 class="anchored" data-anchor-id="suffering-from-manual-version-control-git-can-help.">Suffering from manual version control? <code>git</code> can help.</h2>
-<p>What is <strong>version control</strong> exactly? At its core, it’s a way of keeping track of the changes made to files. Before now, you’ve probably used a system like this:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Before GitHub</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">After GitHub</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>paper_draft1.doc</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>paper_draft2.doc</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>paper_reviewed_by_john.doc</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>paper_draft3_comments_incorporated.doc</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>paper_final_draft.doc</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>paper_final_reviewed.doc</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>paper_final_submission.doc</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>paper_final_submission_revised.doc</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>paper_final_submission_revised_v2.doc</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>paper_published_version.doc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="data/project-day-1-files/charlie-day.gif" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Charlie explains how his file naming system makes perfect sense</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p>With <code>git</code>, <strong>you can update a file while keeping a detailed log of the changes</strong>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>9a2b3c4 - Add published version of the paper (2024-04-29)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>8f7e6d5 - Revise submission after additional feedback, version 2 (2024-04-25)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>7d6c5b4 - Update submission based on post-submission feedback (2024-04-20)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>6c5b4a3 - Prepare final version for submission (2024-04-15)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>5b4a392 - Finalize draft after thorough review (2024-04-10)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>4a39881 - Incorporate feedback from final review (2024-04-05)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>3928717 - Update draft, incorporate feedback from John (2024-04-01)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>2871606 - Add second draft of the paper (2024-03-28)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>1760505 - Initial draft of the paper (2024-03-25)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="data/project-day-1-files/thumbs_up.gif" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Kevin, age 6, finds GitHub to be totally radical</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section id="go-on-git" class="level3">
-<h3 class="anchored" data-anchor-id="go-on-git">Go on, <code>git</code>!</h3>
-<p><code>git</code> is version control system used to record changes to files. <span class="blue">GitHub</span> uses <code>git</code> to help users host/review code and manage projects</p>
-<p><u><code>git</code>/GitHub matter because they:</u></p>
-<ul>
-<li><p>Track every version of every script</p></li>
-<li><p>Publicly document your work</p></li>
-<li><p>Allow for new versions of projects to <code>branch</code></p></li>
-<li><p>Make it easy to collaborate</p></li>
-</ul>
-</section>
-</section>
-<section id="longleaf-the-darling-of-unc-bioinformaticians" class="level2">
-<h2 class="anchored" data-anchor-id="longleaf-the-darling-of-unc-bioinformaticians">Longleaf: The darling of UNC bioinformaticians</h2>
-<p>Longleaf is UNC’s high-performance computing cluster (HPC). It’s basically a ton of computers/storage. Its accessible from anywhere with internet and offers a lot of storage. Labs typically start with 40 TB, users get 10 TB. Also you’ve been using it this whole time! RStudio OnDemand is hosted by Longleaf.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>There are a ton of reasons to use LL:</p>
-<ul>
-<li><p>Many scripts can be run at once, with your computer off</p></li>
-<li><p>It has A LOT more resources than a typical computer</p></li>
-<li><p>Easy to share files!</p></li>
-<li><p>Dedicated technical support via ITS</p></li>
-</ul>
-</div>
-</div>
-</section>
-<section id="connecting-longleaf-and-github" class="level2">
-<h2 class="anchored" data-anchor-id="connecting-longleaf-and-github">Connecting Longleaf and Github</h2>
-<p>Github and Longleaf each can be daunting to novice programmers, so lets walk through how to set them up together.</p>
-<p>The setup is going to amount to three general steps:</p>
+<section id="final-class" class="level2">
+<h2 class="anchored" data-anchor-id="final-class">Final class!</h2>
+<p>In previous classes, you gained experience working with Quarto documents within R projects.</p>
+<p>Today, now that you’ve been through the entire course, we want to reinforce some of the skills that you’ve learned by having you apply your knowledge to several existing datasets and go through the wrangling, analysis, and visualization process as independently as you can. By the end of this lesson, you should have a directory (and maybe GitHub repo) containing scripts for wrangling and analysis for at least one of these datasets that you can show to others (or at least have as a reference for your future self).</p>
+<p>For each of these datasets (or as many as time allows), we’d like you to do some basic analysis, including the following steps:</p>
+<blockquote class="blockquote">
 <ol type="1">
-<li>Introduce our Github and Longleaf accounts to each other with something called a <code>SSH</code> key
-<ul>
-<li>SSH keys (<strong>s</strong>ecure <strong>sh</strong>ell) are encrypted passwords that link two computer systems</li>
-</ul></li>
-<li>Make our first repository (project) on Github</li>
-<li>Learn how to get scripts from Github to Longleaf and update changes we made on Longleaf back to Github</li>
+<li><p>Create a directory for the analysis of this dataset, using best practices discussed in the previous class.</p></li>
+<li><p>Load in the data.</p></li>
+<li><p>Perform some initial data exploration (What are the rows? What are the columns? How many samples does this dataset have? etc.)</p></li>
+<li><p>Identify at least 1 research question that you could try to answer with this dataset.</p></li>
+<li><p>Format the data in a way that allows for this analysis.</p></li>
+<li><p>Visualize the data in helpful ways to answer your question.</p></li>
+<li><p>Bonus challenge: Make your code reproducible by using GitHub.</p></li>
 </ol>
-<p>Before we can start that, we’re going to need to know just a tad about <strong>terminals</strong> and <strong>Bash</strong>. These topics could be a whole course onto itself, but in a nutshell you can think of them like this:</p>
-<p><strong>Terminals</strong>, also called <strong>command lines</strong>, are text-based software for interacting with your computer. RStudio has a built-in terminal, on the tab next to “Console”.</p>
-<p><strong>Bash</strong> is a type of computer language that understands and carries out the instructions you type in the terminal, usually called “shell scripting”. It’s very common on Linux and Mac computers. Longleaf uses Linux and working on Longleaf means using a bit of Bash.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This course isn’t meant to teach you shell scripting, and you aren’t expected to fully understand some of the Bash command we’ll run. If you’d like to learn more, please refer to the following cheat sheets on <a href="https://github.com/RehanSaeed/Bash-Cheat-Sheet">common bash commands</a> and <a href="https://devhints.io/bash">scripting in bash</a> as helpful resources!</p>
-</div>
-</div>
+</blockquote>
+<p>To help with your analyses, we have included a <strong>project template</strong> document outlining these steps that you are welcome to use in <code>data/project-day-2-files/example-analyses</code>; the location of additional files are specified below.</p>
 </section>
-<section id="linking-via-ssh" class="level2">
-<h2 class="anchored" data-anchor-id="linking-via-ssh">Linking via <code>SSH</code></h2>
-<p>Let’s start by getting the terminal open. In the top left, click View -&gt; Move Focus To Terminal. It should’ve opened in the panel that also contains tabs for “Console” and “Background Jobs”.</p>
-<p>Next, let’s find the SSH key associated with your Longleaf account. We’ll run the following bash command in the terminal that we just opened (be aware that terminals are notoriously finicky with copy and paste): <code>cat ~/.ssh/id_rsa.pub</code></p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Do <u><strong>NOT</strong></u> forget to add the <code>.pub</code> of the above extension. RSA keys come in pairs, a private and a public version. The private key (i.e.&nbsp;the file that does not have the <code>.pub</code> extension) should <u><strong>NEVER</strong></u> be shared. Sharing your private key will allow malicious actors to interact with services that cache your public key <u>as if they were you</u>!</p>
-</div>
-</div>
-<p>This (hopefully) has copied your public SSH key to your clipboard!</p>
-<p>Now, let’s go over to Github and set up the key.</p>
-<ol type="1">
-<li><p>Go to profile settings on github and select the “ssh key” section</p></li>
-<li><p>Add new key</p></li>
-<li><p>Name the key (should remind you that this is the key for Longleaf)</p></li>
-<li><p>Paste the copied ssh key from the <code>cat</code> step above</p></li>
-<li><p>Create!</p></li>
-</ol>
-<p>With that done, we need to log into Github on Longleaf:</p>
-<ol type="1">
-<li><p>Go back to the RStudio terminal</p></li>
-<li><p><code>git config --global user.name "your-github-username"</code></p>
-<ul>
-<li>Keep the quotes around your username!</li>
-</ul></li>
-<li><p><code>git config --global user.email your.email.linkedwithgithub</code></p>
-<ul>
-<li>No quotes this time!</li>
-</ul></li>
-</ol>
-</section>
-<section id="sec-repo" class="level2">
-<h2 class="anchored" data-anchor-id="sec-repo">Making a repository</h2>
-<p>Great, we’ve connected Longleaf and Github (a herculean task for a beginner programmer!). What we’ll want to do next is make a repository (repo), which you could think of as a self-contained project folder. Let’s go back to Github:</p>
-<ol type="1">
-<li><p>In the “Repositories” tab of your profile, click “New”</p></li>
-<li><p>Give it a name, maybe “example_repo”</p></li>
-<li><p>Click the “Add a README file box”</p></li>
-<li><p>Add a `.gitignore` with an R template</p></li>
-<li><p>Create the repo!</p></li>
-</ol>
-<p>We’ll explain the signifance of the README and .gitignore steps a bit later. For now, lets go over to our new repo on our profile. To get it onto Longleaf, we can:</p>
-<ol type="1">
-<li><p>Click on the green “Code” box</p></li>
-<li><p>Click on “SSH”</p></li>
-<li><p>Copy the SSH right below that! It should end in `.git`</p></li>
-<li><p>Lets create a new directory to house our experimental projects. In the terminal window of RStudio, do the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~                 <span class="co">#set working directory to home directory</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> learning-R     <span class="co">#create a new directory "learning-R"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> learning-R        <span class="co">#set "learning-R" as our working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Git Project Organization">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Git Project Organization
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Git repositories may be cloned anywhere to your file system that makes sense to you. The above is a simple example of project organization in which we may create more repositories under the <code>learning-R</code> directory. Ultimately the choice is yours on how you wish to organize your git projects.</p>
-</div>
-</div>
-</div></li>
-<li><p>Now we can clone our new github repository locally!</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add what you copied in step 3 behind "clone".</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Your command may look something like this</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>username<span class="op">&gt;</span>/<span class="op">&lt;</span>reponame<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-</ol>
-</section>
-<section id="rprojects" class="level2">
-<h2 class="anchored" data-anchor-id="rprojects">RProjects</h2>
-<p>In this section, we will be discussing recommendations for organization. From <a href="#sec-repo" class="quarto-xref"><span>Making a repository</span></a>, we can see that our project is fairly empty</p>
-<pre><code>.
-├── .git/
-├── .gitignore
-└── README.md</code></pre>
-<p>It is up to use to bring some organization to our project!</p>
+<section id="datasets" class="level2">
+<h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
+<p>The <strong>csvs</strong> are available under in <code>data/project-day-2-files/datasets</code>. We have provided links to data that is publicly available for download, as well as some related publications that may give you more information about the data.</p>
+<p>These datasets were chosen because we thought they represented a good variety in the different kinds of wrangling and visualization challenges you might encounter with your own data in the future: we have highlighted a few specific R skills that some of these datasets were meant to challenge you on.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -547,113 +265,657 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The hidden directory <code>.git/</code> and file <code>.gitignore</code> will be covered in the next <a href="#sec-git" class="quarto-xref"><span>Using git</span></a>.</p>
+<p>The datasets are presented roughly in order of increasing wrangling complexity. Though you should have most of the basic skills you need to wrangle and analyze these datasets, we have specifically provided some code to aid you in certain wrangling tasks for some of the later datasets: see the “Analysis ideas and hints” callout for each dataset.</p>
 </div>
 </div>
-<p>Organization can greatly improve the experience of coding. It is a way for us to show our future selves some kindness as well as anyone who may maintain our work in the future.</p>
-<p>Below is an example of how we may setup directories for our project:</p>
-<pre><code>.
-├── .git/
-├── .gitignore
-├── data/
-├── outputs/
-├── R/
-├── scripts/
-└── README.md</code></pre>
-<p>Here, we have created 4 new directories: <code>data/</code>, <code>outputs/</code>, <code>R/</code> and <code>scripts/</code>. These directory names imply something to the viewer about their contents and provide quick navigation.</p>
-<p><code>data/</code> and <code>outputs/</code> are perhaps the most self explanatory. We will reserve <code>data</code> for files we may read in for our analysis, and <code>outputs</code> as a place for us to store our results.</p>
-<p><code>R/</code> and <code>scripts/</code> may be a bit nuanced. Perhaps the project author will keep helpful reusable R code in the <code>R/</code> directory, while the <code>scripts/</code> directory may be analysis workflows that are called from the command line.</p>
-<p>A project may, or may not, require this level of granularity. You may choose different directory names as well. However we want to maintain some level of interpretation and do not want to contradict expectations with the files within. Critically thinking about your project structure will ultimately save you time when you return to the project.</p>
-<p>Here are some general guidelines to follow:</p>
-<p><strong>Organization Do’s</strong></p>
-<ul>
-<li>Place files in some sort of relative structure</li>
-<li>Use descriptive file and directory names</li>
-<li>Format dates with <code>YYYY-MM-DD</code> <!-- files will be ordered by date by your file system --></li>
-</ul>
-<p><strong>Organization Do Not’s</strong></p>
-<ul>
-<li>Place all files at the top level of the repository</li>
-<li>Stratifying files between too many directories <!-- can make this just as hard to find --></li>
-<li>Using spaces in file names! <!-- escaping spaces on the command line with git is annoying --></li>
-</ul>
-<section id="readme-please" class="level3">
-<h3 class="anchored" data-anchor-id="readme-please">README! … Please? 😢</h3>
-<p>As the name implies, this file is intended to be read by anyone who happens upon your repository.Think of this as extra documentation that you, as the project owner, may use to communicate aspects of the repository. Include helpful information about your project such as:</p>
-<ul>
-<li>A brief description of the project</li>
-<li>What is the scope of the project
-<ul>
-<li>What problem does it solve?</li>
-<li>Intended use cases!</li>
-<li>Examples of what it should not be used for!</li>
-</ul></li>
-<li>How to get started or use the project</li>
-<li>How to contribute or report a bug</li>
-<li>Project Status: active development, stable, or abandoned</li>
-</ul>
-<p>If your repository is being viewed on <a href="github.com">github.com</a> then top level <code>README.md</code> is displayed like the landing page.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>For each dataset, we have provided a description of the research question/data collection methods, metadata, and the first few lines of each dataset. Read through these descriptions and work on the dataset you find most interesting. Feel free to work with a partner!</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="But I thought this was HTLTCode, not HTLTScience!">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+But I thought this was HTLTCode, not HTLTScience!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You may also place <code>README.md</code> within sub directories as well, allowing you to communicate more specific information within.</p>
-<p>Here are examples of what you may include in a <code>data/README.md</code> file</p>
+<p>To get the most out of today’s activities, we highly encourage you to practice going through the whole data analysis workflow as independently as you can, using your notes and practicing your Googling skills to develop your own research questions and analysis ideas for these datasets.</p>
+<p>That said, we have prepared some example research questions and figures for each dataset to get everyone started, so you can decide if you’d rather focus more on coding or science-ing for each dataset. These research questions are split into “easier” and “harder” coding challenges, with “harder” challenges generally involving slightly more wrangling: all datasets have a <strong>pre-filled project template</strong> in the same location as the blank template document that will explain the code used to produce the example figures.</p>
+<p>Thus, based on your comfort level, you can decide how much of the data analysis workflow you want to try independently today. You can:</p>
+<ol type="1">
+<li>Just recreate our figures,</li>
+<li>Develop your own analysis and figures to answer our research questions, or</li>
+<li>Develop your own research questions, analysis, and figures.</li>
+</ol>
+</div>
+</div>
+<section id="avida-digital-evolution-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="avida-digital-evolution-dataset">Avida digital evolution dataset</h3>
+<p><a href="https://avida-ed.msu.edu/digital-evolution/">Related publications</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><strong>Skills to practice:</strong> working with multiple files, pivoting</p>
+<p><strong>Background:</strong> The following data was generated using <a href="https://avida-ed.msu.edu/avida-ed-application/">Avida-ED</a>, an online educational application that allows one to study the dynamics of evolutionary processes. Digital, asexually-reproducing organisms known as “Avidians” can be placed into something akin to a virtual Petri dish to evolve in, and one can manipulate parameters such as mutation rate, resource availability, and dish size to study how those factors affect the evolution of the population.</p>
+<p>Your friend needs your help to analyze their Avida-Ed data. They designed a series of experiments around a mutant Avidian that gets an energy bonus when the sugar “nanose” is present and a wildtype Avidian that does not. They wanted to see how competition and resource availability affect the population dynamics of these Avidians.</p>
+<p>Your friend grew either the wildtype only, mutant only, or both populations together (competition) in the following 3 environments:</p>
 <ul>
-<li><p>explanation of what data was collected and how it was processed.</p></li>
-<li><p>documentation of the columns of a <code>.csv</code> file. What the acronyms and data labels mean and how they should be interpreted.</p></li>
+<li><p>Minimal (no additional sugars present)</p></li>
+<li><p>Selective (only nanose present)</p></li>
+<li><p>Rich (nanose and additional sugars present)</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/project-day-2-files/figs/avida-expt.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<figcaption>Avida experiment setup</figcaption>
+</figure>
+</div>
+<p>Help your friend get started with some of the exploratory data analysis. <em>What relationships can you find between genotype, competition, and resource availability?</em></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Data overview">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data overview
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Column metadata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Data for <code>avida_wildtype.csv</code> shown only:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">update</th>
+<th style="text-align: left;">condition</th>
+<th style="text-align: right;">minimal_avg.fitness</th>
+<th style="text-align: right;">minimal_avg.offspring.cost</th>
+<th style="text-align: right;">minimal_avg.energy.acq.rate</th>
+<th style="text-align: right;">minimal_pop.size</th>
+<th style="text-align: right;">selective_avg.fitness</th>
+<th style="text-align: right;">selective_avg.offspring.cost</th>
+<th style="text-align: right;">selective_avg.energy.acq.rate</th>
+<th style="text-align: right;">selective_pop.size</th>
+<th style="text-align: right;">rich_avg.fitness</th>
+<th style="text-align: right;">rich_avg.offspring.cost</th>
+<th style="text-align: right;">rich_avg.energy.acq.rate</th>
+<th style="text-align: right;">rich_pop.size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">wildtype-only</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.2486772</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.3587786</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>update</code></td>
+<td>integer</td>
+<td>Time elapsed</td>
+<td>Ranges 0-300</td>
+</tr>
+<tr class="even">
+<td><code>condition</code></td>
+<td>character</td>
+<td>Testing conditions (single population or competition)</td>
+<td>Based off csv: <code>wildtype-only</code>, <code>mutant-only</code>, <code>competition</code></td>
+</tr>
+<tr class="odd">
+<td><code>media_avg.fitness</code></td>
+<td>numeric</td>
+<td>Average individual reproductive success in specified media</td>
+<td>Ranges 0-1</td>
+</tr>
+<tr class="even">
+<td><code>media_avg.offspring.cost</code></td>
+<td>numeric</td>
+<td>Average individual reproductive cost in specified media</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>media_avg.energy.acq.rate</code></td>
+<td>numeric</td>
+<td>Average individual rate of energy acquisition from environment in specified media</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>media_pop.size</code></td>
+<td>integer</td>
+<td>Population size in specified media</td>
+<td>Ranges 0-900</td>
+</tr>
+</tbody>
+</table>
+<p>All population measurements were determined for <code>minimal</code>, <code>selective</code>, and <code>rich</code> media.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Analysis ideas and hints
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Analysis hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Example questions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Example figures</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<ul>
+<li><p>Which files have the pieces of data you need? Do you need to mix-and-match anything?</p></li>
+<li><p>The data could be “tidier”…</p></li>
 </ul>
 </div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Use these questions to develop your own or answer them as-is. There is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
+<p><strong>Bolded</strong> questions have an accompanying figure and code.</p>
+<hr>
+<p>Easier</p>
+<ul>
+<li><strong>How does population size change over time for the wildtype (or mutant) in different medias?</strong></li>
+<li>What is the relationship between fitness and offspring cost in competition conditions in different medias?</li>
+</ul>
+<p>Harder</p>
+<ul>
+<li><strong>How does the change in fitness over time compare between different treatment conditions and media types?</strong></li>
+<li>Which media type allows for the most maximal performance of the wildtype? The mutant? Competition conditions?</li>
+</ul>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p><strong>Easier: How does population size change over time for the wildtype (or mutant) in different medias?</strong></p>
+<p><img src="data/project-day-2-files/figs/avida-easy.png" class="img-fluid" style="width:75.0%"></p>
+<p><strong>Harder: how does the change in fitness over time compare between different treatment conditions and media types?</strong></p>
+<p><img src="data/project-day-2-files/figs/avida-hard.png" class="img-fluid" style="width:75.0%"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
+<section id="western-africa-ebola-public-health-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="western-africa-ebola-public-health-dataset">Western Africa Ebola public health dataset</h3>
+<p><a href="https://www.kaggle.com/datasets/imdevskp/ebola-outbreak-20142016-complete-dataset">Data source</a></p>
+<p><strong>Skills to practice:</strong> working with dates, pivoting</p>
+<p><strong>Background:</strong> The Western African Ebola virus (EV) epidemic of 2013-2016 is the most severe outbreak of the EV disease in history. It caused major disruptions and loss of life, mainly in the republics of Guinea, Liberia, and Sierra Leone.</p>
+<p><em>How might you depict the dynamics of this outbreak?</em></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Data overview">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data overview
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Column metadata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Country</th>
+<th style="text-align: left;">Date</th>
+<th style="text-align: right;">Cumulative.no..of.confirmed..probable.and.suspected.cases</th>
+<th style="text-align: right;">Cumulative.no..of.confirmed..probable.and.suspected.deaths</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Guinea</td>
+<td style="text-align: left;">2014-08-29</td>
+<td style="text-align: right;">648</td>
+<td style="text-align: right;">430</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nigeria</td>
+<td style="text-align: left;">2014-08-29</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sierra Leone</td>
+<td style="text-align: left;">2014-08-29</td>
+<td style="text-align: right;">1026</td>
+<td style="text-align: right;">422</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Liberia</td>
+<td style="text-align: left;">2014-08-29</td>
+<td style="text-align: right;">1378</td>
+<td style="text-align: right;">694</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sierra Leone</td>
+<td style="text-align: left;">2014-09-05</td>
+<td style="text-align: right;">1261</td>
+<td style="text-align: right;">491</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nigeria</td>
+<td style="text-align: left;">2014-09-05</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Country</code></td>
+<td>character</td>
+<td>Country of report</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Date</code></td>
+<td>character</td>
+<td>Date of report</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr class="odd">
+<td><code>Cumulative.no..of.confirmed..probable.and.suspected.cases</code></td>
+<td>numeric</td>
+<td>Cumulative number till this day</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Cumulative.no..of.confirmed..probable.and.suspected.deaths</code></td>
+<td>numeric</td>
+<td>Cumulative number till this day</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Analysis ideas and hints
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Analysis hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Example questions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Example figures</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<ul>
+<li><p>This dataset contains data for other countries besides the three named above. For simplicity, you may want to focus on only those three regions.</p></li>
+<li><p>The data could be “tidier”…</p></li>
+<li><p>You can use <code>format()</code> to extract specific parts of a date object: e.g.&nbsp;if <code>x</code> is a date object with the format <code>%Y-%m-%d</code>, you can get the year with <code>format(x, "%Y")</code>.</p></li>
+</ul>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>Use these questions to develop your own or answer them as-is. There is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
+<p><strong>Bolded</strong> questions have an accompanying figure and code.</p>
+<hr>
+<p>Easier</p>
+<ul>
+<li><strong>How many cases and deaths in total were recorded by each country from 2014-2016?</strong></li>
+<li>For a specific year, how did the number of cases and deaths change over time for each country?</li>
+</ul>
+<p>Harder</p>
+<ul>
+<li><strong>By country, how did the average number of cases and death change each year?</strong></li>
+<li>Are there any seasonal patterns in the average cases and deaths?</li>
+</ul>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p><strong>Easier: How many cases and deaths in total were recorded by each country from 2014-2016?</strong></p>
+<p><img src="data/project-day-2-files/figs/ebola-easy.png" class="img-fluid" style="width:75.0%"></p>
+<p><strong>Harder: By country, how did the average number of cases and death change each year?</strong></p>
+<p><img src="data/project-day-2-files/figs/ebola-hard.png" class="img-fluid" style="width:75.0%"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="sec-git" class="level2">
-<h2 class="anchored" data-anchor-id="sec-git">Using git</h2>
-<ul>
-<li><p><code>.git/</code> is a hidden directory whose main function is to track your <code>git ...</code> commands. It is generally wise to ignore this directory.</p></li>
-<li><p><code>.gitignore</code> uses rules to exclude files by name pattern or location</p>
-<ul>
-<li>Don’t upload data or large files!</li>
-</ul></li>
-<li><p>Changes need to be staged with <code>git add</code></p>
-<ul>
-<li><p><code>git add .</code> adds all files not excluded by the .gitignore in the directory</p></li>
-<li><p><code>git add -i</code> opens an interactive adding session</p></li>
-</ul></li>
-<li><p>Commit staged changes with a note to your future self</p>
-<ul>
-<li><p><code>git commit -m "Hi future me, this is what I changed"</code></p>
-<div class="callout callout-style-default callout-note callout-titled" title="note: Using `vim`">
+<section id="heat-exposure-in-phoenix-arizona-ecological-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="heat-exposure-in-phoenix-arizona-ecological-dataset">Heat exposure in Phoenix, Arizona ecological dataset</h3>
+<p><a href="https://data.sustainability-innovation.asu.edu/cap-portal/metadataviewer?packageid=knb-lter-cap.647.2">Data source</a> | <a href="https://doi.org/10.1016/j.envint.2020.106271">Related publication</a></p>
+<p><strong>Skills to practice:</strong> parsing strings, dealing with <code>NA</code> values</p>
+<p><strong>Background:</strong> Exposure to extreme heat is of growing concern with the rise of urbanization and ongoing climate change. Though most current knowledge about heat-health risks are known and implemented at the neighborhood level, less is known about individual experiences of heat, which can vary due to differences in access to cooling resources and activity patterns.</p>
+<p>To further investigate, the Central Arizona-Pheonix Long-Term Ecological Research Program <a href="https://sustainability-innovation.asu.edu/caplter/">(CAP-LTER)</a> recruited participants from 5 Pheonix-area neighborhoods to wear air temperature sensors that recorded their individually-experienced temperatures (IETs) as they went about their daily activities.</p>
+<p><em>What relationships can you find between individual activity, temperature, and neighborhood?</em></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Data overview">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-note: Using <code>vim</code>
+Data overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you were to write<br>
-<code>git commit</code><br>
-and omit the <code>-m "your message here"</code> portion, <code>git</code> will force you to write a message by placing you into an interactive prompt. The default text editor is usually <code>vim</code> which may be tricky to navigate.</p>
-<p>To enter edit mode, press <code>i</code> on your keyboard, and then you may begin writing your message. When you have finished, press <code>ESC</code> to exit your current command mode. To exit vim, press <code>:wq</code> which informs vim to write your changes and quit.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Data preview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Column metadata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Subject.ID</th>
+<th style="text-align: left;">period</th>
+<th style="text-align: right;">temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1A</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">25.14447</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1P</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">26.77962</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1E</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">27.21875</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1B</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">26.79175</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2N</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3A</td>
+<td style="text-align: left;">Sat, 8pm-12am</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div></li>
-</ul></li>
-<li><p>Commits are pushed to branches</p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Subject.ID</code></td>
+<td>character</td>
+<td>Subject identifier where number (1-5) corresponds to neighborhood</td>
+<td>1=Coffelt, 2=Encanto-Palmcroft, 3=Garfield, 4=Thunderhill, 5=Power Ranch</td>
+</tr>
+<tr class="even">
+<td><code>period</code></td>
+<td>character</td>
+<td>4 hour measurement period</td>
+<td>weekday, period</td>
+</tr>
+<tr class="odd">
+<td><code>temperature</code></td>
+<td>numeric</td>
+<td>4 hour average of IET during specified period</td>
+<td>Celcius</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Analysis ideas and hints">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Analysis ideas and hints
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Analysis hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Example questions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">Example figures</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <ul>
-<li>For the main branch, use <code>git push origin main</code></li>
+<li><p>We recommend using functions in the <code>stringr</code> package from the tidyverse to parse the strings, particularly <code>str_sub()</code> and <code>str_split_fixed()</code>.</p>
+<ul>
+<li><p>e.g.&nbsp;If you had a vector <code>x</code> containing a bunch of 2 character codes (<code>XX</code>), you could extract the first character with <code>str_sub(x, 1, 1).</code></p></li>
+<li><p>e.g.&nbsp;If you had a vector <code>x</code> containing information in the format <code>first-second-third</code>, you could extract that first chunk with <code>str_split_fixed(x, "-", n=3)[,1].</code></p></li>
 </ul></li>
+<li><p>R has some “counting” functions such as <code>length()</code> and <code>n()</code>: how could you get unique counts? Is there a single function that does that?</p></li>
 </ul>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>Use these questions to develop your own or answer them as-is. There is no “single” or “correct” way to answer to these questions, and you can refine or broaden the scope of these questions as needed.</p>
+<p><strong>Bolded</strong> questions have an accompanying figure and code.</p>
+<hr>
+<p>Easier</p>
+<ul>
+<li><strong>How many participants were there for each neighborhood in the study?</strong></li>
+<li>On average, which 4-hour measurement period is the warmest? The coolest?</li>
+</ul>
+<p>Harder</p>
+<ul>
+<li><strong>What was the daily average temperature for each neighborhood during the study period?</strong></li>
+<li>For a specific neighborhood on a specific day, what were all of the individual temperatures experienced for each 4-hour measurement period?</li>
+</ul>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<p><strong>Easier: How many participants were there for each neighborhood in the study?</strong></p>
+<p><img src="data/project-day-2-files/figs/temps-easy.png" class="img-fluid" style="width:75.0%"></p>
+<p><strong>Harder: What was the daily average temperature for each neighborhood during the study period?</strong></p>
+<p><img src="data/project-day-2-files/figs/temps-hard.png" class="img-fluid" style="width:75.0%"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 <script type="ojs-module-contents">
@@ -670,6 +932,13 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>In particular, see <a href="https://www.nature.com/articles/nature01568">Lenski et al.&nbsp;(2003)</a> and <a href="https://link.springer.com/article/10.1186/s12052-016-0060-0">Smith et al.&nbsp;(2016)</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1103,13 +1372,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./class6.html" class="pagination-link" aria-label="Data Wrangling with Real Experimental Data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></span>
+      <a href="./class6.html" class="pagination-link" aria-label="Data Wrangling with Real World Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Data Wrangling with Real World Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./class8.html" class="pagination-link" aria-label="Practicing on Real-World Data">
-        <span class="nav-page-text"><span class="chapter-title">Practicing on Real-World Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Extras.html" class="pagination-link" aria-label="Bonus lessons">
+        <span class="nav-page-text"><span class="chapter-title">Bonus lessons</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -196,17 +196,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
+  <a href="./class6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real World Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running a Reproducible Analysis</span></a>
+  <a href="./class7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Practicing on Real-World Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Practicing on Real-World Data</span></a>
+  <a href="./Extras.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bonus lessons</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bonus-git-and-github.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running a Reproducible Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./class6_old.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></a>
   </div>
 </li>
     </ul>
@@ -231,11 +241,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#an-introduction-to-pipes" id="toc-an-introduction-to-pipes" class="nav-link" data-scroll-target="#an-introduction-to-pipes">An introduction to pipes</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#case-study-introduction" id="toc-case-study-introduction" class="nav-link" data-scroll-target="#case-study-introduction">Case Study Introduction</a>
-  <ul>
-  <li><a href="#getting-familiar-with-the-data" id="toc-getting-familiar-with-the-data" class="nav-link" data-scroll-target="#getting-familiar-with-the-data">Getting familiar with the data</a></li>
-  <li><a href="#analysis-goals" id="toc-analysis-goals" class="nav-link" data-scroll-target="#analysis-goals">Analysis Goals</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -723,87 +728,6 @@ Anonymous Functions
 <p>To summarize, <code>%&gt;%</code> is slightly more lenient than <code>|&gt;</code> when it comes to the Placeholder operator, the Right Hand Side (RHS) and Anonymous functions.</p>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="case-study-introduction" class="level2">
-<h2 class="anchored" data-anchor-id="case-study-introduction">Case Study Introduction</h2>
-<p>Just reading about ways to manipulate data can be hard to understand without an application. Since this course is geared towards biomedical sciences, we thought you might find it easier if we work through an actual research data set.</p>
-<p>For this example, we have some data from an experiment that measured the proportions of different cell times within mouse cardiac tissue. These samples are from treatment vs.&nbsp;control and WT (wild type) vs.&nbsp;mutant.</p>
-<p>What are some things that we, as researchers, would want to know about our data?</p>
-<ul>
-<li>Did the experiment work?</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled" title="Things to consider:">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Things to consider:
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Check your controls or expected features!</p>
-</div>
-</div>
-<ul>
-<li>Do we see differences between our experimental groups?</li>
-</ul>
-<p>To get at these questions, we need to be able to manipulate our data into the formats needed to check those features and for plotting. To start, lets take a look at how the results are structured before we start planning how to do the processing.</p>
-<section id="getting-familiar-with-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="getting-familiar-with-the-data">Getting familiar with the data</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data. The sample IDs were stored as the first row, so lets make those the row.names</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>cell_props <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/wrangling-files/cellProportions.csv"</span>,</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cell_props)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Cardiomyocytes Fibroblast Endothelial.Cells Macrophage
-whole_2              0.652     0.0886           0.06700     0.1761
-fraction_13          0.824     0.0370           0.06387     0.0692
-fraction_12          0.895     0.0213           0.04436     0.0390
-fraction_19          0.000     0.9983           0.00167     0.0000
-fraction_18          0.000     1.0000           0.00000     0.0000
-whole_16             0.820     0.0208           0.08889     0.0501
-            Pericytes.SMC
-whole_2           0.01672
-fraction_13       0.00558
-fraction_12       0.00000
-fraction_19       0.00000
-fraction_18       0.00000
-whole_16          0.02058</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Whole vs. Fractions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Whole vs.&nbsp;Fractions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>Fraction</code> samples are our controls. They are supposed to be almost completely one single cell type. They’re just here to make sure we accurately measured cell type proportions.</p>
-<p><code>Whole</code> samples are our test samples. They’re from the treatment/control mice, which you’d expect to have a range of cell types.</p>
-</div>
-</div>
-</section>
-<section id="analysis-goals" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-goals">Analysis Goals</h3>
-<p>For next class, you should brainstorm some ideas for how to approach the analysis. Try to consider these angles:</p>
-<ul>
-<li>What do we want to know about this data set?</li>
-<li>What kind of visuals would we want to make to check that?</li>
-<li>What would the data need to look like to get those visuals?</li>
-<li>How does the data look now?</li>
-<li>Which functions might we use to get the data from its current state to what we need for plotting?</li>
-</ul>
-<p>In the beginning of next class, we’ll chat about what ideas you had!</p>
-<p>(Ambitious students who want to try before then will also need the phenotype data located at <code>data/wrangling-files/cellPhenotypes.csv</code>)</p>
 
 
 <script type="ojs-module-contents">
@@ -820,6 +744,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
 </section>
 </section>
 
@@ -1259,8 +1184,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./class6.html" class="pagination-link" aria-label="Data Wrangling with Real Experimental Data">
-        <span class="nav-page-text"><span class="chapter-title">Data Wrangling with Real Experimental Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./class6.html" class="pagination-link" aria-label="Data Wrangling with Real World Data">
+        <span class="nav-page-text"><span class="chapter-title">Data Wrangling with Real World Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

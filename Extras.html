@@ -7,17 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Austin Daigle">
-<meta name="author" content="John Patrick Flores">
-<meta name="author" content="Madeline Gillman">
-<meta name="author" content="Brian Gural">
-<meta name="author" content="Lorrie He">
-<meta name="author" content="Justin Landis">
-<meta name="author" content="Teresa McGee">
-<meta name="author" content="Sarah Mae Parker">
-<meta name="author" content="Matthew Sutcliffe">
-<meta name="dcterms.date" content="2024-05-22">
 
-<title>How To Learn to Code : R for Data Science</title>
+<title>Bonus lessons – How To Learn to Code : R for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./class0.html" rel="next">
+<link href="./bonus-git-and-github.html" rel="next">
+<link href="./class7.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Extras.html"><span class="chapter-title">Bonus lessons</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -134,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -180,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Extras.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bonus lessons</span></a>
+  <a href="./Extras.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Bonus lessons</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -203,7 +195,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#supplemental-materials" id="toc-supplemental-materials" class="nav-link active" data-scroll-target="#supplemental-materials">Supplemental Materials</a>
+  <ul>
+  <li><a href="#bonus-git-and-github" id="toc-bonus-git-and-github" class="nav-link" data-scroll-target="#bonus-git-and-github">Bonus: Git and GitHub</a></li>
+  <li><a href="#alternative-data-wrangling-class-6-old-version" id="toc-alternative-data-wrangling-class-6-old-version" class="nav-link" data-scroll-target="#alternative-data-wrangling-class-6-old-version">Alternative Data Wrangling (Class 6 Old Version)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -212,97 +208,20 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">How To Learn to Code : R for Data Science</h1>
+<h1 class="title"><span class="chapter-title">Bonus lessons</span></h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliations</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Austin Daigle </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">John Patrick Flores </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Madeline Gillman </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum Curriculum
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Brian Gural </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, Genetics Curriculum
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Lorrie He </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, Evolution, Ecology, and Organismal Biology Curriculum
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Justin Landis </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Teresa McGee </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Sarah Mae Parker </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, Bioinformatics and Computational Biology Curriculum
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Matthew Sutcliffe </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNC Chapel Hill, MDPhD - Bioinformatics and Computational Biology Curriculum Curriculum
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 22, 2024</p>
-    </div>
+             <p>Austin Daigle </p>
+          </div>
   </div>
+    
   
     
   </div>
@@ -312,68 +231,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>Welcome to How to Learn to Code!!</p>
-<p>We are an organization that hopes to make learning to program approachable, accessible, and effective. We want to improve rigor and reproducibility in science by providing programming resources and experiences to scientists and professionals in all levels of their careers. Our classes are small-group based courses with a teacher:student ratio that allows the students to learn dynamically and independently. During classes, students are able to follow along with the teacher leading the instruction, or work with one of our floating teachers to troubleshoot or to better understand their own code.</p>
-<p>This is our curriculum for learning R programming in the context of data analysis. Our curriculum development team has worked tirelessly to develop this new curriculum for the Summer of 2024. We are constantly improving and updating our curricula, so if you’re interested in contributing or have suggestions, please visit <a href="https://howtolearntocode.web.unc.edu/" class="uri">https://howtolearntocode.web.unc.edu/</a> for our most up-to-date contact information. If you have gotten to our Class 7 over Github, or are proficient in Github yourself, feel free to submit an issue or pull request at <a href="https://github.com/How-to-Learn-to-Code/Rclass-DataScience" class="uri">https://github.com/How-to-Learn-to-Code/Rclass-DataScience</a>.</p>
-<table class="caption-top table">
-<caption>Table of Contents</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Class Day</th>
-<th style="text-align: center;">Topic</th>
-<th style="text-align: center;">Link</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">Welcome to How to Learn to Code!</td>
-<td style="text-align: center;"><a href="./class0.html">Introduction</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">R Coding Basics</td>
-<td style="text-align: center;"><a href="./class1.html">Coding Basics 1</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">Applying Coding Basics</td>
-<td style="text-align: center;"><a href="./class2.html">Coding Basics 2</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">Let’s Get Plotting!</td>
-<td style="text-align: center;"><a href="./class3.html">Data Visualization 1</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">Applying Visualization Methods</td>
-<td style="text-align: center;"><a href="./class4.html">Data Vizualization 2</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">Data Wrangling Basics</td>
-<td style="text-align: center;"><a href="./class5.html">Data Wrangling 1</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">Data Wrangling with Real Experimental Data</td>
-<td style="text-align: center;"><a href="./class6.html">Data Wrangling 2</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">Running a Reproducible Analysis</td>
-<td style="text-align: center;"><a href="./class7.html">Project 1</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">Practicing on Real World Data</td>
-<td style="text-align: center;"><a href="class8.qmd">Project 2</a></td>
-</tr>
-</tbody>
-</table>
+<section id="supplemental-materials" class="level1">
+<h1>Supplemental Materials</h1>
+<p>Welcome to the <strong>Bonus lessons</strong> page. Below are two extra chapters you can explore:</p>
+<hr>
+<section id="bonus-git-and-github" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-git-and-github">Bonus: Git and GitHub</h2>
+<p>Learn how to create a GitHub account, set up Git on your computer, and start version-controlling your projects. This guide will walk you through:</p>
+<ul>
+<li>Registering for GitHub<br>
+</li>
+<li>Installing and configuring Git<br>
+</li>
+<li>Your first commit and push</li>
+</ul>
+<p><a href="bonus-git-and-github.html">Go to Bonus: Git and GitHub</a></p>
+<hr>
+</section>
+<section id="alternative-data-wrangling-class-6-old-version" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-data-wrangling-class-6-old-version">Alternative Data Wrangling (Class 6 Old Version)</h2>
+<p>This is an alternate take on <strong>Data Wrangling Day 2</strong>, covering the same concepts with a slightly different workflow and examples. It’s great if you want more practice or a different perspective.</p>
+<p><a href="class6_old.html">Go to Class 6 (Old Version)</a></p>
 
 
 <script type="ojs-module-contents">
@@ -390,6 +268,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -823,10 +702,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./class7.html" class="pagination-link" aria-label="Practicing on Real-World Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Practicing on Real-World Data</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./class0.html" class="pagination-link" aria-label="Welcome to How to Learn to Code!">
-        <span class="nav-page-text"><span class="chapter-title">Welcome to How to Learn to Code!</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./bonus-git-and-github.html" class="pagination-link" aria-label="Running a Reproducible Analysis">
+        <span class="nav-page-text"><span class="chapter-title">Running a Reproducible Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
