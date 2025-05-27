@@ -1,5 +1,5 @@
 ---
-title: "Data Wrangling with Real World Data"
+title: "Applying Data Wrangling Skills"
 subtitle: "Data Wrangling, Day 2 (Tour de France edition)"
 author: "Madeline Gillman & Austin Daigle"
 format: 
@@ -71,7 +71,7 @@ Let's read in the data and dig in!
 
 rider_hx <- read_csv("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Riders_History_1919-2023.csv")
 
-stage_hx <- read_csv("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Stages_History_1919-2023")
+stage_hx <- read_csv("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Stages_History_1919-2023.csv")
 
 ```
 
@@ -103,13 +103,15 @@ Read in the dataset.
 
 ```{r}
 
-tdf_2024_df <- read_csv("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/tdf_2024_stage13_data")
+tdf_2024_df <- read_csv("https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/tdf_2024_stage13_data.csv")
 ```
 
 1.  Try using `rbind()`, `bind_rows()` , and `merge()` to join the new data with the rider history data from above. Which one(s), if any, work? Why do you think they do (or do not) work?
 2.  If you need to make any modifications to the new data to enable a join, do so and then join the datasets. Make these changes in R, NOT Excel or a text editor. Doing so in R ensures that your changes are *reproducible* and that the original data is not destroyed or modified.
 3.  Use this new dataset to add this year's average speed to the same plots you made in Part 1.
-4.  Review your code from Parts 1 and 2. See if you can use pipes to connect as many steps as possible. As you do this, make sure you add comments to your code and consider if using too many pipes sacrifices code readability.
+4.  Write this new dataset to a new comma-separated file. See if you can write the file using one of these functions: `write.csv()`, `write_csv()`, and `write.table()`. Use the help pages for each of the functions to explore the difference between each. Which one will you probably use the most in your own analyses?
+    a.  Verify you can view this file using the file explorer on OnDemand, and download to your computer. If the file does not look like you expected, review the help pages for the function you used.
+5.  Review your code from Parts 1 and 2. See if you can use pipes to connect as many steps as possible. As you do this, make sure you add comments to your code and consider if using too many pipes sacrifices code readability.
 
 ## Part 3: Stage History
 
