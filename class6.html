@@ -8,7 +8,7 @@
 
 <meta name="author" content="Madeline Gillman &amp; Austin Daigle">
 
-<title>Data Wrangling with Real World Data – How To Learn to Code : R for Data Science</title>
+<title>Applying Data Wrangling Skills – How To Learn to Code : R for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./class6.html"><span class="chapter-title">Data Wrangling with Real World Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./class6.html"><span class="chapter-title">Applying Data Wrangling Skills</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./class6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Data Wrangling with Real World Data</span></a>
+  <a href="./class6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Applying Data Wrangling Skills</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Data Wrangling with Real World Data</span></h1>
+<h1 class="title"><span class="chapter-title">Applying Data Wrangling Skills</span></h1>
 <p class="subtitle lead">Data Wrangling, Day 2 (Tour de France edition)</p>
 </div>
 
@@ -402,10 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rider_hx <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Riders_History_1919-2023.csv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>stage_hx <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Stages_History_1919-2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in open.connection(structure(4L, class = c("curl", "connection"), conn_id = &lt;pointer: 0x62c&gt;), : HTTP error 404.</code></pre>
-</div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>stage_hx <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/TDF_Stages_History_1919-2023.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>Use your favorite function to check out the data frame real quick. Options include: <code>head()</code>, <code>glimpse()</code> , and <code>str()</code> . Would you consider this “tidy” data?</li>
@@ -443,15 +440,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Team VLAB has handed you data with rankings though Stage 13 (remember, Stage 14 of 21 is tomorrow). The team is interested in knowing how Jonas’ speed this year compares to previous years.</p>
 <p>Read in the dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tdf_2024_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/tdf_2024_stage13_data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in open.connection(structure(5L, class = c("curl", "connection"), conn_id = &lt;pointer: 0x653&gt;), : HTTP error 404.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tdf_2024_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/How-to-Learn-to-Code/Rclass-DataScience/main/data/wrangling-files/tdf_2024_stage13_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>Try using <code>rbind()</code>, <code>bind_rows()</code> , and <code>merge()</code> to join the new data with the rider history data from above. Which one(s), if any, work? Why do you think they do (or do not) work?</li>
 <li>If you need to make any modifications to the new data to enable a join, do so and then join the datasets. Make these changes in R, NOT Excel or a text editor. Doing so in R ensures that your changes are <em>reproducible</em> and that the original data is not destroyed or modified.</li>
 <li>Use this new dataset to add this year’s average speed to the same plots you made in Part 1.</li>
+<li>Write this new dataset to a new comma-separated file. See if you can write the file using one of these functions: <code>write.csv()</code>, <code>write_csv()</code>, and <code>write.table()</code>. Use the help pages for each of the functions to explore the difference between each. Which one will you probably use the most in your own analyses?
+<ol type="a">
+<li>Verify you can view this file using the file explorer on OnDemand, and download to your computer. If the file does not look like you expected, review the help pages for the function you used.</li>
+</ol></li>
 <li>Review your code from Parts 1 and 2. See if you can use pipes to connect as many steps as possible. As you do this, make sure you add comments to your code and consider if using too many pipes sacrifices code readability.</li>
 </ol>
 </section>
