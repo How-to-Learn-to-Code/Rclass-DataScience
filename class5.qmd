@@ -19,7 +19,7 @@ format:
 
 -   Understand what tidy data is and what it looks like
 
--   Understand piping basics
+-   Understand piping basics: `mutate()`, `filter()`, `group_by()`, and `summarize()`
 
 ::: {.callout-note title="Measure twice, cut once"}
 Before you begin wrangling data, you should be able to:
@@ -127,6 +127,19 @@ This follows the *tidy data* style, an approach to handling data in R that aims 
 The bundle of tidy-associated packages is called the `tidyverse`, and it's a 🔥 hot-topic 🔥 in the R world. In fact, `ggplot` is a package that you have already used that is part of the `tidyverse`! Most data wrangling problems can be solved with `tidy` or base (default) R functions. This can lead to some headaches for beginners, as there are multiple ways to accomplish the same thing!
 :::
 
+Review the below datasets. Given the above criteria, are they tidy? If not, write out in words what you would need to do. The first one is done as an example.
+
+```{r}
+library(tidyverse)
+head(relig_income)
+```
+
+This data is not tidy because there are variables (income) in the columns. A tidy dataset would have three columns: religion, income, and number of respondents (n). We would need to pivot the data to create new columns called income and n.
+
+```{r}
+head(billboard)
+```
+
 ### `dplyr` verbs
 
 One of the most popular `tidyverse` packages, `dplyr`, offers a suite of helpful and readable functions for data manipulation. Let's get started with how it can help you see your data:
@@ -190,7 +203,22 @@ More information about functions like this can be found [here](https://r4ds.hadl
 `dplyr` verbs work great as a team!
 :::
 
-Although these were basic examples, hopefully you feel a little more confident about working with vectors, and data frames using `dplyr` verbs to clean and manipulate data. Happy Wrangling!
+Although these were basic examples, hopefully you feel a little more confident about working with vectors, and data frames using `dplyr` verbs to clean and manipulate data. Give some of them a try with the `billboard` dataset below. Happy Wrangling!
+
+```{r}
+# First, let's make this data set tidy :) 
+billboard2 <- billboard |> 
+  pivot_longer(
+    wk1:wk76, 
+    names_to = "week", 
+    values_to = "rank", 
+    values_drop_na = TRUE
+  )
+```
+
+1.  Use `mutate()` to add a new column called `week_number` that is the week as integer (i.e. wk1 is 1)
+2.  Use `filter()` to get all the songs by Eve.
+3.  Use `mutate()` to add a new column called `year` with the year derived from the date in the column `date.entered`
 
 ### Functions on functions
 
@@ -334,3 +362,13 @@ x <- 10
 
 To summarize, `%>%` is slightly more lenient than `|>` when it comes to the Placeholder operator, the Right Hand Side (RHS) and Anonymous functions.
 :::::::::
+
+Using the same `billboard2` dataset from above, try out using pipes on the following:
+
+1.  Use `filter()`, `group_by(),` and a `slice` function (read the documentation linked above to determine which one!) to create a new dataframe called `number_one_hits_2000` that has the top ranked song for each week from the year 2000.
+
+<!-- -->
+
+2.  Use some of the same functions to create a new dataframe called `number_one_hits` that has the top ranked song for each week from *each year.*
+3.  What was the highest ranking Creed's "Higher" achieved?
+4.  Using `group_by()` and `summarize()` how many unique songs did Whitney Houston have on the charts?
