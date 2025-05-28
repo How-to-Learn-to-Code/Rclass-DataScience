@@ -74,7 +74,10 @@ book:
     - class5.qmd
     - class6.qmd
     - class7.qmd
-    - Extras.qmd
+    - part: Extras.qmd
+      - chapters: 
+        - class6_old.qmd
+        - bonus-git-and-github.qmd
 
 execute: 
   freeze: auto
