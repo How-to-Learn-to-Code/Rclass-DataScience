@@ -75,7 +75,7 @@ book:
     - class6.qmd
     - class7.qmd
     - part: Extras.qmd
-      - chapters: 
+      chapters: 
         - class6_old.qmd
         - bonus-git-and-github.qmd
 
